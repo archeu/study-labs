@@ -22,6 +22,7 @@
     <module>javase/collections-choose</module>
     <module>javase/hashmap-internals</module>
     <module>javase/hashmap-relatives</module>
+    <module>javase/lambda-stream-record</module>
   </modules>
 
   <build>
