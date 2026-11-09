@@ -24,6 +24,7 @@
     <module>javase/hashmap-relatives</module>
     <module>javase/lambda-stream-record</module>
     <module>javase/exception-reflection-proxy</module>
+    <module>javase/io-nio-basics</module>
   </modules>
 
   <build>
