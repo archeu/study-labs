@@ -28,6 +28,7 @@
     <module>javase/algorithms-everyday</module>
     <module>java/pano-j02-order-in-threadpool</module>
     <module>juc/thread-state-context-switch</module>
+    <module>juc/jmm-jcstress-cache</module>
   </modules>
 
   <build>
