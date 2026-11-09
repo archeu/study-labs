@@ -18,6 +18,7 @@
   <modules>
     <!-- new_lab.py 会在这里追加 <module> -->
     <module>java/pano-j01-order-object-life</module>
+    <module>javase/oop-generics-erasure</module>
   </modules>
 
   <build>
