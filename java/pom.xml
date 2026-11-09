@@ -30,6 +30,7 @@
     <module>juc/thread-state-context-switch</module>
     <module>juc/jmm-jcstress-cache</module>
     <module>juc/synchronized-cas-atomic</module>
+    <module>juc/aqs-rwlock-jfr</module>
   </modules>
 
   <build>
