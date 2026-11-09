@@ -23,6 +23,7 @@
     <module>javase/hashmap-internals</module>
     <module>javase/hashmap-relatives</module>
     <module>javase/lambda-stream-record</module>
+    <module>javase/exception-reflection-proxy</module>
   </modules>
 
   <build>
