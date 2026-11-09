@@ -21,6 +21,7 @@
     <module>javase/oop-generics-erasure</module>
     <module>javase/collections-choose</module>
     <module>javase/hashmap-internals</module>
+    <module>javase/hashmap-relatives</module>
   </modules>
 
   <build>

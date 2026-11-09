@@ -34,3 +34,4 @@
 | [面向对象、接口与抽象类、泛型和类型擦除](https://archeu.github.io/study-notes/javase/oop-generics-erasure.html) | [`java/javase/oop-generics-erasure`](java/javase/oop-generics-erasure/) | `Demo`：封装、多态、擦除、原始类型、桥方法、构造器陷阱 6 段，配 javap 命令 |
 | [常用集合怎么选：ArrayList、LinkedList、Set、Queue](https://archeu.github.io/study-notes/javase/collections-choose.html) | [`java/javase/collections-choose`](java/javase/collections-choose/) | `OrderBook` 订单簿五种集合和四个坑；`Bench` 8 个场景粗测；`Memory` 每元素字节数 |
 | [HashMap：哈希、扩容、树化](https://archeu.github.io/study-notes/javase/hashmap-internals.html) | [`java/javase/hashmap-internals`](java/javase/hashmap-internals/) | `Demo` + `Peek`：反射看桶数组，扩容、碰撞拆分、树化、坏 hashCode、并发写、可变 key 6 段 |
+| [HashMap 的亲戚们：LinkedHashMap、WeakHashMap、ThreadLocalMap](https://archeu.github.io/study-notes/javase/hashmap-relatives.html) | [`java/javase/hashmap-relatives`](java/javase/hashmap-relatives/) | `Demo`：LRU、WeakHashMap 两个坑、ThreadLocalMap 格子、线程池串号和大对象 6 段 |
