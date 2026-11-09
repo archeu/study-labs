@@ -38,3 +38,4 @@
 | [Lambda、Stream、record、模式匹配：编译后变成了什么](https://archeu.github.io/study-notes/javase/lambda-stream-record.html) | [`java/javase/lambda-stream-record`](java/javase/lambda-stream-record/) | `Demo`（JDK 17）：Lambda、Stream、parallel、装箱、record 5 段；`src/jdk21/PatternSwitch`（JDK 21）模式匹配 |
 | [异常、反射、注解与动态代理：JDK 这一层](https://archeu.github.io/study-notes/javase/exception-reflection-proxy.html) | [`java/javase/exception-reflection-proxy`](java/javase/exception-reflection-proxy/) | `Demo` 5 段 + `TxAuditHandler` 手写事务审计代理；可存下生成的 `$Proxy` 类 javap |
 | [IO 与 NIO 基础：流、Buffer、Channel](https://archeu.github.io/study-notes/javase/io-nio-basics.html) | [`java/javase/io-nio-basics`](java/javase/io-nio-basics/) | `Demo` 导出导入、字符集、ByteBuffer；`Copy` 五种复制法配 strace |
+| [数据结构与算法：日常和面试够用的那部分](https://archeu.github.io/study-notes/javase/algorithms-everyday.html) | [`java/javase/algorithms-everyday`](java/javase/algorithms-everyday/) | `Demo`：Top 10、二分、滑动窗口限流、排序稳定性与比较器、TreeMap 红黑树结构 5 段 |

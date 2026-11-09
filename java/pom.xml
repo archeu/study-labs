@@ -25,6 +25,7 @@
     <module>javase/lambda-stream-record</module>
     <module>javase/exception-reflection-proxy</module>
     <module>javase/io-nio-basics</module>
+    <module>javase/algorithms-everyday</module>
   </modules>
 
   <build>
