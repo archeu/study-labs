@@ -20,6 +20,7 @@
     <module>java/pano-j01-order-object-life</module>
     <module>javase/oop-generics-erasure</module>
     <module>javase/collections-choose</module>
+    <module>javase/hashmap-internals</module>
   </modules>
 
   <build>
