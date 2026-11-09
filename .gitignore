@@ -1,0 +1,19 @@
+# build output
+target/
+*.class
+.venv/
+__pycache__/
+.pytest_cache/
+# IDE
+.idea/
+*.iml
+.vscode/
+# experiment leftovers: never commit data, downloads, models
+*.log
+*.tgz
+*.tar.gz
+*.zip
+*.gguf
+*.jar
+data/
+logs/
