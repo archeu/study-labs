@@ -26,6 +26,7 @@
     <module>javase/exception-reflection-proxy</module>
     <module>javase/io-nio-basics</module>
     <module>javase/algorithms-everyday</module>
+    <module>java/pano-j02-order-in-threadpool</module>
   </modules>
 
   <build>
