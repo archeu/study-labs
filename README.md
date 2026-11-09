@@ -30,3 +30,4 @@
 
 | 页面 | 代码 | 说明 |
 |---|---|---|
+| [全景：一个订单对象的一生](https://archeu.github.io/study-notes/java/pano-j01-order-object-life.html) | [`java/java/pano-j01-order-object-life`](java/java/pano-j01-order-object-life/) | `OrderApp`：Spring Boot 订单服务，每站打点；`/orders` 下单、`/stats` 看集合里攒了多少 |

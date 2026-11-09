@@ -17,6 +17,7 @@
 
   <modules>
     <!-- new_lab.py 会在这里追加 <module> -->
+    <module>java/pano-j01-order-object-life</module>
   </modules>
 
   <build>
