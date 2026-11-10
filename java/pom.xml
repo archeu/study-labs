@@ -40,6 +40,7 @@
     <module>jvm/jvm-object-new-layout</module>
     <module>jvm/jvm-gc-log-tuning</module>
     <module>jvm/jvm-classloading</module>
+    <module>jvm/jvm-jit-escape</module>
   </modules>
 
   <build>
