@@ -36,6 +36,7 @@
     <module>juc/threadlocal-leak</module>
     <module>juc/completablefuture-orchestration</module>
     <module>juc/virtual-threads-pinning</module>
+    <module>java/pano-j03-object-new-to-gc</module>
   </modules>
 
   <build>
