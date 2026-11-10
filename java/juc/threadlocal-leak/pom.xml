@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.archeu.labs</groupId>
+    <artifactId>java-labs</artifactId>
+    <version>1.0</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <artifactId>juc-threadlocal-leak</artifactId>
+  <name>ThreadLocal 与内存泄漏</name>
+  <properties>
+    <maven.compiler.release>8</maven.compiler.release>
+  </properties>
+
+  <dependencies>
+    <!-- 页面⑤用到的依赖写在这里 -->
+  </dependencies>
+</project>

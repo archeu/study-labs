@@ -46,3 +46,4 @@
 | [AQS 下一圈：读写锁、StampedLock、Semaphore 与 JFR 找锁竞争](https://archeu.github.io/study-notes/juc/aqs-rwlock-jfr.html) | [`java/juc/aqs-rwlock-jfr`](java/juc/aqs-rwlock-jfr/) | `RwBench`（四把锁读多写少吞吐）、`SlowLock`（锁里慢 SQL 配 JFR 录制、Semaphore 舱壁） |
 | [ConcurrentHashMap 与阻塞队列](https://archeu.github.io/study-notes/juc/chm-blocking-queue.html) | [`java/juc/chm-blocking-queue`](java/juc/chm-blocking-queue/) | `MapRace`（HashMap 丢数据、get 再 put vs merge）、`ChmPeek`（反射看 table、TreeBin、计数格）、`QueueDemo`（有界队列、DelayQueue、ABQ vs LBQ） |
 | [线程池下一圈：怎么配、拒绝策略、动态调参与监控](https://archeu.github.io/study-notes/juc/threadpool-tuning.html) | [`java/juc/threadpool-tuning`](java/juc/threadpool-tuning/) | `Overload`（四种拒绝策略过载实测）、`LiveResize`（运行中调大池子、监控、优雅关闭） |
+| [ThreadLocal 与内存泄漏](https://archeu.github.io/study-notes/juc/threadlocal-leak.html) | [`java/juc/threadlocal-leak`](java/juc/threadlocal-leak/) || `Mixup`（不 remove 导致串号）、`Leak`（反射数 ThreadLocalMap，看 key=null 后还挂着多少 MB） |
