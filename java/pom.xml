@@ -39,6 +39,7 @@
     <module>java/pano-j03-object-new-to-gc</module>
     <module>jvm/jvm-object-new-layout</module>
     <module>jvm/jvm-gc-log-tuning</module>
+    <module>jvm/jvm-classloading</module>
   </modules>
 
   <build>

@@ -52,3 +52,4 @@
 | [全景：一个对象从 new 到被回收](https://archeu.github.io/study-notes/java/pano-j03-object-new-to-gc.html) | [`java/java/pano-j03-object-new-to-gc`](java/java/pano-j03-object-new-to-gc/) || `ObjLife`（订单对象在 G1 上走完十站，最后泄漏到 OOM）、`Order`（48 字节） |
 | [new 一个对象的全过程：分配、对象头与内存布局](https://archeu.github.io/study-notes/jvm/jvm-object-new-layout.html) | [`java/jvm/jvm-object-new-layout`](java/jvm/jvm-object-new-layout/) | `Layout`（JOL 看 Order 48 字节、关压缩指针 56）、`AllocCost`（开 / 关 TLAB 计时） |
 | [GC 日志与调优：先定目标，再动参数](https://archeu.github.io/study-notes/jvm/jvm-gc-log-tuning.html) | [`java/jvm/jvm-gc-log-tuning`](java/jvm/jvm-gc-log-tuning/) | `OrderService`（大促 / 泄漏压测，按计划到达时刻算延迟）、`GcLogStats`（从 GC 日志算占比、最长停顿、回收后占用并下结论） |
+| [类加载与双亲委派：SPI 为什么要打破它](https://archeu.github.io/study-notes/jvm/jvm-classloading.html) | [`java/jvm/jvm-classloading`](java/jvm/jvm-classloading/) | `WhoLoads` 加载器链、`TwoOrders` 两个 Order 互转、`SpiDemo` 支付渠道 SPI 与 TCCL、`LoaderLeak` 元空间泄漏 |
