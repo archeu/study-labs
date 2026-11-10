@@ -34,6 +34,7 @@
     <module>juc/chm-blocking-queue</module>
     <module>juc/threadpool-tuning</module>
     <module>juc/threadlocal-leak</module>
+    <module>juc/completablefuture-orchestration</module>
   </modules>
 
   <build>
