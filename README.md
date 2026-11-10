@@ -54,3 +54,4 @@
 | [GC 日志与调优：先定目标，再动参数](https://archeu.github.io/study-notes/jvm/jvm-gc-log-tuning.html) | [`java/jvm/jvm-gc-log-tuning`](java/jvm/jvm-gc-log-tuning/) | `OrderService`（大促 / 泄漏压测，按计划到达时刻算延迟）、`GcLogStats`（从 GC 日志算占比、最长停顿、回收后占用并下结论） |
 | [类加载与双亲委派：SPI 为什么要打破它](https://archeu.github.io/study-notes/jvm/jvm-classloading.html) | [`java/jvm/jvm-classloading`](java/jvm/jvm-classloading/) | `WhoLoads` 加载器链、`TwoOrders` 两个 Order 互转、`SpiDemo` 支付渠道 SPI 与 TCCL、`LoaderLeak` 元空间泄漏 |
 | [JIT、逃逸分析与常见的性能误区](https://archeu.github.io/study-notes/jvm/jvm-jit-escape.html) | [`java/jvm/jvm-jit-escape`](java/jvm/jvm-jit-escape/) | `Warmup`（解释 → C1 → C2 预热曲线，配 PrintCompilation）、`Escape`（8 种写法进不进堆）、`Myths`（微基准被删、热点 NPE 丢堆栈） |
+| [JVM 故障排查：OOM、频繁 Full GC、CPU 飙高](https://archeu.github.io/study-notes/jvm/jvm-troubleshooting.html) | [`java/jvm/jvm-troubleshooting`](java/jvm/jvm-troubleshooting/) | `TradeServer`（三个雷：泄漏到 OOM、大导出频繁 Full GC、一分钱优惠券死循环，各带改法）、`Load`（压测客户端） |
