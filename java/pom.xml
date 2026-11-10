@@ -35,6 +35,7 @@
     <module>juc/threadpool-tuning</module>
     <module>juc/threadlocal-leak</module>
     <module>juc/completablefuture-orchestration</module>
+    <module>juc/virtual-threads-pinning</module>
   </modules>
 
   <build>
