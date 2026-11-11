@@ -46,6 +46,7 @@
     <module>java/pano-j04-order-calls-inventory</module>
     <module>network/tcp-handshake-timewait-framing</module>
     <module>network/netty-eventloop-pipeline-bytebuf</module>
+    <module>network/rpc-serialization-discovery-lb</module>
   </modules>
 
   <build>
