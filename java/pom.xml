@@ -44,6 +44,7 @@
     <module>jvm/jvm-troubleshooting</module>
     <module>jvm/jvm-container</module>
     <module>java/pano-j04-order-calls-inventory</module>
+    <module>network/tcp-handshake-timewait-framing</module>
   </modules>
 
   <build>
