@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.archeu.labs</groupId>
+    <artifactId>java-labs</artifactId>
+    <version>1.0</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <artifactId>java-pano-j04-order-calls-inventory</artifactId>
+  <name>全景：订单服务调库存服务的一次 RPC</name>
+  <properties>
+    <maven.compiler.release>21</maven.compiler.release>
+    <grpc.version>1.84.1</grpc.version>
+    <protobuf.version>3.25.9</protobuf.version>
+  </properties>
+
+  <dependencies>
+    <!-- gRPC：Netty 传输（shaded，自带 epoll）+ protobuf 序列化 + 生成的 stub -->
+    <dependency><groupId>io.grpc</groupId><artifactId>grpc-netty-shaded</artifactId><version>${grpc.version}</version></dependency>
+    <dependency><groupId>io.grpc</groupId><artifactId>grpc-protobuf</artifactId><version>${grpc.version}</version></dependency>
+    <dependency><groupId>io.grpc</groupId><artifactId>grpc-stub</artifactId><version>${grpc.version}</version></dependency>
+    <dependency><groupId>javax.annotation</groupId><artifactId>javax.annotation-api</artifactId><version>1.3.2</version></dependency>
+  </dependencies>
+
+  <build>
+    <extensions>
+      <extension><groupId>kr.motd.maven</groupId><artifactId>os-maven-plugin</artifactId><version>1.7.1</version></extension>
+    </extensions>
+    <plugins>
+      <!-- 从 src/main/proto/inventory.proto 生成消息类和 stub -->
+      <plugin>
+        <groupId>org.xolstice.maven.plugins</groupId>
+        <artifactId>protobuf-maven-plugin</artifactId>
+        <version>0.6.1</version>
+        <configuration>
+          <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
+          <pluginId>grpc-java</pluginId>
+          <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
+        </configuration>
+        <executions><execution><goals><goal>compile</goal><goal>compile-custom</goal></goals></execution></executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

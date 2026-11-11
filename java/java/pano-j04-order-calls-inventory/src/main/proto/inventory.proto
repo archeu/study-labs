@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package inventory;
+
+option java_multiple_files = true;
+option java_package = "labs.java.pano_j04_order_calls_inventory.proto";
+
+// 库存服务：订单服务下单时调它预占库存
+service InventoryService {
+  rpc Reserve (ReserveRequest) returns (ReserveReply);
+}
+
+message ReserveRequest {
+  int64 order_id = 1;   // 9527
+  int32 sku_id   = 2;   // 88
+  int32 qty      = 3;   // 2
+}
+
+message ReserveReply {
+  bool  ok   = 1;
+  int32 left = 2;       // 扣完还剩多少
+}
