@@ -45,6 +45,7 @@
     <module>jvm/jvm-container</module>
     <module>java/pano-j04-order-calls-inventory</module>
     <module>network/tcp-handshake-timewait-framing</module>
+    <module>network/netty-eventloop-pipeline-bytebuf</module>
   </modules>
 
   <build>
