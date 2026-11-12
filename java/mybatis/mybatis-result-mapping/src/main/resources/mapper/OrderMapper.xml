@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="labs.mybatis.mybatis_result_mapping.OrderMapper">
+
+  <resultMap id="orderBase" type="Order">
+    <id property="id" column="id"/>
+    <result property="userId" column="user_id"/>
+    <result property="status" column="status"/>
+    <result property="amount" column="amount"/>
+  </resultMap>
+
+  <!-- 嵌套查询（nested select）：明细由另一条 SQL 查，column 把订单 id 传过去 -->
+  <resultMap id="orderNested" type="Order" extends="orderBase">
+    <collection property="items" ofType="Item" column="id" select="listItems" fetchType="eager"/>
+  </resultMap>
+  <resultMap id="orderLazy" type="Order" extends="orderBase">
+    <collection property="items" ofType="Item" column="id" select="listItems" fetchType="lazy"/>
+  </resultMap>
+
+  <!-- 嵌套结果（nested result）：一条 JOIN，明细列带 i_ 前缀 -->
+  <resultMap id="orderJoin" type="Order" extends="orderBase">
+    <collection property="items" ofType="Item" columnPrefix="i_">
+      <id property="id" column="id"/>
+      <result property="skuId" column="sku_id"/>
+      <result property="qty" column="qty"/>
+      <result property="price" column="price"/>
+    </collection>
+  </resultMap>
+  <resultMap id="orderJoinAuto" type="Order" extends="orderBase">
+    <collection property="items" ofType="Item" columnPrefix="i_">
+      <id property="id" column="id"/>
+    </collection>
+  </resultMap>
+
+  <sql id="joinCols">o.id, o.user_id, o.status, o.amount, i.id AS i_id, i.sku_id AS i_sku_id, i.qty AS i_qty, i.price AS i_price</sql>
+
+  <select id="listOrdersNested" resultMap="orderNested">SELECT id, user_id, status, amount FROM orders ORDER BY id</select>
+  <select id="listOrdersLazy" resultMap="orderLazy">SELECT id, user_id, status, amount FROM orders ORDER BY id</select>
+  <select id="listItems" resultType="Item">SELECT id, sku_id, qty, price FROM order_item WHERE order_id = #{orderId} ORDER BY id</select>
+
+  <select id="listOrdersJoin" resultMap="orderJoin">
+    SELECT <include refid="joinCols"/> FROM orders o LEFT JOIN order_item i ON i.order_id = o.id ORDER BY o.id, i.id
+  </select>
+  <select id="listOrdersJoinAuto" resultMap="orderJoinAuto">
+    SELECT <include refid="joinCols"/> FROM orders o LEFT JOIN order_item i ON i.order_id = o.id ORDER BY o.id, i.id
+  </select>
+  <select id="listOrdersJoinLimit" resultMap="orderJoin">
+    SELECT <include refid="joinCols"/> FROM orders o LEFT JOIN order_item i ON i.order_id = o.id ORDER BY o.id, i.id LIMIT #{rows}
+  </select>
+  <select id="listOrdersPageThenJoin" resultMap="orderJoin">
+    SELECT <include refid="joinCols"/>
+    FROM (SELECT * FROM orders ORDER BY id LIMIT #{size}) o LEFT JOIN order_item i ON i.order_id = o.id ORDER BY o.id, i.id
+  </select>
+  <select id="scanOrdersJoin" resultMap="orderJoin">
+    SELECT <include refid="joinCols"/> FROM orders o LEFT JOIN order_item i ON i.order_id = o.id ORDER BY o.id, i.id
+  </select>
+
+  <select id="listFlows" resultType="PayFlow">SELECT id, order_id, amount, channel, created_at FROM pay_flow ORDER BY id</select>
+  <select id="listFlowsPage" resultType="PayFlow">SELECT id, order_id, amount, channel, created_at FROM pay_flow ORDER BY id LIMIT #{size} OFFSET #{offset}</select>
+  <select id="cursorFlows" resultType="PayFlow">SELECT id, order_id, amount, channel, created_at FROM pay_flow ORDER BY id</select>
+  <select id="scanFlows" resultType="PayFlow">SELECT id, order_id, amount, channel, created_at FROM pay_flow ORDER BY id</select>
+</mapper>

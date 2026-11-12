@@ -53,6 +53,7 @@
     <module>spring/spring-boot-bean-ledger</module>
     <module>spring/spring-aop-chain</module>
     <module>spring/spring-tx-propagation</module>
+    <module>mybatis/mybatis-result-mapping</module>
   </modules>
 
   <build>
