@@ -54,6 +54,7 @@
     <module>spring/spring-aop-chain</module>
     <module>spring/spring-tx-propagation</module>
     <module>mybatis/mybatis-result-mapping</module>
+    <module>spring/spring-mvc-dispatch</module>
   </modules>
 
   <build>
