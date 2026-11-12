@@ -50,6 +50,7 @@
     <module>network/http-client-pool-timeouts</module>
     <module>java/pano-j05-request-through-spring</module>
     <module>spring/spring-bean-proxy-swap</module>
+    <module>spring/spring-boot-bean-ledger</module>
   </modules>
 
   <build>

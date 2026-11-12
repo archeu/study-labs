@@ -1,0 +1,2 @@
+# 第一道筛子之后，Boot 会把“还剩哪些自动配置”通知给这里登记的监听器
+org.springframework.boot.autoconfigure.AutoConfigurationImportListener=labs.spring.spring_boot_bean_ledger.ImportCounter
