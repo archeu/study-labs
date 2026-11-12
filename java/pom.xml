@@ -52,6 +52,7 @@
     <module>spring/spring-bean-proxy-swap</module>
     <module>spring/spring-boot-bean-ledger</module>
     <module>spring/spring-aop-chain</module>
+    <module>spring/spring-tx-propagation</module>
   </modules>
 
   <build>
