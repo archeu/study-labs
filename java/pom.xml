@@ -56,6 +56,7 @@
     <module>mybatis/mybatis-result-mapping</module>
     <module>spring/spring-mvc-dispatch</module>
     <module>spring/spring-security-token</module>
+    <module>spring/spring-boot4-upgrade</module>
   </modules>
 
   <build>
