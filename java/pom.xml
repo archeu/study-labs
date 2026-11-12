@@ -55,6 +55,7 @@
     <module>spring/spring-tx-propagation</module>
     <module>mybatis/mybatis-result-mapping</module>
     <module>spring/spring-mvc-dispatch</module>
+    <module>spring/spring-security-token</module>
   </modules>
 
   <build>
