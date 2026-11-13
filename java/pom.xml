@@ -65,6 +65,7 @@
     <module>database/mysql-redo-undo-binlog</module>
     <module>database/mysql-replication-lag</module>
     <module>database/mysql-online-ddl</module>
+    <module>database/db-pool-tx-perf-hot-row</module>
   </modules>
 
   <build>
