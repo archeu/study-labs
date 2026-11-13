@@ -2,7 +2,7 @@
 # 全景 J06：一条 UPDATE 从应用到磁盘。起一主一从两个 MySQL 8.4 容器，跑 UpdateToDisk 的三段。
 # 用法：./run.sh          全部跑一遍（建库灌数 → 重启主库让 buffer pool 变冷 → 追踪一条 UPDATE → 提交开销对比）
 #       ./run.sh again    容器和数据都留着，只重启主库、再追踪一次（多跑几次看波动）
-#       ./run.sh clean    删掉两个容器和网络
+#       ./run.sh clean    删掉两个容器（连同数据卷）和网络
 # 需要 docker（本机没在 docker 组里就用 DOCKER="sudo docker" ./run.sh）。
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -11,7 +11,7 @@ IMG=mysql:8.4
 NET=j06-net
 PW=root
 
-clean() { $DOCKER rm -f j06-primary j06-replica >/dev/null 2>&1 || true; $DOCKER network rm $NET >/dev/null 2>&1 || true; }
+clean() { $DOCKER rm -fv j06-primary j06-replica >/dev/null 2>&1 || true; $DOCKER network rm $NET >/dev/null 2>&1 || true; }
 if [ "${1:-}" = clean ]; then clean; exit 0; fi
 
 wait_up() { until $DOCKER exec "$1" mysql --protocol=TCP -h127.0.0.1 -uroot -p$PW -e 'select 1' >/dev/null 2>&1; do sleep 2; done; }
