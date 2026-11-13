@@ -68,6 +68,7 @@
     <module>database/db-pool-tx-perf-hot-row</module>
     <module>database/mysql-84-upgrade</module>
     <module>database/pg-mvcc-vacuum-jsonb</module>
+    <module>database/mysql-vs-pg-pgvector</module>
   </modules>
 
   <build>
