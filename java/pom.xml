@@ -62,6 +62,7 @@
     <module>database/mysql-index-bplustree</module>
     <module>database/mysql-explain-tuning</module>
     <module>database/mysql-lock-wait-deadlock</module>
+    <module>database/mysql-redo-undo-binlog</module>
   </modules>
 
   <build>
