@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.archeu.labs</groupId>
+    <artifactId>java-labs</artifactId>
+    <version>1.0</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <artifactId>redis-redis-lock-expire-fencing</artifactId>
+  <name>锁过期时 A 还在查库：看门狗、fencing token 与 Lua 条件写</name>
+  <properties>
+    <maven.compiler.release>8</maven.compiler.release>
+  </properties>
+
+  <!-- Redisson 4.8.0 用 Netty 4.2，Lettuce 6.8.2 用 4.1；混在一起会 NoSuchMethodError，统一到 4.2 -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency><groupId>io.netty</groupId><artifactId>netty-bom</artifactId><version>4.2.18.Final</version><type>pom</type><scope>import</scope></dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency><groupId>io.lettuce</groupId><artifactId>lettuce-core</artifactId><version>6.8.2.RELEASE</version></dependency>
+    <dependency><groupId>org.redisson</groupId><artifactId>redisson</artifactId><version>4.8.0</version></dependency>
+    <dependency><groupId>org.slf4j</groupId><artifactId>slf4j-nop</artifactId><version>2.0.17</version></dependency>
+  </dependencies>
+</project>

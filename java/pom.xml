@@ -73,6 +73,7 @@
     <module>redis/cache-consistency</module>
     <module>redis/cache-multilevel</module>
     <module>redis/cache-five-holes</module>
+    <module>redis/redis-lock-expire-fencing</module>
   </modules>
 
   <build>
