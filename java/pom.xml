@@ -71,6 +71,7 @@
     <module>database/mysql-vs-pg-pgvector</module>
     <module>java/pano-j07-product-detail-cache</module>
     <module>redis/cache-consistency</module>
+    <module>redis/cache-multilevel</module>
   </modules>
 
   <build>
