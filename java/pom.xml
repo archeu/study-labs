@@ -58,6 +58,7 @@
     <module>spring/spring-security-token</module>
     <module>spring/spring-boot4-upgrade</module>
     <module>spring/spring-testing</module>
+    <module>java/pano-j06-update-to-disk</module>
   </modules>
 
   <build>
