@@ -74,6 +74,7 @@
     <module>redis/cache-multilevel</module>
     <module>redis/cache-five-holes</module>
     <module>redis/redis-lock-expire-fencing</module>
+    <module>redis/redis-event-loop-queueing</module>
   </modules>
 
   <build>
