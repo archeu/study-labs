@@ -57,6 +57,7 @@
     <module>spring/spring-mvc-dispatch</module>
     <module>spring/spring-security-token</module>
     <module>spring/spring-boot4-upgrade</module>
+    <module>spring/spring-testing</module>
   </modules>
 
   <build>
