@@ -60,6 +60,7 @@
     <module>spring/spring-testing</module>
     <module>java/pano-j06-update-to-disk</module>
     <module>database/mysql-index-bplustree</module>
+    <module>database/mysql-explain-tuning</module>
   </modules>
 
   <build>
