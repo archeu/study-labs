@@ -67,6 +67,7 @@
     <module>database/mysql-online-ddl</module>
     <module>database/db-pool-tx-perf-hot-row</module>
     <module>database/mysql-84-upgrade</module>
+    <module>database/pg-mvcc-vacuum-jsonb</module>
   </modules>
 
   <build>
