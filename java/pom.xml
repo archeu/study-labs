@@ -61,6 +61,7 @@
     <module>java/pano-j06-update-to-disk</module>
     <module>database/mysql-index-bplustree</module>
     <module>database/mysql-explain-tuning</module>
+    <module>database/mysql-lock-wait-deadlock</module>
   </modules>
 
   <build>
