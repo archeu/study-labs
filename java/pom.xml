@@ -76,6 +76,7 @@
     <module>redis/redis-lock-expire-fencing</module>
     <module>redis/redis-event-loop-queueing</module>
     <module>redis/redis-encoding-memory</module>
+    <module>redis/redis-oom-eviction</module>
   </modules>
 
   <build>
