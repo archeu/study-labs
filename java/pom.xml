@@ -64,6 +64,7 @@
     <module>database/mysql-lock-wait-deadlock</module>
     <module>database/mysql-redo-undo-binlog</module>
     <module>database/mysql-replication-lag</module>
+    <module>database/mysql-online-ddl</module>
   </modules>
 
   <build>
