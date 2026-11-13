@@ -66,6 +66,7 @@
     <module>database/mysql-replication-lag</module>
     <module>database/mysql-online-ddl</module>
     <module>database/db-pool-tx-perf-hot-row</module>
+    <module>database/mysql-84-upgrade</module>
   </modules>
 
   <build>
