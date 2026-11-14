@@ -79,6 +79,7 @@
     <module>redis/redis-oom-eviction</module>
     <module>redis/redis-restart-failover</module>
     <module>java/pano-j08-order-event-life</module>
+    <module>kafka/kafka-idempotent-ordering</module>
   </modules>
 
   <build>
