@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.archeu.labs</groupId>
+    <artifactId>java-labs</artifactId>
+    <version>1.0</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <artifactId>rocketmq-rocketmq-tx-delay-order</artifactId>
+  <name>改库和发消息怎么一起成功：RocketMQ 的事务消息、定时消息、顺序消息</name>
+
+  <dependencies>
+    <!-- Remoting 客户端（rocketmq-spring 用的也是它），直连 NameServer 和 Broker，不需要 Proxy -->
+    <dependency><groupId>org.apache.rocketmq</groupId><artifactId>rocketmq-client</artifactId><version>5.5.1</version></dependency>
+    <!-- 订单库：H2 文件库代替 MySQL；进程被杀以后，另一个进程还能查到它提交了什么 -->
+    <dependency><groupId>com.h2database</groupId><artifactId>h2</artifactId><version>2.4.240</version></dependency>
+  </dependencies>
+</project>
