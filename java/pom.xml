@@ -77,6 +77,7 @@
     <module>redis/redis-event-loop-queueing</module>
     <module>redis/redis-encoding-memory</module>
     <module>redis/redis-oom-eviction</module>
+    <module>redis/redis-restart-failover</module>
   </modules>
 
   <build>
