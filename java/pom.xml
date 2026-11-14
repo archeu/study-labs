@@ -86,6 +86,7 @@
     <module>kafka/kafka-tiered-compact</module>
     <module>kafka/mq-selection</module>
     <module>kafka/kafka-reorder-statemachine</module>
+    <module>arch/cap-base-consistency</module>
   </modules>
 
   <build>
