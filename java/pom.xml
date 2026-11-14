@@ -83,6 +83,7 @@
     <module>rocketmq/rocketmq-tx-delay-order</module>
     <module>kafka/kafka-leader-election-elr</module>
     <module>kafka/kafka-backlog-drain</module>
+    <module>kafka/kafka-tiered-compact</module>
   </modules>
 
   <build>

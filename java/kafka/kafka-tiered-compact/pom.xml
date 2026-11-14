@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.archeu.labs</groupId>
+    <artifactId>java-labs</artifactId>
+    <version>1.0</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <artifactId>kafka-kafka-tiered-compact</artifactId>
+  <name>积分服务停了 8 天，消息已经被删：Kafka 的分层存储、日志压缩与位点过期</name>
+
+  <dependencies>
+    <!-- 交易靶场 points-svc：Kafka 4.4.0 客户端。分层存储用的 LocalTieredStorage 插件放在 broker 那边（run.sh 下载），这里不依赖 -->
+    <dependency><groupId>org.apache.kafka</groupId><artifactId>kafka-clients</artifactId><version>4.4.0</version></dependency>
+    <dependency><groupId>org.slf4j</groupId><artifactId>slf4j-nop</artifactId><version>1.7.36</version></dependency>
+  </dependencies>
+</project>
