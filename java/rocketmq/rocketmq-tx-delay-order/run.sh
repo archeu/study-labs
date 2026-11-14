@@ -61,6 +61,8 @@ mappedFileSizeCommitLog=104857600
 P
     nohup "$ROCKETMQ_HOME/bin/mqbroker" -c "$D/broker.conf" > "$D/broker.out" 2>&1 &
   fi
+  # mqadmin（tools.sh）不读 JAVA_OPT_EXT，只继承 JAVA_OPT；不设的话它的日志会写到 ~/logs/rocketmqlogs
+  export JAVA_OPT="-Duser.home=$D/home"
   for _ in $(seq 60); do
     "$ROCKETMQ_HOME/bin/mqadmin" clusterList -n $NS 2>/dev/null | grep -q broker-a && break; sleep 1
   done
