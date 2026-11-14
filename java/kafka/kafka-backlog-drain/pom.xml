@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.archeu.labs</groupId>
+    <artifactId>java-labs</artifactId>
+    <version>1.0</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <artifactId>kafka-kafka-backlog-drain</artifactId>
+  <name>大促积压 100 万条：消费组的扩容上限、重平衡风暴与共享组</name>
+
+  <dependencies>
+    <!-- 交易靶场 notify-svc：Kafka 4.4.0 客户端（经典消费组、KIP-848 新协议、KIP-932 共享组） -->
+    <dependency><groupId>org.apache.kafka</groupId><artifactId>kafka-clients</artifactId><version>4.4.0</version></dependency>
+    <dependency><groupId>org.slf4j</groupId><artifactId>slf4j-nop</artifactId><version>1.7.36</version></dependency>
+  </dependencies>
+</project>

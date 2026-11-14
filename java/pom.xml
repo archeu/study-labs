@@ -82,6 +82,7 @@
     <module>kafka/kafka-idempotent-ordering</module>
     <module>rocketmq/rocketmq-tx-delay-order</module>
     <module>kafka/kafka-leader-election-elr</module>
+    <module>kafka/kafka-backlog-drain</module>
   </modules>
 
   <build>
