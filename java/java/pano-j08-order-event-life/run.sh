@@ -5,7 +5,7 @@
 #       ./run.sh trace    集群留着，只跑某一段（trace / dump / isr / dup）
 #       ./run.sh stop     停掉 4 个 Kafka 进程
 #       ./run.sh clean    停掉并删掉 data/ logs/
-# 需要 JDK 17+ 和 Maven。Kafka 包放在 KAFKA_HOME，没有就下载到 ./data/ 下。
+# 需要 JDK 21 和 Maven。Kafka 包放在 KAFKA_HOME，没有就下载到 ./data/ 下。
 set -euo pipefail
 cd "$(dirname "$0")"
 HERE=$(pwd)

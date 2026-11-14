@@ -7,7 +7,7 @@
 
 ## 怎么跑
 
-需要 JDK 17+（页面用的是 JDK 21）和 Maven。Kafka 放在 `KAFKA_HOME`，不设就下载 4.4.0 到 `./data/`。
+需要 JDK 21 和 Maven（全景页的实验按 JDK 21 编译）。Kafka 放在 `KAFKA_HOME`，不设就下载 4.4.0 到 `./data/`。
 
 ```bash
 ./run.sh          # 起 Kafka 4.4.0（KRaft：1 controller + 3 broker），建 topic，四段全跑：trace → dump → isr → dup
