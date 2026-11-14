@@ -87,6 +87,7 @@
     <module>kafka/mq-selection</module>
     <module>kafka/kafka-reorder-statemachine</module>
     <module>arch/cap-base-consistency</module>
+    <module>arch/idempotency-design</module>
   </modules>
 
   <build>
