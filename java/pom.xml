@@ -84,6 +84,7 @@
     <module>kafka/kafka-leader-election-elr</module>
     <module>kafka/kafka-backlog-drain</module>
     <module>kafka/kafka-tiered-compact</module>
+    <module>kafka/mq-selection</module>
   </modules>
 
   <build>
