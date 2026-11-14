@@ -81,6 +81,7 @@
     <module>java/pano-j08-order-event-life</module>
     <module>kafka/kafka-idempotent-ordering</module>
     <module>rocketmq/rocketmq-tx-delay-order</module>
+    <module>kafka/kafka-leader-election-elr</module>
   </modules>
 
   <build>
