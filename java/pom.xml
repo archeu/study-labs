@@ -78,6 +78,7 @@
     <module>redis/redis-encoding-memory</module>
     <module>redis/redis-oom-eviction</module>
     <module>redis/redis-restart-failover</module>
+    <module>java/pano-j08-order-event-life</module>
   </modules>
 
   <build>
