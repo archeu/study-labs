@@ -89,6 +89,7 @@
     <module>arch/cap-base-consistency</module>
     <module>arch/idempotency-design</module>
     <module>arch/distributed-transactions</module>
+    <module>arch/clock-timeout-retry</module>
   </modules>
 
   <build>
