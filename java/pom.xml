@@ -105,6 +105,7 @@
     <module>search/es-inverted-index-shards</module>
     <module>search/mysql-to-es-sync-canal</module>
     <module>database/distributed-db-tidb-oceanbase</module>
+    <module>database/mysql-to-tidb-pitfalls</module>
   </modules>
 
   <build>
