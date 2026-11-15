@@ -94,6 +94,7 @@
     <module>arch/distributed-lock-choice</module>
     <module>arch/distributed-id</module>
     <module>cloud/nacos-registry-config</module>
+    <module>cloud/feign-dubbo-loadbalancer</module>
   </modules>
 
   <build>

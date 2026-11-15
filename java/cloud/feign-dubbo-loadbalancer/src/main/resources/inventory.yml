@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: inventory-svc
+  cloud:
+    nacos:
+      server-addr: ${NACOS:127.0.0.1:18848}
+      username: nacos
+      password: ${NACOS_PASS:LabPass123}
+server:
+  port: ${PORT:18081}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,serviceregistry
+logging:
+  level:
+    com.alibaba.nacos: warn

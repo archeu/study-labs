@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: order-svc
+  cloud:
+    nacos:
+      server-addr: ${NACOS:127.0.0.1:18848}
+      username: nacos
+      password: ${NACOS_PASS:LabPass123}
+    openfeign:
+      client:
+        config:
+          inventory-svc:            # 按 @FeignClient 的 name 单独配
+            connect-timeout: 200
+            read-timeout: 800
+    loadbalancer:
+      cache:
+        ttl: ${LB_TTL:35s}          # 默认就是 35s，写出来方便 run.sh 改
+server:
+  port: 18090
+logging:
+  level:
+    com.alibaba.nacos: warn
