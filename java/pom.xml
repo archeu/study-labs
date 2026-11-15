@@ -110,6 +110,7 @@
     <module>arch/seckill-coupon</module>
     <module>perf/full-link-load-test</module>
     <module>arch/multi-active-dr</module>
+    <module>arch/chaos-drill-runbook</module>
   </modules>
 
   <build>

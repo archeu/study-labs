@@ -123,3 +123,4 @@
 | [秒杀与抢券：削峰、预扣、异步化](https://archeu.github.io/study-notes/arch/seckill-coupon.html) | [`java/arch/seckill-coupon`](java/arch/seckill-coupon/) | `CouponRushLab` 四段：GET 再 DECR 超发、Lua 预扣、售罄标记、异步落库兜底；`run.sh` 起 Redis 容器 |
 | [全链路压测与容量规划](https://archeu.github.io/study-notes/perf/full-link-load-test.html) | [`java/perf/full-link-load-test`](java/perf/full-link-load-test/) | `CapacityLab` 开环阶梯找容量拐点，`ShadowTagLab` 压测标记跨线程池丢失和修复 |
 | [多活与容灾：同城双活、异地多活、RTO 和 RPO](https://archeu.github.io/study-notes/arch/multi-active-dr.html) | [`java/arch/multi-active-dr`](java/arch/multi-active-dr/) | `FailoverLab` 断专线、杀主、从库提升，对比异步复制和 WAIT 丢了多少已确认写入 |
+| [故障演练与预案](https://archeu.github.io/study-notes/arch/chaos-drill-runbook.html) | [`java/arch/chaos-drill-runbook`](java/arch/chaos-drill-runbook/) | `RedisFailoverDrill` 1 主 2 从 3 哨兵杀主演练：RTO、RPO、降级、旧主回来的脑裂窗口 |
