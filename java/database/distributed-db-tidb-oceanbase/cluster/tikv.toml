@@ -1,0 +1,7 @@
+# 2 核小机器上跑 3 个 TiKV：把块缓存压到 256 MB（默认是机器内存的 45%）
+[storage.block-cache]
+capacity = "256MB"
+[rocksdb]
+max-open-files = 4096
+[raftdb]
+max-open-files = 4096

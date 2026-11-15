@@ -1,0 +1,3 @@
+# 交易靶场的 TiDB server：保持默认配置（事务内存由 tidb_mem_quota_query 管，见第 7 页）
+[log]
+level = "warn"

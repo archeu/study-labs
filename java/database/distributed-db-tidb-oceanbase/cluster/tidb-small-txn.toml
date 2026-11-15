@@ -1,0 +1,5 @@
+# tidb2 专用：显式把单个事务的大小上限设成 10 MiB，第 7 页演示“事务太大”
+[log]
+level = "warn"
+[performance]
+txn-total-size-limit = 10485760
