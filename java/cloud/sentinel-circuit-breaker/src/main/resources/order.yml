@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: order-svc
+  cloud:
+    nacos:
+      server-addr: ${NACOS:127.0.0.1:18848}
+      username: nacos
+      password: ${NACOS_PASS:LabPass123}
+    openfeign:
+      client:
+        config:
+          inventory-svc:
+            connect-timeout: 200
+            read-timeout: 800
+    loadbalancer:
+      cache:
+        ttl: 2s                      # 摘流量后快一点生效（默认 35s，见上一页）
+    sentinel:
+      eager: true
+feign:
+  sentinel:
+    enabled: true                    # 每次 Feign 调用外面包一层 Sentinel
+server:
+  port: 18090
+logging:
+  level:
+    com.alibaba.nacos: warn
