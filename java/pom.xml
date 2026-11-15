@@ -103,6 +103,7 @@
     <module>database/sharding-cross-shard-query</module>
     <module>database/online-data-migration</module>
     <module>search/es-inverted-index-shards</module>
+    <module>search/mysql-to-es-sync-canal</module>
   </modules>
 
   <build>

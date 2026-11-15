@@ -1,0 +1,4 @@
+<configuration>
+  <appender name="F" class="ch.qos.logback.core.FileAppender"><file>target/client.log</file><encoder><pattern>%d %-5level %logger{20} - %msg%n</pattern></encoder></appender>
+  <root level="WARN"><appender-ref ref="F"/></root>
+</configuration>
