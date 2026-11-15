@@ -1,0 +1,44 @@
+22:55:30 load  last 10s: 200=121 5xx=0
+22:55:40 load  last 10s: 200=120 5xx=0
+22:55:50 load  last 10s: 200=120 5xx=0
+22:56 load  last 10s: 200=120 5xx=0
+22:56:04 T0 注入：order-3 上 10 个线程各攥一条连接 150 秒
+22:56:10 load  last 10s: 200=97 5xx=11
+22:56:20 rule  HikariPendingHigh  inactive -> pending
+22:56:20 load  last 10s: 200=80 5xx=40
+22:56:30 load  last 10s: 200=80 5xx=40
+22:56:35 rule  OrderCreateErrorRateHigh  inactive -> pending
+22:56:40 load  last 10s: 200=80 5xx=40
+22:56:50 rule  HikariPendingHigh  pending -> firing
+22:56:50 load  last 10s: 200=80 5xx=40
+22:57 load  last 10s: 200=80 5xx=40
+22:57:10 load  last 10s: 200=80 5xx=40
+22:57:19 webhook  [firing HikariPendingHigh -]
+22:57:20 load  last 10s: 200=80 5xx=40
+22:57:30 load  last 10s: 200=80 5xx=40
+22:57:35 rule  OrderCreateErrorRateHigh  pending -> firing
+22:57:40 load  last 10s: 200=80 5xx=40
+22:57:50 load  last 10s: 200=80 5xx=40
+22:58 load  last 10s: 200=80 5xx=40
+22:58:04 webhook  [firing OrderCreateErrorRateHigh -]
+22:58:10 load  last 10s: 200=80 5xx=40
+22:58:20 load  last 10s: 200=80 5xx=40
+22:58:30 load  last 10s: 200=80 5xx=40
+22:58:40 load  last 10s: 200=115 5xx=17
+22:58:50 rule  HikariPendingHigh  firing -> inactive
+22:58:50 load  last 10s: 200=120 5xx=0
+22:59 load  last 10s: 200=120 5xx=0
+22:59:10 load  last 10s: 200=120 5xx=0
+22:59:19 webhook  [resolved HikariPendingHigh -]
+22:59:20 load  last 10s: 200=120 5xx=0
+22:59:30 load  last 10s: 200=120 5xx=0
+22:59:35 rule  OrderCreateErrorRateHigh  firing -> inactive
+22:59:40 load  last 10s: 200=120 5xx=0
+22:59:50 load  last 10s: 200=120 5xx=0
+23:00 load  last 10s: 200=120 5xx=0
+23:00:04 webhook  [resolved OrderCreateErrorRateHigh -]
+23:00:10 load  last 10s: 200=120 5xx=0
+23:00:20 load  last 10s: 200=120 5xx=0
+23:00:30 load  last 10s: 200=120 5xx=0
+23:00:40 load  last 10s: 200=120 5xx=0
+23:00:50 load  last 10s: 200=120 5xx=0

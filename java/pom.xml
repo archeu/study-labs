@@ -115,6 +115,7 @@
     <module>observability/prometheus-alerting</module>
     <module>observability/tracing-otel-skywalking</module>
     <module>observability/arthas-diagnosis</module>
+    <module>observability/postmortem-review</module>
   </modules>
 
   <build>
