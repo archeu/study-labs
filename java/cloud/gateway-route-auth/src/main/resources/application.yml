@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      server-addr: ${NACOS:127.0.0.1:18848}
+      username: nacos
+      password: ${NACOS_PASS:LabPass123}
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: order-create
+              uri: lb://order-svc            # lb:// = 交给 LoadBalancer 挑实例
+              predicates:
+                - Path=/api/orders/**
+              filters:
+                - StripPrefix=1               # /api/orders/9527 → /orders/9527
+          # 响应超时默认不设；run.sh 第 ④ 项用启动参数加上
+          # httpclient.response-timeout: 3s
+server:
+  port: 18070
+logging:
+  level:
+    com.alibaba.nacos: warn
