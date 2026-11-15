@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.archeu.labs</groupId>
+    <artifactId>java-labs</artifactId>
+    <version>1.0</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <artifactId>cloud-spring-cloud-vs-alibaba</artifactId>
+  <name>五个部件来自两个家族：Spring Cloud 与 Spring Cloud Alibaba 怎么选</name>
+  <properties>
+    <!-- 默认是 J10 全景那一套；run.sh 用 -Dspring-boot.version=… 这三个属性换成别的组合 -->
+    <spring-boot.version>3.5.16</spring-boot.version>
+    <spring-cloud.version>2025.0.3</spring-cloud.version>
+    <spring-cloud-alibaba.version>2025.0.0.0</spring-cloud-alibaba.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-dependencies</artifactId><version>${spring-boot.version}</version><type>pom</type><scope>import</scope></dependency>
+      <dependency><groupId>org.springframework.cloud</groupId><artifactId>spring-cloud-dependencies</artifactId><version>${spring-cloud.version}</version><type>pom</type><scope>import</scope></dependency>
+      <dependency><groupId>com.alibaba.cloud</groupId><artifactId>spring-cloud-alibaba-dependencies</artifactId><version>${spring-cloud-alibaba.version}</version><type>pom</type><scope>import</scope></dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <!-- 真实服务都带 web：Boot 4 把 WebServerInitializedEvent 拆进了 spring-boot-web-server 模块，不带 web 时注册中心的自动注册会找不到它 -->
+    <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-web</artifactId></dependency>
+    <dependency><groupId>com.alibaba.cloud</groupId><artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId></dependency>
+    <dependency><groupId>com.alibaba.cloud</groupId><artifactId>spring-cloud-starter-alibaba-sentinel</artifactId></dependency>
+    <dependency><groupId>org.springframework.cloud</groupId><artifactId>spring-cloud-starter-loadbalancer</artifactId></dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version>
+        <configuration><mainClass>labs.cloud.spring_cloud_vs_alibaba.VersionCheck</mainClass></configuration>
+        <executions><execution><goals><goal>repackage</goal></goals></execution></executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

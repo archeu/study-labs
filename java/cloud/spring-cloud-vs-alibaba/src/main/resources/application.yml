@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: version-check
+  cloud:
+    nacos:
+      server-addr: ${NACOS:127.0.0.1:18848}
+      username: nacos
+      password: ${NACOS_PASS:LabPass123}
+server:
+  port: 0          # 随机端口，起来就退出
+logging:
+  level:
+    root: warn
