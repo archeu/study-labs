@@ -106,6 +106,7 @@
     <module>search/mysql-to-es-sync-canal</module>
     <module>database/distributed-db-tidb-oceanbase</module>
     <module>database/mysql-to-tidb-pitfalls</module>
+    <module>arch/rate-limit-algorithms</module>
   </modules>
 
   <build>

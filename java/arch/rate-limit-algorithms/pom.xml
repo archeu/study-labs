@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.archeu.labs</groupId>
+    <artifactId>java-labs</artifactId>
+    <version>1.0</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <artifactId>arch-rate-limit-algorithms</artifactId>
+  <name>限流算法：令牌桶、漏桶、滑动窗口</name>
+  <properties>
+    <maven.compiler.release>8</maven.compiler.release>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>33.5.0-jre</version>
+    </dependency>
+  </dependencies>
+</project>
