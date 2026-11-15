@@ -97,6 +97,7 @@
     <module>cloud/feign-dubbo-loadbalancer</module>
     <module>cloud/gateway-route-auth</module>
     <module>cloud/sentinel-circuit-breaker</module>
+    <module>cloud/gray-release</module>
   </modules>
 
   <build>

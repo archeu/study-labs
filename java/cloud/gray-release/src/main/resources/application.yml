@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      server-addr: ${NACOS:127.0.0.1:18848}
+      username: nacos
+      password: ${NACOS_PASS:LabPass123}
+    loadbalancer:
+      hint-header-name: X-Gray       # 按这个请求头的值去匹配实例元数据里的 hint
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: order-create
+              uri: lb://order-svc
+              predicates: [ Path=/api/orders/** ]
+              filters: [ StripPrefix=1 ]
+  config:
+    import: optional:nacos:gateway.yaml   # gray.users 在这里
+server:
+  port: 18070
+logging:
+  level:
+    com.alibaba.nacos: warn
