@@ -1,0 +1,23 @@
+# 全景第 2 站：每 15 秒拉一次（Prometheus 默认是 1 分钟），规则也每 15 秒算一次
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - rules.yml
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ["localhost:19093"]
+
+scrape_configs:
+  - job_name: order-svc
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["localhost:18091"]
+        labels: { pod: order-1 }
+      - targets: ["localhost:18092"]
+        labels: { pod: order-2 }
+      - targets: ["localhost:18093"]
+        labels: { pod: order-3 }

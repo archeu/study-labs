@@ -1,0 +1,13 @@
+# 全景第 3 站后半段：Alertmanager 分组、等一等、再通知
+route:
+  receiver: oncall-phone
+  group_by: [alertname]
+  group_wait: 30s        # 默认 30s：第一条告警来了先等 30 秒，把同一组的攒在一起
+  group_interval: 1m     # 默认 5m：组里有变化（新告警、恢复）最快多久再发一次；实验缩短
+  repeat_interval: 4h    # 默认 4h：一直没恢复，隔多久重复提醒
+
+receivers:
+  - name: oncall-phone
+    webhook_configs:
+      - url: http://127.0.0.1:19095/alert
+        send_resolved: true

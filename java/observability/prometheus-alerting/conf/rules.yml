@@ -1,0 +1,26 @@
+groups:
+  - name: order-svc
+    rules:
+      # 全景第 3 站那条：下单 5xx 占比 > 5%。全景里 for 是 5m，实验缩成 1m 省时间
+      - alert: OrderCreateErrorRateHigh
+        expr: |
+          sum(rate(http_server_requests_seconds_count{job="order-svc",uri="/api/orders",status=~"5.."}[1m]))
+            / sum(rate(http_server_requests_seconds_count{job="order-svc",uri="/api/orders"}[1m])) > 0.05
+        for: 1m
+        labels: { severity: page }
+        annotations:
+          summary: "下单错误率 {{ $value | humanizePercentage }}"
+
+      # 复盘改进项第 3 条：有线程在排队等连接，持续 30 秒就报。看的是原因，不是结果
+      - alert: HikariPendingHigh
+        expr: max by (pod) (hikaricp_connections_pending{job="order-svc"}) > 0
+        for: 30s
+        labels: { severity: page }
+        annotations:
+          summary: "{{ $labels.pod }} 有 {{ $value }} 个线程在等连接"
+
+      # 录制规则：把常用的查询预先算好存成新序列，大盘和告警直接用
+      - record: pod:order_create_error_ratio:rate1m
+        expr: |
+          sum by (pod) (rate(http_server_requests_seconds_count{job="order-svc",uri="/api/orders",status=~"5.."}[1m]))
+            / sum by (pod) (rate(http_server_requests_seconds_count{job="order-svc",uri="/api/orders"}[1m]))

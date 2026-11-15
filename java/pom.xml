@@ -112,6 +112,7 @@
     <module>arch/multi-active-dr</module>
     <module>arch/chaos-drill-runbook</module>
     <module>observability/logs-metrics-traces</module>
+    <module>observability/prometheus-alerting</module>
   </modules>
 
   <build>
