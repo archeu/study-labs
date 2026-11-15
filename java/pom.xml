@@ -107,6 +107,7 @@
     <module>database/distributed-db-tidb-oceanbase</module>
     <module>database/mysql-to-tidb-pitfalls</module>
     <module>arch/rate-limit-algorithms</module>
+    <module>arch/seckill-coupon</module>
   </modules>
 
   <build>
