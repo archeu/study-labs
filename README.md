@@ -121,3 +121,4 @@
 | [代码没改，行为变了：从 MySQL 换到 TiDB 要注意的四件事](https://archeu.github.io/study-notes/database/mysql-to-tidb-pitfalls.html) | [`java/database/mysql-to-tidb-pitfalls`](java/database/mysql-to-tidb-pitfalls/) | `PitfallsLab`：MySQL 8.4 vs TiDB 8.5.8，自增 ID 缓存、写热点与 AUTO_RANDOM、事务大小上限与 bulk、间隙锁与快照隔离 |
 | [限流算法：令牌桶、漏桶、滑动窗口](https://archeu.github.io/study-notes/arch/rate-limit-algorithms.html) | [`java/arch/rate-limit-algorithms`](java/arch/rate-limit-algorithms/) | `Limiters` 五种限流器、`RateLimitLab` 同一份流量对比加 Guava 真实时钟 |
 | [秒杀与抢券：削峰、预扣、异步化](https://archeu.github.io/study-notes/arch/seckill-coupon.html) | [`java/arch/seckill-coupon`](java/arch/seckill-coupon/) | `CouponRushLab` 四段：GET 再 DECR 超发、Lua 预扣、售罄标记、异步落库兜底；`run.sh` 起 Redis 容器 |
+| [全链路压测与容量规划](https://archeu.github.io/study-notes/perf/full-link-load-test.html) | [`java/perf/full-link-load-test`](java/perf/full-link-load-test/) | `CapacityLab` 开环阶梯找容量拐点，`ShadowTagLab` 压测标记跨线程池丢失和修复 |

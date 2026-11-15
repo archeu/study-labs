@@ -108,6 +108,7 @@
     <module>database/mysql-to-tidb-pitfalls</module>
     <module>arch/rate-limit-algorithms</module>
     <module>arch/seckill-coupon</module>
+    <module>perf/full-link-load-test</module>
   </modules>
 
   <build>
