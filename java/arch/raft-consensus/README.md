@@ -27,6 +27,7 @@ mvn -q -pl arch/raft-consensus dependency:build-classpath -Dmdep.outputFile=targ
 cd arch/raft-consensus
 java -cp target/classes:$(cat target/cp.txt) labs.arch.raft_consensus.JRaftLab /tmp/jraft-data 3
 rm -rf /tmp/jraft-data
+rm -f /tmp/librocksdbjni*.so   # JRaft 的 RocksDB 每个进程解压一份 13 MB 的本地库，被 kill -9 的进程不会自己删
 ```
 
 IDE 里：`MiniRaft` 参数 `all`；`JRaftLab` 参数 `<数据目录> 3`（IDE 的 classpath 是完整的，可以直接跑）。
