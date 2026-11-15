@@ -109,6 +109,7 @@
     <module>arch/rate-limit-algorithms</module>
     <module>arch/seckill-coupon</module>
     <module>perf/full-link-load-test</module>
+    <module>arch/multi-active-dr</module>
   </modules>
 
   <build>
