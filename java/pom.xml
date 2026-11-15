@@ -90,6 +90,7 @@
     <module>arch/idempotency-design</module>
     <module>arch/distributed-transactions</module>
     <module>arch/clock-timeout-retry</module>
+    <module>arch/raft-consensus</module>
   </modules>
 
   <build>
