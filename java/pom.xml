@@ -102,6 +102,7 @@
     <module>database/sharding-shardingsphere</module>
     <module>database/sharding-cross-shard-query</module>
     <module>database/online-data-migration</module>
+    <module>search/es-inverted-index-shards</module>
   </modules>
 
   <build>
