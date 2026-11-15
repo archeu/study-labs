@@ -93,6 +93,7 @@
     <module>arch/raft-consensus</module>
     <module>arch/distributed-lock-choice</module>
     <module>arch/distributed-id</module>
+    <module>cloud/nacos-registry-config</module>
   </modules>
 
   <build>

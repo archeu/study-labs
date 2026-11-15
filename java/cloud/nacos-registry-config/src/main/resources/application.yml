@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: inventory-svc
+  cloud:
+    nacos:
+      server-addr: ${NACOS:127.0.0.1:18848}
+      # Nacos 3 官方镜像默认开鉴权（run.sh 第一步设置了管理员密码）
+      username: nacos
+      password: ${NACOS_PASS:LabPass123}
+  config:
+    # Spring Cloud 2020 以后不再用 bootstrap.yml，配置中心通过 spring.config.import 接进来
+    import: optional:nacos:inventory-svc.yaml
+server:
+  port: ${PORT:18081}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,serviceregistry,refresh
+logging:
+  level:
+    com.alibaba.nacos: warn
+    com.alibaba.cloud.nacos.refresh: info
