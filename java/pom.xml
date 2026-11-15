@@ -114,6 +114,7 @@
     <module>observability/logs-metrics-traces</module>
     <module>observability/prometheus-alerting</module>
     <module>observability/tracing-otel-skywalking</module>
+    <module>observability/arthas-diagnosis</module>
   </modules>
 
   <build>
