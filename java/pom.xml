@@ -111,6 +111,7 @@
     <module>perf/full-link-load-test</module>
     <module>arch/multi-active-dr</module>
     <module>arch/chaos-drill-runbook</module>
+    <module>observability/logs-metrics-traces</module>
   </modules>
 
   <build>

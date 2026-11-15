@@ -124,3 +124,4 @@
 | [全链路压测与容量规划](https://archeu.github.io/study-notes/perf/full-link-load-test.html) | [`java/perf/full-link-load-test`](java/perf/full-link-load-test/) | `CapacityLab` 开环阶梯找容量拐点，`ShadowTagLab` 压测标记跨线程池丢失和修复 |
 | [多活与容灾：同城双活、异地多活、RTO 和 RPO](https://archeu.github.io/study-notes/arch/multi-active-dr.html) | [`java/arch/multi-active-dr`](java/arch/multi-active-dr/) | `FailoverLab` 断专线、杀主、从库提升，对比异步复制和 WAIT 丢了多少已确认写入 |
 | [故障演练与预案](https://archeu.github.io/study-notes/arch/chaos-drill-runbook.html) | [`java/arch/chaos-drill-runbook`](java/arch/chaos-drill-runbook/) | `RedisFailoverDrill` 1 主 2 从 3 哨兵杀主演练：RTO、RPO、降级、旧主回来的脑裂窗口 |
+| [一个请求，三样数据：日志、指标、链路三件套](https://archeu.github.io/study-notes/observability/logs-metrics-traces.html) | [`java/observability/logs-metrics-traces`](java/observability/logs-metrics-traces/) | Spring Boot 3.5 下单服务：`run.sh` 一单三样数据（JSON 日志、Prometheus 指标、span 瀑布图），`async` 换线程丢 traceId，`cardinality` 订单号标签炸序列 |
