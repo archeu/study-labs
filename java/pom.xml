@@ -91,6 +91,7 @@
     <module>arch/distributed-transactions</module>
     <module>arch/clock-timeout-retry</module>
     <module>arch/raft-consensus</module>
+    <module>arch/distributed-lock-choice</module>
   </modules>
 
   <build>
