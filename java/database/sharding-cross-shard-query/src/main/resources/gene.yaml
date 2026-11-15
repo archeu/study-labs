@@ -1,0 +1,42 @@
+# 订单号基因：t_order 按 (user_id, id) 复合分片，有 user_id 用它，只有新订单号用 id 的最低 3 位，老订单号广播
+dataSources:
+  ds_0:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://127.0.0.1:33112/ds_0?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  ds_1:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://127.0.0.1:33112/ds_1?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+rules:
+- !SHARDING
+  tables:
+    t_order:
+      actualDataNodes: ds_0.t_order_${[0,2,4,6]},ds_1.t_order_${[1,3,5,7]}
+      databaseStrategy:
+        complex:
+          shardingColumns: user_id,id
+          shardingAlgorithmName: gene_db
+      tableStrategy:
+        complex:
+          shardingColumns: user_id,id
+          shardingAlgorithmName: gene_table
+  shardingAlgorithms:
+    gene_db:
+      type: CLASS_BASED
+      props:
+        strategy: COMPLEX
+        algorithmClassName: labs.database.sharding_cross_shard_query.GeneShardingAlgorithm
+        target: db
+    gene_table:
+      type: CLASS_BASED
+      props:
+        strategy: COMPLEX
+        algorithmClassName: labs.database.sharding_cross_shard_query.GeneShardingAlgorithm
+        target: table
+props:
+  sql-show: true

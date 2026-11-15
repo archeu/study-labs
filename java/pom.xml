@@ -100,6 +100,7 @@
     <module>cloud/gray-release</module>
     <module>cloud/spring-cloud-vs-alibaba</module>
     <module>database/sharding-shardingsphere</module>
+    <module>database/sharding-cross-shard-query</module>
   </modules>
 
   <build>

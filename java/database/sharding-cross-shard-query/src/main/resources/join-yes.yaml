@@ -1,0 +1,33 @@
+# t_order 和 t_order_item 都按 user_id 分；配成绑定表
+dataSources:
+  ds_0:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://127.0.0.1:33112/ds_0?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  ds_1:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://127.0.0.1:33112/ds_1?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+rules:
+- !SHARDING
+  tables:
+    t_order:
+      actualDataNodes: ds_0.t_order_${[0,2,4,6]},ds_1.t_order_${[1,3,5,7]}
+      databaseStrategy: { standard: { shardingColumn: user_id, shardingAlgorithmName: db_by_user } }
+      tableStrategy: { standard: { shardingColumn: user_id, shardingAlgorithmName: order_by_user } }
+    t_order_item:
+      actualDataNodes: ds_0.t_order_item_${[0,2,4,6]},ds_1.t_order_item_${[1,3,5,7]}
+      databaseStrategy: { standard: { shardingColumn: user_id, shardingAlgorithmName: db_by_user } }
+      tableStrategy: { standard: { shardingColumn: user_id, shardingAlgorithmName: item_by_user } }
+  bindingTables:
+  - t_order,t_order_item
+  shardingAlgorithms:
+    db_by_user: { type: INLINE, props: { algorithm-expression: 'ds_${user_id % 2}' } }
+    order_by_user: { type: INLINE, props: { algorithm-expression: 't_order_${user_id % 8}' } }
+    item_by_user: { type: INLINE, props: { algorithm-expression: 't_order_item_${user_id % 8}' } }
+props:
+  sql-show: true
