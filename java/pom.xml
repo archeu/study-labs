@@ -99,6 +99,7 @@
     <module>cloud/sentinel-circuit-breaker</module>
     <module>cloud/gray-release</module>
     <module>cloud/spring-cloud-vs-alibaba</module>
+    <module>database/sharding-shardingsphere</module>
   </modules>
 
   <build>

@@ -1,0 +1,38 @@
+# 反例：库用 % 2、表用 % 4，两个余数相关 —— 每个库里都建了 t_order_0..3，却只有一半会有数据
+dataSources:
+  ds_0:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://127.0.0.1:33111/bad_0?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  ds_1:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://127.0.0.1:33111/bad_1?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+rules:
+- !SHARDING
+  tables:
+    t_order:
+      actualDataNodes: ds_${0..1}.t_order_${0..3}
+      databaseStrategy:
+        standard:
+          shardingColumn: user_id
+          shardingAlgorithmName: db_by_user
+      tableStrategy:
+        standard:
+          shardingColumn: user_id
+          shardingAlgorithmName: table_by_user
+  shardingAlgorithms:
+    db_by_user:
+      type: INLINE
+      props:
+        algorithm-expression: ds_${user_id % 2}
+    table_by_user:
+      type: INLINE
+      props:
+        algorithm-expression: t_order_${user_id % 4}
+props:
+  sql-show: false
