@@ -116,6 +116,7 @@
     <module>observability/tracing-otel-skywalking</module>
     <module>observability/arthas-diagnosis</module>
     <module>observability/postmortem-review</module>
+    <module>cloudnative/docker-image-layers</module>
   </modules>
 
   <build>

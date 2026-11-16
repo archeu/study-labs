@@ -1,0 +1,7 @@
+# 写法一：单阶段。在带 Maven 的镜像里编译，编译完直接在同一个镜像里跑。
+FROM maven:3.9.16-eclipse-temurin-21-noble
+WORKDIR /src
+COPY . .
+RUN mvn -B -q package -DskipTests
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "target/order-svc.jar"]

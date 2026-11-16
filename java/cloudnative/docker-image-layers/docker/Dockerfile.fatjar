@@ -1,0 +1,12 @@
+# 写法二：多阶段，但整个 fat jar 一层 COPY。
+FROM maven:3.9.16-eclipse-temurin-21-noble AS build
+WORKDIR /src
+COPY pom.xml .
+COPY src ./src
+RUN --mount=type=cache,target=/root/.m2 mvn -B -q package -DskipTests
+
+FROM eclipse-temurin:21.0.13_9-jre-noble
+WORKDIR /app
+COPY --from=build /src/target/order-svc.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
