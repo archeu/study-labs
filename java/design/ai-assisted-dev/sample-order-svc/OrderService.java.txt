@@ -1,0 +1,10 @@
+class OrderService {
+    Result place(PlaceOrderRequest req) {          // 入口 1
+        order.setDiscountAmount(calcPrice(req));   // discount_amount
+        return save(order);
+    }
+    Result preview(PlaceOrderRequest req) {        // 入口 2：下单前试算
+        return Result.of(calcPrice(req));          // discount_amount
+    }
+    long calcPrice(PlaceOrderRequest req) { /* 420 行 */ return 0; }
+}

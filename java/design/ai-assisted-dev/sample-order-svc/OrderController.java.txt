@@ -1,0 +1,5 @@
+// 入口 1：下单接口
+class OrderController {
+    Result place(PlaceOrderRequest req) { return orderService.place(req); }
+    Result preview(PlaceOrderRequest req) { return orderService.preview(req); }
+}

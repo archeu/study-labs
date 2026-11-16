@@ -1,0 +1,10 @@
+// 入口 7：支付渠道退款失败后的补偿。没有任何代码调用它，是消息队列回调进来的。
+@RocketMQMessageListener(topic = "refund-compensate", consumerGroup = "order-refund")
+class RefundCompensateListener implements RocketMQListener<RefundMsg> {
+    public void onMessage(RefundMsg msg) {
+        Coupon c = couponClient.get(msg.couponId());
+        // 复制粘贴来的：按券重新算这一行，不看 discount_amount 里存的数
+        long refund = msg.linePrice() * c.percent() / 100;
+        refundMapper.updateDiscountAmount(msg.orderId(), msg.linePrice() - refund);   // discount_amount
+    }
+}

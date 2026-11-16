@@ -1,0 +1,3 @@
+class OrderExportController {                      // 入口 6：运营导出订单
+    void export(Query q) { writer.write(orderMapper.listWithDiscountAmount(q)); }   // discount_amount
+}

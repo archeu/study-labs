@@ -129,6 +129,7 @@
     <module>design/design-patterns-in-frameworks</module>
     <module>design/design-doc-review</module>
     <module>design/refactoring-tech-debt</module>
+    <module>design/ai-assisted-dev</module>
   </modules>
 
   <build>

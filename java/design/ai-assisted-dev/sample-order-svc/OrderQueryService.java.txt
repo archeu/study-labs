@@ -1,0 +1,3 @@
+class OrderQueryService {                          // 入口 3：订单详情
+    OrderView detail(long id) { return view(orderMapper.selectDiscountAmount(id)); }   // discount_amount
+}

@@ -1,0 +1,4 @@
+class SettlementJob {                              // 入口 5：每日结算
+    @Scheduled(cron = "0 0 3 * * *")
+    void run() { settlementMapper.sumDiscountAmount(yesterday()); }   // discount_amount
+}

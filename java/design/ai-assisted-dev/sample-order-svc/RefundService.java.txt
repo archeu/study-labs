@@ -1,0 +1,6 @@
+class RefundService {                              // 入口 4：用户申请退款
+    long refund(long orderId, int line) {
+        long discount = orderMapper.selectDiscountAmount(orderId);   // discount_amount
+        return calcRefund(discount, line);
+    }
+}
