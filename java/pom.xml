@@ -130,6 +130,7 @@
     <module>design/design-doc-review</module>
     <module>design/refactoring-tech-debt</module>
     <module>design/ai-assisted-dev</module>
+    <module>design/tech-lead-review-mentoring</module>
   </modules>
 
   <build>

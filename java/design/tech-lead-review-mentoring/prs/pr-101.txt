@@ -1,0 +1,16 @@
+标题: refactor: 把现金券搬成规则类
+作者: 小吴
+
+## 背景
+ADR-0008：每种优惠一个规则类。这是“只搬不改”的第 2 个，共 7 个。
+
+## 怎么验证
+23 个特征测试没有改动，全部通过。本地跑过 mvn -q test。
+
+## 回滚
+关路由开关，回到 calcPrice() 的旧分支。
+
+## 改动
+84	0	src/main/java/com/lab/coupon/pricing/internal/CashCouponRule.java
+9	61	src/main/java/com/lab/order/OrderService.java
+4	0	src/main/java/com/lab/coupon/pricing/internal/RuleConfig.java

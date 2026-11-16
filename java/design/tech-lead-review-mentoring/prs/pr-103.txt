@@ -1,0 +1,16 @@
+标题: refactor: 把折扣券搬成规则类
+作者: 小吴
+
+## 背景
+“只搬不改”的第 3 个。顺便修了一个舍入的小问题。
+
+## 怎么验证
+特征测试全部通过（更新了 10 个期望值）。
+
+## 回滚
+关路由开关。
+
+## 改动
+77	0	src/main/java/com/lab/coupon/pricing/internal/PercentCouponRule.java
+6	48	src/main/java/com/lab/order/OrderService.java
+10	10	src/test/java/com/lab/order/CalcPriceCharacterizationTest.java
