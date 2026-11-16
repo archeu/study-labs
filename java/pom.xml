@@ -119,6 +119,7 @@
     <module>cloudnative/docker-image-layers</module>
     <module>cloudnative/k8s-core-objects</module>
     <module>cloudnative/k8s-resources-probes</module>
+    <module>jvm/jvm-startup-aot-cache</module>
   </modules>
 
   <build>
