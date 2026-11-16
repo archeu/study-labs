@@ -125,6 +125,7 @@
     <module>design/requirements-modeling</module>
     <module>design/ddd-bounded-context-aggregate</module>
     <module>design/arch-evolution-modular-monolith</module>
+    <module>design/tech-selection-adr</module>
   </modules>
 
   <build>
