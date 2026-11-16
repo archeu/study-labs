@@ -1,6 +1,6 @@
 # 代理里那十几层在干什么：AOP 与代理下一圈
 
-对应页面：[代理里那十几层在干什么](https://archeu.github.io/study-notes/spring/spring-aop-chain.html)（Java 地图 J05 · 全景《一个请求穿过 Spring》第 6 站）
+对应页面：[代理里那十几层在干什么](https://study.ainiya.de/spring/spring-aop-chain.html)（Java 地图 J05 · 全景《一个请求穿过 Spring》第 6 站）
 
 交易靶场·订单付款。不起 Web，H2 内存库，`OrderController` 是普通 bean，直接调它。每个场景单独起一个 Spring 容器，打印代理上的 Advisor 链、Controller 到 `OrderService` 之间夹的调用栈、计时切面进来时事务开没开。
 

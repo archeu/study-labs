@@ -1,6 +1,6 @@
 # 商家 301 搜“键盘”：Elasticsearch 的倒排索引、分片、写入和查询
 
-对应页面：[商家 301 搜“键盘”：Elasticsearch 的倒排索引、分片、写入和查询](https://archeu.github.io/study-notes/search/es-inverted-index-shards.html)
+对应页面：[商家 301 搜“键盘”：Elasticsearch 的倒排索引、分片、写入和查询](https://study.ainiya.de/search/es-inverted-index-shards.html)
 
 ## 怎么跑
 

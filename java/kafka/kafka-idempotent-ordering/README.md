@@ -1,6 +1,6 @@
 # 积分加了两次，退款跑到了付款前面：幂等消费与顺序消息
 
-对应页面：[积分加了两次，退款跑到了付款前面：幂等消费与顺序消息](https://archeu.github.io/study-notes/kafka/kafka-idempotent-ordering.html)（Java 地图 J08 · 全景“一条订单消息的一生”第 8、2 站）
+对应页面：[积分加了两次，退款跑到了付款前面：幂等消费与顺序消息](https://study.ainiya.de/kafka/kafka-idempotent-ordering.html)（Java 地图 J08 · 全景“一条订单消息的一生”第 8、2 站）
 
 `IdempotentOrdering` 两段：
 

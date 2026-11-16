@@ -1,6 +1,6 @@
 # 同一个词，两边是两个东西：DDD 限界上下文、聚合、领域事件
 
-对应页面：[同一个词，两边是两个东西：DDD 限界上下文、聚合、领域事件](https://archeu.github.io/study-notes/design/ddd-bounded-context-aggregate.html)
+对应页面：[同一个词，两边是两个东西：DDD 限界上下文、聚合、领域事件](https://study.ainiya.de/design/ddd-bounded-context-aggregate.html)
 
 用户 1024 那一单（199 + 129 + 72，满 300 减 40，一张 9 折券），在两个限界上下文里走一遍。为了一个进程能跑，接口调用和消息队列都换成了直接调方法，边界和真的一样。
 

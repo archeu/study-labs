@@ -1,6 +1,6 @@
 # 常用集合怎么选：ArrayList、LinkedList、Set、Queue
 
-对应页面：[常用集合怎么选](https://archeu.github.io/study-notes/javase/collections-choose.html)
+对应页面：[常用集合怎么选](https://study.ainiya.de/javase/collections-choose.html)
 （全景：一个订单对象的一生 · 第 8、9 站）
 
 - `OrderBook`：交易靶场的订单簿，五种找法五种集合（HashMap + List、HashSet、PriorityQueue、TreeMap、ArrayDeque），再演示四个坑。

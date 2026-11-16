@@ -1,6 +1,6 @@
 # 多活与容灾：同城双活、异地多活、RTO 和 RPO
 
-对应页面：[多活与容灾：同城双活、异地多活、RTO 和 RPO](https://archeu.github.io/study-notes/arch/multi-active-dr.html)
+对应页面：[多活与容灾：同城双活、异地多活、RTO 和 RPO](https://study.ainiya.de/arch/multi-active-dr.html)
 
 ## 怎么跑
 

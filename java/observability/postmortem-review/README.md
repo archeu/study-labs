@@ -1,6 +1,6 @@
 # 对事不对人：故障复盘，时间线、根因、改进项
 
-对应页面：[对事不对人：故障复盘，时间线、根因、改进项](https://archeu.github.io/study-notes/observability/postmortem-review.html)（J13 全景第 11 站）
+对应页面：[对事不对人：故障复盘，时间线、根因、改进项](https://study.ainiya.de/observability/postmortem-review.html)（J13 全景第 11 站）
 
 复盘第一步是拼时间线，而且要从原始记录拼，不凭记忆。`TimelineBuilder` 读 [Prometheus 那页](../prometheus-alerting/) 的 `run.sh` 打出的原始事件（每 10 秒的成功和失败数、告警规则状态变化、webhook 通知、注入时刻），排成一张 Markdown 时间线，再算出“发现”“恢复”各用了多久。
 

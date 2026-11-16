@@ -1,6 +1,6 @@
 # 279 µs 里只有 2 µs 在 Redis：一条连接、一个线程上的排队
 
-对应页面：[279 µs 里只有 2 µs 在 Redis：一条连接、一个线程上的排队](https://archeu.github.io/study-notes/redis/redis-event-loop-queueing.html)（J07 全景《一次商品详情查询》第 2、3 站）
+对应页面：[279 µs 里只有 2 µs 在 Redis：一条连接、一个线程上的排队](https://study.ainiya.de/redis/redis-event-loop-queueing.html)（J07 全景《一次商品详情查询》第 2、3 站）
 
 ## 怎么跑
 

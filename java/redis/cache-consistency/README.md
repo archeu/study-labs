@@ -1,6 +1,6 @@
 # 改完价，详情页还卖 399：先改库还是先删缓存、延迟双删、订阅 binlog
 
-对应页面：[改完价，详情页还卖 399：先改库还是先删缓存、延迟双删、订阅 binlog](https://archeu.github.io/study-notes/redis/cache-consistency.html)（Java 地图 J07 · [全景：一次商品详情查询](https://archeu.github.io/study-notes/java/pano-j07-product-detail-cache.html) 第 9、10 站）
+对应页面：[改完价，详情页还卖 399：先改库还是先删缓存、延迟双删、订阅 binlog](https://study.ainiya.de/redis/cache-consistency.html)（Java 地图 J07 · [全景：一次商品详情查询](https://study.ainiya.de/java/pano-j07-product-detail-cache.html) 第 9、10 站）
 
 交易靶场：运营把 88 号商品从 399.00 改成 359.00。`PriceChange` 里 4 个读线程每 1 ms 按 Cache-Aside 读一次（GET → 没命中查库 → SET 回 Redis，30 分钟过期），
 写线程按不同写法改库、动缓存。写完 300 ms 后 Redis 里留着和数据库不一样的值，就记一次“卡住”。缓存值的格式是 `价格|v版本号`。

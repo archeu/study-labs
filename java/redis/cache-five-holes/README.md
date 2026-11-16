@@ -1,6 +1,6 @@
 # 88 号过期那一刻：缓存穿透、击穿、雪崩与大 key、热 key
 
-对应页面：[88 号过期那一刻：缓存穿透、击穿、雪崩与大 key、热 key](https://archeu.github.io/study-notes/redis/cache-five-holes.html)（Java 地图 J07 · 全景“一次商品详情查询”第 4、5、7、1 站）
+对应页面：[88 号过期那一刻：缓存穿透、击穿、雪崩与大 key、热 key](https://study.ainiya.de/redis/cache-five-holes.html)（Java 地图 J07 · 全景“一次商品详情查询”第 4、5、7、1 站）
 
 交易靶场商品服务读详情，带三道防线：第 4 站布隆过滤器挡穿透，第 5 站重建锁挡击穿，第 7 站过期时间加随机数挡雪崩。
 为了只看这三道防线，数据库用一个函数代替（每次查 sleep 2 ms，id 1～10000 有货），也没有 Caffeine 本地缓存（见 `java/redis/cache-multilevel`）。

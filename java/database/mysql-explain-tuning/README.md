@@ -1,6 +1,6 @@
 # 明明有索引，它偏不走：执行计划与 SQL 调优
 
-对应页面：[明明有索引，它偏不走：执行计划与 SQL 调优](https://archeu.github.io/study-notes/database/mysql-explain-tuning.html)
+对应页面：[明明有索引，它偏不走：执行计划与 SQL 调优](https://study.ainiya.de/database/mysql-explain-tuning.html)
 
 交易靶场的 `orders` 表（100 万行，和全景 J06、索引页同一份数据，多了 `order_no VARCHAR(20)` 和 `idx_created`），`PlanLab` 分六段：
 

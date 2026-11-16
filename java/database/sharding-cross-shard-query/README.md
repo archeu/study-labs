@@ -1,6 +1,6 @@
 # 9527 在哪张表：分片以后的跨片查询、分页与全局表
 
-对应页面：[9527 在哪张表：分片以后的跨片查询、分页与全局表](https://archeu.github.io/study-notes/database/sharding-cross-shard-query.html)
+对应页面：[9527 在哪张表：分片以后的跨片查询、分页与全局表](https://study.ainiya.de/database/sharding-cross-shard-query.html)
 
 ## 怎么跑
 

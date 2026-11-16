@@ -1,6 +1,6 @@
 # 137、143 和那份没加密的密码：Linux 信号、启动脚本、配置和密钥
 
-对应页面：[137、143 和那份没加密的密码：Linux 信号、启动脚本、配置和密钥](https://archeu.github.io/study-notes/cloudnative/linux-config-secrets.html)（J14 第 6 个知识点，全景第 4、9、11 站）
+对应页面：[137、143 和那份没加密的密码：Linux 信号、启动脚本、配置和密钥](https://study.ainiya.de/cloudnative/linux-config-secrets.html)（J14 第 6 个知识点，全景第 4、9、11 站）
 
 没有 Java 代码。镜像用 `../docker-image-layers` 构建的 `lab/order-svc-layered:1.8.3` 和 `busybox:1.37.0`，集群用 `../k8s-core-objects/cluster.sh`（kind v0.33.0，Kubernetes v1.37.0）。`run.sh` 本身也是脚本写法的示范：`set -euo pipefail`、`trap … INT TERM` 收尾。
 

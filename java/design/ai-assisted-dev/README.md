@@ -1,6 +1,6 @@
 # 它写得很快，你得知道哪里不能信：AI 辅助研发
 
-对应页面：[它写得很快，你得知道哪里不能信：AI 辅助研发](https://archeu.github.io/study-notes/design/ai-assisted-dev.html)
+对应页面：[它写得很快，你得知道哪里不能信：AI 辅助研发](https://study.ainiya.de/design/ai-assisted-dev.html)
 
 两个小实验，对应交易靶场全景里 AI 助手出场的两次。这里没有调用任何模型。
 

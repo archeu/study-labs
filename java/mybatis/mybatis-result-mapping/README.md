@@ -1,6 +1,6 @@
 # 100 笔订单发出 101 条 SQL：MyBatis 结果映射、N+1 与流式查询
 
-对应页面：[100 笔订单发出 101 条 SQL](https://archeu.github.io/study-notes/mybatis/mybatis-result-mapping.html)（Java 地图 J05 · 全景《一个请求穿过 Spring》第 8、9 站）
+对应页面：[100 笔订单发出 101 条 SQL](https://study.ainiya.de/mybatis/mybatis-result-mapping.html)（Java 地图 J05 · 全景《一个请求穿过 Spring》第 8、9 站）
 
 交易靶场·查订单和明细、导出流水。不起 Web，H2 内存库（MySQL 模式）：100 笔订单（9501～9600），每笔 1～3 件明细，共 199 件；20 万条支付流水。
 

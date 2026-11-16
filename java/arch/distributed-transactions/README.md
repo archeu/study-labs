@@ -1,6 +1,6 @@
 # 一单写三个库：2PC/XA、TCC、Saga、本地消息表与 Seata
 
-对应页面：[一单写三个库：2PC/XA、TCC、Saga、本地消息表与 Seata](https://archeu.github.io/study-notes/arch/distributed-transactions.html)
+对应页面：[一单写三个库：2PC/XA、TCC、Saga、本地消息表与 Seata](https://study.ainiya.de/arch/distributed-transactions.html)
 
 交易靶场 J09 全景“一次下单跨三个库”的第 4～10 站。`DtxLab` 连一个 MySQL 8.4，里面建 `order_db`、`inventory_db`、`coupon_db` 三个库；每个“服务”只用连自己库的连接，谁也不碰别人的库。订单 9527（2 件 sku 88 + 券 MINUS20）分四段跑：
 

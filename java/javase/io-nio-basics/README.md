@@ -1,6 +1,6 @@
 # IO 与 NIO 基础：流、Buffer、Channel
 
-对应页面：[IO 与 NIO 基础](https://archeu.github.io/study-notes/javase/io-nio-basics.html)
+对应页面：[IO 与 NIO 基础](https://study.ainiya.de/javase/io-nio-basics.html)
 （全景：一个订单对象的一生 · 第 1、11 站；网络 IO 模型页的下一圈）
 
 - `Demo`：导出对账 CSV、三种字符集读同一份字节、10 万行商品导入文件流式读、ByteBuffer 三指针。

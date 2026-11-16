@@ -1,6 +1,6 @@
 # 让一个组都这样做：技术领导的规范、Code Review、带人
 
-对应页面：[让一个组都这样做：技术领导的规范、Code Review、带人](https://archeu.github.io/study-notes/design/tech-lead-review-mentoring.html)
+对应页面：[让一个组都这样做：技术领导的规范、Code Review、带人](https://study.ainiya.de/design/tech-lead-review-mentoring.html)
 
 把团队对合并请求的五条约定写成检查，在评审人打开之前先跑一遍。
 

@@ -1,6 +1,6 @@
 # 半消息、定时消息、顺序消息：RocketMQ 三种特殊消息
 
-对应页面：[改库和发消息怎么一起成功：RocketMQ 的事务消息、定时消息、顺序消息](https://archeu.github.io/study-notes/rocketmq/rocketmq-tx-delay-order.html)
+对应页面：[改库和发消息怎么一起成功：RocketMQ 的事务消息、定时消息、顺序消息](https://study.ainiya.de/rocketmq/rocketmq-tx-delay-order.html)
 
 交易靶场的订单服务，对着一个单节点 RocketMQ 5.5.1（NameServer + Broker，remoting 客户端直连，不起 Proxy）跑三组实验。订单库用 H2 文件库代替 MySQL。
 

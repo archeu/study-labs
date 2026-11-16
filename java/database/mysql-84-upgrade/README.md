@@ -1,6 +1,6 @@
 # 换上 8.4，付款服务连不上库了：MySQL 8.0 升级 8.4 LTS
 
-对应页面：[换上 8.4，付款服务连不上库了：MySQL 8.0 升级 8.4 LTS](https://archeu.github.io/study-notes/database/mysql-84-upgrade.html)
+对应页面：[换上 8.4，付款服务连不上库了：MySQL 8.0 升级 8.4 LTS](https://study.ainiya.de/database/mysql-84-upgrade.html)
 
 交易靶场的一主一从（GTID），从 MySQL 8.0.46 按“先升从库 → 切换 → 最后升旧主库”滚动升级到 8.4.13。故意带上老库常见的三样东西：`mysql_native_password` 建的付款账号、`CHANGE MASTER TO` 搭的复制、一个指向非唯一索引的外键。
 

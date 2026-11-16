@@ -1,6 +1,6 @@
 # 全景：一次商品详情查询
 
-对应页面：[全景：一次商品详情查询](https://archeu.github.io/study-notes/java/pano-j07-product-detail-cache.html)（Java 地图 J07 · Redis 与缓存设计）
+对应页面：[全景：一次商品详情查询](https://study.ainiya.de/java/pano-j07-product-detail-cache.html)（Java 地图 J07 · Redis 与缓存设计）
 
 交易靶场的商品服务查 88 号商品：Caffeine 本地缓存 → Redis → MySQL，再改一次价（399.00 → 359.00），看三级缓存怎么跟上。
 `ProductDetail` 用 4 组对象模拟 4 个实例，各有自己的 Caffeine、Lettuce 连接和 HikariCP 连接池。

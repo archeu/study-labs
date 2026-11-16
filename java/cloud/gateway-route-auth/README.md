@@ -1,6 +1,6 @@
 # 1024 的请求进门之前：Spring Cloud Gateway、路由与鉴权
 
-对应页面：[1024 的请求进门之前：Spring Cloud Gateway、路由与鉴权](https://archeu.github.io/study-notes/cloud/gateway-route-auth.html)（J10 全景第 2、3、4 站）
+对应页面：[1024 的请求进门之前：Spring Cloud Gateway、路由与鉴权](https://study.ainiya.de/cloud/gateway-route-auth.html)（J10 全景第 2、3、4 站）
 
 ## 里面有什么
 

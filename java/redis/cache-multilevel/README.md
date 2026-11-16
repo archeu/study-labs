@@ -1,6 +1,6 @@
 # 4 台机器各存一份 88 号：Caffeine 加 Redis 两级缓存
 
-对应页面：[4 台机器各存一份 88 号：Caffeine 加 Redis 两级缓存](https://archeu.github.io/study-notes/redis/cache-multilevel.html)（Java 地图 J07 · 全景“一次商品详情查询”第 1、8、11 站）
+对应页面：[4 台机器各存一份 88 号：Caffeine 加 Redis 两级缓存](https://study.ainiya.de/redis/cache-multilevel.html)（Java 地图 J07 · 全景“一次商品详情查询”第 1、8、11 站）
 
 交易靶场商品服务的两级缓存：一级 Caffeine（每个实例一份），二级 Redis（大家共用），改价后用 Redis Pub/Sub 广播让各实例作废本地那份。
 为了只看两级缓存，数据库用一个 Map 代替（每次查 sleep 1 ms），省掉了布隆过滤器和重建锁（全景第 4、5 站，见 `java/pano-j07-product-detail-cache`）。

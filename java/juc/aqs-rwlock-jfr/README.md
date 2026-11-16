@@ -1,7 +1,7 @@
 # AQS 下一圈：读写锁、StampedLock、Semaphore 与 JFR 找锁竞争
 
-对应页面：[AQS 下一圈](https://archeu.github.io/study-notes/juc/aqs-rwlock-jfr.html)
-上一圈：[AQS 源码](https://archeu.github.io/study-notes/juc/aqs.html)
+对应页面：[AQS 下一圈](https://study.ainiya.de/juc/aqs-rwlock-jfr.html)
+上一圈：[AQS 源码](https://study.ainiya.de/juc/aqs.html)
 
 `--release 8`，只用 JDK 自带的类。
 

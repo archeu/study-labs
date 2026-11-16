@@ -1,6 +1,6 @@
 # 改个版本号，付款就 400 了：Spring Boot 3 到 4 升级
 
-对应页面：[改个版本号，付款就 400 了：Spring Boot 3 到 4、Jakarta 与 Jackson 3 升级](https://archeu.github.io/study-notes/spring/spring-boot4-upgrade.html)
+对应页面：[改个版本号，付款就 400 了：Spring Boot 3 到 4、Jakarta 与 Jackson 3 升级](https://study.ainiya.de/spring/spring-boot4-upgrade.html)
 
 交易靶场的付款接口 `POST /orders/9527/pay`，同一份代码用三个 Maven profile 构建：
 

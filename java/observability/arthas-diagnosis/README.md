@@ -1,6 +1,6 @@
 # 进 JVM 看一眼：Arthas 线上诊断
 
-对应页面：[进 JVM 看一眼：Arthas 线上诊断](https://archeu.github.io/study-notes/observability/arthas-diagnosis.html)（J13 全景第 9 站）
+对应页面：[进 JVM 看一眼：Arthas 线上诊断](https://study.ainiya.de/observability/arthas-diagnosis.html)（J13 全景第 9 站）
 
 全景第 9 站的现场：order-svc（Spring Boot 3.5.16，HikariCP 10 条连接，拿连接最多等 3 秒）里有个对账任务，10 个线程并行，每笔在 `@Transactional` 方法里调支付渠道查单。渠道（也做在这个应用里，`/channel/query`）被调成 20 秒才回，对账线程各攥一条连接，下单 500。不重启，attach Arthas 4.3.5 看是谁攥着连接、时间花在哪。
 

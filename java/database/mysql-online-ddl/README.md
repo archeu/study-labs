@@ -1,6 +1,6 @@
 # orders 加一列，支付接口全卡住了：表结构设计与大表变更（Online DDL）
 
-对应页面：[orders 加一列，支付接口全卡住了：表结构设计与大表变更（Online DDL）](https://archeu.github.io/study-notes/database/mysql-online-ddl.html)
+对应页面：[orders 加一列，支付接口全卡住了：表结构设计与大表变更（Online DDL）](https://study.ainiya.de/database/mysql-online-ddl.html)
 
 `run.sh` 起一主一从两个 MySQL 8.4 容器（GTID 异步复制），每段实验前灌和全景 J06 同一份 100 万行 `orders`，然后跑 `DdlLab`：
 

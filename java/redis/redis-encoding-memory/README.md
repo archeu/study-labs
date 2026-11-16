@@ -1,6 +1,6 @@
 # 648 字节的详情占 805 字节：Redis 8 的 kvobj、embstr 新门槛与存 String 还是 Hash
 
-对应页面：[648 字节的详情占 805 字节：Redis 8 的 kvobj、embstr 新门槛与存 String 还是 Hash](https://archeu.github.io/study-notes/redis/redis-encoding-memory.html)（Java 地图 J07 · [全景：一次商品详情查询](https://archeu.github.io/study-notes/java/pano-j07-product-detail-cache.html) 第 7 站，也涉及第 3、4 站）
+对应页面：[648 字节的详情占 805 字节：Redis 8 的 kvobj、embstr 新门槛与存 String 还是 Hash](https://study.ainiya.de/redis/redis-encoding-memory.html)（Java 地图 J07 · [全景：一次商品详情查询](https://study.ainiya.de/java/pano-j07-product-detail-cache.html) 第 7 站，也涉及第 3、4 站）
 
 `Lab` 三段：
 

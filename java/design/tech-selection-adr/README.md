@@ -1,6 +1,6 @@
 # 选了什么、放弃了什么、为什么：技术选型与 ADR
 
-对应页面：[选了什么、放弃了什么、为什么：技术选型与 ADR](https://archeu.github.io/study-notes/design/tech-selection-adr.html)
+对应页面：[选了什么、放弃了什么、为什么：技术选型与 ADR](https://study.ainiya.de/design/tech-selection-adr.html)
 
 交易靶场“满减叠加券”改造里的三条架构决策记录，外加一个把团队对 ADR 的约定写成检查的小程序。
 

@@ -1,6 +1,6 @@
 # 换版本不断流、出事能秒回：CI/CD 与滚动、蓝绿、金丝雀
 
-对应页面：[换版本不断流、出事能秒回：CI/CD 与滚动、蓝绿、金丝雀](https://archeu.github.io/study-notes/cloudnative/cicd-release-strategy.html)（J14 第 5 个知识点，全景第 1、4、11 站）
+对应页面：[换版本不断流、出事能秒回：CI/CD 与滚动、蓝绿、金丝雀](https://study.ainiya.de/cloudnative/cicd-release-strategy.html)（J14 第 5 个知识点，全景第 1、4、11 站）
 
 没有 Java 代码。镜像用 `../docker-image-layers` 构建的 `lab/order-svc-layered:1.8.3` / `1.8.4`，集群用 `../k8s-core-objects/cluster.sh`（kind v0.33.0，Kubernetes v1.37.0）。
 

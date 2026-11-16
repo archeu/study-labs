@@ -1,6 +1,6 @@
 # 交易靶场的五种消息：Kafka、RocketMQ、RabbitMQ、Redis Stream 怎么选
 
-对应页面：[交易靶场的五种消息：Kafka、RocketMQ、RabbitMQ、Redis Stream 怎么选](https://archeu.github.io/study-notes/kafka/mq-selection.html)
+对应页面：[交易靶场的五种消息：Kafka、RocketMQ、RabbitMQ、Redis Stream 怎么选](https://study.ainiya.de/kafka/mq-selection.html)
 
 只测 RabbitMQ 一侧；Kafka、RocketMQ 一侧的行为见 J08 前几页的实验。
 

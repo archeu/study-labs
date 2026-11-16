@@ -1,6 +1,6 @@
 # 慢在哪一段：链路追踪，OpenTelemetry 和 SkyWalking
 
-对应页面：[慢在哪一段：链路追踪，OpenTelemetry 和 SkyWalking](https://archeu.github.io/study-notes/observability/tracing-otel-skywalking.html)（J13 全景第 6 站；AI 地图站 09 补给）
+对应页面：[慢在哪一段：链路追踪，OpenTelemetry 和 SkyWalking](https://study.ainiya.de/observability/tracing-otel-skywalking.html)（J13 全景第 6 站；AI 地图站 09 补给）
 
 同一个 Spring Boot 3.5.16 的 jar 起两个进程：order-svc（18101）调 product-svc（18102），各自查写 H2，下单后用普通 JDK 线程池发通知。**pom 里没有任何链路依赖，代码里没有一行链路代码**，全靠 OpenTelemetry Java agent 2.33.1；span 直接发给 Jaeger 2.23.0（内存存储），再用 `show_trace.py` 从 Jaeger 的 `/api/v3/traces` 取回画成瀑布图。`/admin/hold` 模拟全景里攥着连接的对账线程。
 

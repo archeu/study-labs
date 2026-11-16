@@ -1,6 +1,6 @@
 # 双击下单只出一张单：幂等设计——唯一键、状态机、去重表
 
-对应页面：[双击下单只出一张单：幂等设计——唯一键、状态机、去重表](https://archeu.github.io/study-notes/arch/idempotency-design.html)
+对应页面：[双击下单只出一张单：幂等设计——唯一键、状态机、去重表](https://study.ainiya.de/arch/idempotency-design.html)
 
 交易靶场 J09 全景“一次下单跨三个库”的第 1、6、8 站。`IdemLab` 连一个 MySQL 8.4，分五段：
 

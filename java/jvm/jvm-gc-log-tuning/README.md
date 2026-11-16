@@ -1,6 +1,6 @@
 # GC 日志与调优：先定目标，再动参数
 
-对应页面：[GC 日志与调优：先定目标，再动参数](https://archeu.github.io/study-notes/jvm/jvm-gc-log-tuning.html)（J03 全景第 8 站）
+对应页面：[GC 日志与调优：先定目标，再动参数](https://study.ainiya.de/jvm/jvm-gc-log-tuning.html)（J03 全景第 8 站）
 
 | 类 | 做什么 |
 |---|---|

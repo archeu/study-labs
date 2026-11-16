@@ -1,6 +1,6 @@
 # HashMap：哈希、扩容、树化
 
-对应页面：[HashMap：哈希、扩容、树化](https://archeu.github.io/study-notes/javase/hashmap-internals.html)
+对应页面：[HashMap：哈希、扩容、树化](https://study.ainiya.de/javase/hashmap-internals.html)
 （全景：一个订单对象的一生 · 第 4、8 站；J01 过关题）
 
 `Demo` 用反射（`Peek`）直接看 HashMap 内部的 `table`、`threshold` 和节点类型，分 6 段：

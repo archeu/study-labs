@@ -1,6 +1,6 @@
 # 全景：订单服务调库存服务的一次 RPC
 
-对应页面：[全景：订单服务调库存服务的一次 RPC](https://archeu.github.io/study-notes/java/pano-j04-order-calls-inventory.html)
+对应页面：[全景：订单服务调库存服务的一次 RPC](https://study.ainiya.de/java/pano-j04-order-calls-inventory.html)
 
 ## 怎么跑
 

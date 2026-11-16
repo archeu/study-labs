@@ -1,6 +1,6 @@
 # 订单表一行没加，PG 里却胖了一倍：PostgreSQL 的多版本、VACUUM、索引类型和 JSONB
 
-对应页面：[订单表一行没加，PG 里却胖了一倍：PostgreSQL 的多版本、VACUUM、索引类型和 JSONB](https://archeu.github.io/study-notes/database/pg-mvcc-vacuum-jsonb.html)
+对应页面：[订单表一行没加，PG 里却胖了一倍：PostgreSQL 的多版本、VACUUM、索引类型和 JSONB](https://study.ainiya.de/database/pg-mvcc-vacuum-jsonb.html)
 
 交易靶场的 `orders` 表（100 万行，和 MySQL 那几页同一份数据，多一列 `ext jsonb`），导进 PostgreSQL 18.7。看一条付款 UPDATE 在堆页里留下什么、VACUUM 清什么不清什么，以及 PG 的索引类型和 JSONB。表上关了 autovacuum（`autovacuum_enabled = off`），VACUUM 都是手动发的，这样数字可复现。
 

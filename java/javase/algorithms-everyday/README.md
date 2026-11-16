@@ -1,6 +1,6 @@
 # 数据结构与算法：日常和面试够用的那部分
 
-对应页面：[数据结构与算法](https://archeu.github.io/study-notes/javase/algorithms-everyday.html)
+对应页面：[数据结构与算法](https://study.ainiya.de/javase/algorithms-everyday.html)
 （全景：一个订单对象的一生 · 第 4、9 站；J01 最后一个知识点）
 
 `Demo` 5 段：热销 Top 10（全排序 / 小顶堆 / Stream）、按时间段查订单（二分 vs 全表扫）、

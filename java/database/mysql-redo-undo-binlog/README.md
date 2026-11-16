@@ -1,6 +1,6 @@
 # commit 返回了，数据页还是旧的：redo、undo、binlog 与两阶段提交
 
-对应页面：[commit 返回了，数据页还是旧的：redo、undo、binlog 与两阶段提交](https://archeu.github.io/study-notes/database/mysql-redo-undo-binlog.html)
+对应页面：[commit 返回了，数据页还是旧的：redo、undo、binlog 与两阶段提交](https://study.ainiya.de/database/mysql-redo-undo-binlog.html)
 
 交易靶场的 `orders` 表（100 万行，和全景 J06 同一份数据）。看一条付款 UPDATE 在 redo、undo、binlog 三本账上各留下什么，再在提交途中 kill -9 mysqld，看重启后怎么对账。
 

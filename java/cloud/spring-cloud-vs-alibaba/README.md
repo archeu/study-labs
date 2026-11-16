@@ -1,6 +1,6 @@
 # 五个部件来自两个家族：Spring Cloud 与 Spring Cloud Alibaba 怎么选
 
-对应页面：[五个部件来自两个家族：Spring Cloud 与 Spring Cloud Alibaba 怎么选](https://archeu.github.io/study-notes/cloud/spring-cloud-vs-alibaba.html)（J10 全景第 1 站以及全部部件）
+对应页面：[五个部件来自两个家族：Spring Cloud 与 Spring Cloud Alibaba 怎么选](https://study.ainiya.de/cloud/spring-cloud-vs-alibaba.html)（J10 全景第 1 站以及全部部件）
 
 ## 里面有什么
 

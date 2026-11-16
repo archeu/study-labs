@@ -1,6 +1,6 @@
 # 300 ms 超时，库存却冻了 2 件：时钟、超时与重试
 
-对应页面：[300 ms 超时，库存却冻了 2 件：时钟、超时与重试](https://archeu.github.io/study-notes/arch/clock-timeout-retry.html)
+对应页面：[300 ms 超时，库存却冻了 2 件：时钟、超时与重试](https://study.ainiya.de/arch/clock-timeout-retry.html)
 
 交易靶场 J09 全景“一次下单跨三个库”的第 5、8、10 站：订单服务调库存服务冻结 2 件 sku 88。`TimeLab` 在同一个 JVM 里用 `com.sun.net.httpserver` 起一个库存服务（可售 50），订单服务用 `HttpURLConnection` 调它。只要 JDK，不用 Docker。按 JDK 8 写法（`--release 8`）。
 

@@ -1,6 +1,6 @@
 # tc-1 断网了，谁来接着拍板：Raft 选主与日志复制
 
-对应页面：[tc-1 断网了，谁来接着拍板：Raft 选主与日志复制](https://archeu.github.io/study-notes/arch/raft-consensus.html)
+对应页面：[tc-1 断网了，谁来接着拍板：Raft 选主与日志复制](https://study.ainiya.de/arch/raft-consensus.html)
 
 交易靶场 J09 全景“一次下单跨三个库”的第 3、7 站：Seata TC 是 3 个节点的 Raft 集群，开全局事务、写“要提交”的决议，都要先写进多数派。这里有两个程序：
 

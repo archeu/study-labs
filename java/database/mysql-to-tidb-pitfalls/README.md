@@ -1,6 +1,6 @@
 # 代码没改，行为变了：从 MySQL 换到 TiDB 要注意的四件事
 
-对应页面：[代码没改，行为变了：从 MySQL 换到 TiDB 要注意的四件事](https://archeu.github.io/study-notes/database/mysql-to-tidb-pitfalls.html)
+对应页面：[代码没改，行为变了：从 MySQL 换到 TiDB 要注意的四件事](https://study.ainiya.de/database/mysql-to-tidb-pitfalls.html)
 
 ## 怎么跑
 

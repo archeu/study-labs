@@ -1,6 +1,6 @@
 # Lambda、Stream、record、模式匹配：编译后变成了什么
 
-对应页面：[Lambda、Stream、record、模式匹配](https://archeu.github.io/study-notes/javase/lambda-stream-record.html)
+对应页面：[Lambda、Stream、record、模式匹配](https://study.ainiya.de/javase/lambda-stream-record.html)
 （全景：一个订单对象的一生 · 第 2、5、6 站；J01 新特性的下一圈）
 
 - `Demo`（JDK 17）：Lambda 的隐藏类和捕获、Stream 的执行顺序和短路、parallelStream 的线程、装箱代价、record 生成了什么。

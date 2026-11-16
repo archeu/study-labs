@@ -1,6 +1,6 @@
 # TCP：握手、挥手、TIME_WAIT 与粘包
 
-对应页面：[TCP：握手、挥手、TIME_WAIT 与粘包](https://archeu.github.io/study-notes/network/tcp-handshake-timewait-framing.html)
+对应页面：[TCP：握手、挥手、TIME_WAIT 与粘包](https://study.ainiya.de/network/tcp-handshake-timewait-framing.html)
 
 三个类，不依赖任何库，`--release 8` 编译。`TimeWait` 要用 `ss` 命令，只能在 Linux 上跑。
 

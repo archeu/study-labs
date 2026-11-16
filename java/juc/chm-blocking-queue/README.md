@@ -1,6 +1,6 @@
 # ConcurrentHashMap 与阻塞队列
 
-对应页面：[ConcurrentHashMap 与阻塞队列](https://archeu.github.io/study-notes/juc/chm-blocking-queue.html)
+对应页面：[ConcurrentHashMap 与阻塞队列](https://study.ainiya.de/juc/chm-blocking-queue.html)
 
 `--release 8`，只用 JDK 自带的类。
 

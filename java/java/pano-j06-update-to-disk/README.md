@@ -1,6 +1,6 @@
 # 全景：一条 UPDATE 从应用到磁盘
 
-对应页面：[全景：一条 UPDATE 从应用到磁盘](https://archeu.github.io/study-notes/java/pano-j06-update-to-disk.html)
+对应页面：[全景：一条 UPDATE 从应用到磁盘](https://study.ainiya.de/java/pano-j06-update-to-disk.html)
 
 订单 9527 付款：`UPDATE orders SET status='PAID', paid_at=NOW(6) WHERE id=9527 AND status='CREATED'`，然后 `COMMIT`。
 `UpdateToDisk` 用 HikariCP + Connector/J 发这条 UPDATE，另开一条连接在旁边看它走过的每一站：

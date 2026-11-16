@@ -1,6 +1,6 @@
 # 两次付款同时到，第二次改了 0 行：事务、MVCC 与锁（下一圈）
 
-对应页面：[两次付款同时到，第二次改了 0 行：事务、MVCC 与锁（下一圈）](https://archeu.github.io/study-notes/database/mysql-lock-wait-deadlock.html)
+对应页面：[两次付款同时到，第二次改了 0 行：事务、MVCC 与锁（下一圈）](https://study.ainiya.de/database/mysql-lock-wait-deadlock.html)
 
 交易靶场的 `orders` 表（100 万行，和全景 J06、索引页、执行计划页同一份数据），加一张扣款流水 `payments`。`LockLab` 分五段：
 

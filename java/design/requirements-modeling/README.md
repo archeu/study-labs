@@ -1,6 +1,6 @@
 # 一句话里藏着 4 块钱：需求分析与业务建模
 
-对应页面：[一句话里藏着 4 块钱：需求分析与业务建模](https://archeu.github.io/study-notes/design/requirements-modeling.html)
+对应页面：[一句话里藏着 4 块钱：需求分析与业务建模](https://study.ainiya.de/design/requirements-modeling.html)
 
 运营一句“满 300 减 40，要能和券叠加”，追问以后变成规则表和 7 个带数字的算例。这里把算例写成一张能跑的表，拿两种实现各跑一遍。
 

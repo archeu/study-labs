@@ -1,6 +1,6 @@
 # inventory-2 慢了，下单怎么还能降级：限流、熔断、降级与 Sentinel
 
-对应页面：[inventory-2 慢了，下单怎么还能降级：限流、熔断、降级与 Sentinel](https://archeu.github.io/study-notes/cloud/sentinel-circuit-breaker.html)（J10 全景第 3、8、9、10、11 站）
+对应页面：[inventory-2 慢了，下单怎么还能降级：限流、熔断、降级与 Sentinel](https://study.ainiya.de/cloud/sentinel-circuit-breaker.html)（J10 全景第 3、8、9、10、11 站）
 
 ## 里面有什么
 

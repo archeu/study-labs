@@ -1,6 +1,6 @@
 # 故障演练与预案
 
-对应页面：[故障演练与预案](https://archeu.github.io/study-notes/arch/chaos-drill-runbook.html)
+对应页面：[故障演练与预案](https://study.ainiya.de/arch/chaos-drill-runbook.html)
 
 ## 怎么跑
 

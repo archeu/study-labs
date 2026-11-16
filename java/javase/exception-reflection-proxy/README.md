@@ -1,6 +1,6 @@
 # 异常、反射、注解与动态代理：JDK 这一层
 
-对应页面：[异常、反射、注解与动态代理](https://archeu.github.io/study-notes/javase/exception-reflection-proxy.html)
+对应页面：[异常、反射、注解与动态代理](https://study.ainiya.de/javase/exception-reflection-proxy.html)
 （全景：一个订单对象的一生 · 第 2、3、7、10 站；Spring AOP 两页的下一圈）
 
 - `Model`：OrderService 接口、`@Audit`（RUNTIME）、`@BuildOnly`（CLASS）、受检 / 非受检两种异常、OrderServiceImpl。

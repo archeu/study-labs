@@ -1,6 +1,6 @@
 # 全链路压测与容量规划
 
-对应页面：[全链路压测与容量规划](https://archeu.github.io/study-notes/perf/full-link-load-test.html)
+对应页面：[全链路压测与容量规划](https://study.ainiya.de/perf/full-link-load-test.html)
 
 ## 怎么跑
 

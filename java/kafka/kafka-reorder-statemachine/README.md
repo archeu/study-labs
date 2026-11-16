@@ -1,6 +1,6 @@
 # 退款比付款先到：状态机、跳号暂存与过期副作用
 
-对应页面：[退款比付款先到：状态机、跳号暂存与过期副作用](https://archeu.github.io/study-notes/kafka/kafka-reorder-statemachine.html)
+对应页面：[退款比付款先到：状态机、跳号暂存与过期副作用](https://study.ainiya.de/kafka/kafka-reorder-statemachine.html)
 
 只模拟 Kafka 之后的那一段：事件流按比例造出乱序、重复、重平衡重投、丢一条，交给两个线程并发处理。Kafka 本身怎么打乱顺序，见第一圈 `kafka-idempotent-ordering`。
 

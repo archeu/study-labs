@@ -1,6 +1,6 @@
 # 写给挑错的人看：技术方案文档与评审
 
-对应页面：[写给挑错的人看：技术方案文档与评审](https://archeu.github.io/study-notes/design/design-doc-review.html)
+对应页面：[写给挑错的人看：技术方案文档与评审](https://study.ainiya.de/design/design-doc-review.html)
 
 交易靶场“满减叠加券”这次改造的技术方案：周四早上的草稿、评审后的定稿、评审记录，外加一个检查方案结构的小程序。
 

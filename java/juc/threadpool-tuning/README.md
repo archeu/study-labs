@@ -1,7 +1,7 @@
 # 线程池下一圈：怎么配、拒绝策略、动态调参与监控
 
-对应页面：[线程池下一圈](https://archeu.github.io/study-notes/juc/threadpool-tuning.html)
-上一圈：[ThreadPoolExecutor.execute 源码](https://archeu.github.io/study-notes/juc/threadpool-execute.html)
+对应页面：[线程池下一圈](https://study.ainiya.de/juc/threadpool-tuning.html)
+上一圈：[ThreadPoolExecutor.execute 源码](https://study.ainiya.de/juc/threadpool-execute.html)
 
 `--release 8`，只用 JDK 自带的类。
 

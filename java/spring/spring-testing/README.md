@@ -1,6 +1,6 @@
 # 测试全绿，付款照样没回滚：JUnit 5、Mockito 与 Testcontainers
 
-对应页面：[测试全绿，付款照样没回滚](https://archeu.github.io/study-notes/spring/spring-testing.html)（Java 地图 J05 · 全景《一个请求穿过 Spring》测试切段）
+对应页面：[测试全绿，付款照样没回滚](https://study.ainiya.de/spring/spring-testing.html)（Java 地图 J05 · 全景《一个请求穿过 Spring》测试切段）
 
 交易靶场·订单付款。顺序：查单 → 核对金额 → 改状态 CREATED→PAID → 调渠道扣款 → 记流水。渠道拒绝时，已经改掉的状态必须撤回。
 `PaymentService.pay()` 是对的写法；`payCheckedMine` / `paySwallowMine` / `paySelfCallMine` 各埋一颗事务失效的雷。

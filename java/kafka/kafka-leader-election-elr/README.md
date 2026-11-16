@@ -1,6 +1,6 @@
 # 三台 broker 都倒了，谁能当 leader：Kafka 的 ISR、ELR 与 unclean 选举
 
-对应页面：[三台 broker 都倒了，谁能当 leader：Kafka 的 ISR、ELR 与 unclean 选举](https://archeu.github.io/study-notes/kafka/kafka-leader-election-elr.html)
+对应页面：[三台 broker 都倒了，谁能当 leader：Kafka 的 ISR、ELR 与 unclean 选举](https://study.ainiya.de/kafka/kafka-leader-election-elr.html)
 （J08 全景“一条订单消息的一生”第 5 站的下一圈）
 
 ## 怎么跑

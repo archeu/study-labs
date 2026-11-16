@@ -1,6 +1,6 @@
 # 订单表拆成 8 张：分库分表与 ShardingSphere
 
-对应页面：[订单表拆成 8 张：分库分表与 ShardingSphere](https://archeu.github.io/study-notes/database/sharding-shardingsphere.html)
+对应页面：[订单表拆成 8 张：分库分表与 ShardingSphere](https://study.ainiya.de/database/sharding-shardingsphere.html)
 
 ## 怎么跑
 

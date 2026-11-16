@@ -1,6 +1,6 @@
 # 付款失败，流水要不要一起撕：事务传播、隔离与失效下一圈
 
-对应页面：[付款失败，流水要不要一起撕](https://archeu.github.io/study-notes/spring/spring-tx-propagation.html)（Java 地图 J05 · 全景《一个请求穿过 Spring》第 7、10 站）
+对应页面：[付款失败，流水要不要一起撕](https://study.ainiya.de/spring/spring-tx-propagation.html)（Java 地图 J05 · 全景《一个请求穿过 Spring》第 7、10 站）
 
 交易靶场·订单付款。不起 Web，直接调 `PayService`。H2 内存库（MySQL 模式），HikariCP 故意只开 4 条连接、借不到等 1 秒（`application.properties`）。
 

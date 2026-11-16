@@ -1,6 +1,6 @@
 # 两个实例只许一个发：Redis、ZooKeeper、数据库三种分布式锁怎么选
 
-对应页面：[两个实例只许一个发：Redis、ZooKeeper、数据库三种分布式锁怎么选](https://archeu.github.io/study-notes/arch/distributed-lock-choice.html)
+对应页面：[两个实例只许一个发：Redis、ZooKeeper、数据库三种分布式锁怎么选](https://study.ainiya.de/arch/distributed-lock-choice.html)
 
 交易靶场 J09 全景“一次下单跨三个库”的第 9 站：两个订单服务实例每秒扫 outbox，抢到锁的那个把 `ORDER_CREATED 9527` 发到 Kafka。
 “发到 Kafka”用往 `kafka_log` 表插一行代替（另一条连接、自动提交，和 Kafka 一样不跟着业务事务回滚）。

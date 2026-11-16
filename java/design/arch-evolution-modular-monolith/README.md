@@ -1,6 +1,6 @@
 # 先把边界守住，再决定拆不拆：单体、模块化、微服务的演进
 
-对应页面：[先把边界守住，再决定拆不拆：单体、模块化、微服务的演进](https://archeu.github.io/study-notes/design/arch-evolution-modular-monolith.html)
+对应页面：[先把边界守住，再决定拆不拆：单体、模块化、微服务的演进](https://study.ainiya.de/design/arch-evolution-modular-monolith.html)
 
 券服务 coupon-svc 里分两个模块：`coupon`（抢券）和 `pricing`（算价）。同一份代码放了两遍，让 Spring Modulith 的 `verify()` 各查一次。
 

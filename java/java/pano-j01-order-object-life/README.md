@@ -1,6 +1,6 @@
 # 全景：一个订单对象的一生
 
-对应页面：[全景：一个订单对象的一生](https://archeu.github.io/study-notes/java/pano-j01-order-object-life.html)
+对应页面：[全景：一个订单对象的一生](https://study.ainiya.de/java/pano-j01-order-object-life.html)
 
 一个最小的 Spring Boot 3.5 订单服务（交易靶场 J01 骨架：商品、库存、订单三张表，H2 内存库代替 MySQL）。
 每一站打点，日志里打印这一站看到的类名、HashMap 桶下标、泛型擦除、距请求进来的微秒数。

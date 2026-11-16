@@ -1,6 +1,6 @@
 # 先让改动变容易，再做那个容易的改动：重构与偿还技术债
 
-对应页面：[先让改动变容易，再做那个容易的改动：重构与偿还技术债](https://archeu.github.io/study-notes/design/refactoring-tech-debt.html)
+对应页面：[先让改动变容易，再做那个容易的改动：重构与偿还技术债](https://study.ainiya.de/design/refactoring-tech-debt.html)
 
 一段没有测试的老算价代码，先钉住、再搬、再双跑，最后才加满减。
 

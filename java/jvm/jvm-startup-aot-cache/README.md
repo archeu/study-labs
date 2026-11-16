@@ -1,6 +1,6 @@
 # 容器里的 JVM 怎么起得快：CDS、AOT 缓存和别的路
 
-对应页面：[容器里的 JVM 怎么起得快：CDS、AOT 缓存和别的路](https://archeu.github.io/study-notes/jvm/jvm-startup-aot-cache.html)（J14 第 4 个知识点第二圈，全景第 7 站）
+对应页面：[容器里的 JVM 怎么起得快：CDS、AOT 缓存和别的路](https://study.ainiya.de/jvm/jvm-startup-aot-cache.html)（J14 第 4 个知识点第二圈，全景第 7 站）
 
 一个最小的 order-svc（Spring Boot 3.5.16，web + actuator），一个多目标的 `Dockerfile`：
 

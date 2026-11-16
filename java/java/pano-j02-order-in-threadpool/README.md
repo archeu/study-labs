@@ -1,6 +1,6 @@
 # 全景：一个下单请求在线程池里
 
-对应页面：[全景：一个下单请求在线程池里](https://archeu.github.io/study-notes/java/pano-j02-order-in-threadpool.html)
+对应页面：[全景：一个下单请求在线程池里](https://study.ainiya.de/java/pano-j02-order-in-threadpool.html)
 
 交易靶场 J02：20:00 秒杀，88 号机械键盘只有 100 件，1000 个用户同时点“下单”。
 一个 Spring Boot 3.5 服务（H2 内存库代替 MySQL），扣库存有五种写法，用 `?mode=` 切换：

@@ -1,6 +1,6 @@
 # 一个 400 进了两次 DispatcherServlet：Spring MVC 请求处理、过滤器与拦截器下一圈
 
-对应页面：[一个 400 进了两次 DispatcherServlet](https://archeu.github.io/study-notes/spring/spring-mvc-dispatch.html)（Java 地图 J05 · 全景《一个请求穿过 Spring》第 3、4、5、11 站）
+对应页面：[一个 400 进了两次 DispatcherServlet](https://study.ainiya.de/spring/spring-mvc-dispatch.html)（Java 地图 J05 · 全景《一个请求穿过 Spring》第 3、4、5、11 站）
 
 交易靶场订单服务的 Web 层，不连库：`POST /orders/{id}/pay`（要登录，HTTP Basic，用户 1024 / pw）和 `GET /public/orders/{id}`（不用登录）。三种写法的过滤器、一个打印分派类型的拦截器，看一个请求在 REQUEST 和 ERROR 两次分派里谁出场。
 

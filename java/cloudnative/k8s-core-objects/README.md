@@ -1,6 +1,6 @@
 # 只说想要什么：Kubernetes 核心对象与控制循环
 
-对应页面：[只说想要什么：Kubernetes 核心对象与控制循环](https://archeu.github.io/study-notes/cloudnative/k8s-core-objects.html)（J14 第 2 个知识点，全景第 5、9、11 站）
+对应页面：[只说想要什么：Kubernetes 核心对象与控制循环](https://study.ainiya.de/cloudnative/k8s-core-objects.html)（J14 第 2 个知识点，全景第 5、9、11 站）
 
 没有 Java 代码：一个 kind 集群配置、order-svc 的 Deployment + Service、一个 busybox 客户端，和一个按顺序做实验的脚本。镜像用上一页 `../docker-image-layers` 构建的 `lab/order-svc-layered:1.8.3` 和 `1.8.4`。
 

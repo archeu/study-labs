@@ -1,6 +1,6 @@
 # 一个请求，三样数据：日志、指标、链路三件套
 
-对应页面：[一个请求，三样数据：日志、指标、链路三件套](https://archeu.github.io/study-notes/observability/logs-metrics-traces.html)（J13 全景第 1、7 站）
+对应页面：[一个请求，三样数据：日志、指标、链路三件套](https://study.ainiya.de/observability/logs-metrics-traces.html)（J13 全景第 1、7 站）
 
 交易靶场 order-svc 的最小版：下一单，同时产出三样数据，并用同一个 `trace_id` 把它们串起来。
 

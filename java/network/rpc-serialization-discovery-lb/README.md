@@ -1,6 +1,6 @@
 # RPC 原理：序列化、协议、服务发现、负载均衡
 
-对应页面：[RPC 原理：序列化、协议、服务发现、负载均衡](https://archeu.github.io/study-notes/network/rpc-serialization-discovery-lb.html)
+对应页面：[RPC 原理：序列化、协议、服务发现、负载均衡](https://study.ainiya.de/network/rpc-serialization-discovery-lb.html)
 
 不依赖任何框架、只用 JDK 写的迷你 RPC，大约 400 行，用 JDK 8 的写法：
 

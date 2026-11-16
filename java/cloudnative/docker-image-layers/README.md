@@ -1,6 +1,6 @@
 # 改一行代码，只推一层：Docker 镜像分层与多阶段构建
 
-对应页面：[改一行代码，只推一层：Docker 镜像分层与多阶段构建](https://archeu.github.io/study-notes/cloudnative/docker-image-layers.html)（J14 第 1 个知识点，全景第 2、3、7 站）
+对应页面：[改一行代码，只推一层：Docker 镜像分层与多阶段构建](https://study.ainiya.de/cloudnative/docker-image-layers.html)（J14 第 1 个知识点，全景第 2、3、7 站）
 
 一个最小的 order-svc（Spring Boot 3.5.16，web + actuator）和三份 Dockerfile：
 

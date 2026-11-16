@@ -1,6 +1,6 @@
 # 不自己拆，换个数据库：TiDB、OceanBase、GoldenDB 替你做了什么
 
-对应页面：[不自己拆，换个数据库：TiDB、OceanBase、GoldenDB 替你做了什么](https://archeu.github.io/study-notes/database/distributed-db-tidb-oceanbase.html)
+对应页面：[不自己拆，换个数据库：TiDB、OceanBase、GoldenDB 替你做了什么](https://study.ainiya.de/database/distributed-db-tidb-oceanbase.html)
 
 ## 怎么跑
 

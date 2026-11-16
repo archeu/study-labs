@@ -1,6 +1,6 @@
 # 工单库要加“找相似故障”：MySQL 还是 PostgreSQL，pgvector 凭什么
 
-对应页面：[工单库要加“找相似故障”：MySQL 还是 PostgreSQL，pgvector 凭什么](https://archeu.github.io/study-notes/database/mysql-vs-pg-pgvector.html)
+对应页面：[工单库要加“找相似故障”：MySQL 还是 PostgreSQL，pgvector 凭什么](https://study.ainiya.de/database/mysql-vs-pg-pgvector.html)
 
 值班助手的故障单库：业务字段和向量放在同一个 PostgreSQL 里（pgvector）。向量优先调本机 ollama 的 `bge-m3`（1024 维），连不上就退回“字二元组哈希”向量（只能比字面，⑤ 的排序会和下面不同）。只依赖 pgJDBC，向量按文本 `'[0.1,0.2,…]'` 传，SQL 里 `?::vector`。
 

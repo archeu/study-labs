@@ -1,6 +1,6 @@
 # 下单 1 秒后商家才搜得到：MySQL 到 ES 的同步（binlog、Canal、一致性）
 
-对应页面：[下单 1 秒后商家才搜得到：MySQL 到 ES 的同步（binlog、Canal、一致性）](https://archeu.github.io/study-notes/search/mysql-to-es-sync-canal.html)
+对应页面：[下单 1 秒后商家才搜得到：MySQL 到 ES 的同步（binlog、Canal、一致性）](https://study.ainiya.de/search/mysql-to-es-sync-canal.html)
 
 ## 怎么跑
 

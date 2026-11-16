@@ -1,6 +1,6 @@
 # 从一个数到一通电话：Prometheus 加 Grafana，指标和告警怎么设
 
-对应页面：[从一个数到一通电话：Prometheus 加 Grafana，指标和告警怎么设](https://archeu.github.io/study-notes/observability/prometheus-alerting.html)（J13 全景第 2、3、5 站）
+对应页面：[从一个数到一通电话：Prometheus 加 Grafana，指标和告警怎么设](https://study.ainiya.de/observability/prometheus-alerting.html)（J13 全景第 2、3、5 站）
 
 把全景“凌晨三点”那次故障在本机重演一遍，量出从开始出错到“电话”响到底要多久，每一段对应哪个参数。
 

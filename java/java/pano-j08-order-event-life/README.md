@@ -1,6 +1,6 @@
 # 全景：一条订单消息的一生
 
-对应页面：[全景：一条订单消息的一生](https://archeu.github.io/study-notes/java/pano-j08-order-event-life.html)（Java 地图 J08 · 消息队列）
+对应页面：[全景：一条订单消息的一生](https://study.ainiya.de/java/pano-j08-order-event-life.html)（Java 地图 J08 · 消息队列）
 
 订单 9527 付款成功，订单服务往 `order-events` 发一条 `ORDER_PAID` 事件（key `"9527"`），库存、积分、通知三个消费组各消费一次、各自提交位点。
 `OrderEventLife` 用同一个 JVM 里的三个消费者模拟三个服务，各属一个组。

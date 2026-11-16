@@ -1,6 +1,6 @@
 # 大促积压 100 万条：消费组的扩容上限、重平衡风暴与共享组
 
-对应页面：[大促积压 100 万条：消费组的扩容上限、重平衡风暴与共享组](https://archeu.github.io/study-notes/kafka/kafka-backlog-drain.html)
+对应页面：[大促积压 100 万条：消费组的扩容上限、重平衡风暴与共享组](https://study.ainiya.de/kafka/kafka-backlog-drain.html)
 
 交易靶场的缩小版：单节点 Kafka 4.4.0（KRaft），`order-events` 6 个分区，灌 100 万条“支付成功”（key = 订单号，时间戳铺在过去 30 分钟）。
 notify-svc 的每个实例是同一个 JVM 里的一个线程、各有一个 `KafkaConsumer`；发短信用 `sleep` 代替，短信平台限流是所有实例共用的令牌桶。

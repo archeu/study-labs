@@ -1,6 +1,6 @@
 # 代理是哪一刻换进容器的：Bean 生命周期下一圈
 
-对应页面：[代理是哪一刻换进容器的](https://archeu.github.io/study-notes/spring/spring-bean-proxy-swap.html)（Java 地图 J05 · 全景《一个请求穿过 Spring》第 1、6 站）
+对应页面：[代理是哪一刻换进容器的](https://study.ainiya.de/spring/spring-bean-proxy-swap.html)（Java 地图 J05 · 全景《一个请求穿过 Spring》第 1、6 站）
 
 交易靶场·订单服务的启动装配。一个 JVM 里依次起九个 Spring 容器（不起 Web，H2 内存库），每个场景打印代理在哪一步换进去、启动成没成功、事务在不在。
 

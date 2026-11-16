@@ -1,6 +1,6 @@
 # 限流算法：令牌桶、漏桶、滑动窗口
 
-对应页面：[限流算法：令牌桶、漏桶、滑动窗口](https://archeu.github.io/study-notes/arch/rate-limit-algorithms.html)
+对应页面：[限流算法：令牌桶、漏桶、滑动窗口](https://study.ainiya.de/arch/rate-limit-algorithms.html)
 
 ## 怎么跑
 

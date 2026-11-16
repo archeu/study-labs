@@ -1,6 +1,6 @@
 # 3 台 TC 挂了 2 台，下单直接报错：CAP、BASE 与一致性模型
 
-对应页面：[3 台 TC 挂了 2 台，下单直接报错：CAP、BASE 与一致性模型](https://archeu.github.io/study-notes/arch/cap-base-consistency.html)
+对应页面：[3 台 TC 挂了 2 台，下单直接报错：CAP、BASE 与一致性模型](https://study.ainiya.de/arch/cap-base-consistency.html)
 
 `CouponQuorum` 是一个模拟，不是真数据库：交易靶场的券状态存在 3 个副本上，1000 张券每张有两单来抢，抢完马上读一次“我锁到了吗”。
 网络每 100 个时间片里有一段被分区（随机隔开一台），副本之间异步复制有 1..lag 片的延迟。按 W/R 读写，统计五种组合下的拒绝次数、两单都锁到（要补偿）、读到旧值。

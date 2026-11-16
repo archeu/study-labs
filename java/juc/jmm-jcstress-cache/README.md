@@ -1,7 +1,7 @@
 # JMM 下一圈：jcstress、CPU 缓存与伪共享
 
-对应页面：[JMM 下一圈：jcstress、CPU 缓存与伪共享](https://archeu.github.io/study-notes/juc/jmm-jcstress-cache.html)
-上一圈：[Java 内存模型](https://archeu.github.io/study-notes/juc/java-memory-model.html)
+对应页面：[JMM 下一圈：jcstress、CPU 缓存与伪共享](https://study.ainiya.de/juc/jmm-jcstress-cache.html)
+上一圈：[Java 内存模型](https://study.ainiya.de/juc/java-memory-model.html)
 
 | 类 | 做什么 |
 |---|---|

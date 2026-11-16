@@ -1,6 +1,6 @@
 # CompletableFuture 与异步编排
 
-对应页面：[CompletableFuture 与异步编排](https://archeu.github.io/study-notes/juc/completablefuture-orchestration.html)
+对应页面：[CompletableFuture 与异步编排](https://study.ainiya.de/juc/completablefuture-orchestration.html)
 
 | 类 | 看什么 |
 |---|---|

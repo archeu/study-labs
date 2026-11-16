@@ -1,6 +1,6 @@
 # HashMap 的亲戚们：LinkedHashMap、WeakHashMap、ThreadLocalMap
 
-对应页面：[HashMap 的亲戚们](https://archeu.github.io/study-notes/javase/hashmap-relatives.html)（HashMap 页的下一圈）
+对应页面：[HashMap 的亲戚们](https://study.ainiya.de/javase/hashmap-relatives.html)（HashMap 页的下一圈）
 
 `Demo` 分 6 段：LinkedHashMap 两种顺序、LRU 商品缓存、WeakHashMap 挂订单附加信息和两个坑、
 ThreadLocalMap 的格子（反射）、线程池里忘了 remove 导致串号、线程池里挂大对象。

@@ -1,6 +1,6 @@
 # 全景：一个请求穿过 Spring
 
-对应页面：[全景：一个请求穿过 Spring](https://archeu.github.io/study-notes/java/pano-j05-request-through-spring.html)
+对应页面：[全景：一个请求穿过 Spring](https://study.ainiya.de/java/pano-j05-request-through-spring.html)
 
 用户 1024 给订单 9527 付款：`POST /orders/9527/pay`。程序在同一个 JVM 里启动 Spring Boot 应用（Spring Boot 3.5.16、Spring Security、MyBatis、HikariCP、H2 的 MySQL 模式），再用 JDK HttpClient 发请求，打印十一站各自留下的痕迹。
 

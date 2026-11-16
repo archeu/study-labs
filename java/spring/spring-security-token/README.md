@@ -1,6 +1,6 @@
 # 付款一次算一遍密码：Spring Security 认证与授权下一圈
 
-对应页面：[付款一次算一遍密码](https://archeu.github.io/study-notes/spring/spring-security-token.html)（Java 地图 J05 · 全景《一个请求穿过 Spring》第 3 站）
+对应页面：[付款一次算一遍密码](https://study.ainiya.de/spring/spring-security-token.html)（Java 地图 J05 · 全景《一个请求穿过 Spring》第 3 站）
 
 交易靶场订单服务，不连库。密码只在登录接口验一次（BCrypt），之后用会话或 JWT 认人：`POST /login/token`、`POST /login/session`（`save=false` 模拟忘了保存，`rotate=true` 登录时换会话号）、`POST /logout/session`、`POST /orders/{id}/pay`（9527 属于 1024，9528 属于 1025，`@PreAuthorize` 做归属检查）、`POST /orders/{id}/cancel`（`hasAuthority('order:pay')`）。一条安全链同时开 `httpBasic` 和 `oauth2ResourceServer.jwt`。用户 1024、1025，密码都是 `pw`。
 

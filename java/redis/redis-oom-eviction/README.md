@@ -1,6 +1,6 @@
 # 第 617 个商品写不进去：Redis 写满以后的 OOM、淘汰与过期
 
-对应页面：[第 617 个商品写不进去：Redis 写满以后的 OOM、淘汰与过期](https://archeu.github.io/study-notes/redis/redis-oom-eviction.html)（Java 地图 J07 · [全景：一次商品详情查询](https://archeu.github.io/study-notes/java/pano-j07-product-detail-cache.html) 第 3、12 站，牵连第 5、7 站）
+对应页面：[第 617 个商品写不进去：Redis 写满以后的 OOM、淘汰与过期](https://study.ainiya.de/redis/redis-oom-eviction.html)（Java 地图 J07 · [全景：一次商品详情查询](https://study.ainiya.de/java/pano-j07-product-detail-cache.html) 第 3、12 站，牵连第 5、7 站）
 
 两个类：
 

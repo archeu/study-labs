@@ -1,7 +1,7 @@
 # 249 个 bean 是谁建的：Boot 自动配置与启动下一圈
 
-对应页面：[249 个 bean 是谁建的：Boot 自动配置与启动下一圈](https://archeu.github.io/study-notes/spring/spring-boot-bean-ledger.html)
-全景：[一个请求穿过 Spring](https://archeu.github.io/study-notes/java/pano-j05-request-through-spring.html) 第 1 站
+对应页面：[249 个 bean 是谁建的：Boot 自动配置与启动下一圈](https://study.ainiya.de/spring/spring-boot-bean-ledger.html)
+全景：[一个请求穿过 Spring](https://study.ainiya.de/java/pano-j05-request-through-spring.html) 第 1 站
 
 交易靶场的订单服务（和全景页 `java/java/pano-j05-request-through-spring` 同一组类、同一组依赖）原样搬过来，
 加一个 `LedgerLab`：启动一次，记四本账。

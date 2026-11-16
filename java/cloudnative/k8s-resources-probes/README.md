@@ -1,6 +1,6 @@
 # 装得下、活着、能干活：requests、limits、探针和 HPA
 
-对应页面：[装得下、活着、能干活：requests、limits、探针和 HPA](https://archeu.github.io/study-notes/cloudnative/k8s-resources-probes.html)（J14 第 3 个知识点，全景第 6、8、10 站）
+对应页面：[装得下、活着、能干活：requests、limits、探针和 HPA](https://study.ainiya.de/cloudnative/k8s-resources-probes.html)（J14 第 3 个知识点，全景第 6、8、10 站）
 
 order-svc 的“埋雷版”（Spring Boot 3.5.16）：`POST /api/debug/hog?mb=32` 每次留住 32 MB，`GET /api/burn?ms=100` 忙算 100 毫秒，`GET /api/jvm` 看 JVM 认到的堆和 CPU，环境变量 `STARTUP_DELAY_SEC` 让它启动前先睡一会儿。`Dockerfile` 和上一页的多阶段四层写法一样，模块不继承 `java/pom.xml`。
 

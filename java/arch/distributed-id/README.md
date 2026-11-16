@@ -1,6 +1,6 @@
 # 订单号 9527 从哪来：分布式 ID——号段与雪花算法
 
-对应页面：[订单号 9527 从哪来：分布式 ID——号段与雪花算法](https://archeu.github.io/study-notes/arch/distributed-id.html)
+对应页面：[订单号 9527 从哪来：分布式 ID——号段与雪花算法](https://study.ainiya.de/arch/distributed-id.html)
 
 交易靶场 J09 全景“一次下单跨三个库”的第 2 站：订单服务不访问任何库，从内存里的号段 [9001, 10000] 发出订单号 9527。
 MySQL 8.4 跑在 Docker 里；雪花部分直接用 MyBatis-Plus 3.5.18 的 `Sequence`（只覆盖 `timeGen()` 来拨钟）。按 JDK 8 写法（`--release 8`）。

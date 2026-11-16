@@ -1,6 +1,6 @@
 # 100 万行里找 9527，只读了 3 页：索引与 B+ 树
 
-对应页面：[100 万行里找 9527，只读了 3 页：索引与 B+ 树](https://archeu.github.io/study-notes/database/mysql-index-bplustree.html)
+对应页面：[100 万行里找 9527，只读了 3 页：索引与 B+ 树](https://study.ainiya.de/database/mysql-index-bplustree.html)
 
 交易靶场的 `orders` 表（100 万行，和全景 J06 同一份数据：订单 9527 属于用户 1024），`IndexLab` 分四段：
 

@@ -1,6 +1,6 @@
 # ThreadLocal 与内存泄漏
 
-对应页面：[ThreadLocal 与内存泄漏](https://archeu.github.io/study-notes/juc/threadlocal-leak.html)
+对应页面：[ThreadLocal 与内存泄漏](https://study.ainiya.de/juc/threadlocal-leak.html)
 
 | 类 | 看什么 |
 |---|---|

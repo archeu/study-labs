@@ -1,6 +1,6 @@
 # 积分服务停了 8 天，消息已经被删：Kafka 的分层存储、日志压缩与位点过期
 
-对应页面：[积分服务停了 8 天，消息已经被删：Kafka 的分层存储、日志压缩与位点过期](https://archeu.github.io/study-notes/kafka/kafka-tiered-compact.html)
+对应页面：[积分服务停了 8 天，消息已经被删：Kafka 的分层存储、日志压缩与位点过期](https://study.ainiya.de/kafka/kafka-tiered-compact.html)
 
 交易靶场 J08 第 11 站（段与保留）的下一圈。单节点 Kafka 4.4.0（KRaft），打开分层存储；远端用 Kafka 自带的测试插件
 `LocalTieredStorage`（4.4.0 在 `kafka-storage-4.4.0-test-fixtures.jar` 里，run.sh 会下载），把“对象存储”模拟成 `data/remote/` 这个目录。

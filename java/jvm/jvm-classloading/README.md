@@ -1,6 +1,6 @@
 # 类加载与双亲委派：SPI 为什么要打破它
 
-对应页面：[类加载与双亲委派：SPI 为什么要打破它](https://archeu.github.io/study-notes/jvm/jvm-classloading.html)（J03 全景第 1 站）
+对应页面：[类加载与双亲委派：SPI 为什么要打破它](https://study.ainiya.de/jvm/jvm-classloading.html)（J03 全景第 1 站）
 
 | 类 | 做什么 |
 |---|---|

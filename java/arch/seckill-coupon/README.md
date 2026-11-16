@@ -1,6 +1,6 @@
 # 秒杀与抢券：削峰、预扣、异步化
 
-对应页面：[秒杀与抢券：削峰、预扣、异步化](https://archeu.github.io/study-notes/arch/seckill-coupon.html)
+对应页面：[秒杀与抢券：削峰、预扣、异步化](https://study.ainiya.de/arch/seckill-coupon.html)
 
 ## 怎么跑
 

@@ -1,6 +1,6 @@
 # 88 号的锁有了两个主人：Redis 重启、切主以后丢了什么
 
-对应页面：[88 号的锁有了两个主人：Redis 重启、切主以后丢了什么](https://archeu.github.io/study-notes/redis/redis-restart-failover.html)
+对应页面：[88 号的锁有了两个主人：Redis 重启、切主以后丢了什么](https://study.ainiya.de/redis/redis-restart-failover.html)
 
 交易靶场的商品缓存（`product:<id>`）和重建锁（`lock:product:<id>`），在 Redis 重启、主从切换、主库自动拉起时各丢了什么。
 

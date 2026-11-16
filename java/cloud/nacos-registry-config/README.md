@@ -1,6 +1,6 @@
 # inventory-2 下线了，订单服务多久知道：Nacos 注册发现与配置中心
 
-对应页面：[inventory-2 下线了，订单服务多久知道：Nacos 注册发现与配置中心](https://archeu.github.io/study-notes/cloud/nacos-registry-config.html)（J10 全景第 1、5、9、11 站）
+对应页面：[inventory-2 下线了，订单服务多久知道：Nacos 注册发现与配置中心](https://study.ainiya.de/cloud/nacos-registry-config.html)（J10 全景第 1、5、9、11 站）
 
 ## 里面有什么
 

@@ -1,6 +1,6 @@
 # 线程、线程状态与上下文切换
 
-对应页面：[线程、线程状态与上下文切换](https://archeu.github.io/study-notes/juc/thread-state-context-switch.html)
+对应页面：[线程、线程状态与上下文切换](https://study.ainiya.de/juc/thread-state-context-switch.html)
 
 两个程序，`--release 8`（Java 8 写法，只用 JDK 自带的类）。读 `/proc`，所以只能在 Linux 上跑。
 

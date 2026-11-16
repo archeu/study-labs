@@ -1,6 +1,6 @@
 # JIT、逃逸分析与常见的性能误区
 
-对应页面：[JIT、逃逸分析与常见的性能误区](https://archeu.github.io/study-notes/jvm/jvm-jit-escape.html)（J03 全景第 2 站）
+对应页面：[JIT、逃逸分析与常见的性能误区](https://study.ainiya.de/jvm/jvm-jit-escape.html)（J03 全景第 2 站）
 
 | 类 | 做什么 |
 |---|---|

@@ -1,6 +1,6 @@
 # synchronized 与锁升级、CAS 与原子类
 
-对应页面：[synchronized 与锁升级、CAS 与原子类](https://archeu.github.io/study-notes/juc/synchronized-cas-atomic.html)
+对应页面：[synchronized 与锁升级、CAS 与原子类](https://study.ainiya.de/juc/synchronized-cas-atomic.html)
 
 `--release 8`，依赖 `org.openjdk.jol:jol-core:0.17`（打印对象头）。
 

@@ -1,6 +1,6 @@
 # 1.2 亿行搬进 8 张表，App 不停：不停机数据迁移
 
-对应页面：[1.2 亿行搬进 8 张表，App 不停：不停机数据迁移](https://archeu.github.io/study-notes/database/online-data-migration.html)
+对应页面：[1.2 亿行搬进 8 张表，App 不停：不停机数据迁移](https://study.ainiya.de/database/online-data-migration.html)
 
 ## 怎么跑
 

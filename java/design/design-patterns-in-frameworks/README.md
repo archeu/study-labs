@@ -1,6 +1,6 @@
 # 420 行 if/else 怎么拆：设计模式，到 Spring 和 MyBatis 里去认
 
-对应页面：[420 行 if/else 怎么拆：设计模式，到 Spring 和 MyBatis 里去认](https://archeu.github.io/study-notes/design/design-patterns-in-frameworks.html)
+对应页面：[420 行 if/else 怎么拆：设计模式，到 Spring 和 MyBatis 里去认](https://study.ainiya.de/design/design-patterns-in-frameworks.html)
 
 把交易靶场的算价从一个 if/else 方法，拆成策略、模板方法、责任链，再套一层代理。先搬后改：搬完和老代码逐个比，再加满减。
 

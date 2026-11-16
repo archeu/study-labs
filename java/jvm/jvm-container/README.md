@@ -1,6 +1,6 @@
 # 容器里的 JVM：内存和 CPU 限制
 
-对应页面：[容器里的 JVM：内存和 CPU 限制](https://archeu.github.io/study-notes/jvm/jvm-container.html)
+对应页面：[容器里的 JVM：内存和 CPU 限制](https://study.ainiya.de/jvm/jvm-container.html)
 
 ## 怎么跑
 

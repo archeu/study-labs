@@ -1,6 +1,6 @@
 # JVM 故障排查：OOM、频繁 Full GC、CPU 飙高
 
-对应页面：[JVM 故障排查：OOM、频繁 Full GC、CPU 飙高](https://archeu.github.io/study-notes/jvm/jvm-troubleshooting.html)（J03 全景第 9 站）
+对应页面：[JVM 故障排查：OOM、频繁 Full GC、CPU 飙高](https://study.ainiya.de/jvm/jvm-troubleshooting.html)（J03 全景第 9 站）
 
 交易靶场订单服务的缩小版，用 JDK 自带的 `com.sun.net.httpserver` 起三个接口，每个埋一个雷。
 

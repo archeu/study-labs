@@ -1,6 +1,6 @@
 # 全景：一个对象从 new 到被回收
 
-对应页面：[全景：一个对象从 new 到被回收](https://archeu.github.io/study-notes/java/pano-j03-object-new-to-gc.html)（Java 地图 J03）
+对应页面：[全景：一个对象从 new 到被回收](https://study.ainiya.de/java/pano-j03-object-new-to-gc.html)（Java 地图 J03）
 
 | 类 | 看什么 |
 |---|---|

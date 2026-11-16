@@ -1,6 +1,6 @@
 # 付完款跳回订单页，还是待付款：主从复制、读写分离与复制延迟
 
-对应页面：[付完款跳回订单页，还是待付款：主从复制、读写分离与复制延迟](https://archeu.github.io/study-notes/database/mysql-replication-lag.html)
+对应页面：[付完款跳回订单页，还是待付款：主从复制、读写分离与复制延迟](https://study.ainiya.de/database/mysql-replication-lag.html)
 
 交易靶场的 `orders` 表（100 万行，和全景 J06 同一份数据），一主一从，GTID 异步复制：
 

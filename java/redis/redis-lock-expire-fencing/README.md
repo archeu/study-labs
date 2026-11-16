@@ -1,6 +1,6 @@
 # 锁过期时 A 还在查库：看门狗、fencing token 与 Lua 条件写
 
-对应页面：[锁过期时 A 还在查库：看门狗、fencing token 与 Lua 条件写](https://archeu.github.io/study-notes/redis/redis-lock-expire-fencing.html)（Java 地图 J07 · 全景“一次商品详情查询”第 5、7 站）
+对应页面：[锁过期时 A 还在查库：看门狗、fencing token 与 Lua 条件写](https://study.ainiya.de/redis/redis-lock-expire-fencing.html)（Java 地图 J07 · 全景“一次商品详情查询”第 5、7 站）
 
 交易靶场商品服务读 88 号：第 5 站抢重建锁 `SET NX PX 3000`，第 6 站查库，第 7 站回填。这里只看第 7 站那一下怎么写：
 A 查得比锁还久，锁过期了，期间运营把 399 改成 299，A 回来还能不能把 399 写进缓存。数据库用一个可改的变量代替。

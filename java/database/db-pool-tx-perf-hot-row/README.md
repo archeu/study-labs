@@ -1,6 +1,6 @@
 # 池子从 10 开到 50，付款一点没快：连接池与事务性能（下一圈）
 
-对应页面：[池子从 10 开到 50，付款一点没快：连接池与事务性能（下一圈）](https://archeu.github.io/study-notes/database/db-pool-tx-perf-hot-row.html)
+对应页面：[池子从 10 开到 50，付款一点没快：连接池与事务性能（下一圈）](https://study.ainiya.de/database/db-pool-tx-perf-hot-row.html)
 
 交易靶场 20:00 秒杀 88 号商品：64 个线程（模拟 Tomcat）同时付款，每笔一个事务：改自己的订单、写一条流水、扣 88 号库存（人人都改这一行），再调一次风控接口（`sleep(20)` 模拟）。`run.sh` 起一个 MySQL 8.4 容器（默认配置，双 1 开着，buffer pool 512 MB），然后跑 `PayLab`：
 

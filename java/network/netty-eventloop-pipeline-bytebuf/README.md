@@ -1,6 +1,6 @@
 # Netty：EventLoop、Pipeline、ByteBuf
 
-对应页面：[Netty：EventLoop、Pipeline、ByteBuf](https://archeu.github.io/study-notes/network/netty-eventloop-pipeline-bytebuf.html)
+对应页面：[Netty：EventLoop、Pipeline、ByteBuf](https://study.ainiya.de/network/netty-eventloop-pipeline-bytebuf.html)
 
 ## 怎么跑
 

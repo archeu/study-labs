@@ -1,6 +1,6 @@
 # 虚拟线程：什么时候用、pinning 的坑
 
-对应页面：[虚拟线程下一圈：什么时候用、pinning 的坑](https://archeu.github.io/study-notes/juc/virtual-threads-pinning.html)
+对应页面：[虚拟线程下一圈：什么时候用、pinning 的坑](https://study.ainiya.de/juc/virtual-threads-pinning.html)
 
 | 类 | 看什么 |
 |---|---|

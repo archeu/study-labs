@@ -1,6 +1,6 @@
 # inventoryClient.reserve() 背后：OpenFeign、Dubbo 与负载均衡
 
-对应页面：[inventoryClient.reserve() 背后：OpenFeign、Dubbo 与负载均衡](https://archeu.github.io/study-notes/cloud/feign-dubbo-loadbalancer.html)（J10 全景第 6、7、8 站）
+对应页面：[inventoryClient.reserve() 背后：OpenFeign、Dubbo 与负载均衡](https://study.ainiya.de/cloud/feign-dubbo-loadbalancer.html)（J10 全景第 6、7、8 站）
 
 ## 里面有什么
 

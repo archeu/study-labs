@@ -1,6 +1,6 @@
 # 1024 先用上新版：灰度发布与流量治理
 
-对应页面：[1024 先用上新版：灰度发布与流量治理](https://archeu.github.io/study-notes/cloud/gray-release.html)（J10 全景第 4、11 站）
+对应页面：[1024 先用上新版：灰度发布与流量治理](https://study.ainiya.de/cloud/gray-release.html)（J10 全景第 4、11 站）
 
 ## 里面有什么
 

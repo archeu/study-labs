@@ -1,6 +1,6 @@
 # 面向对象、接口与抽象类、泛型和类型擦除
 
-对应页面：[面向对象、接口与抽象类、泛型和类型擦除](https://archeu.github.io/study-notes/javase/oop-generics-erasure.html)
+对应页面：[面向对象、接口与抽象类、泛型和类型擦除](https://study.ainiya.de/javase/oop-generics-erasure.html)
 （全景：一个订单对象的一生 · 第 5、6 站）
 
 交易靶场的 Order（实体类）、OrderLine / Product（record）、Discount（sealed 接口 + record 实现 + 一个抽象类分支），

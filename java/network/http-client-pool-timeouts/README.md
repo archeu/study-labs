@@ -1,6 +1,6 @@
 # HTTP 客户端与连接池：超时怎么配
 
-对应页面：[HTTP 客户端与连接池：超时怎么配](https://archeu.github.io/study-notes/network/http-client-pool-timeouts.html)
+对应页面：[HTTP 客户端与连接池：超时怎么配](https://study.ainiya.de/network/http-client-pool-timeouts.html)
 
 用 Apache HttpClient 5.6.5（classic API，JDK 8 能跑）调一个用 JDK 自带 `HttpServer` 写的假库存服务。
 

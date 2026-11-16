@@ -1,6 +1,6 @@
 # new 一个对象的全过程：分配、对象头与内存布局
 
-对应页面：[new 一个对象的全过程：分配、对象头与内存布局](https://archeu.github.io/study-notes/jvm/jvm-object-new-layout.html)（J03 全景第 3 站，下一圈）
+对应页面：[new 一个对象的全过程：分配、对象头与内存布局](https://study.ainiya.de/jvm/jvm-object-new-layout.html)（J03 全景第 3 站，下一圈）
 
 | 类 | 做什么 |
 |---|---|
