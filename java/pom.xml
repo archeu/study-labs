@@ -122,6 +122,7 @@
     <module>jvm/jvm-startup-aot-cache</module>
     <module>cloudnative/cicd-release-strategy</module>
     <module>cloudnative/linux-config-secrets</module>
+    <module>design/requirements-modeling</module>
   </modules>
 
   <build>
