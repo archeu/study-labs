@@ -126,6 +126,7 @@
     <module>design/ddd-bounded-context-aggregate</module>
     <module>design/arch-evolution-modular-monolith</module>
     <module>design/tech-selection-adr</module>
+    <module>design/design-patterns-in-frameworks</module>
   </modules>
 
   <build>
