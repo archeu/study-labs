@@ -123,6 +123,7 @@
     <module>cloudnative/cicd-release-strategy</module>
     <module>cloudnative/linux-config-secrets</module>
     <module>design/requirements-modeling</module>
+    <module>design/ddd-bounded-context-aggregate</module>
   </modules>
 
   <build>
