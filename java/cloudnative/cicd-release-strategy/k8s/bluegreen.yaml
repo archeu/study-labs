@@ -1,0 +1,37 @@
+# 蓝绿：两套完整的环境同时在跑，Service 的 selector 指向哪一套，流量就去哪一套
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: order-blue }
+spec:
+  replicas: 4
+  selector: { matchLabels: { app: order-bg, color: blue } }
+  template:
+    metadata: { labels: { app: order-bg, color: blue } }
+    spec:
+      containers:
+        - name: app
+          image: lab/order-svc-layered:1.8.3
+          resources: { requests: { cpu: 100m, memory: 384Mi }, limits: { memory: 384Mi } }
+          readinessProbe: { httpGet: { path: /actuator/health/readiness, port: 8080 }, periodSeconds: 2 }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: order-green }
+spec:
+  replicas: 4
+  selector: { matchLabels: { app: order-bg, color: green } }
+  template:
+    metadata: { labels: { app: order-bg, color: green } }
+    spec:
+      containers:
+        - name: app
+          image: lab/order-svc-layered:1.8.4
+          resources: { requests: { cpu: 100m, memory: 384Mi }, limits: { memory: 384Mi } }
+          readinessProbe: { httpGet: { path: /actuator/health/readiness, port: 8080 }, periodSeconds: 2 }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: order-bg }
+spec:
+  selector: { app: order-bg, color: blue }     # 切换就是改这一个字段
+  ports: [{ port: 80, targetPort: 8080 }]

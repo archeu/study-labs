@@ -1,0 +1,16 @@
+# 示例：Argo CD 盯着部署仓库里的 order-svc 目录，有变化就同步进集群。本仓库没有安装 Argo CD，只作对照阅读。
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata: { name: order-svc, namespace: argocd }
+spec:
+  project: default
+  source:
+    repoURL: https://git.lab/trade/deploy.git
+    path: order-svc
+    targetRevision: main
+    helm: { valueFiles: [values-prod.yaml] }
+  destination: { server: https://kubernetes.default.svc, namespace: trade }
+  syncPolicy:
+    automated:
+      prune: true      # Git 里删了的对象，集群里也删
+      selfHeal: true   # 有人在集群里手改，改回 Git 的样子（所以回滚要 git revert）

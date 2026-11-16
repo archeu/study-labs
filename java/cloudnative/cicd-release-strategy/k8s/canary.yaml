@@ -1,0 +1,37 @@
+# 金丝雀（按副本数）：4 个稳定版 + 1 个新版，Service 只按 app 选，新版大约分到 1/5
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: order-stable }
+spec:
+  replicas: 4
+  selector: { matchLabels: { app: order-c, track: stable } }
+  template:
+    metadata: { labels: { app: order-c, track: stable } }
+    spec:
+      containers:
+        - name: app
+          image: lab/order-svc-layered:1.8.3
+          resources: { requests: { cpu: 100m, memory: 384Mi }, limits: { memory: 384Mi } }
+          readinessProbe: { httpGet: { path: /actuator/health/readiness, port: 8080 }, periodSeconds: 2 }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: order-canary }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: order-c, track: canary } }
+  template:
+    metadata: { labels: { app: order-c, track: canary } }
+    spec:
+      containers:
+        - name: app
+          image: lab/order-svc-layered:1.8.4
+          resources: { requests: { cpu: 100m, memory: 384Mi }, limits: { memory: 384Mi } }
+          readinessProbe: { httpGet: { path: /actuator/health/readiness, port: 8080 }, periodSeconds: 2 }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: order-c }
+spec:
+  selector: { app: order-c }
+  ports: [{ port: 80, targetPort: 8080 }]

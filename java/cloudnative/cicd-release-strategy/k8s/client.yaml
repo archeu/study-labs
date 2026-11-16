@@ -1,0 +1,11 @@
+# 集群里的“用户”：每 50 ms 调一次 $URL，打印拿到的版本号，失败打印 fail
+apiVersion: v1
+kind: Pod
+metadata: { name: client }
+spec:
+  terminationGracePeriodSeconds: 1
+  containers:
+    - name: c
+      image: busybox:1.37.0
+      env: [{ name: URL, value: "http://order/api/orders/1" }]
+      command: ["sh", "-c", "while true; do v=$(wget -q -T 2 -O- \"$URL\" 2>/dev/null | grep -o '1\\.8\\.[0-9]'); echo \"$(date +%s) ${v:-fail}\"; sleep 0.05; done"]
