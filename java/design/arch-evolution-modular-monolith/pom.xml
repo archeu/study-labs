@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.archeu.labs</groupId>
+    <artifactId>java-labs</artifactId>
+    <version>1.0</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <artifactId>design-arch-evolution-modular-monolith</artifactId>
+  <name>先把边界守住，再决定拆不拆：单体、模块化、微服务的演进</name>
+
+  <properties>
+    <spring-boot.version>3.5.16</spring-boot.version>
+    <spring-modulith.version>1.4.14</spring-modulith.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter</artifactId></dependency>
+    <!-- 平时放 test 作用域，在测试里跑 verify()；这里为了用 main 演示，放成 compile -->
+    <dependency><groupId>org.springframework.modulith</groupId><artifactId>spring-modulith-core</artifactId><version>${spring-modulith.version}</version></dependency>
+  </dependencies>
+</project>
