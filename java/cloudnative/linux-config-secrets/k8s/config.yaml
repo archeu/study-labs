@@ -1,0 +1,22 @@
+# 同一份 ConfigMap，三种用法：环境变量、整个目录挂载、subPath 挂单个文件
+apiVersion: v1
+kind: ConfigMap
+metadata: { name: order-config }
+data:
+  flag: "off"
+---
+apiVersion: v1
+kind: Pod
+metadata: { name: config-watch }
+spec:
+  terminationGracePeriodSeconds: 1
+  containers:
+    - name: c
+      image: busybox:1.37.0
+      env: [{ name: FLAG, valueFrom: { configMapKeyRef: { name: order-config, key: flag } } }]
+      command: ["sh", "-c", "while true; do echo \"$(date +%s) env=$FLAG dir=$(cat /config/flag) subpath=$(cat /sub/flag)\"; sleep 1; done"]
+      volumeMounts:
+        - { name: cfg, mountPath: /config }
+        - { name: cfg, mountPath: /sub/flag, subPath: flag }
+  volumes:
+    - { name: cfg, configMap: { name: order-config } }

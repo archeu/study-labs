@@ -1,0 +1,28 @@
+# 同一个镜像，启动命令三种写法：谁是 1 号进程，删 Pod 要等多久
+apiVersion: v1
+kind: Pod
+metadata: { name: pid1-shell, labels: { exp: pid1 } }
+spec:
+  containers:
+    - name: app
+      image: lab/order-svc-layered:1.8.3
+      command: ["sh", "-c", "java $JAVA_OPTS -jar order-svc.jar"]        # shell 当 1 号进程
+---
+apiVersion: v1
+kind: Pod
+metadata: { name: pid1-exec, labels: { exp: pid1 } }
+spec:
+  containers:
+    - name: app
+      image: lab/order-svc-layered:1.8.3
+      command: ["sh", "-c", "exec java $JAVA_OPTS -jar order-svc.jar"]   # exec：java 顶替 shell 成为 1 号进程
+---
+apiVersion: v1
+kind: Pod
+metadata: { name: pid1-trap, labels: { exp: pid1 } }
+spec:
+  containers:
+    - name: app
+      image: busybox:1.37.0
+      # 脚本自己当 1 号进程时：用 trap 接住 SIGTERM，做完收尾再退出
+      command: ["sh", "-c", "trap 'echo got SIGTERM, flushing; sleep 1; echo bye; exit 0' TERM; echo started; while true; do sleep 1; done"]
