@@ -1,0 +1,36 @@
+# HPA：按 CPU 扩缩，目标是 requests 的 50%
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: order-hpa }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: order-hpa } }
+  template:
+    metadata: { labels: { app: order-hpa } }
+    spec:
+      containers:
+        - name: app
+          image: lab/order-svc-chaos:1
+          env: [{ name: JAVA_TOOL_OPTIONS, value: "-XX:MaxRAMPercentage=75" }]
+          resources: { requests: { cpu: 200m, memory: 320Mi }, limits: { memory: 320Mi } }
+          readinessProbe: { httpGet: { path: /actuator/health/readiness, port: 8080 }, periodSeconds: 2 }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: order-hpa }
+spec:
+  selector: { app: order-hpa }
+  ports: [{ port: 80, targetPort: 8080 }]
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata: { name: order-hpa }
+spec:
+  scaleTargetRef: { apiVersion: apps/v1, kind: Deployment, name: order-hpa }
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource: { name: cpu, target: { type: Utilization, averageUtilization: 50 } }
+  behavior:
+    scaleDown: { stabilizationWindowSeconds: 30 }   # 默认 300 秒，实验里缩短

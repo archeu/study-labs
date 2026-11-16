@@ -1,0 +1,13 @@
+# OOM 对照：堆上限 = limit 的 75%。实验用的裸 Pod，生产里要放进 Deployment
+apiVersion: v1
+kind: Pod
+metadata: { name: oom-pct, labels: { exp: oom } }
+spec:
+  containers:
+    - name: app
+      image: lab/order-svc-chaos:1
+      env: [{ name: JAVA_TOOL_OPTIONS, value: "-XX:MaxRAMPercentage=75" }]
+      resources:
+        requests: { cpu: 100m, memory: 384Mi }
+        limits: { cpu: "1", memory: 384Mi }
+      readinessProbe: { httpGet: { path: /actuator/health/readiness, port: 8080 }, periodSeconds: 2 }

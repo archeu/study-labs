@@ -1,0 +1,8 @@
+# 在集群里发请求用的工具 Pod
+apiVersion: v1
+kind: Pod
+metadata: { name: toolbox }
+spec:
+  terminationGracePeriodSeconds: 1
+  containers:
+    - { name: c, image: busybox:1.37.0, command: ["sleep", "100000"] }

@@ -1,0 +1,10 @@
+# 压测：4 路并发，每次让服务忙算 100 ms
+apiVersion: v1
+kind: Pod
+metadata: { name: load }
+spec:
+  terminationGracePeriodSeconds: 1
+  containers:
+    - name: c
+      image: busybox:1.37.0
+      command: ["sh", "-c", "for i in 1 2 3 4; do (while true; do wget -q -T 5 -O /dev/null 'http://order-hpa/api/burn?ms=100' || sleep 0.2; done) & done; wait"]
