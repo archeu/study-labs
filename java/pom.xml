@@ -117,6 +117,7 @@
     <module>observability/arthas-diagnosis</module>
     <module>observability/postmortem-review</module>
     <module>cloudnative/docker-image-layers</module>
+    <module>cloudnative/k8s-core-objects</module>
   </modules>
 
   <build>
