@@ -141,6 +141,7 @@
     <module>algo/monotonic-stack-queue</module>
     <module>algo/hash-table</module>
     <module>algo/binary-search</module>
+    <module>algo/sorting</module>
   </modules>
 
   <build>
