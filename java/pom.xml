@@ -147,6 +147,7 @@
     <module>algo/recursion-tree</module>
     <module>algo/red-black-tree</module>
     <module>algo/bplus-skiplist</module>
+    <module>algo/graph-bfs-dfs</module>
   </modules>
 
   <build>
