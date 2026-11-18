@@ -140,6 +140,7 @@
     <module>algo/math-basics</module>
     <module>algo/monotonic-stack-queue</module>
     <module>algo/hash-table</module>
+    <module>algo/binary-search</module>
   </modules>
 
   <build>
