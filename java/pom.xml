@@ -136,6 +136,7 @@
     <module>algo/big-o-counting</module>
     <module>algo/linked-list</module>
     <module>algo/stack-queue-ring</module>
+    <module>algo/heap-priority-queue</module>
   </modules>
 
   <build>
