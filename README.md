@@ -146,3 +146,4 @@
 | [让一个组都这样做：技术领导的规范、Code Review、带人](https://study.ainiya.de/design/tech-lead-review-mentoring.html) | [`java/design/tech-lead-review-mentoring`](java/design/tech-lead-review-mentoring/) | `PrCheck`：把合并请求的五条约定写成检查，三个样例 PR 里 1 个通过、2 个共报 7 个问题 |
 | [从电灯开关到“你好”：计算机怎样表示数据](https://study.ainiya.de/algo/data-representation.html) | [`java/algo/data-representation`](java/algo/data-representation/) | `Bits`：手推 13 / −13 / 0.1 / “你”的答案，溢出、byte 符号、0.1+0.2、乱码、字节序、二分中点溢出 |
 | [数组为什么快：连续内存、缓存行和 O(1) 下标](https://study.ainiya.de/algo/array-why-fast.html) | [`java/algo/array-why-fast`](java/algo/array-why-fast/) | `Layout`：JOL 看 int[] / Integer 布局、100 万个数三种存法的内存；`Speed`：求和、顺序/随机下标、二维按行/按列、步长实验、链表取中间 |
+| [大 O 是怎么数出来的：操作次数、最坏和平均、摊还与 log n](https://study.ainiya.de/algo/big-o-counting.html) | [`java/algo/big-o-counting`](java/algo/big-o-counting/) | `Count`：数次数不计时（两两配对、线性查找三种情况、二分步数、五种扩容策略的搬运量）；`Doubling`：双倍法计时，O(n²) / O(n log n) / O(n) 三种两数之和 |
