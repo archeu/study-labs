@@ -143,6 +143,7 @@
     <module>algo/binary-search</module>
     <module>algo/sorting</module>
     <module>algo/two-pointers</module>
+    <module>algo/prefix-sum</module>
   </modules>
 
   <build>

@@ -156,3 +156,4 @@
 | [二分查找：边界怎么写才不出错](https://study.ainiya.de/algo/binary-search.html) | [`java/algo/binary-search`](java/algo/binary-search/) | `TradeLog`：左闭右开的 lowerBound / upperBound，查时间段成交；`Pitfalls`：溢出、死循环、重复元素、负返回值、降序数据；`SearchBench`：3000 万笔从头扫 vs 二分、ArrayList vs LinkedList |
 | [排序：快排、归并、TimSort 和稳定性](https://study.ainiya.de/algo/sorting.html) | [`java/algo/sorting`](java/algo/sorting/) | `Sorts`：Lomuto 划分、快排、稳定归并；`Reconcile`：排序后双指针对账，稳定 vs 不稳定；`Pitfalls`：有序输入退化、String 成交号、违反约定的比较器；`SortBench`：500 万成交号四种排序，随机 vs 几乎有序 |
 | [双指针与滑动窗口：每个指针只往前走](https://study.ainiya.de/algo/two-pointers.html) | [`java/algo/two-pointers`](java/algo/two-pointers/) | `Windows`：同向窗口（最短放量段、60 秒成交量）、快慢指针去重、对撞指针凑单；`Pitfalls`：负数、if 缩窗、int 溢出，双指针 vs 暴力测速 |
+| [前缀和与差分：任意时间段成交量 O(1)](https://study.ainiya.de/algo/prefix-sum.html) | [`java/algo/prefix-sum`](java/algo/prefix-sum/) | `VolumeIndex`：秒桶前缀和、差分算每秒挂单数、前缀和 + 哈希；`Pitfalls`：空前缀、int / double 前缀和、100 万次查询扫描 vs 前缀和 |
