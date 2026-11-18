@@ -149,6 +149,7 @@
     <module>algo/bplus-skiplist</module>
     <module>algo/graph-bfs-dfs</module>
     <module>algo/union-find</module>
+    <module>algo/topo-shortest</module>
   </modules>
 
   <build>
