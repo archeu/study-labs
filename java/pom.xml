@@ -148,6 +148,7 @@
     <module>algo/red-black-tree</module>
     <module>algo/bplus-skiplist</module>
     <module>algo/graph-bfs-dfs</module>
+    <module>algo/union-find</module>
   </modules>
 
   <build>
