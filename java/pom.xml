@@ -139,6 +139,7 @@
     <module>algo/heap-priority-queue</module>
     <module>algo/math-basics</module>
     <module>algo/monotonic-stack-queue</module>
+    <module>algo/hash-table</module>
   </modules>
 
   <build>
