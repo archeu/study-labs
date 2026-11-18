@@ -158,3 +158,4 @@
 | [双指针与滑动窗口：每个指针只往前走](https://study.ainiya.de/algo/two-pointers.html) | [`java/algo/two-pointers`](java/algo/two-pointers/) | `Windows`：同向窗口（最短放量段、60 秒成交量）、快慢指针去重、对撞指针凑单；`Pitfalls`：负数、if 缩窗、int 溢出，双指针 vs 暴力测速 |
 | [前缀和与差分：任意时间段成交量 O(1)](https://study.ainiya.de/algo/prefix-sum.html) | [`java/algo/prefix-sum`](java/algo/prefix-sum/) | `VolumeIndex`：秒桶前缀和、差分算每秒挂单数、前缀和 + 哈希；`Pitfalls`：空前缀、int / double 前缀和、100 万次查询扫描 vs 前缀和 |
 | [递归与二叉树遍历：盘口从优到劣，就是一次中序遍历](https://study.ainiya.de/algo/recursion-tree.html) | [`java/algo/recursion-tree`](java/algo/recursion-tree/) | `PriceTree`：价位二叉搜索树的递归前中后序、显式栈中序取前 k 档、层序、树高；`Pitfalls`：退化树递归深度（默认栈 vs -Xss8m）、fib 的重复子问题 |
+| [二叉搜索树与红黑树：撤单多、要盘口，为什么换 TreeMap](https://study.ainiya.de/algo/red-black-tree.html) | [`java/algo/red-black-tree`](java/algo/red-black-tree/) | `AskBook`：TreeMap 卖盘（同价队列 + 按号撤单）；`RbTree`：只有插入的红黑树，打印每步修复；`BookBench`：反射量 TreeMap 树高、PriorityQueue vs TreeMap 撤单、同价覆盖 / BigDecimal / 视图修改三个坑 |

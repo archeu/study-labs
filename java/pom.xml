@@ -145,6 +145,7 @@
     <module>algo/two-pointers</module>
     <module>algo/prefix-sum</module>
     <module>algo/recursion-tree</module>
+    <module>algo/red-black-tree</module>
   </modules>
 
   <build>
