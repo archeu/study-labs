@@ -146,6 +146,7 @@
     <module>algo/prefix-sum</module>
     <module>algo/recursion-tree</module>
     <module>algo/red-black-tree</module>
+    <module>algo/bplus-skiplist</module>
   </modules>
 
   <build>
