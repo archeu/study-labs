@@ -134,6 +134,7 @@
     <module>algo/data-representation</module>
     <module>algo/array-why-fast</module>
     <module>algo/big-o-counting</module>
+    <module>algo/linked-list</module>
   </modules>
 
   <build>
