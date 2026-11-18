@@ -137,6 +137,7 @@
     <module>algo/linked-list</module>
     <module>algo/stack-queue-ring</module>
     <module>algo/heap-priority-queue</module>
+    <module>algo/math-basics</module>
   </modules>
 
   <build>
