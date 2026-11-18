@@ -144,6 +144,7 @@
     <module>algo/sorting</module>
     <module>algo/two-pointers</module>
     <module>algo/prefix-sum</module>
+    <module>algo/recursion-tree</module>
   </modules>
 
   <build>

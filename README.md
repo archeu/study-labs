@@ -157,3 +157,4 @@
 | [排序：快排、归并、TimSort 和稳定性](https://study.ainiya.de/algo/sorting.html) | [`java/algo/sorting`](java/algo/sorting/) | `Sorts`：Lomuto 划分、快排、稳定归并；`Reconcile`：排序后双指针对账，稳定 vs 不稳定；`Pitfalls`：有序输入退化、String 成交号、违反约定的比较器；`SortBench`：500 万成交号四种排序，随机 vs 几乎有序 |
 | [双指针与滑动窗口：每个指针只往前走](https://study.ainiya.de/algo/two-pointers.html) | [`java/algo/two-pointers`](java/algo/two-pointers/) | `Windows`：同向窗口（最短放量段、60 秒成交量）、快慢指针去重、对撞指针凑单；`Pitfalls`：负数、if 缩窗、int 溢出，双指针 vs 暴力测速 |
 | [前缀和与差分：任意时间段成交量 O(1)](https://study.ainiya.de/algo/prefix-sum.html) | [`java/algo/prefix-sum`](java/algo/prefix-sum/) | `VolumeIndex`：秒桶前缀和、差分算每秒挂单数、前缀和 + 哈希；`Pitfalls`：空前缀、int / double 前缀和、100 万次查询扫描 vs 前缀和 |
+| [递归与二叉树遍历：盘口从优到劣，就是一次中序遍历](https://study.ainiya.de/algo/recursion-tree.html) | [`java/algo/recursion-tree`](java/algo/recursion-tree/) | `PriceTree`：价位二叉搜索树的递归前中后序、显式栈中序取前 k 档、层序、树高；`Pitfalls`：退化树递归深度（默认栈 vs -Xss8m）、fib 的重复子问题 |
