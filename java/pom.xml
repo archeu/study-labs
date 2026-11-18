@@ -132,6 +132,7 @@
     <module>design/ai-assisted-dev</module>
     <module>design/tech-lead-review-mentoring</module>
     <module>algo/data-representation</module>
+    <module>algo/array-why-fast</module>
   </modules>
 
   <build>
