@@ -166,3 +166,4 @@
 | [贪心：每一步只拿眼前最好的，什么时候不会后悔](https://study.ainiya.de/algo/greedy.html) | [`java/algo/greedy`](java/algo/greedy/) | `Greedy`：不限次数 / 只许一次买卖、暴力对拍、手续费和怪面额两个反例；`BacktestSlots`：区间调度四条排序规则和暴力对拍一万组 |
 | [回溯：把所有选择走一遍，走不通就退回来](https://study.ainiya.de/algo/backtracking.html) | [`java/algo/backtracking`](java/algo/backtracking/) | `FillOrders`：整张吃单凑手数，不剪枝 vs 剪枝 + 去重的节点数，存引用和忘撤销两个坑；`RegexBacktrack`：Java 正则的回溯和反向引用关掉失败记忆 |
 | [动态规划入门：状态和转移，带手续费的买卖为什么贪心不行](https://study.ainiya.de/algo/dp-basics.html) | [`java/algo/dp-basics`](java/algo/dp-basics/) | `StockDp`：带手续费的买卖从纯递归、记忆化到递推和两个变量，调用次数对比和对拍；冷冻期三状态、更新顺序写错、记忆化栈溢出 |
+| [动态规划进阶：背包和序列，一笔资金分给几个策略](https://study.ainiya.de/algo/dp-knapsack.html) | [`java/algo/dp-knapsack`](java/algo/dp-knapsack/) | `Allocate`：资金分策略的 0-1 背包（二维、一维倒序、正序的错、贪心对比、预算粒度）和完全背包计数；`EditDistance`：交易对代码纠错和长串的耗时内存 |
