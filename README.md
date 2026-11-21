@@ -164,3 +164,4 @@
 | [并查集：账户一对对合并成团伙，查“是不是一伙”几乎 O(1)](https://study.ainiya.de/algo/union-find.html) | [`java/algo/union-find`](java/algo/union-find/) | `UnionFind`：按大小合并 + 路径压缩（可分开开关），账户号映射成下标；`UfBench`：最坏输入下四个版本、100 万条关联边流式合并 vs BFS、不找根的坑 |
 | [拓扑排序与最短路径：清算谁先谁后，换汇走哪条路](https://study.ainiya.de/algo/topo-shortest.html) | [`java/algo/topo-shortest`](java/algo/topo-shortest/) | `SettleDag`：清算依赖的 Kahn 拓扑排序和环检测；`CurrencyRoute`：换汇 Dijkstra（延迟删除）、提前定下来的错误写法、负边时对比 Bellman-Ford；`RouteBench`：堆版 vs O(V²) 版 |
 | [贪心：每一步只拿眼前最好的，什么时候不会后悔](https://study.ainiya.de/algo/greedy.html) | [`java/algo/greedy`](java/algo/greedy/) | `Greedy`：不限次数 / 只许一次买卖、暴力对拍、手续费和怪面额两个反例；`BacktestSlots`：区间调度四条排序规则和暴力对拍一万组 |
+| [回溯：把所有选择走一遍，走不通就退回来](https://study.ainiya.de/algo/backtracking.html) | [`java/algo/backtracking`](java/algo/backtracking/) | `FillOrders`：整张吃单凑手数，不剪枝 vs 剪枝 + 去重的节点数，存引用和忘撤销两个坑；`RegexBacktrack`：Java 正则的回溯和反向引用关掉失败记忆 |
