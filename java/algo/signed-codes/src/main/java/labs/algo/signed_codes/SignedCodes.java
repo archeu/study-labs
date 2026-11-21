@@ -64,6 +64,10 @@ public class SignedCodes {
         System.out.println("  全部 4294967296 个 int 都满足 -x == ~x + 1？不满足的有 " + bad + " 个（" + (System.nanoTime() - t0) / 1000000 + " ms）");
         System.out.println("  Integer.MIN_VALUE = " + Integer.MIN_VALUE + "，-MIN_VALUE = " + (-Integer.MIN_VALUE) + "，Math.abs(MIN_VALUE) = " + Math.abs(Integer.MIN_VALUE));
         System.out.println("  Integer.MAX_VALUE + 1 = " + (Integer.MAX_VALUE + 1));
+        int p8 = 0b1000;
+        System.out.println("  4 位的 1000 取反加一 = " + bits(((~p8) + 1) & MASK) + "，8 + 8 = " + ((8 + 8) & MASK) + "：1000 的相反数是它自己，站在 0 的正对面");
+        System.out.println("  MIN_VALUE < 0 → " + (Integer.MIN_VALUE < 0) + "，MIN_VALUE >>> 31 = " + (Integer.MIN_VALUE >>> 31) + "（最高位就是符号，没有例外）");
+        System.out.println("  (byte) 0x80 = " + (byte) 0x80 + "，扩成 int = 0x" + Integer.toHexString((byte) 0x80) + "（复制最高位扩展，−128 还是 −128）");
         byte b1 = 100, b2 = 100;
         System.out.println("  byte：100 + 100 存回 byte = " + (byte) (b1 + b2) + "，(byte) 200 = " + (byte) 200 + "，(byte) 0xFF = " + (byte) 0xFF + "，0b1111_1111 = " + 0b1111_1111);
         System.out.println("  byte 的 -1 拿去当 int 用 = " + (int) (byte) -1 + "，按无符号读 Byte.toUnsignedInt = " + Byte.toUnsignedInt((byte) -1));
