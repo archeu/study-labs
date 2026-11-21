@@ -26,6 +26,7 @@
 | 页面 | 代码 | 说明 |
 |---|---|---|
 | [一次只写一个 token：下一个词预测](https://study.ainiya.de/agent/llm-next-token.html) | [`agent/llm-next-token`](agent/llm-next-token/) | `main.py`：手写逐 token 生成循环（只用标准库，连本机 llama-server），`--once` 对比、`--force` 强制开头、`--ignore-end` 不理结束符 |
+| [token、分词和计费](https://study.ainiya.de/agent/llm-tokens-billing.html) | [`agent/llm-tokens-billing`](agent/llm-tokens-billing/) | `main.py split` 各类文字的切法和字符/token，`main.py log` 61 行 GC 日志原样和瘦身后的 token 数和 Claude 单价估算（Qwen 分词器，只用标准库） |
 
 ## Java 后端架构
 
