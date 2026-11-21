@@ -28,6 +28,7 @@
 | [一次只写一个 token：下一个词预测](https://study.ainiya.de/agent/llm-next-token.html) | [`agent/llm-next-token`](agent/llm-next-token/) | `main.py`：手写逐 token 生成循环（只用标准库，连本机 llama-server），`--once` 对比、`--force` 强制开头、`--ignore-end` 不理结束符 |
 | [token、分词和计费](https://study.ainiya.de/agent/llm-tokens-billing.html) | [`agent/llm-tokens-billing`](agent/llm-tokens-billing/) | `main.py split` 各类文字的切法和字符/token，`main.py log` 61 行 GC 日志原样和瘦身后的 token 数和 Claude 单价估算（Qwen 分词器，只用标准库） |
 | [上下文窗口：输入输出共用，越长越慢越贵](https://study.ainiya.de/agent/llm-context-window.html) | [`agent/llm-context-window`](agent/llm-context-window/) | `main.py overflow` 超窗口 400，`speed` 四个长度的读输入耗时和写输出速度，`needle` Full GC 埋在开头 / 中间 / 末尾（连本机 llama-server，只用标准库） |
+| [采样：temperature 和 top_p 改的是什么](https://study.ainiya.de/agent/llm-sampling.html) | [`agent/llm-sampling`](agent/llm-sampling/) | `main.py probs` 第一个 token 前 20 名，`runs` 温度 0 和 1 各 10 次，`batch` 温度 0 单发 vs 4 个并发（连本机 llama-server，只用标准库） |
 
 ## Java 后端架构
 
