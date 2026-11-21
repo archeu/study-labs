@@ -158,6 +158,7 @@
     <module>algo/lru-lfu-limit</module>
     <module>algo/problem-map</module>
     <module>algo/bit-ops</module>
+    <module>algo/signed-codes</module>
   </modules>
 
   <build>
