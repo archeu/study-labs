@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 /**
  * java.util.regex 是回溯实现的。(a+)+b 匹配 "aaa…ac" 时，n 个 a 有 2^(n-1) 种切法，回溯要全试一遍才认输。
- * JDK 8 的 Pattern 真的会全试；JDK 11 起（源码里的 Loop.posIndex / localTCNCount）记下“从位置 i 开始已经失败过”，
+ * JDK 8 的 Pattern 真的会全试；JDK 9 起（JDK-6328855，源码里的 Loop.posIndex / localTCNCount）记下“从位置 i 开始已经失败过”，
  * 第二次走到就直接认输，于是不再指数爆炸。但正则里只要有反向引用（\1），这个优化就关掉。
  */
 public class RegexBacktrack {
