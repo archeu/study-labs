@@ -156,6 +156,7 @@
     <module>algo/dp-knapsack</module>
     <module>algo/kmp-trie</module>
     <module>algo/lru-lfu-limit</module>
+    <module>algo/problem-map</module>
   </modules>
 
   <build>
