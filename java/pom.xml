@@ -154,6 +154,7 @@
     <module>algo/backtracking</module>
     <module>algo/dp-basics</module>
     <module>algo/dp-knapsack</module>
+    <module>algo/kmp-trie</module>
   </modules>
 
   <build>

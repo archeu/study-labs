@@ -167,3 +167,4 @@
 | [回溯：把所有选择走一遍，走不通就退回来](https://study.ainiya.de/algo/backtracking.html) | [`java/algo/backtracking`](java/algo/backtracking/) | `FillOrders`：整张吃单凑手数，不剪枝 vs 剪枝 + 去重的节点数，存引用和忘撤销两个坑；`RegexBacktrack`：Java 正则的回溯和反向引用关掉失败记忆 |
 | [动态规划入门：状态和转移，带手续费的买卖为什么贪心不行](https://study.ainiya.de/algo/dp-basics.html) | [`java/algo/dp-basics`](java/algo/dp-basics/) | `StockDp`：带手续费的买卖从纯递归、记忆化到递推和两个变量，调用次数对比和对拍；冷冻期三状态、更新顺序写错、记忆化栈溢出 |
 | [动态规划进阶：背包和序列，一笔资金分给几个策略](https://study.ainiya.de/algo/dp-knapsack.html) | [`java/algo/dp-knapsack`](java/algo/dp-knapsack/) | `Allocate`：资金分策略的 0-1 背包（二维、一维倒序、正序的错、贪心对比、预算粒度）和完全背包计数；`EditDistance`：交易对代码纠错和长串的耗时内存 |
+| [字符串：KMP 与 Trie，输入 BT 就补全交易对](https://study.ainiya.de/algo/kmp-trie.html) | [`java/algo/kmp-trie`](java/algo/kmp-trie/) | `SymbolTrie`：交易对补全，全表扫 / TreeMap 区间 / Trie 实测对比；`Kmp`：next 数组、最坏输入的比较次数、和 `String.indexOf` 比耗时 |
