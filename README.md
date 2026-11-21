@@ -168,3 +168,4 @@
 | [动态规划入门：状态和转移，带手续费的买卖为什么贪心不行](https://study.ainiya.de/algo/dp-basics.html) | [`java/algo/dp-basics`](java/algo/dp-basics/) | `StockDp`：带手续费的买卖从纯递归、记忆化到递推和两个变量，调用次数对比和对拍；冷冻期三状态、更新顺序写错、记忆化栈溢出 |
 | [动态规划进阶：背包和序列，一笔资金分给几个策略](https://study.ainiya.de/algo/dp-knapsack.html) | [`java/algo/dp-knapsack`](java/algo/dp-knapsack/) | `Allocate`：资金分策略的 0-1 背包（二维、一维倒序、正序的错、贪心对比、预算粒度）和完全背包计数；`EditDistance`：交易对代码纠错和长串的耗时内存 |
 | [字符串：KMP 与 Trie，输入 BT 就补全交易对](https://study.ainiya.de/algo/kmp-trie.html) | [`java/algo/kmp-trie`](java/algo/kmp-trie/) | `SymbolTrie`：交易对补全，全表扫 / TreeMap 区间 / Trie 实测对比；`Kmp`：next 数组、最坏输入的比较次数、和 `String.indexOf` 比耗时 |
+| [设计题：LRU、LFU 与限流，行情快照缓存和每账户每秒 20 单](https://study.ainiya.de/algo/lru-lfu-limit.html) | [`java/algo/lru-lfu-limit`](java/algo/lru-lfu-limit/) | `LruCache`、`LfuCache`：手写 O(1) 的 LRU 和 LFU；`HitRate`：三种流量下 FIFO / LRU / LFU 命中率；`AccountLimiter`：每账户懒补充令牌桶 + LRU 账户表 |

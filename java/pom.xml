@@ -155,6 +155,7 @@
     <module>algo/dp-basics</module>
     <module>algo/dp-knapsack</module>
     <module>algo/kmp-trie</module>
+    <module>algo/lru-lfu-limit</module>
   </modules>
 
   <build>
