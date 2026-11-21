@@ -157,6 +157,7 @@
     <module>algo/kmp-trie</module>
     <module>algo/lru-lfu-limit</module>
     <module>algo/problem-map</module>
+    <module>algo/bit-ops</module>
   </modules>
 
   <build>
