@@ -38,6 +38,7 @@
 | [全景：一次分诊调用的来回](https://study.ainiya.de/agent/pano-03-triage-call.html) | [`agent/pano-03-triage-call`](agent/pano-03-triage-call/) | `main.py` 官方 anthropic SDK（base_url 指向本机 llama-server 的 /v1/messages）走一遍分诊：count_tokens、流式事件、usage、Pydantic 校验和带错误重试 |
 | [Messages API：角色、system、多轮其实是无状态的](https://study.ainiya.de/agent/api-messages.html) | [`agent/api-messages`](agent/api-messages/) | `main.py raw` 打印原始请求和响应 JSON，`history` 带不带历史的追问，`grow` 4 轮的消息数和 token（官方 anthropic SDK → 本机 llama-server） |
 | [提示词基本功：说清楚、给例子、用标签分隔](https://study.ainiya.de/agent/prompt-basics.html) | [`agent/prompt-basics`](agent/prompt-basics/) | `main.py` 四版提示词（含糊 / 说清楚 / 一个示例 / 四类示例加标签）在 8 条告警上的 JSON 合格和类别正确（官方 anthropic SDK → 本机 llama-server） |
+| [流式输出：SSE 一边生成一边推](https://study.ainiya.de/agent/api-streaming-sse.html) | [`agent/api-streaming-sse`](agent/api-streaming-sse/) | `main.py compare` 流式和非流式的首字时间，`events` 事件清点，`midstream` 流中途 overloaded_error；`fake_server.py` 标准库写的假 Claude 流式接口 |
 
 ## Java 后端架构
 
