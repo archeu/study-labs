@@ -32,6 +32,7 @@
 | [够用的数学：向量、点积和概率](https://study.ainiya.de/agent/llm-math-basics.html) | [`agent/llm-math-basics`](agent/llm-math-basics/) | `main.py` 五段手算：点积和余弦、矩阵乘、softmax 溢出、连乘下溢、迷你注意力（纯标准库，不连模型） |
 | [注意力和 KV 缓存（只讲到够用）](https://study.ainiya.de/agent/llm-attention-kv-cache.html) | [`agent/llm-attention-kv-cache`](agent/llm-attention-kv-cache/) | `main.py nocache` 有无 KV 缓存逐 token 写 20 个的耗时，`prefix` 同日志换问题、时间戳放开头和放后面的重算量（连本机 llama-server，只用标准库） |
 | [推理模型和“思考”：用 token 换质量](https://study.ainiya.de/agent/llm-reasoning-thinking.html) | [`agent/llm-reasoning-thinking`](agent/llm-reasoning-thinking/) | `main.py` Qwen3-0.6B 关掉 / 打开思考各 3 次的答案、输出 token 和用时，max_tokens=300 截断（连本机第二个 llama-server，只用标准库） |
+| [为什么会一本正经地编（幻觉）](https://study.ainiya.de/agent/llm-hallucination.html) | [`agent/llm-hallucination`](agent/llm-hallucination/) | `main.py` 三道题（在日志里 / 不在 / 要数）× 普通提示、严格提示、先查再答，数字 token 概率和粗核对（连本机 llama-server，只用标准库） |
 
 ## Java 后端架构
 
