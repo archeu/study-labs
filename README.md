@@ -41,6 +41,7 @@
 | [流式输出：SSE 一边生成一边推](https://study.ainiya.de/agent/api-streaming-sse.html) | [`agent/api-streaming-sse`](agent/api-streaming-sse/) | `main.py compare` 流式和非流式的首字时间，`events` 事件清点，`midstream` 流中途 overloaded_error；`fake_server.py` 标准库写的假 Claude 流式接口 |
 | [结构化输出：JSON Schema、Pydantic 校验、失败重试](https://study.ainiya.de/agent/api-structured-output.html) | [`agent/api-structured-output`](agent/api-structured-output/) | `main.py both` 各 100 次：A 只靠提示词 + Pydantic 校验 + 带错误重试（anthropic SDK），B JSON Schema 约束解码（本机 OpenAI 兼容接口） |
 | [出错怎么办：429 限流、过载、超时，退避加抖动](https://study.ainiya.de/agent/api-errors-retry.html) | [`agent/api-errors-retry`](agent/api-errors-retry/) | `fake_server.py` 令牌桶限流的假 Claude（429 带 retry-after、529、慢响应），`main.py herd` 30 个客户端五种重试策略对比，`sdk` 官方 SDK 自带重试的次数和间隔 |
+| [省钱：提示词缓存和批处理](https://study.ainiya.de/agent/api-prompt-cache-batch.html) | [`agent/api-prompt-cache-batch`](agent/api-prompt-cache-batch/) | `main.py warm` 固定前缀 10 次的缓存命中和首字时间，`break` 前缀开头放请求号；成本按 Claude 单价换算 |
 
 ## Java 后端架构
 
