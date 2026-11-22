@@ -159,6 +159,7 @@
     <module>algo/problem-map</module>
     <module>algo/bit-ops</module>
     <module>algo/signed-codes</module>
+    <module>network/http-streaming-sse</module>
   </modules>
 
   <build>

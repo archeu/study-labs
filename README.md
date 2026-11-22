@@ -185,3 +185,4 @@
 | [题型地图：看到题怎么认出用哪招，12 站换成 12 组面试题](https://study.ainiya.de/algo/problem-map.html) | [`java/algo/problem-map`](java/algo/problem-map/) | `Backlog`：LeetCode 1801 积压订单（两个堆，全景第 5 站）；`Budget`：本机每秒能做多少次简单操作，校准“看规模定复杂度” |
 | [位运算与逻辑运算：订单标志位、1 亿账户打卡和移位的坑](https://study.ainiya.de/algo/bit-ops.html) | [`java/algo/bit-ops`](java/algo/bit-ops/) | `OrderFlags`：订单标志位的掩码四件套、移位 / 符号扩展 / 优先级 / 短路的坑、常用位技巧；`AccountBits`：1 亿账户打卡，BitSet vs boolean[] vs HashSet 的内存和速度 |
 | [原码、反码、补码：负数在机器里怎么存，减法为什么能变成加法](https://study.ainiya.de/algo/signed-codes.html) | [`java/algo/signed-codes`](java/algo/signed-codes/) | `SignedCodes`：4 位原码 / 反码 / 补码对照和三种约定下的加法，全部 int 验证 `-x == ~x + 1`，最小值、溢出、byte 截断、double 的 ±0.0 |
+| [HTTP 流式与 SSE：一个响应怎么一块一块地推](https://study.ainiya.de/network/http-streaming-sse.html) | [`java/network/http-streaming-sse`](java/network/http-streaming-sse/) | `SseServer` JDK HttpServer 写 SSE（flush / 不 flush），`SseClient` HttpClient 按行读并打印到达时间，也能读本机 llama-server 的 /v1/messages 流 |
