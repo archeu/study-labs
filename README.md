@@ -37,6 +37,7 @@
 | [怎么选模型：能力、价格、速度、开源闭源、国内外](https://study.ainiya.de/agent/llm-choose-model.html) | [`agent/llm-choose-model`](agent/llm-choose-model/) | `main.py` 8 条告警分类：4 条正则基线 vs Qwen2.5-0.5B vs Qwen3-0.6B 的正确率和耗时（连本机两个 llama-server，只用标准库） |
 | [全景：一次分诊调用的来回](https://study.ainiya.de/agent/pano-03-triage-call.html) | [`agent/pano-03-triage-call`](agent/pano-03-triage-call/) | `main.py` 官方 anthropic SDK（base_url 指向本机 llama-server 的 /v1/messages）走一遍分诊：count_tokens、流式事件、usage、Pydantic 校验和带错误重试 |
 | [Messages API：角色、system、多轮其实是无状态的](https://study.ainiya.de/agent/api-messages.html) | [`agent/api-messages`](agent/api-messages/) | `main.py raw` 打印原始请求和响应 JSON，`history` 带不带历史的追问，`grow` 4 轮的消息数和 token（官方 anthropic SDK → 本机 llama-server） |
+| [提示词基本功：说清楚、给例子、用标签分隔](https://study.ainiya.de/agent/prompt-basics.html) | [`agent/prompt-basics`](agent/prompt-basics/) | `main.py` 四版提示词（含糊 / 说清楚 / 一个示例 / 四类示例加标签）在 8 条告警上的 JSON 合格和类别正确（官方 anthropic SDK → 本机 llama-server） |
 
 ## Java 后端架构
 
