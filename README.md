@@ -33,6 +33,7 @@
 | [注意力和 KV 缓存（只讲到够用）](https://study.ainiya.de/agent/llm-attention-kv-cache.html) | [`agent/llm-attention-kv-cache`](agent/llm-attention-kv-cache/) | `main.py nocache` 有无 KV 缓存逐 token 写 20 个的耗时，`prefix` 同日志换问题、时间戳放开头和放后面的重算量（连本机 llama-server，只用标准库） |
 | [推理模型和“思考”：用 token 换质量](https://study.ainiya.de/agent/llm-reasoning-thinking.html) | [`agent/llm-reasoning-thinking`](agent/llm-reasoning-thinking/) | `main.py` Qwen3-0.6B 关掉 / 打开思考各 3 次的答案、输出 token 和用时，max_tokens=300 截断（连本机第二个 llama-server，只用标准库） |
 | [为什么会一本正经地编（幻觉）](https://study.ainiya.de/agent/llm-hallucination.html) | [`agent/llm-hallucination`](agent/llm-hallucination/) | `main.py` 三道题（在日志里 / 不在 / 要数）× 普通提示、严格提示、先查再答，数字 token 概率和粗核对（连本机 llama-server，只用标准库） |
+| [Embedding：文本变向量，意思近的靠得近](https://study.ainiya.de/agent/llm-embedding.html) | [`agent/llm-embedding`](agent/llm-embedding/) | `main.py search` 字重合 vs 余弦，`traps` 否定句和查询前缀，`dump` 相似度矩阵（连本机向量模式 llama-server，Qwen3-Embedding-0.6B，只用标准库） |
 
 ## Java 后端架构
 
