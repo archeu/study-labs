@@ -3,7 +3,10 @@ name = "agent-labs"
 version = "1.0"
 description = "AI Agent 学习线的实验代码，每个页面一个目录"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "anthropic>=2.12.0",
+    "pydantic>=2.14.4",
+]
 
 [dependency-groups]
 dev = ["pytest"]
