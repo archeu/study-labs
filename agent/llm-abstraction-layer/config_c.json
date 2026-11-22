@@ -1,0 +1,14 @@
+{
+  "_note": "主模型地址写错（模拟主服务挂了），自动切到备用；备用模型标记为不收 temperature",
+  "providers": {
+    "primary-down": {"kind": "anthropic", "base_url": "http://127.0.0.1:8099", "api_key": "local"},
+    "local-messages": {"kind": "anthropic", "base_url": "http://127.0.0.1:8090", "api_key": "local"}
+  },
+  "models": {
+    "main": {"provider": "primary-down", "model": "claude-sonnet-5-5"},
+    "backup": {"provider": "local-messages", "model": "qwen2.5-0.5b", "unsupported": ["temperature", "top_p"]}
+  },
+  "tasks": {
+    "triage": {"primary": "main", "fallbacks": ["backup"], "params": {"max_tokens": 60, "temperature": 0}}
+  }
+}

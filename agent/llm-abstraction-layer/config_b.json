@@ -1,0 +1,12 @@
+{
+  "_note": "同一个任务改用本机 Qwen3-0.6B，走 OpenAI 兼容格式；业务代码不变",
+  "providers": {
+    "local-openai": {"kind": "openai", "base_url": "http://127.0.0.1:8091", "api_key": "local"}
+  },
+  "models": {
+    "qwen3": {"provider": "local-openai", "model": "qwen3-0.6b"}
+  },
+  "tasks": {
+    "triage": {"primary": "qwen3", "params": {"max_tokens": 60, "temperature": 0, "chat_template_kwargs": {"enable_thinking": false}}}
+  }
+}

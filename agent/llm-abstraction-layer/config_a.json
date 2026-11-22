@@ -1,0 +1,12 @@
+{
+  "_note": "分诊用本机 Qwen2.5-0.5B，走 Claude 的 Messages 格式",
+  "providers": {
+    "local-messages": {"kind": "anthropic", "base_url": "http://127.0.0.1:8090", "api_key": "local"}
+  },
+  "models": {
+    "qwen25": {"provider": "local-messages", "model": "qwen2.5-0.5b"}
+  },
+  "tasks": {
+    "triage": {"primary": "qwen25", "params": {"max_tokens": 60, "temperature": 0}}
+  }
+}
