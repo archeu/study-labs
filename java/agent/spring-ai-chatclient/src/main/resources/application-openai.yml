@@ -1,0 +1,12 @@
+# 换一家：只改配置。OpenAI 兼容接口，指向本机第二个 llama-server（Qwen3-0.6B）
+# Qwen3 的思考在服务端关掉（llama-server --reasoning-budget 0）。
+# 别用 spring.ai.openai.chat.extra-body 透传 enable_thinking：Spring 把它绑成字符串 "false"，服务端回 400（实测）。
+spring:
+  ai:
+    model:
+      chat: openai
+    openai:
+      base-url: http://127.0.0.1:8091
+      chat:
+        model: qwen3-0.6b
+        max-tokens: 200

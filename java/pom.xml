@@ -160,6 +160,7 @@
     <module>algo/bit-ops</module>
     <module>algo/signed-codes</module>
     <module>network/http-streaming-sse</module>
+    <module>agent/spring-ai-chatclient</module>
   </modules>
 
   <build>
