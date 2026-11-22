@@ -30,6 +30,7 @@
 | [上下文窗口：输入输出共用，越长越慢越贵](https://study.ainiya.de/agent/llm-context-window.html) | [`agent/llm-context-window`](agent/llm-context-window/) | `main.py overflow` 超窗口 400，`speed` 四个长度的读输入耗时和写输出速度，`needle` Full GC 埋在开头 / 中间 / 末尾（连本机 llama-server，只用标准库） |
 | [采样：temperature 和 top_p 改的是什么](https://study.ainiya.de/agent/llm-sampling.html) | [`agent/llm-sampling`](agent/llm-sampling/) | `main.py probs` 第一个 token 前 20 名，`runs` 温度 0 和 1 各 10 次，`batch` 温度 0 单发 vs 4 个并发（连本机 llama-server，只用标准库） |
 | [够用的数学：向量、点积和概率](https://study.ainiya.de/agent/llm-math-basics.html) | [`agent/llm-math-basics`](agent/llm-math-basics/) | `main.py` 五段手算：点积和余弦、矩阵乘、softmax 溢出、连乘下溢、迷你注意力（纯标准库，不连模型） |
+| [注意力和 KV 缓存（只讲到够用）](https://study.ainiya.de/agent/llm-attention-kv-cache.html) | [`agent/llm-attention-kv-cache`](agent/llm-attention-kv-cache/) | `main.py nocache` 有无 KV 缓存逐 token 写 20 个的耗时，`prefix` 同日志换问题、时间戳放开头和放后面的重算量（连本机 llama-server，只用标准库） |
 
 ## Java 后端架构
 
