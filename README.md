@@ -34,6 +34,7 @@
 | [推理模型和“思考”：用 token 换质量](https://study.ainiya.de/agent/llm-reasoning-thinking.html) | [`agent/llm-reasoning-thinking`](agent/llm-reasoning-thinking/) | `main.py` Qwen3-0.6B 关掉 / 打开思考各 3 次的答案、输出 token 和用时，max_tokens=300 截断（连本机第二个 llama-server，只用标准库） |
 | [为什么会一本正经地编（幻觉）](https://study.ainiya.de/agent/llm-hallucination.html) | [`agent/llm-hallucination`](agent/llm-hallucination/) | `main.py` 三道题（在日志里 / 不在 / 要数）× 普通提示、严格提示、先查再答，数字 token 概率和粗核对（连本机 llama-server，只用标准库） |
 | [Embedding：文本变向量，意思近的靠得近](https://study.ainiya.de/agent/llm-embedding.html) | [`agent/llm-embedding`](agent/llm-embedding/) | `main.py search` 字重合 vs 余弦，`traps` 否定句和查询前缀，`dump` 相似度矩阵（连本机向量模式 llama-server，Qwen3-Embedding-0.6B，只用标准库） |
+| [怎么选模型：能力、价格、速度、开源闭源、国内外](https://study.ainiya.de/agent/llm-choose-model.html) | [`agent/llm-choose-model`](agent/llm-choose-model/) | `main.py` 8 条告警分类：4 条正则基线 vs Qwen2.5-0.5B vs Qwen3-0.6B 的正确率和耗时（连本机两个 llama-server，只用标准库） |
 
 ## Java 后端架构
 
