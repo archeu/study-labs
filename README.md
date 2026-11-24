@@ -60,6 +60,7 @@
 | [记忆分几种：短期和长期，情景、语义、程序性](https://study.ainiya.de/agent/memory-types.html) | [`agent/memory-types`](agent/memory-types/) | memories.py 三种记忆 12 条；main.py 一锅端和按类型取的对比 |
 | [记忆怎么写：抽取、去重、合并，新旧冲突听谁的](https://study.ainiya.de/agent/memory-write.html) | [`agent/memory-write`](agent/memory-write/) | write.py 抽取、去重、决定和路由护栏；main.py 模型全权；main_guarded.py 代码定边界 |
 | [记忆怎么取：按相关性、时间、重要性召回](https://study.ainiya.de/agent/memory-retrieval.html) | [`agent/memory-retrieval`](agent/memory-retrieval/) | episodes.py 31 条病历；main.py 过滤后五种打分对比，输出 scores.json |
+| [记忆怎么忘：衰减、过期，按用户隔离和隐私](https://study.ainiya.de/agent/memory-forget.html) | [`agent/memory-forget`](agent/memory-forget/) | forget.py 90 天模拟和每晚的遗忘任务；main.py 四套策略和隔离对比，输出 grid.json |
 
 ## Java 后端架构
 
