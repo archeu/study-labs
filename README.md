@@ -53,6 +53,7 @@
 | [沙箱：只读优先、命令白名单、隔离执行](https://study.ainiya.de/agent/agent-sandbox.html) | [`agent/agent-sandbox`](agent/agent-sandbox/) | `sandbox.py`：三道关（不过 shell、命令和选项白名单、路径）+ 容器执行；`main.py`：13 条正常、越界、注入命令逐条过 |
 | [危险操作先问人](https://study.ainiya.de/agent/human-approval.html) | [`agent/human-approval`](agent/human-approval/) | `main.py`：风险登记表 + 带超时的审批 + 审计日志，四个剧本（同意、拒绝、没人回、绕过）；`--interactive` 自己审批 |
 | [工作流还是 Agent：五种常见模式怎么选](https://study.ainiya.de/agent/workflow-vs-agent.html) | [`agent/workflow-vs-agent`](agent/workflow-vs-agent/) | `main.py`：正则路由 + 并发查四样证据 + 一次模型总结，和 agent 实测对比；`--alert` 换告警看路由 |
+| [从需求到设计：拆专家 SOP、定成功指标](https://study.ainiya.de/agent/requirements-to-design.html) | [`agent/requirements-to-design`](agent/requirements-to-design/) | `sop/` 里的 SOP 文档；`main.py`：核对 SOP 和工具清单、按 SOP 指标给对话记录打分；`runs/` 全景那次真实运行 |
 
 ## Java 后端架构
 
