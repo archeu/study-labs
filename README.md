@@ -50,6 +50,7 @@
 | [工具怎么设计：名字、描述、参数、精简的返回](https://study.ainiya.de/agent/tool-design.html) | [`agent/tool-design`](agent/tool-design/) | `main.py`：v1 / v2 两版工具说明书各跑 N 次第一轮，看参数和落空；`--sizes` 量原样与精简返回的 token |
 | [并行工具调用](https://study.ainiya.de/agent/parallel-tool-calls.html) | [`agent/parallel-tool-calls`](agent/parallel-tool-calls/) | `main.py`：一轮三个工具，串行 / 线程池 / asyncio.gather 的耗时和回执顺序；`--fail` 看失败回执 |
 | [给 agent 的命令造个笼子：Linux 进程、权限与容器隔离](https://study.ainiya.de/cloudnative/linux-process-isolation.html) | [`agent/linux-process-isolation`](agent/linux-process-isolation/) | `main.py`：四层笼子（普通子进程、nobody + rlimit + timeout、namespace、容器）各跑几条命令看拦住什么 |
+| [沙箱：只读优先、命令白名单、隔离执行](https://study.ainiya.de/agent/agent-sandbox.html) | [`agent/agent-sandbox`](agent/agent-sandbox/) | `sandbox.py`：三道关（不过 shell、命令和选项白名单、路径）+ 容器执行；`main.py`：13 条正常、越界、注入命令逐条过 |
 
 ## Java 后端架构
 
