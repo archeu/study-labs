@@ -17,3 +17,4 @@ __pycache__/
 *.jar
 data/
 logs/
+transcript*.json

@@ -43,6 +43,8 @@
 | [出错怎么办：429 限流、过载、超时，退避加抖动](https://study.ainiya.de/agent/api-errors-retry.html) | [`agent/api-errors-retry`](agent/api-errors-retry/) | `fake_server.py` 令牌桶限流的假 Claude（429 带 retry-after、529、慢响应），`main.py herd` 30 个客户端五种重试策略对比，`sdk` 官方 SDK 自带重试的次数和间隔 |
 | [省钱：提示词缓存和批处理](https://study.ainiya.de/agent/api-prompt-cache-batch.html) | [`agent/api-prompt-cache-batch`](agent/api-prompt-cache-batch/) | `main.py warm` 固定前缀 10 次的缓存命中和首字时间，`break` 前缀开头放请求号；成本按 Claude 单价换算 |
 | [换模型只改一层：模型抽象层](https://study.ainiya.de/agent/llm-abstraction-layer.html) | [`agent/llm-abstraction-layer`](agent/llm-abstraction-layer/) | `llm_layer.py` 约 120 行抽象层（两个适配器、能力过滤、备用切换、统一用量），`main.py` + 三份配置：同一行业务代码跑在 Messages 格式、OpenAI 兼容格式和故障切换上 |
+| [全景：一次排障提问，agent 来回了几轮](https://study.ainiya.de/agent/pano-04-triage-agent.html) | [`agent/pano-04-triage-agent`](agent/pano-04-triage-agent/) | 值班助手 v1：`oncall.py` 工具和现场、`main.py` 手写 agent 循环、`fake_model.py` 照剧本出牌的假模型 |
+| [停止条件：步数、预算、超时](https://study.ainiya.de/agent/agent-stop-conditions.html) | [`agent/agent-stop-conditions`](agent/agent-stop-conditions/) | |
 
 ## Java 后端架构
 
