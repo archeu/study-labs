@@ -1,0 +1,62 @@
+[
+ {
+  "role": "user",
+  "content": "20:16 告警：order-04 接口 P99 2.1 秒（阈值 800ms）。order-svc 为什么变慢了？"
+ },
+ {
+  "role": "assistant",
+  "content": [
+   {
+    "id": "Jtdq3wxeumy13rPsoaW21ejm3Zmlgi8H",
+    "input": {
+     "keyword": "P99",
+     "since": "20:16"
+    },
+    "name": "search_logs",
+    "type": "tool_use"
+   }
+  ]
+ },
+ {
+  "role": "user",
+  "content": [
+   {
+    "type": "tool_result",
+    "tool_use_id": "Jtdq3wxeumy13rPsoaW21ejm3Zmlgi8H",
+    "content": "没有匹配的日志"
+   }
+  ]
+ },
+ {
+  "role": "assistant",
+  "content": [
+   {
+    "id": "H5FnjI3SPgEimAuIJCFUy2C46urKKJav",
+    "input": {
+     "query": "P99"
+    },
+    "name": "search_notes",
+    "type": "tool_use"
+   }
+  ]
+ },
+ {
+  "role": "user",
+  "content": [
+   {
+    "type": "tool_result",
+    "tool_use_id": "H5FnjI3SPgEimAuIJCFUy2C46urKKJav",
+    "content": "《G1 和 ZGC 怎么回收》（g1-zgc）：Full GC 后老年代仍 70% 以上，说明有对象一直被引用（缓存、大列表），先 jmap -histo 看谁最多；Humongous Allocation 说明有超过半个 region 的大对象。\n《JVM 内存结构》（jvm-memory-structure）：堆分新生代和老年代，大对象可能直接进老年代；导出类接口一次把几十万行读进 List 是常见的老年代杀手。"
+   }
+  ]
+ },
+ {
+  "role": "assistant",
+  "content": [
+   {
+    "text": "根据搜索笔记，推测可能的原因是：\n\n1. **大对象直接进入老年代**：如果导出类接口一次性将几十万行读入 List，这会导致大量对象直接进入老年代，导致老年代占用内存过多，进而引起系统变慢。\n\n2. **Full GC 后老年代仍 70% 以上**：如果 Full GC 后老年代仍占 70% 以上，说明存在大量对象被引用，可能是因为缓存或大列表等对象未被及时清理。\n\n**下一步建议**：\n- 使用 `jmap -histo` 查看堆内存分布，确认哪些对象占用内存较多。\n- 检查是否有大对象直接进入老年代，确认是否需要优化缓存或减少大列表的使用。",
+    "type": "text"
+   }
+  ]
+ }
+]

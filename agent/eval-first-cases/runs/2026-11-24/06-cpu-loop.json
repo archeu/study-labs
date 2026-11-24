@@ -1,0 +1,62 @@
+[
+ {
+  "role": "user",
+  "content": "20:16 告警：order-04 接口 P99 2.6 秒（阈值 800ms），CPU 95%。order-svc 为什么变慢了？"
+ },
+ {
+  "role": "assistant",
+  "content": [
+   {
+    "id": "1R2NayhMkXcC3UhNbvTAE9JaN9LqyZSG",
+    "input": {
+     "keyword": "P99",
+     "since": "20:16"
+    },
+    "name": "search_logs",
+    "type": "tool_use"
+   }
+  ]
+ },
+ {
+  "role": "user",
+  "content": [
+   {
+    "type": "tool_result",
+    "tool_use_id": "1R2NayhMkXcC3UhNbvTAE9JaN9LqyZSG",
+    "content": "没有匹配的日志"
+   }
+  ]
+ },
+ {
+  "role": "assistant",
+  "content": [
+   {
+    "id": "0wnl0WIGe9GGxH2PmQof236rUYvFVedA",
+    "input": {
+     "query": "P99"
+    },
+    "name": "search_notes",
+    "type": "tool_use"
+   }
+  ]
+ },
+ {
+  "role": "user",
+  "content": [
+   {
+    "type": "tool_result",
+    "tool_use_id": "0wnl0WIGe9GGxH2PmQof236rUYvFVedA",
+    "content": "《G1 和 ZGC 怎么回收》（g1-zgc）：Full GC 后老年代仍 70% 以上，说明有对象一直被引用（缓存、大列表），先 jmap -histo 看谁最多；Humongous Allocation 说明有超过半个 region 的大对象。\n《JVM 内存结构》（jvm-memory-structure）：堆分新生代和老年代，大对象可能直接进老年代；导出类接口一次把几十万行读进 List 是常见的老年代杀手。"
+   }
+  ]
+ },
+ {
+  "role": "assistant",
+  "content": [
+   {
+    "text": "根据排查顺序，首先查看日志，但未找到与 P99 相关的日志。接着查找知识库经验，发现可能是由于大对象直接进入老年代，或者因缓存、大列表导致老年代占用过高。\n\n下一步建议：\n1. 使用 `jmap -histo` 查看堆内存分布，确认老年代中哪些对象占用较多。\n2. 检查是否有大对象直接进入老年代，如导出类接口一次性读取大量数据。\n3. 若为缓存或大列表，考虑优化缓存策略或减少数据量。\n\n请确认是否需要进一步分析。",
+    "type": "text"
+   }
+  ]
+ }
+]

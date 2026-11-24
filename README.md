@@ -54,6 +54,7 @@
 | [危险操作先问人](https://study.ainiya.de/agent/human-approval.html) | [`agent/human-approval`](agent/human-approval/) | `main.py`：风险登记表 + 带超时的审批 + 审计日志，四个剧本（同意、拒绝、没人回、绕过）；`--interactive` 自己审批 |
 | [工作流还是 Agent：五种常见模式怎么选](https://study.ainiya.de/agent/workflow-vs-agent.html) | [`agent/workflow-vs-agent`](agent/workflow-vs-agent/) | `main.py`：正则路由 + 并发查四样证据 + 一次模型总结，和 agent 实测对比；`--alert` 换告警看路由 |
 | [从需求到设计：拆专家 SOP、定成功指标](https://study.ainiya.de/agent/requirements-to-design.html) | [`agent/requirements-to-design`](agent/requirements-to-design/) | `sop/` 里的 SOP 文档；`main.py`：核对 SOP 和工具清单、按 SOP 指标给对话记录打分；`runs/` 全景那次真实运行 |
+| [先写 10 条评测用例，后面每站都跑](https://study.ainiya.de/agent/eval-first-cases.html) | [`agent/eval-first-cases`](agent/eval-first-cases/) | `cases.py` 10 条用例；`main.py` 布置现场、跑 v1、代码判分、`--regrade` 重判、`--v2` 改工具说明再跑；`runs/` 两份分数和全部对话 |
 
 ## Java 后端架构
 
