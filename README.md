@@ -45,6 +45,7 @@
 | [换模型只改一层：模型抽象层](https://study.ainiya.de/agent/llm-abstraction-layer.html) | [`agent/llm-abstraction-layer`](agent/llm-abstraction-layer/) | `llm_layer.py` 约 120 行抽象层（两个适配器、能力过滤、备用切换、统一用量），`main.py` + 三份配置：同一行业务代码跑在 Messages 格式、OpenAI 兼容格式和故障切换上 |
 | [全景：一次排障提问，agent 来回了几轮](https://study.ainiya.de/agent/pano-04-triage-agent.html) | [`agent/pano-04-triage-agent`](agent/pano-04-triage-agent/) | 值班助手 v1：`oncall.py` 工具和现场、`main.py` 手写 agent 循环、`fake_model.py` 照剧本出牌的假模型 |
 | [停止条件：步数、预算、超时](https://study.ainiya.de/agent/agent-stop-conditions.html) | [`agent/agent-stop-conditions`](agent/agent-stop-conditions/) | |
+| [工具调用的一来一回：模型提议，你的代码执行](https://study.ainiya.de/agent/tool-use-roundtrip.html) | [`agent/tool-use-roundtrip`](agent/tool-use-roundtrip/) | `main.py`：一个来回原样打印每条消息；`--raw` 看渲染后的提示词和模型原始输出，`--tokens` 量工具说明的 token |
 
 ## Java 后端架构
 
