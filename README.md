@@ -52,6 +52,7 @@
 | [给 agent 的命令造个笼子：Linux 进程、权限与容器隔离](https://study.ainiya.de/cloudnative/linux-process-isolation.html) | [`agent/linux-process-isolation`](agent/linux-process-isolation/) | `main.py`：四层笼子（普通子进程、nobody + rlimit + timeout、namespace、容器）各跑几条命令看拦住什么 |
 | [沙箱：只读优先、命令白名单、隔离执行](https://study.ainiya.de/agent/agent-sandbox.html) | [`agent/agent-sandbox`](agent/agent-sandbox/) | `sandbox.py`：三道关（不过 shell、命令和选项白名单、路径）+ 容器执行；`main.py`：13 条正常、越界、注入命令逐条过 |
 | [危险操作先问人](https://study.ainiya.de/agent/human-approval.html) | [`agent/human-approval`](agent/human-approval/) | `main.py`：风险登记表 + 带超时的审批 + 审计日志，四个剧本（同意、拒绝、没人回、绕过）；`--interactive` 自己审批 |
+| [工作流还是 Agent：五种常见模式怎么选](https://study.ainiya.de/agent/workflow-vs-agent.html) | [`agent/workflow-vs-agent`](agent/workflow-vs-agent/) | `main.py`：正则路由 + 并发查四样证据 + 一次模型总结，和 agent 实测对比；`--alert` 换告警看路由 |
 
 ## Java 后端架构
 
