@@ -56,6 +56,7 @@
 | [从需求到设计：拆专家 SOP、定成功指标](https://study.ainiya.de/agent/requirements-to-design.html) | [`agent/requirements-to-design`](agent/requirements-to-design/) | `sop/` 里的 SOP 文档；`main.py`：核对 SOP 和工具清单、按 SOP 指标给对话记录打分；`runs/` 全景那次真实运行 |
 | [先写 10 条评测用例，后面每站都跑](https://study.ainiya.de/agent/eval-first-cases.html) | [`agent/eval-first-cases`](agent/eval-first-cases/) | `cases.py` 10 条用例；`main.py` 布置现场、跑 v1、代码判分、`--regrade` 重判、`--v2` 改工具说明再跑；`runs/` 两份分数和全部对话 |
 | [上下文工程：放什么、放哪、放多少](https://study.ainiya.de/agent/context-engineering.html) | [`agent/context-engineering`](agent/context-engineering/) | context_builder.py 拼装器；main.py 逐块数 token；cache_order.py 记忆位置对前缀缓存的实测 |
+| [上下文快满了：压缩、摘要、子任务隔离](https://study.ainiya.de/agent/context-compaction.html) | [`agent/context-compaction`](agent/context-compaction/) | scene.py 假现场；compact.py 清旧结果、交接摘要、子 agent；main.py 三招对比实测 |
 
 ## Java 后端架构
 
