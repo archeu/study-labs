@@ -47,7 +47,9 @@
 | [停止条件：步数、预算、超时](https://study.ainiya.de/agent/agent-stop-conditions.html) | [`agent/agent-stop-conditions`](agent/agent-stop-conditions/) | `main.py`：假模型制造正常、死磕、话痨、慢工具四种情况，看三道闸谁先拦；`--no-limits` 拆闸对照 |
 | [工具调用的一来一回：模型提议，你的代码执行](https://study.ainiya.de/agent/tool-use-roundtrip.html) | [`agent/tool-use-roundtrip`](agent/tool-use-roundtrip/) | `main.py`：一个来回原样打印每条消息；`--raw` 看渲染后的提示词和模型原始输出，`--tokens` 量工具说明的 token |
 | [Agent 循环：调到不再要工具或到上限为止](https://study.ainiya.de/agent/agent-loop.html) | [`agent/agent-loop`](agent/agent-loop/) | `main.py`：最小的手写循环，每轮打印消息条数、完整提示 token、耗时；`--fake` 用假模型 |
-| [工具怎么设计：名字、描述、参数、精简的返回](https://study.ainiya.de/agent/tool-design.html) | [`agent/tool-design`](agent/tool-design/) | |
+| [工具怎么设计：名字、描述、参数、精简的返回](https://study.ainiya.de/agent/tool-design.html) | [`agent/tool-design`](agent/tool-design/) | `main.py`：v1 / v2 两版工具说明书各跑 N 次第一轮，看参数和落空；`--sizes` 量原样与精简返回的 token |
+| [并行工具调用](https://study.ainiya.de/agent/parallel-tool-calls.html) | [`agent/parallel-tool-calls`](agent/parallel-tool-calls/) | `main.py`：一轮三个工具，串行 / 线程池 / asyncio.gather 的耗时和回执顺序；`--fail` 看失败回执 |
+| [Linux 进程、权限与容器隔离](https://study.ainiya.de/agent/linux-process-isolation.html) | [`agent/linux-process-isolation`](agent/linux-process-isolation/) | |
 
 ## Java 后端架构
 
