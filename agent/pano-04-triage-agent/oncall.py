@@ -76,12 +76,19 @@ def search_logs(keyword: str, since: str | None = None) -> str:
 
 def parse_gc_log(since: str | None = None) -> str:
     rows = [l for l in GC_LOG.splitlines() if _after(l, since)]
+    if not rows:
+        return "这段时间没有 GC 记录"
     pauses = [float(re.search(r"([\d.]+)ms$", l).group(1)) for l in rows]
     full = [l for l in rows if "Pause Full" in l]
-    after = [re.search(r"->(\d+)M\((\d+)M\)", l).groups() for l in full]
-    olds = ", ".join(f"{int(a) * 100 // int(b)}%" for a, b in after)
-    return (f"{len(rows)} 次停顿，最长 {max(pauses):.0f}ms；Full GC {len(full)} 次（每次约 1.9s），"
-            f"Full GC 后堆仍占 {olds}；有 Humongous Allocation（大对象）") if rows else "这段时间没有 GC 记录"
+    out = [f"{len(rows)} 次停顿，最长 {max(pauses):.0f}ms", f"Full GC {len(full)} 次"]
+    if full:                                   # 只有真的有 Full GC 才报时长和回收后占用
+        full_ms = [float(re.search(r"([\d.]+)ms$", l).group(1)) for l in full]
+        after = [re.search(r"->(\d+)M\((\d+)M\)", l).groups() for l in full]
+        olds = ", ".join(f"{int(a) * 100 // int(b)}%" for a, b in after)
+        out[-1] += f"（每次约 {sum(full_ms) / len(full_ms) / 1000:.1f}s），Full GC 后堆仍占 {olds}"
+    if any("Humongous" in l for l in rows):
+        out.append("有 Humongous Allocation（大对象）")
+    return "；".join(out)
 
 
 def thread_dump() -> str:
