@@ -1,0 +1,210 @@
+{
+ "timings": {
+  "ingest_total_s": 25.31,
+  "parse_s": 6.0,
+  "ocr_blocks": 8,
+  "chunk_s": 0.0,
+  "embed_s": 19.21,
+  "store_s": 0.09,
+  "docs": 2,
+  "chunks": 21,
+  "plan_s": 4.71,
+  "retrieve_s": 1.72,
+  "rerank_s": 45.34,
+  "generate_s": 11.0,
+  "prompt_tokens": 169,
+  "completion_tokens": 70
+ },
+ "queries": [
+  {
+   "query": "根因是什么？",
+   "bm25_top5": [
+    "INC-20261109-02@v1#3",
+    "INC-20261108-01@v1#3",
+    "order-svc-runbook@v3.2#7",
+    "order-svc-runbook@v3.2#2",
+    "order-svc-runbook@v3.2#3"
+   ],
+   "vector_top5": [
+    "order-svc-runbook@v3.2#8",
+    "INC-20261109-02@v1#3",
+    "INC-20261108-01@v1#3",
+    "order-svc-runbook@v3.2#11",
+    "g1-old-gen@v1#1"
+   ],
+   "rrf_top5": [
+    "INC-20261109-02@v1#3",
+    "INC-20261108-01@v1#3",
+    "order-svc-runbook@v3.2#8",
+    "order-svc-runbook@v3.2#7",
+    "order-svc-runbook@v3.2#9"
+   ],
+   "rerank_top3": [
+    [
+     "INC-20261108-01@v1#3",
+     -0.902
+    ],
+    [
+     "INC-20261109-02@v1#3",
+     -1.601
+    ],
+    [
+     "caffeine-local-cache@v1#1",
+     -7.272
+    ]
+   ],
+   "kept": []
+  },
+  {
+   "query": "违反了手册哪条规定？",
+   "bm25_top5": [
+    "hikari-pool@v1#1",
+    "order-svc-runbook@v3.2#8",
+    "order-svc-runbook@v3.2#15",
+    "order-svc-runbook@v3.2#7",
+    "g1-old-gen@v1#1"
+   ],
+   "vector_top5": [
+    "order-svc-runbook@v3.2#11",
+    "order-svc-runbook@v3.2#12",
+    "INC-20261109-02@v1#4",
+    "order-svc-runbook@v3.2#2",
+    "INC-20261108-01@v1#4"
+   ],
+   "rrf_top5": [
+    "order-svc-runbook@v3.2#11",
+    "INC-20261108-01@v1#4",
+    "order-svc-runbook@v3.2#8",
+    "order-svc-runbook@v3.2#2",
+    "order-svc-runbook@v3.2#1"
+   ],
+   "rerank_top3": [
+    [
+     "order-svc-runbook@v3.2#14",
+     -5.241
+    ],
+    [
+     "order-svc-runbook@v3.2#12",
+     -5.242
+    ],
+    [
+     "order-svc-runbook@v3.2#11",
+     -5.552
+    ]
+   ],
+   "kept": []
+  },
+  {
+   "query": "用什么办法止血？",
+   "bm25_top5": [
+    "order-svc-runbook@v3.2#7",
+    "order-svc-runbook@v3.2#12",
+    "order-svc-runbook@v3.2#2",
+    "INC-20261109-02@v1#3",
+    "caffeine-local-cache@v1#2"
+   ],
+   "vector_top5": [
+    "order-svc-runbook@v3.2#17",
+    "order-svc-runbook@v3.2#12",
+    "INC-20261109-02@v1#4",
+    "order-svc-runbook@v3.2#11",
+    "order-svc-runbook@v3.2#9"
+   ],
+   "rrf_top5": [
+    "order-svc-runbook@v3.2#12",
+    "order-svc-runbook@v3.2#9",
+    "INC-20261109-02@v1#3",
+    "order-svc-runbook@v3.2#2",
+    "order-svc-runbook@v3.2#7"
+   ],
+   "rerank_top3": [
+    [
+     "order-svc-runbook@v3.2#7",
+     -1.034
+    ],
+    [
+     "order-svc-runbook@v3.2#12",
+     -2.047
+    ],
+    [
+     "order-svc-runbook@v3.2#17",
+     -8.145
+    ]
+   ],
+   "kept": []
+  },
+  {
+   "query": "为什么没有回滚？",
+   "bm25_top5": [
+    "g1-old-gen@v1#1",
+    "INC-20261109-02@v1#3",
+    "order-svc-runbook@v3.2#12",
+    "order-svc-runbook@v3.2#15",
+    "order-svc-runbook@v3.2#7"
+   ],
+   "vector_top5": [
+    "order-svc-runbook@v3.2#12",
+    "order-svc-runbook@v3.2#17",
+    "order-svc-runbook@v3.2#11",
+    "order-svc-runbook@v3.2#8",
+    "INC-20261108-01@v1#4"
+   ],
+   "rrf_top5": [
+    "order-svc-runbook@v3.2#12",
+    "INC-20261109-02@v1#3",
+    "g1-old-gen@v1#1",
+    "order-svc-runbook@v3.2#7",
+    "order-svc-runbook@v3.2#17"
+   ],
+   "rerank_top3": [
+    [
+     "order-svc-runbook@v3.2#12",
+     -0.377
+    ],
+    [
+     "order-svc-runbook@v3.2#7",
+     -1.734
+    ],
+    [
+     "order-svc-runbook@v3.2#9",
+     -4.185
+    ]
+   ],
+   "kept": []
+  }
+ ],
+ "sources": [],
+ "answer": "根因是未按运维手册规定执行回滚操作[3]。违反了运维手册中关于故障处理流程及回滚操作的条款[4]。当时采用临时措施进行应急处理，未按手册要求进行回滚操作，主要是因临时故障影响较小，且未发现更严重的隐患[5]。",
+ "checks": [
+  {
+   "sentence": "根因是未按运维手册规定执行回滚操作[3]。",
+   "cites": [
+    3
+   ],
+   "bad_ids": [
+    3
+   ],
+   "cover": 0.0
+  },
+  {
+   "sentence": "违反了运维手册中关于故障处理流程及回滚操作的条款[4]。",
+   "cites": [
+    4
+   ],
+   "bad_ids": [
+    4
+   ],
+   "cover": 0.0
+  },
+  {
+   "sentence": "当时采用临时措施进行应急处理，未按手册要求进行回滚操作，主要是因临时故障影响较小，且未发现更严重的隐患[5]。",
+   "cites": [
+    5
+   ],
+   "bad_ids": [
+    5
+   ],
+   "cover": 0.0
+  }
+ ]
+}

@@ -62,6 +62,7 @@
 | [记忆怎么取：按相关性、时间、重要性召回](https://study.ainiya.de/agent/memory-retrieval.html) | [`agent/memory-retrieval`](agent/memory-retrieval/) | episodes.py 31 条病历；main.py 过滤后五种打分对比，输出 scores.json |
 | [记忆怎么忘：衰减、过期，按用户隔离和隐私](https://study.ainiya.de/agent/memory-forget.html) | [`agent/memory-forget`](agent/memory-forget/) | forget.py 90 天模拟和每晚的遗忘任务；main.py 四套策略和隔离对比，输出 grid.json |
 | [记忆好不好：该记的记住了吗，对任务有帮助吗](https://study.ainiya.de/agent/memory-eval.html) | [`agent/memory-eval`](agent/memory-eval/) | cases.py 21 个用例；system.py 8 个开关的记忆系统和判定；main.py v1 / v2 / 回归对比，输出 grid.json |
+| [全景：一份运维手册从上传到被引用](https://study.ainiya.de/agent/pano-06-runbook-to-report.html) | [`agent/pano-06-runbook-to-report`](agent/pano-06-runbook-to-report/) | 值班助手 v3 知识库：`corpus.py` 生成带扫描页的假手册和故障单，`kb.py` 每个函数对应一站（解析、OCR、切块、pgvector、BM25 + 向量 + RRF、重排、带引用生成、引用回查），`main.py` 三种检索计划对比 |
 
 ## Java 后端架构
 

@@ -1,0 +1,226 @@
+{
+ "timings": {
+  "ingest_total_s": 24.92,
+  "parse_s": 5.87,
+  "ocr_blocks": 8,
+  "chunk_s": 0.0,
+  "embed_s": 18.98,
+  "store_s": 0.07,
+  "docs": 2,
+  "chunks": 21,
+  "plan_s": 0.0,
+  "retrieve_s": 1.72,
+  "rerank_s": 47.66,
+  "generate_s": 22.8,
+  "prompt_tokens": 646,
+  "completion_tokens": 110
+ },
+ "queries": [
+  {
+   "query": "OrderDetailCache 本地缓存没设上限的根因",
+   "bm25_top5": [
+    "caffeine-local-cache@v1#1",
+    "INC-20261109-02@v1#3",
+    "order-svc-runbook@v3.2#13",
+    "caffeine-local-cache@v1#4",
+    "caffeine-local-cache@v1#2"
+   ],
+   "vector_top5": [
+    "order-svc-runbook@v3.2#13",
+    "INC-20261109-02@v1#3",
+    "caffeine-local-cache@v1#2",
+    "INC-20261109-02@v1#2",
+    "caffeine-local-cache@v1#3"
+   ],
+   "rrf_top5": [
+    "order-svc-runbook@v3.2#13",
+    "INC-20261109-02@v1#3",
+    "caffeine-local-cache@v1#1",
+    "caffeine-local-cache@v1#2",
+    "INC-20261109-02@v1#2"
+   ],
+   "rerank_top3": [
+    [
+     "INC-20261109-02@v1#3",
+     2.311
+    ],
+    [
+     "order-svc-runbook@v3.2#13",
+     0.418
+    ],
+    [
+     "INC-20261108-01@v1#3",
+     -2.302
+    ]
+   ],
+   "kept": [
+    "INC-20261109-02@v1#3",
+    "order-svc-runbook@v3.2#13"
+   ]
+  },
+  {
+   "query": "本地缓存必须设置 maximumSize 和过期时间的规定",
+   "bm25_top5": [
+    "order-svc-runbook@v3.2#13",
+    "INC-20261109-02@v1#3",
+    "caffeine-local-cache@v1#2",
+    "caffeine-local-cache@v1#1",
+    "caffeine-local-cache@v1#3"
+   ],
+   "vector_top5": [
+    "order-svc-runbook@v3.2#13",
+    "caffeine-local-cache@v1#3",
+    "caffeine-local-cache@v1#2",
+    "INC-20261109-02@v1#4",
+    "caffeine-local-cache@v1#1"
+   ],
+   "rrf_top5": [
+    "order-svc-runbook@v3.2#13",
+    "caffeine-local-cache@v1#2",
+    "caffeine-local-cache@v1#3",
+    "INC-20261109-02@v1#3",
+    "caffeine-local-cache@v1#1"
+   ],
+   "rerank_top3": [
+    [
+     "order-svc-runbook@v3.2#13",
+     5.978
+    ],
+    [
+     "caffeine-local-cache@v1#2",
+     1.855
+    ],
+    [
+     "caffeine-local-cache@v1#3",
+     1.112
+    ]
+   ],
+   "kept": [
+    "order-svc-runbook@v3.2#13",
+    "caffeine-local-cache@v1#2"
+   ]
+  },
+  {
+   "query": "关闭本地缓存的降级开关",
+   "bm25_top5": [
+    "order-svc-runbook@v3.2#17",
+    "order-svc-runbook@v3.2#12",
+    "INC-20261109-02@v1#2",
+    "order-svc-runbook@v3.2#7",
+    "caffeine-local-cache@v1#1"
+   ],
+   "vector_top5": [
+    "order-svc-runbook@v3.2#17",
+    "order-svc-runbook@v3.2#13",
+    "caffeine-local-cache@v1#3",
+    "caffeine-local-cache@v1#4",
+    "caffeine-local-cache@v1#1"
+   ],
+   "rrf_top5": [
+    "order-svc-runbook@v3.2#17",
+    "order-svc-runbook@v3.2#13",
+    "INC-20261109-02@v1#2",
+    "caffeine-local-cache@v1#1",
+    "order-svc-runbook@v3.2#12"
+   ],
+   "rerank_top3": [
+    [
+     "order-svc-runbook@v3.2#17",
+     1.553
+    ],
+    [
+     "order-svc-runbook@v3.2#7",
+     -1.722
+    ],
+    [
+     "INC-20261109-02@v1#2",
+     -2.624
+    ]
+   ],
+   "kept": [
+    "order-svc-runbook@v3.2#17"
+   ]
+  },
+  {
+   "query": "发布后多久内必须回滚，超过时间怎么办",
+   "bm25_top5": [
+    "order-svc-runbook@v3.2#12",
+    "order-svc-runbook@v3.2#13",
+    "order-svc-runbook@v3.2#14",
+    "order-svc-runbook@v3.2#7",
+    "INC-20261108-01@v1#2"
+   ],
+   "vector_top5": [
+    "order-svc-runbook@v3.2#12",
+    "order-svc-runbook@v3.2#11",
+    "order-svc-runbook@v3.2#17",
+    "INC-20261109-02@v1#4",
+    "order-svc-runbook@v3.2#14"
+   ],
+   "rrf_top5": [
+    "order-svc-runbook@v3.2#12",
+    "order-svc-runbook@v3.2#14",
+    "order-svc-runbook@v3.2#13",
+    "order-svc-runbook@v3.2#17",
+    "order-svc-runbook@v3.2#11"
+   ],
+   "rerank_top3": [
+    [
+     "order-svc-runbook@v3.2#12",
+     2.904
+    ],
+    [
+     "INC-20261109-02@v1#4",
+     -2.724
+    ],
+    [
+     "order-svc-runbook@v3.2#7",
+     -2.915
+    ]
+   ],
+   "kept": [
+    "order-svc-runbook@v3.2#12"
+   ]
+  }
+ ],
+ "sources": [
+  "INC-20261109-02 根因 ← INC-20261109-02@v1#3",
+  "手册 v3.2 4.3 p.9 ← order-svc-runbook@v3.2#13",
+  "手册 v3.2 附录C降级开关与应急联系人 p.12 ← order-svc-runbook@v3.2#17",
+  "手册 v3.2 4.2 p.8 ← order-svc-runbook@v3.2#12",
+  "caffeine-local-cache 容量上限 ← caffeine-local-cache@v1#2"
+ ],
+ "answer": "根因是 OrderDetailCache 未设置 maximumSize，也没有过期时间，导致缓存无限增长[1]。违反了手册中关于本地缓存必须设置容量上限和过期时间的规定[2]。当时采用降级开关 order.cache.local.enabled，将订单详情直接查 Redis，避免缓存雪崩。未按手册要求回滚，是因为在 30 分钟内 P99 翻倍或错误率超过 1%，根据预案需立即止血[4]。",
+ "checks": [
+  {
+   "sentence": "根因是 OrderDetailCache 未设置 maximumSize，也没有过期时间，导致缓存无限增长[1]。",
+   "cites": [
+    1
+   ],
+   "bad_ids": [],
+   "cover": 0.55
+  },
+  {
+   "sentence": "违反了手册中关于本地缓存必须设置容量上限和过期时间的规定[2]。",
+   "cites": [
+    2
+   ],
+   "bad_ids": [],
+   "cover": 0.67
+  },
+  {
+   "sentence": "当时采用降级开关 order.cache.local.enabled，将订单详情直接查 Redis，避免缓存雪崩。",
+   "cites": [],
+   "bad_ids": [],
+   "cover": 0.0
+  },
+  {
+   "sentence": "未按手册要求回滚，是因为在 30 分钟内 P99 翻倍或错误率超过 1%，根据预案需立即止血[4]。",
+   "cites": [
+    4
+   ],
+   "bad_ids": [],
+   "cover": 0.67
+  }
+ ]
+}
