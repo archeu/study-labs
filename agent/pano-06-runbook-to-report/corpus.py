@@ -174,15 +174,15 @@ def runbook_pages(ver):
     ]
 
 
-def scanned(html):
+def scanned(html, dpi=110, angle=1.2):
     """把一页渲染成图片，加一点倾斜和噪点，再当成扫描件放回 PDF：这一页没有文字层。"""
     import cv2
     tmp = pymupdf.open()
     pg = tmp.new_page()
     pg.insert_htmlbox(pymupdf.Rect(60, 60, 540, 780), html, css=CSS)
-    pix = pg.get_pixmap(dpi=110, colorspace=pymupdf.csGRAY)
+    pix = pg.get_pixmap(dpi=dpi, colorspace=pymupdf.csGRAY)
     img = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.h, pix.w).copy()
-    rot = cv2.getRotationMatrix2D((pix.w / 2, pix.h / 2), 1.2, 1.0)
+    rot = cv2.getRotationMatrix2D((pix.w / 2, pix.h / 2), angle, 1.0)
     img = cv2.warpAffine(img, rot, (pix.w, pix.h), borderValue=255)
     rng = np.random.default_rng(12)
     img = np.clip(img.astype(int) - (rng.random(img.shape) < 0.015) * 120 + 18, 0, 255).astype(np.uint8)

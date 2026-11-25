@@ -1,0 +1,333 @@
+{
+ "recall_A": 0.926,
+ "recall_B": 0.926,
+ "recall_C": 0.995,
+ "pages": [
+  {
+   "page": 1,
+   "truth_chars": 226,
+   "A": 1.0,
+   "B": 1.0,
+   "C": 1.0
+  },
+  {
+   "page": 2,
+   "truth_chars": 529,
+   "A": 1.0,
+   "B": 1.0,
+   "C": 1.0
+  },
+  {
+   "page": 3,
+   "truth_chars": 424,
+   "A": 0.995,
+   "B": 0.995,
+   "C": 0.995
+  },
+  {
+   "page": 4,
+   "truth_chars": 195,
+   "A": 1.0,
+   "B": 1.0,
+   "C": 1.0
+  },
+  {
+   "page": 5,
+   "truth_chars": 295,
+   "A": 1.0,
+   "B": 1.0,
+   "C": 1.0
+  },
+  {
+   "page": 6,
+   "truth_chars": 264,
+   "A": 1.0,
+   "B": 1.0,
+   "C": 1.0
+  },
+  {
+   "page": 7,
+   "truth_chars": 169,
+   "A": 1.0,
+   "B": 1.0,
+   "C": 1.0
+  },
+  {
+   "page": 8,
+   "truth_chars": 200,
+   "A": 1.0,
+   "B": 1.0,
+   "C": 1.0
+  },
+  {
+   "page": 9,
+   "truth_chars": 282,
+   "A": 0.993,
+   "B": 0.993,
+   "C": 0.993
+  },
+  {
+   "page": 10,
+   "truth_chars": 221,
+   "A": 1.0,
+   "B": 1.0,
+   "C": 1.0
+  },
+  {
+   "page": 11,
+   "truth_chars": 264,
+   "A": 0.977,
+   "B": 0.977,
+   "C": 0.977
+  },
+  {
+   "page": 12,
+   "truth_chars": 234,
+   "A": 0.0,
+   "B": 0.0,
+   "C": 0.97
+  }
+ ],
+ "t_plain": 0.02,
+ "t_full": 7.0,
+ "rows_intact": {
+  "A": 0,
+  "C": 23,
+  "rows": 24
+ },
+ "plain_p4": "2 告警与阈值\n阈值按 2026-10 的压测结果定。P2 在值班群通知，P1 同时电话呼叫值班人。\n指标\n阈值\n级别\n接口 P99（order-04）\n> 800 ms 持续 3 分\n钟\nP2\n接口错误率\n> 1% 持续 2 分钟\nP1\nOld 区占用\n> 85% 持续 5 分钟\nP2\nFull GC 次数\n10 分钟内 > 3 次\nP1\n连接池等待线程\n> 10 持续 1 分钟\nP2\nKafka 消费积压\nlag > 100000\nP2\n告警消息里带 Grafana 面板链接和最近一次发布的版本号。\norder-svc 运维手册 v3.2 · 交易组 · 内部资料\n第 4 页 / 共 12 页\n",
+ "plain_p12": "",
+ "tables": {
+  "extract_ok": 31,
+  "clip_ok": 59,
+  "cells": 59,
+  "examples": [
+   [
+    "v30.",
+    "v3.0"
+   ],
+   [
+    "2025 03 10- -",
+    "2025-03-10"
+   ],
+   [
+    "按K8s部署重写全书",
+    "按 K8s 部署重写全书"
+   ],
+   [
+    "v31.",
+    "v3.1"
+   ],
+   [
+    "2025 06 18- -",
+    "2025-06-18"
+   ],
+   [
+    "新增§34Kafka消费积压.",
+    "新增 §3.4 Kafka 消费积压"
+   ]
+  ],
+  "p11_first_row": "-XX:HeapDumpPath | /data/dump | 挂了持久卷，Pod 重启不丢"
+ },
+ "scan": [
+  {
+   "dpi": 72,
+   "angle": 1.2,
+   "px": "595x842",
+   "sec": 0.58,
+   "cer": 0.944,
+   "keys": 0,
+   "rows_ok": 0,
+   "lines": [
+    "附录 C降级开关与应急联系人"
+   ]
+  },
+  {
+   "dpi": 110,
+   "angle": 1.2,
+   "px": "910x1287",
+   "sec": 1.91,
+   "cer": 0.017,
+   "keys": 5,
+   "rows_ok": 3,
+   "lines": [
+    "附录C降级开关与应急联系人",
+    "(2024年纸质应急预案扫描件，内容仍有效)",
+    "开关 | 关掉后",
+    "order.export.enabled | 停止订单导出，已在跑的任务会跑完",
+    "order.cache.local.enabled | 不用本地缓存，订单详情直接查Redis",
+    "order.recommend.enabled | 下单页不展示推荐商品",
+    "开关在配置中心trade/order-svc下修改，1分钟内生效，不用重启。",
+    "应急联系:交易组值班群#trade-oncall;DBA值班群#dba-oncall。"
+   ]
+  },
+  {
+   "dpi": 150,
+   "angle": 1.2,
+   "px": "1240x1755",
+   "sec": 2.58,
+   "cer": 0.013,
+   "keys": 5,
+   "rows_ok": 3,
+   "lines": [
+    "附录C降级开关与应急联系人",
+    "(2024年纸质应急预案扫描件，内容仍有效)",
+    "开关 | 关掉后",
+    "order.export.enabled | 停止订单导出，已在跑的任务会跑完",
+    "order.cache.local.enabled | 不用本地缓存，订单详情直接查Redis",
+    "order.recommend.enabled | 下单页不展示推荐商品",
+    "开关在配置中心 trade/order-svc下修改，1分钟内生效 | ，不用重启。",
+    "应急联系：交易组值班群#trade-oncall;DBA值班群#dba-oncall。"
+   ]
+  },
+  {
+   "dpi": 200,
+   "angle": 1.2,
+   "px": "1653x2339",
+   "sec": 3.08,
+   "cer": 0.017,
+   "keys": 5,
+   "rows_ok": 3,
+   "lines": [
+    "附录C降级开关与应急联系人",
+    "(2024年纸质应急预案扫描件，内容仍有效)",
+    "开关 | 关掉后",
+    "order.export.enabled | 停止订单导出，已在跑的任务会跑完",
+    "order.cache.local.enabled | 不用本地缓存，订单详情直接查Redis",
+    "order.recommend.enabled | 下单页不展示推荐商品",
+    "开关在配置中心trade/order-svc下修改，1分钟内生效，不用重启。",
+    "应急联系:交易组值班群#trade-oncall;DBA值班群#dba-oncall。"
+   ]
+  },
+  {
+   "dpi": 300,
+   "angle": 1.2,
+   "px": "2480x3509",
+   "sec": 3.12,
+   "cer": 0.021,
+   "keys": 5,
+   "rows_ok": 3,
+   "lines": [
+    "附录C降级开关与应急联系人",
+    "(2024年纸质应急预案扫描件，内容仍有效)",
+    "开关 | 关掉后",
+    "order.export.enabled | 停止订单导出，已在跑的任务会跑完",
+    "order.cache.local.enabled | 不用本地缓存 | 订单详情直接查 Redis",
+    "order.recommend.enabled | 下单页不展示推荐商品",
+    "开关在配置中心trade/order-svc下修改，1分钟内生效，不用重启。",
+    "应急联系:交易组值班群#trade-oncall;DBA值班群#dba-oncall。"
+   ]
+  },
+  {
+   "dpi": 200,
+   "angle": 0.0,
+   "px": "1653x2339",
+   "sec": 3.24,
+   "cer": 0.017,
+   "keys": 5,
+   "rows_ok": 3,
+   "lines": [
+    "附录C降级开关与应急联系人",
+    "(2024年纸质应急预案扫描件，内容仍有效)",
+    "开关 | 关掉后",
+    "order.export.enabled | 停止订单导出，已在跑的任务会跑完",
+    "order.cache.local.enabled | 不用本地缓存， | 订单详情直接查Redis",
+    "order.recommend.enabled | 下单页不展示推荐商品",
+    "开关在配置中心trade/order-svc下修改，1分钟内生效，不用重启。",
+    "应急联系:交易组值班群#trade-oncall;DBA值班群#dba-oncall。"
+   ]
+  },
+  {
+   "dpi": 200,
+   "angle": 3.0,
+   "px": "1653x2339",
+   "sec": 2.94,
+   "cer": 0.021,
+   "keys": 5,
+   "rows_ok": 3,
+   "lines": [
+    "附录C降级开关与应急联系人",
+    "(2024年纸质应急预案扫描件，内容仍有效)",
+    "开关 | 关掉后",
+    "order.export.enabled | 停止订单导出， | 已在跑的任务会跑完",
+    "order.cache.local.enabled | 不用本地缓存 | 订单详情直接查Redis",
+    "order.recommend.enabled | 下单页不展示推荐商品",
+    "开关在配置中心trade/order-svc下修改，1分钟内生效，不用重启。",
+    "应急联系:交易组值班群#trade-oncall;DBA值班群#dba-oncall。"
+   ]
+  }
+ ],
+ "docx_numbered": [
+  [
+   "heading",
+   "处置步骤"
+  ],
+  [
+   "text",
+   "看 GC 日志"
+  ],
+  [
+   "text",
+   "关闭开关 order.cache.local.enabled"
+  ],
+  [
+   "text",
+   "观察 P99"
+  ]
+ ],
+ "docx_ticket": [
+  [
+   "heading",
+   1,
+   "INC-20261109-02 order-svc P99 1.6 秒，Old 区持续上涨"
+  ],
+  [
+   "table",
+   0,
+   "级别 | P2\n开始 | 2026-11-09 10:42\n恢复 | 2026-11-09 11:12\n处理人 | 交易"
+  ],
+  [
+   "heading",
+   2,
+   "时间线"
+  ],
+  [
+   "table",
+   0,
+   "时间 | 事件\n10:00 | 发布 v2.3.1：分批导出修复，同时新增订单详情本地缓存 OrderDetailCac"
+  ],
+  [
+   "heading",
+   2,
+   "根因"
+  ],
+  [
+   "text",
+   0,
+   "OrderDetailCache 用 Caffeine 实现，没有设置 maximumSize，也没有过期时间，订单详情"
+  ],
+  [
+   "heading",
+   2,
+   "修复和改进"
+  ],
+  [
+   "text",
+   0,
+   "补上 maximumSize(50000) 和 expireAfterWrite(10 分钟)，计划随 v2.3.2 发"
+  ]
+ ],
+ "rect_ops": [
+  "1 52.75 115.278 1 re",
+  "115.278 52.75 1 23.75 re",
+  "1 52.75 1 23.75 re",
+  "1 75.5 115.278 1 re"
+ ],
+ "content_stream": "BT\n/F0 14 Tf\n1 0 0 -1 1 24.7 Tm\n[<00130001>]TJ\n/F1 14 Tf\n1 0 0 -1 12.676001 24.7 Tm\n[<0cc843e4068c4e8608ba>]TJ\n/F1 10.5 Tf\n1 0 0 -1 1 46.025 Tm\n[<4e8608ba1b87>]TJ\n/F2 10.5 Tf\n1 0 0 -1 32.5 46.025 Tm\n[<00010013001100130017000e001200110001>]TJ\n/F1 10.5 Tf\n1 0 0 -1 76.862499 46.025 Tm\n[<2f020c0925c93751201a141804b2>]TJ\n/F2 10.5 Tf\n1 0 0 -1 150.36249 46.025 Tm\n[<003100130001>]TJ\n/F1 10.5 Tf\n1 0 0 -1 166.123 46.025 Tm\n[<0",
+ "fonts_p4": [
+  "Heiti",
+  "IAIPGN+Nimbus Sans Bold",
+  "BEQDAZ+Droid Sans Fallback Regular",
+  "JTKOUO+Nimbus Sans Regular"
+ ]
+}

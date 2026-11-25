@@ -130,15 +130,12 @@ def parse_pdf(path):
 _ocr = None
 
 
-def ocr_page(pg, pno):
-    """扫描页：渲染成图，RapidOCR 识别出一个个文字框，再按纵坐标拼回行。"""
+def ocr_lines(img):
+    """一张图 → 一行行文字：RapidOCR 先找出文字框、再认字，然后按纵坐标把框拼回行。"""
     global _ocr
-    import numpy as np
     from rapidocr import RapidOCR
     if _ocr is None:
         _ocr = RapidOCR(params={"Global.log_level": "error"})
-    pix = pg.get_pixmap(dpi=200)
-    img = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.h, pix.w, pix.n)[:, :, :3].copy()
     r = _ocr(img)
     if r.boxes is None:
         return []
@@ -151,7 +148,15 @@ def ocr_page(pg, pno):
             rows[-1][1].append((x, t))
         else:
             rows.append([y, [(x, t)]])
-    lines = [" | ".join(t for _, t in sorted(cells)) for _, cells in rows]
+    return [" | ".join(t for _, t in sorted(cells)) for _, cells in rows]
+
+
+def ocr_page(pg, pno):
+    """扫描页：渲染成图交给 OCR，再按标题的样子分出标题和正文。"""
+    import numpy as np
+    pix = pg.get_pixmap(dpi=200)
+    img = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.h, pix.w, pix.n)[:, :, :3].copy()
+    lines = ocr_lines(img)
     out = []
     for ln in lines:
         if re.match(r"^(附录\s*[A-Z]|\d+(\.\d+)+)\s*\S{2,24}$", ln):
