@@ -57,3 +57,25 @@ def first_hit_rank(rows, gold):
         if is_hit(r, gold):
             return i
     return None
+
+
+# 证据：答案所在的那句话里的一段原文（比较时去掉空白）。不按章节、按内容判断命中，
+# 这样固定长度切块这种“没有章节”的切法也能评；证据被切断在两片之间，就算没命中。
+EVIDENCE = {
+    "Q01": "800 ms 持续 3 分钟", "Q02": "85% 持续 5 分钟", "Q03": "P1 同时电话呼叫值班人",
+    "Q04": "第一步，看 GC 日志", "Q05": "晚高峰 19:00–22:00 不做 heap dump", "Q06": "停顿 8 秒以上",
+    "Q07": "最近发布 → GC → 慢 SQL → 下游", "Q08": "6 个 Pod × 20 已经是 120 个连接", "Q09": "maximumPoolSize=20",
+    "Q10": "order-events-dlq", "Q11": "最多 12 个消费者同时干活", "Q12": "先发 1 个 Pod，观察 15 分钟",
+    "Q13": "发布后 30 分钟内", "Q14": "kubectl rollout undo deploy/order-svc -n trade",
+    "Q15": "必须同时设置容量上限 maximumSize", "Q16": "4 GB 堆就是不超过 400 MB", "Q17": "命中率低于 50% 的本地缓存",
+    "Q18": "超过 10 万行的导出走异步任务", "Q19": "MaxGCPauseMillis | 200", "Q20": "/data/dump", "Q21": "保留 7 天",
+    "Q22": "不用本地缓存", "Q23": "1分钟内生效", "Q24": "#dba-oncall", "Q25": "6 个 Pod，每个 4 核 8 GB",
+    "Q26": "order-04 订单详情", "Q27": "41 万行订单读进内存", "Q28": "关闭开关 order.cache.local.enabled",
+    "Q29": "maximumSize(50000)", "Q30": "W-TinyLFU",
+}
+
+
+def has_evidence(text, qid):
+    import re
+    sq = lambda x: re.sub(r"\s+", "", x)
+    return sq(EVIDENCE[qid]) in sq(text)
