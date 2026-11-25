@@ -1,0 +1,569 @@
+{
+ "n": 30,
+ "retrieval": {
+  "hit@1": 0.9,
+  "hit@3": 0.967,
+  "hit@5": 0.967,
+  "mrr": 0.931,
+  "hit@3_ci95": [
+   0.9,
+   1
+  ],
+  "hit@5_ci95": [
+   0.9,
+   1
+  ]
+ },
+ "generation": {
+  "faithful": 29,
+  "of": 33,
+  "faithful_rate": 0.879,
+  "correct_yes": 20,
+  "correct_partial": 3,
+  "correct_no": 7,
+  "refused_ok": 2,
+  "noans": 3,
+  "faithful_ci95": [
+   0.77,
+   0.99
+  ]
+ },
+ "grid": {
+  "检索到了": {
+   "yes": [
+    "Q01",
+    "Q02",
+    "Q04",
+    "Q07",
+    "Q09",
+    "Q10",
+    "Q12",
+    "Q13",
+    "Q14",
+    "Q15",
+    "Q16",
+    "Q19",
+    "Q20",
+    "Q21",
+    "Q23",
+    "Q24",
+    "Q25",
+    "Q26",
+    "Q28",
+    "Q30"
+   ],
+   "no": [
+    "Q03",
+    "Q05",
+    "Q06",
+    "Q11",
+    "Q22",
+    "Q27"
+   ],
+   "partial": [
+    "Q08",
+    "Q17",
+    "Q18"
+   ]
+  },
+  "没检索到": {
+   "no": [
+    "Q29"
+   ]
+  }
+ },
+ "judge_llm": {
+  "tp": 0,
+  "fp": 0,
+  "fn": 4,
+  "tn": 29,
+  "recall": 0.0,
+  "precision": null
+ },
+ "judge_lex": {
+  "0.3": {
+   "tp": 0,
+   "fp": 5,
+   "fn": 4,
+   "tn": 24,
+   "recall": 0.0,
+   "precision": 0.0
+  },
+  "0.4": {
+   "tp": 1,
+   "fp": 5,
+   "fn": 3,
+   "tn": 24,
+   "recall": 0.25,
+   "precision": 0.17
+  },
+  "0.5": {
+   "tp": 1,
+   "fp": 6,
+   "fn": 3,
+   "tn": 23,
+   "recall": 0.25,
+   "precision": 0.14
+  },
+  "0.6": {
+   "tp": 2,
+   "fp": 7,
+   "fn": 2,
+   "tn": 22,
+   "recall": 0.5,
+   "precision": 0.22
+  },
+  "0.7": {
+   "tp": 3,
+   "fp": 8,
+   "fn": 1,
+   "tn": 21,
+   "recall": 0.75,
+   "precision": 0.27
+  },
+  "0.8": {
+   "tp": 4,
+   "fp": 11,
+   "fn": 0,
+   "tn": 18,
+   "recall": 1.0,
+   "precision": 0.27
+  }
+ },
+ "rows": [
+  {
+   "qid": "Q01",
+   "q": "order-04 接口的 P99 超过多少会告警？",
+   "answer": "order-04 接口的 P99 超过 800 ms 会告警 [1]。",
+   "rank": 1,
+   "cover": 0.88,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "800 ms 对，出自 [1] 告警表；没说“持续 3 分钟”，不算错"
+  },
+  {
+   "qid": "Q02",
+   "q": "Old 区占用到多少、持续多久会触发告警？",
+   "answer": "Old 区占用到 85% 会触发告警，持续 5 分钟会触发告警 [2]。",
+   "rank": 2,
+   "cover": 0.86,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "85%、5 分钟都对，[2] 是告警表"
+  },
+  {
+   "qid": "Q03",
+   "q": "什么情况下会直接打电话叫值班的人？",
+   "answer": "在阈值触发情况下，会直接打电话叫值班的人 [1]。",
+   "rank": 1,
+   "cover": 0.33,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": false,
+   "correct": "no",
+   "note": "资料只说 P1 才电话呼叫；回答说成“阈值触发就打电话”，把条件放宽了"
+  },
+  {
+   "qid": "Q04",
+   "q": "堆被慢慢吃满、Full GC 越来越多，第一步该看什么？",
+   "answer": "堆被慢慢吃满、Full GC 越来越多，第一步该看 GC 日志，确认 Old 区回收后是否还在涨 [2]。",
+   "rank": 1,
+   "cover": 0.4,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "内容出自 [1]（§3.1），却标成 [2]（§5.2 GC 日志位置）"
+  },
+  {
+   "qid": "Q05",
+   "q": "晚上八点能不能做 heap dump？",
+   "answer": "资料里没有提到晚上八点能不能做 heap dump。",
+   "rank": 1,
+   "cover": null,
+   "uncited": 1,
+   "refused": true,
+   "judge": true,
+   "faithful": true,
+   "correct": "no",
+   "note": "误拒：[1] 写着晚高峰 19:00–22:00 不做 heap dump，模型没把“晚上八点”对上"
+  },
+  {
+   "qid": "Q06",
+   "q": "为什么不建议直接 dump 堆？",
+   "answer": "资料里没有；资料里没有；资料里没有。",
+   "rank": 1,
+   "cover": null,
+   "uncited": 1,
+   "refused": true,
+   "judge": true,
+   "faithful": true,
+   "correct": "no",
+   "note": "误拒加复读：[1] 写着 4 GB 的 dump 会让 Pod 停顿 8 秒以上"
+  },
+  {
+   "qid": "Q07",
+   "q": "接口变慢了，排查的先后顺序是什么？",
+   "answer": "接口变慢了，排查的先后顺序是：最近发布 → GC → 慢 SQL → 下游。[1]",
+   "rank": 1,
+   "cover": null,
+   "uncited": 1,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "顺序全对；[1] 写在句号后面"
+  },
+  {
+   "qid": "Q08",
+   "q": "连接池等待线程告警，能不能直接把连接池调大？",
+   "answer": "连接池等待线程告警不能直接把连接池调大，因为调大连接池会将压力转给数据库 [2]。资料里没有提到直接调大连接池的建议。",
+   "rank": 1,
+   "cover": 0.55,
+   "uncited": 1,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "partial",
+   "note": "“不能调大、压力转给数据库”出自 [2] 笔记；没用 [1] 里 120 个连接 / 从库 300 的理由；第二句“资料里没有”自相矛盾"
+  },
+  {
+   "qid": "Q09",
+   "q": "order-svc 的数据库连接池最多几个连接？",
+   "answer": "order-svc 的数据库连接池最多 20 个连接 [1]。",
+   "rank": 1,
+   "cover": 0.83,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "20 个，对"
+  },
+  {
+   "qid": "Q10",
+   "q": "一直处理失败的消息最后去了哪里？",
+   "answer": "一直处理失败的消息最后去了死信 topic order-events-dlq [1]。",
+   "rank": 1,
+   "cover": 0.9,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "死信 topic order-events-dlq，对"
+  },
+  {
+   "qid": "Q11",
+   "q": "多开几个 Pod 能不能加快 order-events 的消费？",
+   "answer": "多开几个 Pod 能加快 order-events 的消费 [1]。",
+   "rank": 1,
+   "cover": 0.71,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": false,
+   "correct": "no",
+   "note": "意思反了：[1] 说 12 个分区最多 12 个消费者、多开 Pod 也没用，回答说“能加快”"
+  },
+  {
+   "qid": "Q12",
+   "q": "新版本上线先发几个 Pod、观察多久？",
+   "answer": "新版本上线先发 1 个 Pod，观察 15 分钟，看 P99、错误率、Old 区占用三项；没问题再全量 [1]。",
+   "rank": 1,
+   "cover": 0.86,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "1 个 Pod、15 分钟，对"
+  },
+  {
+   "qid": "Q13",
+   "q": "发布后多长时间内出问题可以不查原因直接回滚？",
+   "answer": "发布后 30 分钟内，P99 翻倍或错误率 > 1%，不用找原因，立即回滚 [1]。",
+   "rank": 1,
+   "cover": 1.0,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "30 分钟内、P99 翻倍或错误率 > 1%，对"
+  },
+  {
+   "qid": "Q14",
+   "q": "回滚 order-svc 的命令是什么？",
+   "answer": "回滚 order-svc 的命令是：kubectl rollout undo deploy/order-svc -n trade [1]。",
+   "rank": 1,
+   "cover": 0.89,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "命令一字不差"
+  },
+  {
+   "qid": "Q15",
+   "q": "本地缓存上线前必须配置哪两项？",
+   "answer": "本地缓存上线前必须配置 maximumSize 和 expireAfterWrite [1]。",
+   "rank": 1,
+   "cover": 0.71,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "maximumSize 和 expireAfterWrite，对"
+  },
+  {
+   "qid": "Q16",
+   "q": "4 GB 的堆，本地缓存最多能占多大？",
+   "answer": "4 GB 堆，本地缓存最多能占 400 MB [1]。",
+   "rank": 1,
+   "cover": 0.83,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "400 MB，对"
+  },
+  {
+   "qid": "Q17",
+   "q": "本地缓存命中率很低该怎么处理？",
+   "answer": "本地缓存命中率很低，说明它没起作用，应该删掉 [1]。",
+   "rank": 1,
+   "cover": 1.0,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "partial",
+   "note": "“没起作用、应该删掉”对，没说低于 50% 这条线"
+  },
+  {
+   "qid": "Q18",
+   "q": "要导出 20 万行订单，应该怎么做？",
+   "answer": "要导出 20 万行订单，应分批导出，每批不超过 5000 行，共四批 [1]。由于超过 10 万行的导出走异步任务，放在夜间 01:00–05:00 执行，结果发到用户邮箱 [1]。",
+   "rank": 1,
+   "cover": 0.67,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": false,
+   "correct": "partial",
+   "note": "异步、夜间、每批 ≤ 5000 行都对；多了一句“共四批”，资料里没有，而且 20 万 ÷ 5000 是 40 批"
+  },
+  {
+   "qid": "Q19",
+   "q": "G1 的停顿目标设的是多少？",
+   "answer": "G1 的停顿目标设的是 200 [1]。",
+   "rank": 1,
+   "cover": 1.0,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "200，对"
+  },
+  {
+   "qid": "Q20",
+   "q": "OOM 时自动生成的堆转储放在哪个目录？",
+   "answer": "OOM 时自动生成的堆转储放在 `/data/dump` 目录 [1]。",
+   "rank": 1,
+   "cover": 0.5,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "/data/dump，对"
+  },
+  {
+   "qid": "Q21",
+   "q": "GC 日志写在哪，保留几天？",
+   "answer": "GC 日志写在 /data/logs/order-svc/gc.log，保留 7 天。[1]",
+   "rank": 1,
+   "cover": null,
+   "uncited": 1,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "路径和 7 天都对；[1] 写在句号后面"
+  },
+  {
+   "qid": "Q22",
+   "q": "想临时停用本地缓存，改哪个开关？",
+   "answer": "想临时停用本地缓存，改哪个开关？[2]",
+   "rank": 1,
+   "cover": null,
+   "uncited": 1,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "no",
+   "note": "检索完全正确（附录 C 第 1），模型却把问题原样抄了一遍，还标了 [2]"
+  },
+  {
+   "qid": "Q23",
+   "q": "降级开关改完多久生效，要不要重启？",
+   "answer": "降级开关改完后 1 分钟内生效，不用重启 [1]。",
+   "rank": 1,
+   "cover": 0.71,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "1 分钟、不用重启，对（附录 C 是 OCR 来的）"
+  },
+  {
+   "qid": "Q24",
+   "q": "找 DBA 应急去哪个群？",
+   "answer": "DBA 应急去值班群#dba-oncall。",
+   "rank": 1,
+   "cover": null,
+   "uncited": 1,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "#dba-oncall 对，没标出处"
+  },
+  {
+   "qid": "Q25",
+   "q": "order-svc 部署了几个 Pod，每个多大？",
+   "answer": "order-svc 部署了 6 个 Pod，每个 Pod 4 核 8 GB [1]。",
+   "rank": 1,
+   "cover": 0.83,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "6 个 Pod、4 核 8 GB，对"
+  },
+  {
+   "qid": "Q26",
+   "q": "订单详情是哪个接口编号，前面有什么缓存？",
+   "answer": "订单详情是 order-04 接口编号 [1]；order-04 带一层本地缓存（Caffeine）[1]。",
+   "rank": 1,
+   "cover": 0.8,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "order-04、Caffeine，对"
+  },
+  {
+   "qid": "Q27",
+   "q": "11 月 8 日那次 Full GC 是什么原因？",
+   "answer": "资料里没有。",
+   "rank": 1,
+   "cover": null,
+   "uncited": 1,
+   "refused": true,
+   "judge": true,
+   "faithful": true,
+   "correct": "no",
+   "note": "误拒：[1] 就是 11-08 那张故障单的根因，但片里没有日期，模型不敢认"
+  },
+  {
+   "qid": "Q28",
+   "q": "11 月 9 日 P99 升高时是怎么止血的？",
+   "answer": "11 月 9 日 P99 升高时，止血措施是关闭可疑功能，具体是关闭 order.cache.local.enabled 开关，将订单详情改查 Redis [3]。",
+   "rank": 3,
+   "cover": 0.67,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "开关名和改查 Redis 出自 [3] 时间线，对"
+  },
+  {
+   "qid": "Q29",
+   "q": "OrderDetailCache 打算怎么修？",
+   "answer": "OrderDetailCache 没有设置 maximumSize，也没有过期时间，导致订单详情只进不出 [2]。",
+   "rank": 11,
+   "cover": 0.9,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "no",
+   "note": "答成了根因（[2] 里确实这么写），问的是怎么修；修复那片排第 11，没进前 3"
+  },
+  {
+   "qid": "Q30",
+   "q": "Caffeine 超过容量上限时按什么策略淘汰？",
+   "answer": "Caffeine 超过容量上限时按 W-TinyLFU 策略淘汰 [1]。",
+   "rank": 1,
+   "cover": 0.71,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": true,
+   "correct": "yes",
+   "note": "W-TinyLFU，对"
+  },
+  {
+   "qid": "N01",
+   "q": "order-svc 的 Redis 集群密码是多少？",
+   "answer": "资料里没有提到 order-svc 的 Redis 集群密码。",
+   "rank": null,
+   "cover": null,
+   "uncited": 1,
+   "refused": true,
+   "judge": true,
+   "faithful": true,
+   "correct": null,
+   "note": "库外题：老实说没有"
+  },
+  {
+   "qid": "N02",
+   "q": "pay-svc 的 P99 告警阈值是多少？",
+   "answer": "pay-svc 的 P99 告警阈值是 800 ms，出处 [2]。",
+   "rank": null,
+   "cover": 0.5,
+   "uncited": 0,
+   "refused": false,
+   "judge": true,
+   "faithful": false,
+   "correct": null,
+   "note": "库外题却编了答案：把 order-04 的 800 ms 安到 pay-svc 头上，出处标 [2] 修订记录"
+  },
+  {
+   "qid": "N03",
+   "q": "inventory-svc 怎么回滚？",
+   "answer": "资料里没有提到 inventory-svc 的回滚方法，因此无法根据资料回答。",
+   "rank": null,
+   "cover": null,
+   "uncited": 1,
+   "refused": true,
+   "judge": true,
+   "faithful": true,
+   "correct": null,
+   "note": "库外题：老实说没有"
+  }
+ ],
+ "time": {
+  "t_retrieve": 12.5,
+  "t_gen": 12.5,
+  "t_judge": 15.0
+ }
+}

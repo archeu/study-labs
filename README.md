@@ -68,6 +68,7 @@
 | [清洗、切块策略和元数据](https://study.ainiya.de/agent/chunking-metadata.html) | [`agent/chunking-metadata`](agent/chunking-metadata/) | `main.py` 7 种清洗 / 切块 / 元数据做法 × 30 题的命中率对比（按证据原文判定），清洗前后页眉、目录、连字计数；评测集加了 `EVIDENCE` |
 | [向量检索和 HNSW 索引](https://study.ainiya.de/agent/vector-hnsw.html) | [`agent/vector-hnsw`](agent/vector-hnsw/) | `main.py` pgvector 5 万条 × 1024 维：暴力、HNSW（m、ef_search）、IVFFlat、三种选择率的过滤和 iterative_scan；`toy_hnsw.py` 18 个点 3 层的手推 |
 | [混合检索：关键词 BM25 加向量，再重排](https://study.ainiya.de/agent/hybrid-search.html) | [`agent/hybrid-search`](agent/hybrid-search/) | `main.py` 31 片 × 30 题，BM25 / 向量 / RRF / 分数加权 / 重排 6 种办法的名次和命中率，BM25 逐词拆解，jieba 对标识符的切法 |
+| [评测：检索命中率和答案忠实度](https://study.ainiya.de/agent/rag-eval.html) | [`agent/rag-eval`](agent/rag-eval/) | `main.py` 33 题走完检索 + 生成 + 两种判官；`labels.json` 人工核对；`score.py` 命中率、忠实度、错因交叉表、判官和人工的对照 |
 
 ## Java 后端架构
 

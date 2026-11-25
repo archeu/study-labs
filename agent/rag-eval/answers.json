@@ -1,0 +1,1405 @@
+[
+ {
+  "qid": "Q01",
+  "q": "order-04 接口的 P99 超过多少会告警？",
+  "ref": "800 ms，持续 3 分钟，P2",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#6",
+   "INC-20261108-01@v1#2",
+   "INC-20261109-02@v1#2"
+  ],
+  "top_sections": [
+   "2 告警与阈值",
+   "时间线",
+   "时间线"
+  ],
+  "top_scores": [
+   3.59,
+   3.02,
+   2.96
+  ],
+  "answer": "order-04 接口的 P99 超过 800 ms 会告警 [1]。",
+  "lexical": [
+   {
+    "sentence": "order-04 接口的 P99 超过 800 ms 会告警 [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.88
+   }
+  ],
+  "lex_min_cover": 0.88,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "资料里没有"
+   ]
+  },
+  "t_retrieve": 13.1,
+  "t_gen": 19.7,
+  "t_judge": 21.5
+ },
+ {
+  "qid": "Q02",
+  "q": "Old 区占用到多少、持续多久会触发告警？",
+  "ref": "85%，持续 5 分钟，P2",
+  "rank": 2,
+  "top": [
+   "order-svc-runbook@v3.2#7",
+   "order-svc-runbook@v3.2#6",
+   "INC-20261109-02@v1#2"
+  ],
+  "top_sections": [
+   "3.1 Full GC 频繁",
+   "2 告警与阈值",
+   "时间线"
+  ],
+  "top_scores": [
+   2.42,
+   1.63,
+   1.52
+  ],
+  "answer": "Old 区占用到 85% 会触发告警，持续 5 分钟会触发告警 [2]。",
+  "lexical": [
+   {
+    "sentence": "Old 区占用到 85% 会触发告警，持续 5 分钟会触发告警 [2]。",
+    "cites": [
+     2
+    ],
+    "bad_ids": [],
+    "cover": 0.86
+   }
+  ],
+  "lex_min_cover": 0.86,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "Old 区占用到 85% 会触发告警，持续 5 分钟会触发告警"
+   ]
+  },
+  "t_retrieve": 13.1,
+  "t_gen": 22.2,
+  "t_judge": 26.1
+ },
+ {
+  "qid": "Q03",
+  "q": "什么情况下会直接打电话叫值班的人？",
+  "ref": "P1 告警：错误率 > 1% 持续 2 分钟，或 10 分钟内 Full GC > 3 次",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#6",
+   "order-svc-runbook@v3.2#17",
+   "INC-20261108-01@v1#1"
+  ],
+  "top_sections": [
+   "2 告警与阈值",
+   "附录C降级开关与应急联系人",
+   "INC-20261108-01 order-svc Full GC 频繁，order-04 P99 2.1 秒"
+  ],
+  "top_scores": [
+   -2.22,
+   -4.3,
+   -9.49
+  ],
+  "answer": "在阈值触发情况下，会直接打电话叫值班的人 [1]。",
+  "lexical": [
+   {
+    "sentence": "在阈值触发情况下，会直接打电话叫值班的人 [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.33
+   }
+  ],
+  "lex_min_cover": 0.33,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": []
+  },
+  "t_retrieve": 12.5,
+  "t_gen": 8.2,
+  "t_judge": 9.8
+ },
+ {
+  "qid": "Q04",
+  "q": "堆被慢慢吃满、Full GC 越来越多，第一步该看什么？",
+  "ref": "看 GC 日志，确认 Old 区回收后是否还在涨",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#7",
+   "order-svc-runbook@v3.2#16",
+   "g1-old-gen@v1#1"
+  ],
+  "top_sections": [
+   "3.1 Full GC 频繁",
+   "5.2 GC 日志",
+   "G1 的 Old 区为什么会一直涨"
+  ],
+  "top_scores": [
+   3.77,
+   -0.07,
+   -0.48
+  ],
+  "answer": "堆被慢慢吃满、Full GC 越来越多，第一步该看 GC 日志，确认 Old 区回收后是否还在涨 [2]。",
+  "lexical": [
+   {
+    "sentence": "堆被慢慢吃满、Full GC 越来越多，第一步该看 GC 日志，确认 Old 区回收后是否还在涨 [2]。",
+    "cites": [
+     2
+    ],
+    "bad_ids": [],
+    "cover": 0.4
+   }
+  ],
+  "lex_min_cover": 0.4,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": []
+  },
+  "t_retrieve": 13.4,
+  "t_gen": 10.9,
+  "t_judge": 11.0
+ },
+ {
+  "qid": "Q05",
+  "q": "晚上八点能不能做 heap dump？",
+  "ref": "不能，晚高峰 19:00–22:00 不做；必须做先摘流量",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#7",
+   "order-svc-runbook@v3.2#14",
+   "order-svc-runbook@v3.2#11"
+  ],
+  "top_sections": [
+   "3.1 Full GC 频繁",
+   "4.4 批量导出",
+   "4.1 灰度"
+  ],
+  "top_scores": [
+   3.67,
+   -4.45,
+   -4.99
+  ],
+  "answer": "资料里没有提到晚上八点能不能做 heap dump。",
+  "lexical": [
+   {
+    "sentence": "资料里没有提到晚上八点能不能做 heap dump。",
+    "cites": [],
+    "bad_ids": [],
+    "cover": 0.0
+   }
+  ],
+  "lex_min_cover": null,
+  "lex_uncited": 1,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "资料里没有提到晚上八点能不能做 heap dump。",
+    "资料里没有提到晚上八点能不能做 heap dump。",
+    "资料里没有提到晚上八点能不能做 heap dump。"
+   ]
+  },
+  "t_retrieve": 12.5,
+  "t_gen": 5.6,
+  "t_judge": 11.6
+ },
+ {
+  "qid": "Q06",
+  "q": "为什么不建议直接 dump 堆？",
+  "ref": "4 GB 堆的 dump 会让 Pod 停顿 8 秒以上",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#7",
+   "order-svc-runbook@v3.2#15",
+   "order-svc-runbook@v3.2#13"
+  ],
+  "top_sections": [
+   "3.1 Full GC 频繁",
+   "5.1 JVM 参数",
+   "4.3 本地缓存规范"
+  ],
+  "top_scores": [
+   -0.51,
+   -4.72,
+   -7.32
+  ],
+  "answer": "资料里没有；资料里没有；资料里没有。",
+  "lexical": [
+   {
+    "sentence": "资料里没有；资料里没有；资料里没有。",
+    "cites": [],
+    "bad_ids": [],
+    "cover": 0.0
+   }
+  ],
+  "lex_min_cover": null,
+  "lex_uncited": 1,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "资料里没有",
+    "资料里没有",
+    "资料里没有"
+   ]
+  },
+  "t_retrieve": 11.9,
+  "t_gen": 11.7,
+  "t_judge": 15.6
+ },
+ {
+  "qid": "Q07",
+  "q": "接口变慢了，排查的先后顺序是什么？",
+  "ref": "最近发布 → GC → 慢 SQL → 下游",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#8",
+   "order-svc-runbook@v3.2#9",
+   "order-svc-runbook@v3.2#7"
+  ],
+  "top_sections": [
+   "3.2 接口 P99 升高",
+   "3.3 数据库连接池耗尽",
+   "3.1 Full GC 频繁"
+  ],
+  "top_scores": [
+   1.91,
+   -4.7,
+   -5.06
+  ],
+  "answer": "接口变慢了，排查的先后顺序是：最近发布 → GC → 慢 SQL → 下游。[1]",
+  "lexical": [
+   {
+    "sentence": "接口变慢了，排查的先后顺序是：最近发布 → GC → 慢 SQL → 下游。",
+    "cites": [],
+    "bad_ids": [],
+    "cover": 0.0
+   }
+  ],
+  "lex_min_cover": null,
+  "lex_uncited": 1,
+  "judge": {
+   "supported": true,
+   "unsupported": []
+  },
+  "t_retrieve": 12.0,
+  "t_gen": 15.4,
+  "t_judge": 16.7
+ },
+ {
+  "qid": "Q08",
+  "q": "连接池等待线程告警，能不能直接把连接池调大？",
+  "ref": "不能，6 × 20 = 120 个连接，从库 max_connections 300",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#9",
+   "hikari-pool@v1#1",
+   "order-svc-runbook@v3.2#6"
+  ],
+  "top_sections": [
+   "3.3 数据库连接池耗尽",
+   "HikariCP 连接池耗尽怎么看",
+   "2 告警与阈值"
+  ],
+  "top_scores": [
+   6.61,
+   1.74,
+   -1.37
+  ],
+  "answer": "连接池等待线程告警不能直接把连接池调大，因为调大连接池会将压力转给数据库 [2]。资料里没有提到直接调大连接池的建议。",
+  "lexical": [
+   {
+    "sentence": "连接池等待线程告警不能直接把连接池调大，因为调大连接池会将压力转给数据库 [2]。",
+    "cites": [
+     2
+    ],
+    "bad_ids": [],
+    "cover": 0.55
+   },
+   {
+    "sentence": "资料里没有提到直接调大连接池的建议。",
+    "cites": [],
+    "bad_ids": [],
+    "cover": 0.0
+   }
+  ],
+  "lex_min_cover": 0.55,
+  "lex_uncited": 1,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "连接池等待线程告警不能直接把连接池调大，因为调大连接池会将压力转给数据库 [2]。",
+    "资料里没有提到直接调大连接池的建议。"
+   ]
+  },
+  "t_retrieve": 13.7,
+  "t_gen": 16.7,
+  "t_judge": 22.2
+ },
+ {
+  "qid": "Q09",
+  "q": "order-svc 的数据库连接池最多几个连接？",
+  "ref": "maximumPoolSize=20",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#9",
+   "order-svc-runbook@v3.2#10",
+   "order-svc-runbook@v3.2#4"
+  ],
+  "top_sections": [
+   "3.3 数据库连接池耗尽",
+   "3.4 Kafka 消费积压",
+   "1.1 部署"
+  ],
+  "top_scores": [
+   6.38,
+   0.51,
+   0.15
+  ],
+  "answer": "order-svc 的数据库连接池最多 20 个连接 [1]。",
+  "lexical": [
+   {
+    "sentence": "order-svc 的数据库连接池最多 20 个连接 [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.83
+   }
+  ],
+  "lex_min_cover": 0.83,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "资料里没有"
+   ]
+  },
+  "t_retrieve": 12.7,
+  "t_gen": 7.9,
+  "t_judge": 9.7
+ },
+ {
+  "qid": "Q10",
+  "q": "一直处理失败的消息最后去了哪里？",
+  "ref": "失败超过 3 次进死信 topic order-events-dlq",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#10",
+   "order-svc-runbook@v3.2#9",
+   "order-svc-runbook@v3.2#15"
+  ],
+  "top_sections": [
+   "3.4 Kafka 消费积压",
+   "3.3 数据库连接池耗尽",
+   "5.1 JVM 参数"
+  ],
+  "top_scores": [
+   -0.16,
+   -5.97,
+   -7.21
+  ],
+  "answer": "一直处理失败的消息最后去了死信 topic order-events-dlq [1]。",
+  "lexical": [
+   {
+    "sentence": "一直处理失败的消息最后去了死信 topic order-events-dlq [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.9
+   }
+  ],
+  "lex_min_cover": 0.9,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": []
+  },
+  "t_retrieve": 12.3,
+  "t_gen": 15.0,
+  "t_judge": 16.9
+ },
+ {
+  "qid": "Q11",
+  "q": "多开几个 Pod 能不能加快 order-events 的消费？",
+  "ref": "不能，12 个分区最多 12 个消费者",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#10",
+   "order-svc-runbook@v3.2#9",
+   "order-svc-runbook@v3.2#4"
+  ],
+  "top_sections": [
+   "3.4 Kafka 消费积压",
+   "3.3 数据库连接池耗尽",
+   "1.1 部署"
+  ],
+  "top_scores": [
+   3.99,
+   -1.53,
+   -1.86
+  ],
+  "answer": "多开几个 Pod 能加快 order-events 的消费 [1]。",
+  "lexical": [
+   {
+    "sentence": "多开几个 Pod 能加快 order-events 的消费 [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.71
+   }
+  ],
+  "lex_min_cover": 0.71,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "资料里没有"
+   ]
+  },
+  "t_retrieve": 13.9,
+  "t_gen": 4.8,
+  "t_judge": 6.9
+ },
+ {
+  "qid": "Q12",
+  "q": "新版本上线先发几个 Pod、观察多久？",
+  "ref": "先发 1 个 Pod，观察 15 分钟",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#11",
+   "order-svc-runbook@v3.2#9",
+   "order-svc-runbook@v3.2#10"
+  ],
+  "top_sections": [
+   "4.1 灰度",
+   "3.3 数据库连接池耗尽",
+   "3.4 Kafka 消费积压"
+  ],
+  "top_scores": [
+   3.11,
+   -4.5,
+   -4.85
+  ],
+  "answer": "新版本上线先发 1 个 Pod，观察 15 分钟，看 P99、错误率、Old 区占用三项；没问题再全量 [1]。",
+  "lexical": [
+   {
+    "sentence": "新版本上线先发 1 个 Pod，观察 15 分钟，看 P99、错误率、Old 区占用三项；没问题再全量 [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.86
+   }
+  ],
+  "lex_min_cover": 0.86,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "新版本上线先发 1 个 Pod，观察 15 分钟，看 P99、错误率、Old 区占用三项；没问题再全量 [1]。"
+   ]
+  },
+  "t_retrieve": 12.8,
+  "t_gen": 12.9,
+  "t_judge": 17.4
+ },
+ {
+  "qid": "Q13",
+  "q": "发布后多长时间内出问题可以不查原因直接回滚？",
+  "ref": "30 分钟内，P99 翻倍或错误率 > 1%",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#12",
+   "order-svc-runbook@v3.2#11",
+   "order-svc-runbook@v3.2#14"
+  ],
+  "top_sections": [
+   "4.2 回滚",
+   "4.1 灰度",
+   "4.4 批量导出"
+  ],
+  "top_scores": [
+   4.41,
+   -2.91,
+   -3.43
+  ],
+  "answer": "发布后 30 分钟内，P99 翻倍或错误率 > 1%，不用找原因，立即回滚 [1]。",
+  "lexical": [
+   {
+    "sentence": "发布后 30 分钟内，P99 翻倍或错误率 > 1%，不用找原因，立即回滚 [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 1.0
+   }
+  ],
+  "lex_min_cover": 1.0,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "问题：发布后多长时间内出问题可以不查原因直接回滚？",
+    "回答：发布后 30 分钟内，P99 翻倍或错误率 > 1%，不用找原因，立即回滚 [1]。"
+   ]
+  },
+  "t_retrieve": 13.2,
+  "t_gen": 11.4,
+  "t_judge": 17.8
+ },
+ {
+  "qid": "Q14",
+  "q": "回滚 order-svc 的命令是什么？",
+  "ref": "kubectl rollout undo deploy/order-svc -n trade",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#12",
+   "order-svc-runbook@v3.2#16",
+   "order-svc-runbook@v3.2#7"
+  ],
+  "top_sections": [
+   "4.2 回滚",
+   "5.2 GC 日志",
+   "3.1 Full GC 频繁"
+  ],
+  "top_scores": [
+   2.61,
+   0.12,
+   -0.59
+  ],
+  "answer": "回滚 order-svc 的命令是：kubectl rollout undo deploy/order-svc -n trade [1]。",
+  "lexical": [
+   {
+    "sentence": "回滚 order-svc 的命令是：kubectl rollout undo deploy/order-svc -n trade [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.89
+   }
+  ],
+  "lex_min_cover": 0.89,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": []
+  },
+  "t_retrieve": 11.5,
+  "t_gen": 11.3,
+  "t_judge": 12.9
+ },
+ {
+  "qid": "Q15",
+  "q": "本地缓存上线前必须配置哪两项？",
+  "ref": "maximumSize（或 maximumWeight）和 expireAfterWrite",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#13",
+   "order-svc-runbook@v3.2#2",
+   "order-svc-runbook@v3.2#17"
+  ],
+  "top_sections": [
+   "4.3 本地缓存规范",
+   "修订记录",
+   "附录C降级开关与应急联系人"
+  ],
+  "top_scores": [
+   1.4,
+   -3.86,
+   -4.29
+  ],
+  "answer": "本地缓存上线前必须配置 maximumSize 和 expireAfterWrite [1]。",
+  "lexical": [
+   {
+    "sentence": "本地缓存上线前必须配置 maximumSize 和 expireAfterWrite [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.71
+   }
+  ],
+  "lex_min_cover": 0.71,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "本地缓存上线前必须配置 maximumSize 和 expireAfterWrite",
+    "资料里没有"
+   ]
+  },
+  "t_retrieve": 11.4,
+  "t_gen": 14.3,
+  "t_judge": 18.3
+ },
+ {
+  "qid": "Q16",
+  "q": "4 GB 的堆，本地缓存最多能占多大？",
+  "ref": "堆的 10%，即 400 MB",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#13",
+   "order-svc-runbook@v3.2#15",
+   "order-svc-runbook@v3.2#7"
+  ],
+  "top_sections": [
+   "4.3 本地缓存规范",
+   "5.1 JVM 参数",
+   "3.1 Full GC 频繁"
+  ],
+  "top_scores": [
+   3.92,
+   0.36,
+   -1.53
+  ],
+  "answer": "4 GB 堆，本地缓存最多能占 400 MB [1]。",
+  "lexical": [
+   {
+    "sentence": "4 GB 堆，本地缓存最多能占 400 MB [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.83
+   }
+  ],
+  "lex_min_cover": 0.83,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": []
+  },
+  "t_retrieve": 13.1,
+  "t_gen": 15.5,
+  "t_judge": 16.5
+ },
+ {
+  "qid": "Q17",
+  "q": "本地缓存命中率很低该怎么处理？",
+  "ref": "低于 50% 说明没起作用，应该删掉",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#13",
+   "order-svc-runbook@v3.2#5",
+   "caffeine-local-cache@v1#4"
+  ],
+  "top_sections": [
+   "4.3 本地缓存规范",
+   "1.2 关键接口",
+   "监控"
+  ],
+  "top_scores": [
+   2.89,
+   -1.28,
+   -1.5
+  ],
+  "answer": "本地缓存命中率很低，说明它没起作用，应该删掉 [1]。",
+  "lexical": [
+   {
+    "sentence": "本地缓存命中率很低，说明它没起作用，应该删掉 [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 1.0
+   }
+  ],
+  "lex_min_cover": 1.0,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "资料里没有"
+   ]
+  },
+  "t_retrieve": 11.8,
+  "t_gen": 8.9,
+  "t_judge": 8.4
+ },
+ {
+  "qid": "Q18",
+  "q": "要导出 20 万行订单，应该怎么做？",
+  "ref": "超过 10 万行走异步任务，夜间 01:00–05:00，每批 ≤ 5000 行查从库",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#14",
+   "INC-20261108-01@v1#3",
+   "INC-20261108-01@v1#4"
+  ],
+  "top_sections": [
+   "4.4 批量导出",
+   "根因",
+   "修复和改进"
+  ],
+  "top_scores": [
+   -0.45,
+   -1.62,
+   -1.82
+  ],
+  "answer": "要导出 20 万行订单，应分批导出，每批不超过 5000 行，共四批 [1]。由于超过 10 万行的导出走异步任务，放在夜间 01:00–05:00 执行，结果发到用户邮箱 [1]。",
+  "lexical": [
+   {
+    "sentence": "要导出 20 万行订单，应分批导出，每批不超过 5000 行，共四批 [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.67
+   },
+   {
+    "sentence": "由于超过 10 万行的导出走异步任务，放在夜间 01:00–05:00 执行，结果发到用户邮箱 [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.94
+   }
+  ],
+  "lex_min_cover": 0.67,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "资料里没有提到具体需要多少批",
+    "资料里没有提到是否需要使用异步任务",
+    "资料里没有提到是否需要在夜间执行异步任务"
+   ]
+  },
+  "t_retrieve": 12.8,
+  "t_gen": 14.4,
+  "t_judge": 15.5
+ },
+ {
+  "qid": "Q19",
+  "q": "G1 的停顿目标设的是多少？",
+  "ref": "-XX:MaxGCPauseMillis=200",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#15",
+   "g1-old-gen@v1#1",
+   "order-svc-runbook@v3.2#2"
+  ],
+  "top_sections": [
+   "5.1 JVM 参数",
+   "G1 的 Old 区为什么会一直涨",
+   "修订记录"
+  ],
+  "top_scores": [
+   1.88,
+   -3.87,
+   -6.88
+  ],
+  "answer": "G1 的停顿目标设的是 200 [1]。",
+  "lexical": [
+   {
+    "sentence": "G1 的停顿目标设的是 200 [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 1.0
+   }
+  ],
+  "lex_min_cover": 1.0,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": []
+  },
+  "t_retrieve": 13.0,
+  "t_gen": 17.9,
+  "t_judge": 19.5
+ },
+ {
+  "qid": "Q20",
+  "q": "OOM 时自动生成的堆转储放在哪个目录？",
+  "ref": "/data/dump（挂了持久卷）",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#15",
+   "order-svc-runbook@v3.2#16",
+   "order-svc-runbook@v3.2#7"
+  ],
+  "top_sections": [
+   "5.1 JVM 参数",
+   "5.2 GC 日志",
+   "3.1 Full GC 频繁"
+  ],
+  "top_scores": [
+   -1.69,
+   -3.99,
+   -7.71
+  ],
+  "answer": "OOM 时自动生成的堆转储放在 `/data/dump` 目录 [1]。",
+  "lexical": [
+   {
+    "sentence": "OOM 时自动生成的堆转储放在 `/data/dump` 目录 [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.5
+   }
+  ],
+  "lex_min_cover": 0.5,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": []
+  },
+  "t_retrieve": 13.9,
+  "t_gen": 12.1,
+  "t_judge": 13.2
+ },
+ {
+  "qid": "Q21",
+  "q": "GC 日志写在哪，保留几天？",
+  "ref": "/data/logs/order-svc/gc.log，保留 7 天",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#16",
+   "order-svc-runbook@v3.2#7",
+   "INC-20261108-01@v1#2"
+  ],
+  "top_sections": [
+   "5.2 GC 日志",
+   "3.1 Full GC 频繁",
+   "时间线"
+  ],
+  "top_scores": [
+   5.06,
+   -3.41,
+   -3.73
+  ],
+  "answer": "GC 日志写在 /data/logs/order-svc/gc.log，保留 7 天。[1]",
+  "lexical": [
+   {
+    "sentence": "GC 日志写在 /data/logs/order-svc/gc.log，保留 7 天。",
+    "cites": [],
+    "bad_ids": [],
+    "cover": 0.0
+   }
+  ],
+  "lex_min_cover": null,
+  "lex_uncited": 1,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "问题：GC 日志写在哪，保留几天？",
+    "回答：GC 日志写在 /data/logs/order-svc/gc.log，保留 7 天。[1]"
+   ]
+  },
+  "t_retrieve": 13.4,
+  "t_gen": 18.7,
+  "t_judge": 23.7
+ },
+ {
+  "qid": "Q22",
+  "q": "想临时停用本地缓存，改哪个开关？",
+  "ref": "order.cache.local.enabled",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#17",
+   "INC-20261109-02@v1#2",
+   "order-svc-runbook@v3.2#13"
+  ],
+  "top_sections": [
+   "附录C降级开关与应急联系人",
+   "时间线",
+   "4.3 本地缓存规范"
+  ],
+  "top_scores": [
+   0.42,
+   -2.32,
+   -3.18
+  ],
+  "answer": "想临时停用本地缓存，改哪个开关？[2]",
+  "lexical": [
+   {
+    "sentence": "想临时停用本地缓存，改哪个开关？",
+    "cites": [],
+    "bad_ids": [],
+    "cover": 0.0
+   }
+  ],
+  "lex_min_cover": null,
+  "lex_uncited": 1,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "资料里没有"
+   ]
+  },
+  "t_retrieve": 12.7,
+  "t_gen": 14.5,
+  "t_judge": 17.5
+ },
+ {
+  "qid": "Q23",
+  "q": "降级开关改完多久生效，要不要重启？",
+  "ref": "1 分钟内生效，不用重启",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#17",
+   "order-svc-runbook@v3.2#12",
+   "order-svc-runbook@v3.2#7"
+  ],
+  "top_sections": [
+   "附录C降级开关与应急联系人",
+   "4.2 回滚",
+   "3.1 Full GC 频繁"
+  ],
+  "top_scores": [
+   2.79,
+   -3.79,
+   -5.63
+  ],
+  "answer": "降级开关改完后 1 分钟内生效，不用重启 [1]。",
+  "lexical": [
+   {
+    "sentence": "降级开关改完后 1 分钟内生效，不用重启 [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.71
+   }
+  ],
+  "lex_min_cover": 0.71,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": []
+  },
+  "t_retrieve": 13.2,
+  "t_gen": 11.2,
+  "t_judge": 12.5
+ },
+ {
+  "qid": "Q24",
+  "q": "找 DBA 应急去哪个群？",
+  "ref": "#dba-oncall",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#17",
+   "order-svc-runbook@v3.2#6",
+   "order-svc-runbook@v3.2#1"
+  ],
+  "top_sections": [
+   "附录C降级开关与应急联系人",
+   "2 告警与阈值",
+   "order-svc 运维手册"
+  ],
+  "top_scores": [
+   2.85,
+   -8.08,
+   -8.41
+  ],
+  "answer": "DBA 应急去值班群#dba-oncall。",
+  "lexical": [
+   {
+    "sentence": "DBA 应急去值班群#dba-oncall。",
+    "cites": [],
+    "bad_ids": [],
+    "cover": 0.0
+   }
+  ],
+  "lex_min_cover": null,
+  "lex_uncited": 1,
+  "judge": {
+   "supported": true,
+   "unsupported": []
+  },
+  "t_retrieve": 12.5,
+  "t_gen": 9.2,
+  "t_judge": 11.3
+ },
+ {
+  "qid": "Q25",
+  "q": "order-svc 部署了几个 Pod，每个多大？",
+  "ref": "6 个 Pod，每个 4 核 8 GB",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#4",
+   "order-svc-runbook@v3.2#10",
+   "order-svc-runbook@v3.2#9"
+  ],
+  "top_sections": [
+   "1.1 部署",
+   "3.4 Kafka 消费积压",
+   "3.3 数据库连接池耗尽"
+  ],
+  "top_scores": [
+   5.69,
+   3.09,
+   2.7
+  ],
+  "answer": "order-svc 部署了 6 个 Pod，每个 Pod 4 核 8 GB [1]。",
+  "lexical": [
+   {
+    "sentence": "order-svc 部署了 6 个 Pod，每个 Pod 4 核 8 GB [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.83
+   }
+  ],
+  "lex_min_cover": 0.83,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "资料里没有"
+   ]
+  },
+  "t_retrieve": 12.6,
+  "t_gen": 12.8,
+  "t_judge": 14.3
+ },
+ {
+  "qid": "Q26",
+  "q": "订单详情是哪个接口编号，前面有什么缓存？",
+  "ref": "order-04，Caffeine 本地缓存",
+  "rank": 1,
+  "top": [
+   "order-svc-runbook@v3.2#5",
+   "INC-20261109-02@v1#2",
+   "order-svc-runbook@v3.2#17"
+  ],
+  "top_sections": [
+   "1.2 关键接口",
+   "时间线",
+   "附录C降级开关与应急联系人"
+  ],
+  "top_scores": [
+   2.38,
+   -2.15,
+   -2.91
+  ],
+  "answer": "订单详情是 order-04 接口编号 [1]；order-04 带一层本地缓存（Caffeine）[1]。",
+  "lexical": [
+   {
+    "sentence": "订单详情是 order-04 接口编号 [1]；order-04 带一层本地缓存（Caffeine）[1]。",
+    "cites": [
+     1,
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.8
+   }
+  ],
+  "lex_min_cover": 0.8,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "order-04 带一层本地缓存（Caffeine）[1]。"
+   ]
+  },
+  "t_retrieve": 12.9,
+  "t_gen": 16.3,
+  "t_judge": 19.8
+ },
+ {
+  "qid": "Q27",
+  "q": "11 月 8 日那次 Full GC 是什么原因？",
+  "ref": "按月导出一次读 41 万行进内存",
+  "rank": 1,
+  "top": [
+   "INC-20261108-01@v1#3",
+   "order-svc-runbook@v3.2#7",
+   "INC-20261108-01@v1#2"
+  ],
+  "top_sections": [
+   "根因",
+   "3.1 Full GC 频繁",
+   "时间线"
+  ],
+  "top_scores": [
+   0.59,
+   0.21,
+   -0.73
+  ],
+  "answer": "资料里没有。",
+  "lexical": [
+   {
+    "sentence": "资料里没有。",
+    "cites": [],
+    "bad_ids": [],
+    "cover": 0.0
+   }
+  ],
+  "lex_min_cover": null,
+  "lex_uncited": 1,
+  "judge": {
+   "supported": true,
+   "unsupported": []
+  },
+  "t_retrieve": 12.6,
+  "t_gen": 13.1,
+  "t_judge": 16.1
+ },
+ {
+  "qid": "Q28",
+  "q": "11 月 9 日 P99 升高时是怎么止血的？",
+  "ref": "11:05 关闭 order.cache.local.enabled，改查 Redis",
+  "rank": 3,
+  "top": [
+   "order-svc-runbook@v3.2#7",
+   "order-svc-runbook@v3.2#12",
+   "INC-20261109-02@v1#2"
+  ],
+  "top_sections": [
+   "3.1 Full GC 频繁",
+   "4.2 回滚",
+   "时间线"
+  ],
+  "top_scores": [
+   1.9,
+   0.79,
+   -2.01
+  ],
+  "answer": "11 月 9 日 P99 升高时，止血措施是关闭可疑功能，具体是关闭 order.cache.local.enabled 开关，将订单详情改查 Redis [3]。",
+  "lexical": [
+   {
+    "sentence": "11 月 9 日 P99 升高时，止血措施是关闭可疑功能，具体是关闭 order.cache.local.enabled 开关，将订单详情改查 Redis [3]。",
+    "cites": [
+     3
+    ],
+    "bad_ids": [],
+    "cover": 0.67
+   }
+  ],
+  "lex_min_cover": 0.67,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": []
+  },
+  "t_retrieve": 12.0,
+  "t_gen": 12.8,
+  "t_judge": 12.0
+ },
+ {
+  "qid": "Q29",
+  "q": "OrderDetailCache 打算怎么修？",
+  "ref": "补 maximumSize(50000) 和 expireAfterWrite(10 分钟)，随 v2.3.2 发布",
+  "rank": 11,
+  "top": [
+   "INC-20261109-02@v1#2",
+   "INC-20261109-02@v1#3",
+   "order-svc-runbook@v3.2#17"
+  ],
+  "top_sections": [
+   "时间线",
+   "根因",
+   "附录C降级开关与应急联系人"
+  ],
+  "top_scores": [
+   -1.08,
+   -2.11,
+   -3.41
+  ],
+  "answer": "OrderDetailCache 没有设置 maximumSize，也没有过期时间，导致订单详情只进不出 [2]。",
+  "lexical": [
+   {
+    "sentence": "OrderDetailCache 没有设置 maximumSize，也没有过期时间，导致订单详情只进不出 [2]。",
+    "cites": [
+     2
+    ],
+    "bad_ids": [],
+    "cover": 0.9
+   }
+  ],
+  "lex_min_cover": 0.9,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "资料里没有",
+    "资料里没有",
+    "资料里没有"
+   ]
+  },
+  "t_retrieve": 11.3,
+  "t_gen": 13.0,
+  "t_judge": 15.5
+ },
+ {
+  "qid": "Q30",
+  "q": "Caffeine 超过容量上限时按什么策略淘汰？",
+  "ref": "W-TinyLFU",
+  "rank": 1,
+  "top": [
+   "caffeine-local-cache@v1#2",
+   "order-svc-runbook@v3.2#13",
+   "caffeine-local-cache@v1#4"
+  ],
+  "top_sections": [
+   "容量上限",
+   "4.3 本地缓存规范",
+   "监控"
+  ],
+  "top_scores": [
+   3.37,
+   0.35,
+   -2.43
+  ],
+  "answer": "Caffeine 超过容量上限时按 W-TinyLFU 策略淘汰 [1]。",
+  "lexical": [
+   {
+    "sentence": "Caffeine 超过容量上限时按 W-TinyLFU 策略淘汰 [1]。",
+    "cites": [
+     1
+    ],
+    "bad_ids": [],
+    "cover": 0.71
+   }
+  ],
+  "lex_min_cover": 0.71,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": []
+  },
+  "t_retrieve": 11.5,
+  "t_gen": 10.5,
+  "t_judge": 12.1
+ },
+ {
+  "qid": "N01",
+  "q": "order-svc 的 Redis 集群密码是多少？",
+  "ref": "（库里没有）",
+  "rank": null,
+  "top": [
+   "order-svc-runbook@v3.2#4",
+   "order-svc-runbook@v3.2#1",
+   "order-svc-runbook@v3.2#17"
+  ],
+  "top_sections": [
+   "1.1 部署",
+   "order-svc 运维手册",
+   "附录C降级开关与应急联系人"
+  ],
+  "top_scores": [
+   -0.66,
+   -1.43,
+   -2.12
+  ],
+  "answer": "资料里没有提到 order-svc 的 Redis 集群密码。",
+  "lexical": [
+   {
+    "sentence": "资料里没有提到 order-svc 的 Redis 集群密码。",
+    "cites": [],
+    "bad_ids": [],
+    "cover": 0.0
+   }
+  ],
+  "lex_min_cover": null,
+  "lex_uncited": 1,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "资料里没有提到 order-svc 的 Redis 集群密码。"
+   ]
+  },
+  "t_retrieve": 12.0,
+  "t_gen": 7.0,
+  "t_judge": 10.2
+ },
+ {
+  "qid": "N02",
+  "q": "pay-svc 的 P99 告警阈值是多少？",
+  "ref": "（库里没有）",
+  "rank": null,
+  "top": [
+   "order-svc-runbook@v3.2#6",
+   "order-svc-runbook@v3.2#2",
+   "INC-20261109-02@v1#2"
+  ],
+  "top_sections": [
+   "2 告警与阈值",
+   "修订记录",
+   "时间线"
+  ],
+  "top_scores": [
+   3.0,
+   2.32,
+   1.51
+  ],
+  "answer": "pay-svc 的 P99 告警阈值是 800 ms，出处 [2]。",
+  "lexical": [
+   {
+    "sentence": "pay-svc 的 P99 告警阈值是 800 ms，出处 [2]。",
+    "cites": [
+     2
+    ],
+    "bad_ids": [],
+    "cover": 0.5
+   }
+  ],
+  "lex_min_cover": 0.5,
+  "lex_uncited": 0,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "pay-svc 的 P99 告警阈值是 800 ms，出处 [2]。"
+   ]
+  },
+  "t_retrieve": 12.0,
+  "t_gen": 12.3,
+  "t_judge": 16.0
+ },
+ {
+  "qid": "N03",
+  "q": "inventory-svc 怎么回滚？",
+  "ref": "（库里没有）",
+  "rank": null,
+  "top": [
+   "order-svc-runbook@v3.2#12",
+   "order-svc-runbook@v3.2#16",
+   "order-svc-runbook@v3.2#7"
+  ],
+  "top_sections": [
+   "4.2 回滚",
+   "5.2 GC 日志",
+   "3.1 Full GC 频繁"
+  ],
+  "top_scores": [
+   1.72,
+   1.69,
+   0.12
+  ],
+  "answer": "资料里没有提到 inventory-svc 的回滚方法，因此无法根据资料回答。",
+  "lexical": [
+   {
+    "sentence": "资料里没有提到 inventory-svc 的回滚方法，因此无法根据资料回答。",
+    "cites": [],
+    "bad_ids": [],
+    "cover": 0.0
+   }
+  ],
+  "lex_min_cover": null,
+  "lex_uncited": 1,
+  "judge": {
+   "supported": true,
+   "unsupported": [
+    "inventory-svc 的回滚方法",
+    "资料里没有提到 inventory-svc 的回滚方法"
+   ]
+  },
+  "t_retrieve": 10.6,
+  "t_gen": 2.8,
+  "t_judge": 7.2
+ }
+]

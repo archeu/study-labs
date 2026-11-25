@@ -1,0 +1,233 @@
+[
+ {
+  "qid": "Q01",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "800 ms 对，出自 [1] 告警表；没说“持续 3 分钟”，不算错"
+ },
+ {
+  "qid": "Q02",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "85%、5 分钟都对，[2] 是告警表"
+ },
+ {
+  "qid": "Q03",
+  "faithful": false,
+  "correct": "no",
+  "cite_ok": true,
+  "note": "资料只说 P1 才电话呼叫；回答说成“阈值触发就打电话”，把条件放宽了"
+ },
+ {
+  "qid": "Q04",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": false,
+  "note": "内容出自 [1]（§3.1），却标成 [2]（§5.2 GC 日志位置）"
+ },
+ {
+  "qid": "Q05",
+  "faithful": true,
+  "correct": "no",
+  "cite_ok": true,
+  "note": "误拒：[1] 写着晚高峰 19:00–22:00 不做 heap dump，模型没把“晚上八点”对上"
+ },
+ {
+  "qid": "Q06",
+  "faithful": true,
+  "correct": "no",
+  "cite_ok": true,
+  "note": "误拒加复读：[1] 写着 4 GB 的 dump 会让 Pod 停顿 8 秒以上"
+ },
+ {
+  "qid": "Q07",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "顺序全对；[1] 写在句号后面"
+ },
+ {
+  "qid": "Q08",
+  "faithful": true,
+  "correct": "partial",
+  "cite_ok": true,
+  "note": "“不能调大、压力转给数据库”出自 [2] 笔记；没用 [1] 里 120 个连接 / 从库 300 的理由；第二句“资料里没有”自相矛盾"
+ },
+ {
+  "qid": "Q09",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "20 个，对"
+ },
+ {
+  "qid": "Q10",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "死信 topic order-events-dlq，对"
+ },
+ {
+  "qid": "Q11",
+  "faithful": false,
+  "correct": "no",
+  "cite_ok": true,
+  "note": "意思反了：[1] 说 12 个分区最多 12 个消费者、多开 Pod 也没用，回答说“能加快”"
+ },
+ {
+  "qid": "Q12",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "1 个 Pod、15 分钟，对"
+ },
+ {
+  "qid": "Q13",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "30 分钟内、P99 翻倍或错误率 > 1%，对"
+ },
+ {
+  "qid": "Q14",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "命令一字不差"
+ },
+ {
+  "qid": "Q15",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "maximumSize 和 expireAfterWrite，对"
+ },
+ {
+  "qid": "Q16",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "400 MB，对"
+ },
+ {
+  "qid": "Q17",
+  "faithful": true,
+  "correct": "partial",
+  "cite_ok": true,
+  "note": "“没起作用、应该删掉”对，没说低于 50% 这条线"
+ },
+ {
+  "qid": "Q18",
+  "faithful": false,
+  "correct": "partial",
+  "cite_ok": true,
+  "note": "异步、夜间、每批 ≤ 5000 行都对；多了一句“共四批”，资料里没有，而且 20 万 ÷ 5000 是 40 批"
+ },
+ {
+  "qid": "Q19",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "200，对"
+ },
+ {
+  "qid": "Q20",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "/data/dump，对"
+ },
+ {
+  "qid": "Q21",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "路径和 7 天都对；[1] 写在句号后面"
+ },
+ {
+  "qid": "Q22",
+  "faithful": true,
+  "correct": "no",
+  "cite_ok": false,
+  "note": "检索完全正确（附录 C 第 1），模型却把问题原样抄了一遍，还标了 [2]"
+ },
+ {
+  "qid": "Q23",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "1 分钟、不用重启，对（附录 C 是 OCR 来的）"
+ },
+ {
+  "qid": "Q24",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": false,
+  "note": "#dba-oncall 对，没标出处"
+ },
+ {
+  "qid": "Q25",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "6 个 Pod、4 核 8 GB，对"
+ },
+ {
+  "qid": "Q26",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "order-04、Caffeine，对"
+ },
+ {
+  "qid": "Q27",
+  "faithful": true,
+  "correct": "no",
+  "cite_ok": true,
+  "note": "误拒：[1] 就是 11-08 那张故障单的根因，但片里没有日期，模型不敢认"
+ },
+ {
+  "qid": "Q28",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "开关名和改查 Redis 出自 [3] 时间线，对"
+ },
+ {
+  "qid": "Q29",
+  "faithful": true,
+  "correct": "no",
+  "cite_ok": true,
+  "note": "答成了根因（[2] 里确实这么写），问的是怎么修；修复那片排第 11，没进前 3"
+ },
+ {
+  "qid": "Q30",
+  "faithful": true,
+  "correct": "yes",
+  "cite_ok": true,
+  "note": "W-TinyLFU，对"
+ },
+ {
+  "qid": "N01",
+  "faithful": true,
+  "correct": null,
+  "cite_ok": true,
+  "note": "库外题：老实说没有"
+ },
+ {
+  "qid": "N02",
+  "faithful": false,
+  "correct": null,
+  "cite_ok": false,
+  "note": "库外题却编了答案：把 order-04 的 800 ms 安到 pay-svc 头上，出处标 [2] 修订记录"
+ },
+ {
+  "qid": "N03",
+  "faithful": true,
+  "correct": null,
+  "cite_ok": true,
+  "note": "库外题：老实说没有"
+ }
+]
