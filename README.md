@@ -72,6 +72,7 @@
 | [RAG 优化：查询改写、元数据过滤、父子块](https://study.ainiya.de/agent/rag-optimize.html) | [`agent/rag-optimize`](agent/rag-optimize/) | `main.py filter parent rewrite fuse`：版本和日期过滤、父子块、模型改写和 HyDE、多路查询，各自对 30 题命中率的影响，`opt.json` 存每题名次和改写原文 |
 | [知识库运维：增量同步、权限、版本](https://study.ainiya.de/agent/kb-ops.html) | [`agent/kb-ops`](agent/kb-ops/) | `kb_ops.py` 片级增量同步（三层身份、版本号定现行、软删、目录即权限）；`main.py` 一天 8 次变更逐步同步和查询，全量重建对照 |
 | [让 agent 自己决定查什么（Agentic RAG）](https://study.ainiya.de/agent/agentic-rag.html) | [`agent/agentic-rag`](agent/agentic-rag/) | `main.py` 4 道多跳 / 单跳题 × 6 种做法（原话查一次、先列计划、agent 循环、逼它先查、加思考、人写检索计划），Anthropic SDK 调本机 /v1/messages；`runs.json` |
+| [内容生成：带引用的长文报告](https://study.ainiya.de/agent/report-generation.html) | [`agent/report-generation`](agent/report-generation/) | `main.py` 代码定提纲、分节检索重排、全局编号、代码算事实和规则、逐句回查；第一版 / 第二版 / 一次写完三份报告在 `report.json`，逐句人工核对在 `labels.json` |
 
 ## Java 后端架构
 

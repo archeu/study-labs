@@ -1,0 +1,721 @@
+{
+ "title": "INC-20261109-02 复盘报告：order-svc P99 1.6 秒",
+ "sources": [
+  {
+   "id": "S1",
+   "key": "INC-20261109-02@v1#1",
+   "label": "INC-20261109-02 · INC-20261109-02 order-svc P99 1.6 秒，Old 区持续上涨",
+   "text": "级别 | P2\n开始 | 2026-11-09 10:42\n恢复 | 2026-11-09 11:12\n处理人 | 交易组值班"
+  },
+  {
+   "id": "S2",
+   "key": "INC-20261108-01@v1#1",
+   "label": "INC-20261108-01 · INC-20261108-01 order-svc Full GC 频繁，order-04 P99 2.1 秒",
+   "text": "级别 | P1\n开始 | 2026-11-08 20:16\n恢复 | 2026-11-08 21:05\n处理人 | 交易组值班"
+  },
+  {
+   "id": "S3",
+   "key": "INC-20261109-02@v1#2",
+   "label": "INC-20261109-02 · 时间线",
+   "text": "时间 | 事件\n10:00 | 发布 v2.3.1：分批导出修复，同时新增订单详情本地缓存 OrderDetailCache\n10:42 | 告警：order-04 P99 1.6 秒\n10:50 | Old 区占用 88%，回收后仍在涨\n10:58 | jmap -histo：OrderDetail 对象 120 万个，约 2.1 GB\n11:05 | 关闭开关 order.cache.local.enabled，订单详情改查 Redis\n11:12 | P99 回到 310 ms，Old 区开始回落"
+  },
+  {
+   "id": "S4",
+   "key": "INC-20261109-02@v1#3",
+   "label": "INC-20261109-02 · 根因",
+   "text": "OrderDetailCache 用 Caffeine 实现，没有设置 maximumSize，也没有过期时间，订单详情只进不出。"
+  },
+  {
+   "id": "S5",
+   "key": "order-svc-runbook@v3.2#13",
+   "label": "运维手册 v3.2 · 4.3 本地缓存规范 · 第 9 页",
+   "text": "本地缓存（Caffeine、Guava Cache）必须同时设置容量上限 maximumSize（或 maximumWeight）和过期时间 expireAfterWrite，评审时缺任何一项直接驳回。\n容量按“单条大小 × 最大条数 ≤ 堆的 10%”估算：4 GB 堆就是不超过 400 MB。\n必须打开 recordStats()，把命中率和淘汰次数上报到监控；命中率低于 50% 的本地缓存，说明它没起作用，应该删掉。"
+  },
+  {
+   "id": "S6",
+   "key": "caffeine-local-cache@v1#2",
+   "label": "caffeine-local-cache · 容量上限",
+   "text": "maximumSize(n) 按条数限制；maximumWeight(w) 配合 weigher 按大小限制。超过上限时，Caffeine 用 W-TinyLFU 决定淘汰谁：既看最近有没有被访问，也看历史访问频率。"
+  },
+  {
+   "id": "S7",
+   "key": "order-svc-runbook@v3.2#12",
+   "label": "运维手册 v3.2 · 4.2 回滚 · 第 8 页",
+   "text": "发布后 30 分钟内，P99 翻倍或错误率 > 1%，不用找原因，立即回滚：\nkubectl rollout undo deploy/order-svc -n trade\n超过 30 分钟才发现的问题，先评估回滚会不会把其他已上线的修复一起撤掉；能用降级开关止血的优先用开关。"
+  },
+  {
+   "id": "S8",
+   "key": "order-svc-runbook@v3.2#17",
+   "label": "运维手册 v3.2 · 附录C降级开关与应急联系人 · 第 12 页",
+   "text": "(2024年纸质应急预案扫描件，内容仍有效)\n开关\norder.export.enabled | 停止订单导出，已在跑的任务会跑完\norder.cache.local.enabled | 不用本地缓存，订单详情直接查Redis\norder.recommend.enabled | 下单页不展示推荐商品\n开关在配置中心trade/order-svc下修改，1分钟内生效，不用重启。\n应急联系:交易组值班群#trade-oncall;DBA值班群#dba-oncall。"
+  },
+  {
+   "id": "S9",
+   "key": "INC-20261108-01@v1#4",
+   "label": "INC-20261108-01 · 修复和改进",
+   "text": "导出改成每批 5000 行，随 v2.3.1 发布；运维手册 v3.2 新增 §4.4 批量导出。"
+  },
+  {
+   "id": "S10",
+   "key": "FACT-1",
+   "label": "由时间线计算（代码算的，不是模型算的）",
+   "text": "（由时间线计算）10:00 发布到 10:42 告警相隔 42 分钟；10:42 告警到 11:12 恢复相隔 30 分钟。"
+  }
+ ],
+ "fact": "（由时间线计算）10:00 发布到 10:42 告警相隔 42 分钟；10:42 告警到 11:12 恢复相隔 30 分钟。",
+ "sections": [
+  {
+   "name": "概要",
+   "queries": [
+    "INC-20261109-02 级别 开始 恢复 处理人"
+   ],
+   "sources": [
+    "S1",
+    "S2",
+    "S10"
+   ],
+   "text": "[S1] 2026-11-09 10:42，order-svc P99 1.6 秒，Old 区持续上涨 [S10]，2026-11-09 10:42 告警，2026-11-09 11:12 恢复 [S1]。",
+   "check": [
+    {
+     "s": "[S1] 2026-11-09 10:42，order-svc P99 1.6 秒，Old 区持续上涨 [S10]，2026-11-09 10:42 告警，2026-11-09 11:12 恢复 [S1]。",
+     "ids": [
+      "S1",
+      "S10"
+     ],
+     "bad": [],
+     "cover": 0.53,
+     "flag": false
+    }
+   ],
+   "sec": 21.1,
+   "prompt_tokens": 436
+  },
+  {
+   "name": "时间线",
+   "queries": [
+    "INC-20261109-02 时间线"
+   ],
+   "sources": [
+    "S1",
+    "S3"
+   ],
+   "text": "[S1] 开始时间 2026-11-09 10:42，Old 区持续上涨 [S3] 10:00 发布 v2.3.1：分批导出修复，同时新增订单详情本地缓存 OrderDetailCache [S3] 10:42 告警：order-04 P99 1.6 秒 [S3] 10:50 Old 区占用 88%，回收后仍在涨 [S3] 10:58 jmap -histo：OrderDetail 对象 120 万个，约 2.1 GB [S3] 11:05 关闭开关 order.cache.local.enabled，订单详情改查 Redis [S3] 11:12 P99 回到 310 ms，Old 区开始回落",
+   "check": [
+    {
+     "s": "[S1] 开始时间 2026-11-09 10:42，Old 区持续上涨 [S3] 10:00 发布 v2.3.1：分批导出修复，同时新增订单详情本地缓存 OrderDetailCache [S3] 10:42 告警：order-04 P99 1.6 秒 [S3] 10:50 Old 区占用 88%，回收后仍在涨 [S3] 10:58 jmap -histo：OrderDetail 对象 120 万个，约 2.1 GB [S3] 11:05 关闭开关 order.cache.local.enabled，订单详情改查 Redis [S3] 11:12 P99 回到 310 ms，Old 区开始回落",
+     "ids": [
+      "S1",
+      "S3"
+     ],
+     "bad": [],
+     "cover": 0.96,
+     "flag": false
+    }
+   ],
+   "sec": 29.5,
+   "prompt_tokens": 417
+  },
+  {
+   "name": "根因",
+   "queries": [
+    "OrderDetailCache 根因",
+    "本地缓存必须设置 maximumSize 和过期时间的规定"
+   ],
+   "sources": [
+    "S4",
+    "S5",
+    "S6"
+   ],
+   "text": "[S4] 根因是 OrderDetailCache 未设置 maximumSize 和过期时间，仅使用 Caffeine 实现，导致缓存无限增长。[S5] 违反了运维手册中关于本地缓存规范的规定，未设置容量上限和过期时间，直接驳回。[S6] 容量上限未设置，违反了运维手册中关于最大容量限制的要求。",
+   "check": [
+    {
+     "s": "[S4] 根因是 OrderDetailCache 未设置 maximumSize 和过期时间，仅使用 Caffeine 实现，导致缓存无限增长。",
+     "ids": [
+      "S4"
+     ],
+     "bad": [],
+     "cover": 0.54,
+     "flag": false
+    },
+    {
+     "s": "[S5] 违反了运维手册中关于本地缓存规范的规定，未设置容量上限和过期时间，直接驳回。",
+     "ids": [
+      "S5"
+     ],
+     "bad": [],
+     "cover": 0.6,
+     "flag": false
+    },
+    {
+     "s": "[S6] 容量上限未设置，违反了运维手册中关于最大容量限制的要求。",
+     "ids": [
+      "S6"
+     ],
+     "bad": [],
+     "cover": 0.2,
+     "flag": true
+    }
+   ],
+   "sec": 16.8,
+   "prompt_tokens": 413
+  },
+  {
+   "name": "处置是否符合手册",
+   "queries": [
+    "发布后多久内必须回滚，超过时间怎么办",
+    "关闭本地缓存的降级开关",
+    "INC-20261109-02 时间线"
+   ],
+   "sources": [
+    "S7",
+    "S8",
+    "S1",
+    "S3",
+    "S10"
+   ],
+   "text": "[S1] 处置级别为 P2，属于重要故障，需及时处理 [S1]。  \n[S3] 处置过程中，未回滚系统，而是使用降级开关关闭本地缓存 [S3]。  \n[S8] 降级开关用于止血，符合手册要求，且在配置中心生效 [S8]。  \n[S10] 从发布到恢复共 30 分钟，处置及时 [S10]。",
+   "check": [
+    {
+     "s": "[S1] 处置级别为 P2，属于重要故障，需及时处理 [S1]。",
+     "ids": [
+      "S1"
+     ],
+     "bad": [],
+     "cover": 0.29,
+     "flag": true
+    },
+    {
+     "s": "[S3] 处置过程中，未回滚系统，而是使用降级开关关闭本地缓存 [S3]。",
+     "ids": [
+      "S3"
+     ],
+     "bad": [],
+     "cover": 0.36,
+     "flag": true
+    },
+    {
+     "s": "[S8] 降级开关用于止血，符合手册要求，且在配置中心生效 [S8]。",
+     "ids": [
+      "S8"
+     ],
+     "bad": [],
+     "cover": 0.4,
+     "flag": true
+    },
+    {
+     "s": "[S10] 从发布到恢复共 30 分钟，处置及时 [S10]。",
+     "ids": [
+      "S10"
+     ],
+     "bad": [],
+     "cover": 0.67,
+     "flag": false
+    }
+   ],
+   "sec": 29.8,
+   "prompt_tokens": 752
+  },
+  {
+   "name": "改进项",
+   "queries": [
+    "OrderDetailCache 修复和改进",
+    "本地缓存容量按堆的 10% 估算 recordStats 命中率"
+   ],
+   "sources": [
+    "S3",
+    "S9",
+    "S5"
+   ],
+   "text": "[ S3 ] 改进项包括：优化订单详情缓存策略，提升系统性能。 [ S9 ] 导出方式改为每批 5000 行，减少系统负载。 [ S5 ] 本地缓存需设置最大容量和过期时间，确保缓存有效性和稳定性。",
+   "check": [
+    {
+     "s": "[ S3 ] 改进项包括：优化订单详情缓存策略，提升系统性能。",
+     "ids": [],
+     "bad": [],
+     "cover": 0.0,
+     "flag": true
+    },
+    {
+     "s": "[ S9 ] 导出方式改为每批 5000 行，减少系统负载。",
+     "ids": [],
+     "bad": [],
+     "cover": 0.0,
+     "flag": true
+    },
+    {
+     "s": "[ S5 ] 本地缓存需设置最大容量和过期时间，确保缓存有效性和稳定性。",
+     "ids": [],
+     "bad": [],
+     "cover": 0.0,
+     "flag": true
+    }
+   ],
+   "sec": 18.9,
+   "prompt_tokens": 522
+  }
+ ],
+ "outline_stats": {
+  "sentences": 12,
+  "cited": 9,
+  "bad_ids": 0,
+  "flagged": 7
+ },
+ "one_text": "## 概要  \n本报告针对 order-svc P99 1.6 秒故障进行复盘，涉及本地缓存配置问题，最终通过回滚和优化解决。故障发生于 2026-11-09 10:42，恢复于 11:12，处理人为交易组值班。\n\n## 时间线  \n[S3] 时间线如下：  \n10:00 | 发布 v2.3.1：分批导出修复，同时新增订单详情本地缓存 OrderDetailCache  \n10:42 | 告警：order-04 P99 1.6 秒  \n10:50 | Old 区占用 88%，回收后仍在涨  \n10:58 | jmap -histo：OrderDetail 对象 120 万个，约 2.1 GB  \n11:05 | 关闭开关 order.cache.local.enabled，订单详情改查 Redis  \n11:12 | P99 回到 310 ms，Old 区开始回落  \n\n## 根因  \n[S4] 根因是 OrderDetailCache 用 Caffeine 实现，但未设置 maximumSize，也未设置过期时间，导致订单详情只进不出，造成 Old 区持续上涨。\n\n## 处置是否符合手册  \n[S5] 本地缓存（Caffeine、Guava Cache）必须同时设置容量上限 maximumSize（或 maximumWeight）和过期时间 expireAfterWrite，否则直接驳回。  \n[S7] 发布后 30 分钟内，P99 翻倍或错误率 > 1% 的问题，应立即回滚。  \n[S8] 采用降级开关 order.cache.local.enabled，关闭本地缓存，订单详情直接查 Redis，符合手册要求。\n\n## 改进项  \n[S9] 修复和改进：导出改成每批 5000 行，随 v2.3.1 发布；运维手册 v3.2 新增 §4.4 批量导出。  \n[S10] 由时间线计算，10:00 发布到 10:42 告警相隔 42 分钟，10:42 告警到 11:12 恢复相隔 30 分钟，符合预期。",
+ "one_check": [
+  {
+   "s": "本报告针对 order-svc P99 1.6 秒故障进行复盘，涉及本地缓存配置问题，最终通过回滚和优化解决。",
+   "ids": [],
+   "bad": [],
+   "cover": 0.0,
+   "flag": true
+  },
+  {
+   "s": "故障发生于 2026-11-09 10:42，恢复于 11:12，处理人为交易组值班。",
+   "ids": [],
+   "bad": [],
+   "cover": 0.0,
+   "flag": true
+  },
+  {
+   "s": "## 时间线",
+   "ids": [],
+   "bad": [],
+   "cover": 0.0,
+   "flag": true
+  },
+  {
+   "s": "[S3] 时间线如下：",
+   "ids": [
+    "S3"
+   ],
+   "bad": [],
+   "cover": 0.5,
+   "flag": false
+  },
+  {
+   "s": "10:00 | 发布 v2.3.1：分批导出修复，同时新增订单详情本地缓存 OrderDetailCache",
+   "ids": [],
+   "bad": [],
+   "cover": 0.0,
+   "flag": true
+  },
+  {
+   "s": "10:42 | 告警：order-04 P99 1.6 秒",
+   "ids": [],
+   "bad": [],
+   "cover": 0.0,
+   "flag": true
+  },
+  {
+   "s": "10:50 | Old 区占用 88%，回收后仍在涨",
+   "ids": [],
+   "bad": [],
+   "cover": 0.0,
+   "flag": true
+  },
+  {
+   "s": "10:58 | jmap -histo：OrderDetail 对象 120 万个，约 2.1 GB",
+   "ids": [],
+   "bad": [],
+   "cover": 0.0,
+   "flag": true
+  },
+  {
+   "s": "11:05 | 关闭开关 order.cache.local.enabled，订单详情改查 Redis",
+   "ids": [],
+   "bad": [],
+   "cover": 0.0,
+   "flag": true
+  },
+  {
+   "s": "11:12 | P99 回到 310 ms，Old 区开始回落",
+   "ids": [],
+   "bad": [],
+   "cover": 0.0,
+   "flag": true
+  },
+  {
+   "s": "[S4] 根因是 OrderDetailCache 用 Caffeine 实现，但未设置 maximumSize，也未设置过期时间，导致订单详情只进不出，造成 Old 区持续上涨。",
+   "ids": [
+    "S4"
+   ],
+   "bad": [],
+   "cover": 0.62,
+   "flag": false
+  },
+  {
+   "s": "## 处置是否符合手册",
+   "ids": [],
+   "bad": [],
+   "cover": 0.0,
+   "flag": true
+  },
+  {
+   "s": "[S5] 本地缓存（Caffeine、Guava Cache）必须同时设置容量上限 maximumSize（或 maximumWeight）和过期时间 expireAfterWrite，否则直接驳回。",
+   "ids": [
+    "S5"
+   ],
+   "bad": [],
+   "cover": 0.94,
+   "flag": false
+  },
+  {
+   "s": "[S7] 发布后 30 分钟内，P99 翻倍或错误率 > 1% 的问题，应立即回滚。",
+   "ids": [
+    "S7"
+   ],
+   "bad": [],
+   "cover": 0.9,
+   "flag": false
+  },
+  {
+   "s": "[S8] 采用降级开关 order.cache.local.enabled，关闭本地缓存，订单详情直接查 Redis，符合手册要求。",
+   "ids": [
+    "S8"
+   ],
+   "bad": [],
+   "cover": 0.65,
+   "flag": false
+  },
+  {
+   "s": "## 改进项",
+   "ids": [],
+   "bad": [],
+   "cover": 0.0,
+   "flag": true
+  },
+  {
+   "s": "[S9] 修复和改进：导出改成每批 5000 行，随 v2.3.1 发布；运维手册 v3.2 新增 §4.4 批量导出。",
+   "ids": [
+    "S9"
+   ],
+   "bad": [],
+   "cover": 0.86,
+   "flag": false
+  },
+  {
+   "s": "[S10] 由时间线计算，10:00 发布到 10:42 告警相隔 42 分钟，10:42 告警到 11:12 恢复相隔 30 分钟，符合预期。",
+   "ids": [
+    "S10"
+   ],
+   "bad": [],
+   "cover": 0.87,
+   "flag": false
+  }
+ ],
+ "one_stats": {
+  "sentences": 18,
+  "cited": 7,
+  "bad_ids": 0,
+  "flagged": 11
+ },
+ "time": {
+  "retrieve_s": 52.6,
+  "outline_gen_s": 116.1,
+  "one_gen_s": 114.0,
+  "one_prompt_tokens": 1181
+ },
+ "v2": {
+  "sources": [
+   {
+    "id": "S1",
+    "key": "INC-20261109-02@v1#1",
+    "label": "INC-20261109-02 · INC-20261109-02 order-svc P99 1.6 秒，Old 区持续上涨",
+    "text": "级别 | P2\n开始 | 2026-11-09 10:42\n恢复 | 2026-11-09 11:12\n处理人 | 交易组值班"
+   },
+   {
+    "id": "S2",
+    "key": "INC-20261109-02@v1#4",
+    "label": "INC-20261109-02 · 修复和改进",
+    "text": "补上 maximumSize(50000) 和 expireAfterWrite(10 分钟)，计划随 v2.3.2 发布；发布前按 §4.3 估算容量。"
+   },
+   {
+    "id": "S3",
+    "key": "INC-20261109-02@v1#2",
+    "label": "INC-20261109-02 · 时间线",
+    "text": "时间 | 事件\n10:00 | 发布 v2.3.1：分批导出修复，同时新增订单详情本地缓存 OrderDetailCache\n10:42 | 告警：order-04 P99 1.6 秒\n10:50 | Old 区占用 88%，回收后仍在涨\n10:58 | jmap -histo：OrderDetail 对象 120 万个，约 2.1 GB\n11:05 | 关闭开关 order.cache.local.enabled，订单详情改查 Redis\n11:12 | P99 回到 310 ms，Old 区开始回落"
+   },
+   {
+    "id": "S4",
+    "key": "INC-20261109-02@v1#3",
+    "label": "INC-20261109-02 · 根因",
+    "text": "OrderDetailCache 用 Caffeine 实现，没有设置 maximumSize，也没有过期时间，订单详情只进不出。"
+   },
+   {
+    "id": "S5",
+    "key": "order-svc-runbook@v3.2#13",
+    "label": "运维手册 v3.2 · 4.3 本地缓存规范 · 第 9 页",
+    "text": "本地缓存（Caffeine、Guava Cache）必须同时设置容量上限 maximumSize（或 maximumWeight）和过期时间 expireAfterWrite，评审时缺任何一项直接驳回。\n容量按“单条大小 × 最大条数 ≤ 堆的 10%”估算：4 GB 堆就是不超过 400 MB。\n必须打开 recordStats()，把命中率和淘汰次数上报到监控；命中率低于 50% 的本地缓存，说明它没起作用，应该删掉。"
+   },
+   {
+    "id": "S6",
+    "key": "caffeine-local-cache@v1#2",
+    "label": "caffeine-local-cache · 容量上限",
+    "text": "maximumSize(n) 按条数限制；maximumWeight(w) 配合 weigher 按大小限制。超过上限时，Caffeine 用 W-TinyLFU 决定淘汰谁：既看最近有没有被访问，也看历史访问频率。"
+   },
+   {
+    "id": "S7",
+    "key": "order-svc-runbook@v3.2#12",
+    "label": "运维手册 v3.2 · 4.2 回滚 · 第 8 页",
+    "text": "发布后 30 分钟内，P99 翻倍或错误率 > 1%，不用找原因，立即回滚：\nkubectl rollout undo deploy/order-svc -n trade\n超过 30 分钟才发现的问题，先评估回滚会不会把其他已上线的修复一起撤掉；能用降级开关止血的优先用开关。"
+   },
+   {
+    "id": "S8",
+    "key": "order-svc-runbook@v3.2#17",
+    "label": "运维手册 v3.2 · 附录C降级开关与应急联系人 · 第 12 页",
+    "text": "(2024年纸质应急预案扫描件，内容仍有效)\n开关\norder.export.enabled | 停止订单导出，已在跑的任务会跑完\norder.cache.local.enabled | 不用本地缓存，订单详情直接查Redis\norder.recommend.enabled | 下单页不展示推荐商品\n开关在配置中心trade/order-svc下修改，1分钟内生效，不用重启。\n应急联系:交易组值班群#trade-oncall;DBA值班群#dba-oncall。"
+   },
+   {
+    "id": "S9",
+    "key": "FACT-1",
+    "label": "由时间线计算（代码算的，不是模型算的）",
+    "text": "（由时间线计算）10:00 发布到 10:42 告警相隔 42 分钟；10:42 告警到 11:12 恢复相隔 30 分钟。"
+   },
+   {
+    "id": "S10",
+    "key": "FACT-2",
+    "label": "由时间线和手册 §4.2 判断（代码判断的）",
+    "text": "（由时间线和手册 §4.2 判断）告警时距发布 42 分钟，已超过 30 分钟回滚窗口，按 §4.2 应优先用降级开关止血，而不是回滚。"
+   }
+  ],
+  "fact": "（由时间线计算）10:00 发布到 10:42 告警相隔 42 分钟；10:42 告警到 11:12 恢复相隔 30 分钟。",
+  "rule": "（由时间线和手册 §4.2 判断）告警时距发布 42 分钟，已超过 30 分钟回滚窗口，按 §4.2 应优先用降级开关止血，而不是回滚。",
+  "sections": [
+   {
+    "name": "概要",
+    "queries": [
+     "INC-20261109-02 级别 开始 恢复 处理人"
+    ],
+    "sources": [
+     "S1",
+     "S2",
+     "S9"
+    ],
+    "text": "2026-11-09 10:42 开始，order-svc P99 旧区持续上涨[S1]。11:12 恢复[S9]。",
+    "check": [
+     {
+      "s": "2026-11-09 10:42 开始，order-svc P99 旧区持续上涨[S1]。",
+      "ids": [
+       "S1"
+      ],
+      "bad": [],
+      "cover": 0.5,
+      "flag": false
+     },
+     {
+      "s": "11:12 恢复[S9]。",
+      "ids": [
+       "S9"
+      ],
+      "bad": [],
+      "cover": 1.0,
+      "flag": false
+     }
+    ],
+    "sec": 16.1,
+    "prompt_tokens": 439
+   },
+   {
+    "name": "时间线",
+    "queries": [
+     "INC-20261109-02 时间线"
+    ],
+    "sources": [
+     "S1",
+     "S3"
+    ],
+    "text": "10:42 告警：order-04 P99 1.6 秒 [S3]。  \n10:50 Old 区占用 88%，回收后仍在涨 [S3]。  \n10:58 jmap -histo：OrderDetail 对象 120 万个，约 2.1 GB [S3]。  \n11:05 关闭开关 order.cache.local.enabled，订单详情改查 Redis [S3]。",
+    "check": [
+     {
+      "s": "10:42 告警：order-04 P99 1.6 秒 [S3]。",
+      "ids": [
+       "S3"
+      ],
+      "bad": [],
+      "cover": 1.0,
+      "flag": false
+     },
+     {
+      "s": "10:50 Old 区占用 88%，回收后仍在涨 [S3]。",
+      "ids": [
+       "S3"
+      ],
+      "bad": [],
+      "cover": 1.0,
+      "flag": false
+     },
+     {
+      "s": "10:58 jmap -histo：OrderDetail 对象 120 万个，约 2.1 GB [S3]。",
+      "ids": [
+       "S3"
+      ],
+      "bad": [],
+      "cover": 1.0,
+      "flag": false
+     },
+     {
+      "s": "11:05 关闭开关 order.cache.local.enabled，订单详情改查 Redis [S3]。",
+      "ids": [
+       "S3"
+      ],
+      "bad": [],
+      "cover": 1.0,
+      "flag": false
+     }
+    ],
+    "sec": 19.9,
+    "prompt_tokens": 463
+   },
+   {
+    "name": "根因",
+    "queries": [
+     "OrderDetailCache 根因",
+     "本地缓存必须设置 maximumSize 和过期时间的规定"
+    ],
+    "sources": [
+     "S4",
+     "S5",
+     "S6"
+    ],
+    "text": "[S4] 根因是 OrderDetailCache 使用 Caffeine 实现，未设置 maximumSize，也没有过期时间。[S5] 违反了运维手册第 4.3 条本地缓存规范，未设置容量上限和过期时间，直接驳回。[S6] 容量上限未设置，导致缓存无限制增长，违反了运维手册对本地缓存的要求。",
+    "check": [
+     {
+      "s": "[S4] 根因是 OrderDetailCache 使用 Caffeine 实现，未设置 maximumSize，也没有过期时间。",
+      "ids": [
+       "S4"
+      ],
+      "bad": [],
+      "cover": 0.8,
+      "flag": false
+     },
+     {
+      "s": "[S5] 违反了运维手册第 4.3 条本地缓存规范，未设置容量上限和过期时间，直接驳回。",
+      "ids": [
+       "S5"
+      ],
+      "bad": [],
+      "cover": 0.64,
+      "flag": false
+     },
+     {
+      "s": "[S6] 容量上限未设置，导致缓存无限制增长，违反了运维手册对本地缓存的要求。",
+      "ids": [
+       "S6"
+      ],
+      "bad": [],
+      "cover": 0.17,
+      "flag": true
+     }
+    ],
+    "sec": 17.3,
+    "prompt_tokens": 459
+   },
+   {
+    "name": "处置是否符合手册",
+    "queries": [
+     "发布后多久内必须回滚，超过时间怎么办",
+     "关闭本地缓存的降级开关",
+     "INC-20261109-02 时间线"
+    ],
+    "sources": [
+     "S7",
+     "S8",
+     "S1",
+     "S3",
+     "S9",
+     "S10"
+    ],
+    "text": "[S1] 告警发生时间为 10:42，距发布 42 分钟，已超过 30 分钟回滚窗口[S9]，按手册应优先使用降级开关止血[S10]。[S7] 说明超过 30 分钟的问题优先用降级开关，未使用降级开关[S10]，不符合手册要求。",
+    "check": [
+     {
+      "s": "[S1] 告警发生时间为 10:42，距发布 42 分钟，已超过 30 分钟回滚窗口[S9]，按手册应优先使用降级开关止血[S10]。",
+      "ids": [
+       "S1",
+       "S9",
+       "S10"
+      ],
+      "bad": [],
+      "cover": 0.88,
+      "flag": false
+     },
+     {
+      "s": "[S7] 说明超过 30 分钟的问题优先用降级开关，未使用降级开关[S10]，不符合手册要求。",
+      "ids": [
+       "S7",
+       "S10"
+      ],
+      "bad": [],
+      "cover": 0.67,
+      "flag": false
+     }
+    ],
+    "sec": 30.4,
+    "prompt_tokens": 873
+   },
+   {
+    "name": "改进项",
+    "queries": [
+     "OrderDetailCache 修复和改进",
+     "本地缓存容量按堆的 10% 估算 recordStats 命中率"
+    ],
+    "sources": [
+     "S3",
+     "S5"
+    ],
+    "text": "10:42 告警：order-04 P99 1.6 秒[S3]。  \n120 万个 OrderDetail 对象占用 2.1 GB，超出堆容量 10% [S3]。  \n本地缓存未设置 maximumSize 和 expireAfterWrite，违反规范[S5]。  \n关闭 order.cache.local.enabled 后，订单详情改查 Redis[S1]。",
+    "check": [
+     {
+      "s": "10:42 告警：order-04 P99 1.6 秒[S3]。",
+      "ids": [
+       "S3"
+      ],
+      "bad": [],
+      "cover": 1.0,
+      "flag": false
+     },
+     {
+      "s": "120 万个 OrderDetail 对象占用 2.1 GB，超出堆容量 10% [S3]。",
+      "ids": [
+       "S3"
+      ],
+      "bad": [],
+      "cover": 0.7,
+      "flag": false
+     },
+     {
+      "s": "本地缓存未设置 maximumSize 和 expireAfterWrite，违反规范[S5]。",
+      "ids": [
+       "S5"
+      ],
+      "bad": [],
+      "cover": 0.71,
+      "flag": false
+     },
+     {
+      "s": "关闭 order.cache.local.enabled 后，订单详情改查 Redis[S1]。",
+      "ids": [
+       "S1"
+      ],
+      "bad": [
+       "S1"
+      ],
+      "cover": 0.0,
+      "flag": true
+     }
+    ],
+    "sec": 19.7,
+    "prompt_tokens": 504
+   }
+  ],
+  "stats": {
+   "sentences": 15,
+   "cited": 15,
+   "bad_ids": 1,
+   "flagged": 2
+  },
+  "time": {
+   "retrieve_s": 56.6,
+   "gen_s": 103.4
+  }
+ }
+}
