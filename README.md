@@ -70,6 +70,7 @@
 | [混合检索：关键词 BM25 加向量，再重排](https://study.ainiya.de/agent/hybrid-search.html) | [`agent/hybrid-search`](agent/hybrid-search/) | `main.py` 31 片 × 30 题，BM25 / 向量 / RRF / 分数加权 / 重排 6 种办法的名次和命中率，BM25 逐词拆解，jieba 对标识符的切法 |
 | [评测：检索命中率和答案忠实度](https://study.ainiya.de/agent/rag-eval.html) | [`agent/rag-eval`](agent/rag-eval/) | `main.py` 33 题走完检索 + 生成 + 两种判官；`labels.json` 人工核对；`score.py` 命中率、忠实度、错因交叉表、判官和人工的对照 |
 | [RAG 优化：查询改写、元数据过滤、父子块](https://study.ainiya.de/agent/rag-optimize.html) | [`agent/rag-optimize`](agent/rag-optimize/) | `main.py filter parent rewrite fuse`：版本和日期过滤、父子块、模型改写和 HyDE、多路查询，各自对 30 题命中率的影响，`opt.json` 存每题名次和改写原文 |
+| [知识库运维：增量同步、权限、版本](https://study.ainiya.de/agent/kb-ops.html) | [`agent/kb-ops`](agent/kb-ops/) | `kb_ops.py` 片级增量同步（三层身份、版本号定现行、软删、目录即权限）；`main.py` 一天 8 次变更逐步同步和查询，全量重建对照 |
 
 ## Java 后端架构
 

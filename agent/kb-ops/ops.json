@@ -1,0 +1,442 @@
+{
+ "steps": [
+  {
+   "name": "首次入库",
+   "desc": "手册 v3.1、11-08 故障单、3 篇笔记，全部从零处理",
+   "stat": {
+    "files": 5,
+    "skipped": 0,
+    "acl_only": 0,
+    "changed_files": 5,
+    "embedded": 26,
+    "kept": 0,
+    "deleted": 0,
+    "retired": 0,
+    "removed_files": 0,
+    "seconds": 27.8
+   },
+   "counts": {
+    "current": 26
+   },
+   "checks": [
+    {
+     "who": "交易组",
+     "q": "order-04 接口的 P99 超过多少会告警？",
+     "top": [
+      {
+       "key": "order-svc-runbook",
+       "version": "v3.1",
+       "team": "trade",
+       "section": "3.2 接口 P99 升高",
+       "text": "排查顺序：最近发布 → GC → 慢 SQL → 下游。八成的 P99 升高能在前两步找到原因。\n看下游时，对比 inv",
+       "cos": 0.747
+      },
+      {
+       "key": "order-svc-runbook",
+       "version": "v3.1",
+       "team": "trade",
+       "section": "2 告警与阈值",
+       "text": "阈值按 2026-10 的压测结果定。P2 在值班群通知，P1 同时电话呼叫值班人。\n指标 | 阈值 | 级别\n接口 P",
+       "cos": 0.661
+      },
+      {
+       "key": "order-svc-runbook",
+       "version": "v3.1",
+       "team": "trade",
+       "section": "1.2 关键接口",
+       "text": "order-01 下单 POST /orders；order-02 订单列表 GET /orders；order-04 ",
+       "cos": 0.55
+      }
+     ],
+     "ms": 306
+    }
+   ]
+  },
+  {
+   "name": "09:30 上传新版",
+   "desc": "放进手册 v3.2 和 11-09 故障单；v3.1 文件还在目录里",
+   "stat": {
+    "files": 7,
+    "skipped": 5,
+    "acl_only": 0,
+    "changed_files": 2,
+    "embedded": 21,
+    "kept": 0,
+    "deleted": 0,
+    "retired": 16,
+    "removed_files": 0,
+    "seconds": 25.1
+   },
+   "counts": {
+    "current": 31,
+    "retired": 16
+   },
+   "checks": [
+    {
+     "who": "交易组",
+     "q": "order-04 接口的 P99 超过多少会告警？",
+     "top": [
+      {
+       "key": "order-svc-runbook",
+       "version": "v3.2",
+       "team": "trade",
+       "section": "3.2 接口 P99 升高",
+       "text": "排查顺序：最近发布 → GC → 慢 SQL → 下游。八成的 P99 升高能在前两步找到原因。\n看下游时，对比 inv",
+       "cos": 0.752
+      },
+      {
+       "key": "order-svc-runbook",
+       "version": "v3.2",
+       "team": "trade",
+       "section": "2 告警与阈值",
+       "text": "阈值按 2026-10 的压测结果定。P2 在值班群通知，P1 同时电话呼叫值班人。\n指标 | 阈值 | 级别\n接口 P",
+       "cos": 0.666
+      },
+      {
+       "key": "INC-20261109-02",
+       "version": "v1",
+       "team": "trade",
+       "section": "时间线",
+       "text": "时间 | 事件\n10:00 | 发布 v2.3.1：分批导出修复，同时新增订单详情本地缓存 OrderDetailCac",
+       "cos": 0.619
+      }
+     ],
+     "ms": 296
+    }
+   ]
+  },
+  {
+   "name": "再跑一次",
+   "desc": "什么都没变",
+   "stat": {
+    "files": 7,
+    "skipped": 7,
+    "acl_only": 0,
+    "changed_files": 0,
+    "embedded": 0,
+    "kept": 0,
+    "deleted": 0,
+    "retired": 0,
+    "removed_files": 0,
+    "seconds": 0.0
+   },
+   "counts": {
+    "current": 31,
+    "retired": 16
+   },
+   "checks": []
+  },
+  {
+   "name": "改一处",
+   "desc": "手册 v3.2 原地修订：GC 日志从保留 7 天改成 14 天，版本号不变",
+   "stat": {
+    "files": 7,
+    "skipped": 6,
+    "acl_only": 0,
+    "changed_files": 1,
+    "embedded": 1,
+    "kept": 16,
+    "deleted": 1,
+    "retired": 0,
+    "removed_files": 0,
+    "seconds": 7.0
+   },
+   "counts": {
+    "current": 31,
+    "retired": 16
+   },
+   "checks": [
+    {
+     "who": "交易组",
+     "q": "GC 日志写在哪，保留几天？",
+     "top": [
+      {
+       "key": "order-svc-runbook",
+       "version": "v3.2",
+       "team": "trade",
+       "section": "5.2 GC 日志",
+       "text": "位置：/data/logs/order-svc/gc.log，按 50 MB 滚动，保留 14 天。参数：-Xlog:g",
+       "cos": 0.768
+      },
+      {
+       "key": "INC-20261108-01",
+       "version": "v1",
+       "team": "trade",
+       "section": "时间线",
+       "text": "时间 | 事件\n20:00 | 发布 v2.3.0，新增“按月导出订单”\n20:16 | 告警：order-04 P99",
+       "cos": 0.545
+      },
+      {
+       "key": "order-svc-runbook",
+       "version": "v3.2",
+       "team": "trade",
+       "section": "3.1 Full GC 频繁",
+       "text": "现象：Old 区占用持续上涨，Full GC 次数告警，接口 P99 跟着升高。\n第一步，看 GC 日志（位置见 §5.",
+       "cos": 0.537
+      }
+     ],
+     "ms": 226
+    }
+   ]
+  },
+  {
+   "name": "加一份新手册",
+   "desc": "供应链组上传 inventory-svc 手册 v1.0，不重建索引",
+   "stat": {
+    "files": 8,
+    "skipped": 7,
+    "acl_only": 0,
+    "changed_files": 1,
+    "embedded": 3,
+    "kept": 0,
+    "deleted": 0,
+    "retired": 0,
+    "removed_files": 0,
+    "seconds": 1.9
+   },
+   "counts": {
+    "current": 34,
+    "retired": 16
+   },
+   "checks": [
+    {
+     "who": "交易组",
+     "q": "inventory-svc 怎么回滚？",
+     "top": [
+      {
+       "key": "order-svc-runbook",
+       "version": "v3.2",
+       "team": "trade",
+       "section": "4.2 回滚",
+       "text": "发布后 30 分钟内，P99 翻倍或错误率 > 1%，不用找原因，立即回滚：\nkubectl rollout undo ",
+       "cos": 0.607
+      },
+      {
+       "key": "order-svc-runbook",
+       "version": "v3.2",
+       "team": "trade",
+       "section": "1 服务概览",
+       "text": "order-svc 负责下单、订单查询和订单导出，是交易链路的核心服务。上游是 gateway，下游调用inventor",
+       "cos": 0.474
+      },
+      {
+       "key": "order-svc-runbook",
+       "version": "v3.2",
+       "team": "trade",
+       "section": "order-svc 运维手册",
+       "text": "版本 v3.2 · 交易组 · 2026-11-01 修订\n适用范围：order-svc 及其依赖的 order_db、",
+       "cos": 0.454
+      }
+     ],
+     "ms": 226
+    },
+    {
+     "who": "供应链组",
+     "q": "inventory-svc 怎么回滚？",
+     "top": [
+      {
+       "key": "inventory-svc-runbook",
+       "version": "v1.0",
+       "team": "supply",
+       "section": "2 发布与回滚",
+       "text": "先发 1 个 Pod，观察 10 分钟。发布后 20 分钟内扣库存失败率 > 0.5%，立即回滚：\nkubectl ro",
+       "cos": 0.779
+      },
+      {
+       "key": "inventory-svc-runbook",
+       "version": "v1.0",
+       "team": "supply",
+       "section": "inventory-svc 运维手册",
+       "text": "版本 v1.0 · 供应链组 · 2026-11-10 修订",
+       "cos": 0.714
+      },
+      {
+       "key": "inventory-svc-runbook",
+       "version": "v1.0",
+       "team": "supply",
+       "section": "1 服务概览",
+       "text": "inventory-svc 负责扣库存和库存查询，被 order-svc 在下单时同步调用。K8s 命名空间 suppl",
+       "cos": 0.649
+      }
+     ],
+     "ms": 248
+    }
+   ]
+  },
+  {
+   "name": "改权限",
+   "desc": "inventory-svc 手册从 supply 挪到 public，内容没变",
+   "stat": {
+    "files": 8,
+    "skipped": 7,
+    "acl_only": 1,
+    "changed_files": 0,
+    "embedded": 0,
+    "kept": 0,
+    "deleted": 0,
+    "retired": 0,
+    "removed_files": 0,
+    "seconds": 0.0
+   },
+   "counts": {
+    "current": 34,
+    "retired": 16
+   },
+   "checks": [
+    {
+     "who": "交易组",
+     "q": "inventory-svc 怎么回滚？",
+     "top": [
+      {
+       "key": "inventory-svc-runbook",
+       "version": "v1.0",
+       "team": "public",
+       "section": "2 发布与回滚",
+       "text": "先发 1 个 Pod，观察 10 分钟。发布后 20 分钟内扣库存失败率 > 0.5%，立即回滚：\nkubectl ro",
+       "cos": 0.779
+      },
+      {
+       "key": "inventory-svc-runbook",
+       "version": "v1.0",
+       "team": "public",
+       "section": "inventory-svc 运维手册",
+       "text": "版本 v1.0 · 供应链组 · 2026-11-10 修订",
+       "cos": 0.714
+      },
+      {
+       "key": "inventory-svc-runbook",
+       "version": "v1.0",
+       "team": "public",
+       "section": "1 服务概览",
+       "text": "inventory-svc 负责扣库存和库存查询，被 order-svc 在下单时同步调用。K8s 命名空间 suppl",
+       "cos": 0.649
+      }
+     ],
+     "ms": 232
+    }
+   ]
+  },
+  {
+   "name": "旧版改错字",
+   "desc": "v3.1 的文件被改了一下（内容哈希变了），v3.2 应该仍是现行版",
+   "stat": {
+    "files": 8,
+    "skipped": 7,
+    "acl_only": 0,
+    "changed_files": 1,
+    "embedded": 0,
+    "kept": 16,
+    "deleted": 0,
+    "retired": 0,
+    "removed_files": 0,
+    "seconds": 5.6
+   },
+   "counts": {
+    "current": 34,
+    "retired": 16
+   },
+   "checks": [
+    {
+     "who": "交易组",
+     "q": "order-04 接口的 P99 超过多少会告警？",
+     "top": [
+      {
+       "key": "order-svc-runbook",
+       "version": "v3.2",
+       "team": "trade",
+       "section": "3.2 接口 P99 升高",
+       "text": "排查顺序：最近发布 → GC → 慢 SQL → 下游。八成的 P99 升高能在前两步找到原因。\n看下游时，对比 inv",
+       "cos": 0.752
+      },
+      {
+       "key": "order-svc-runbook",
+       "version": "v3.2",
+       "team": "trade",
+       "section": "2 告警与阈值",
+       "text": "阈值按 2026-10 的压测结果定。P2 在值班群通知，P1 同时电话呼叫值班人。\n指标 | 阈值 | 级别\n接口 P",
+       "cos": 0.666
+      },
+      {
+       "key": "INC-20261109-02",
+       "version": "v1",
+       "team": "trade",
+       "section": "时间线",
+       "text": "时间 | 事件\n10:00 | 发布 v2.3.1：分批导出修复，同时新增订单详情本地缓存 OrderDetailCac",
+       "cos": 0.619
+      }
+     ],
+     "ms": 296
+    }
+   ]
+  },
+  {
+   "name": "删一篇",
+   "desc": "删掉笔记 hikari-pool.md",
+   "stat": {
+    "files": 7,
+    "skipped": 7,
+    "acl_only": 0,
+    "changed_files": 0,
+    "embedded": 0,
+    "kept": 0,
+    "deleted": 1,
+    "retired": 0,
+    "removed_files": 1,
+    "seconds": 0.0
+   },
+   "counts": {
+    "current": 33,
+    "deleted": 1,
+    "retired": 16
+   },
+   "checks": [
+    {
+     "who": "交易组",
+     "q": "连接池等待线程告警，能不能直接把连接池调大？",
+     "top": [
+      {
+       "key": "order-svc-runbook",
+       "version": "v3.2",
+       "team": "trade",
+       "section": "3.3 数据库连接池耗尽",
+       "text": "order-svc 用 HikariCP，maximumPoolSize=20，connectionTimeout=30",
+       "cos": 0.73
+      },
+      {
+       "key": "order-svc-runbook",
+       "version": "v3.2",
+       "team": "trade",
+       "section": "2 告警与阈值",
+       "text": "阈值按 2026-10 的压测结果定。P2 在值班群通知，P1 同时电话呼叫值班人。\n指标 | 阈值 | 级别\n接口 P",
+       "cos": 0.595
+      },
+      {
+       "key": "INC-20261109-02",
+       "version": "v1",
+       "team": "trade",
+       "section": "修复和改进",
+       "text": "补上 maximumSize(50000) 和 expireAfterWrite(10 分钟)，计划随 v2.3.2 发",
+       "cos": 0.487
+      }
+     ],
+     "ms": 275
+    }
+   ]
+  }
+ ],
+ "full_rebuild": {
+  "files": 7,
+  "skipped": 0,
+  "acl_only": 0,
+  "changed_files": 7,
+  "embedded": 49,
+  "kept": 0,
+  "deleted": 0,
+  "retired": 16,
+  "removed_files": 0,
+  "seconds": 53.1
+ },
+ "embed_models": {
+  "Qwen3-Embedding-0.6B-Q8_0": 49
+ }
+}
