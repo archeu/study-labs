@@ -67,6 +67,7 @@
 | [文档解析：PDF、Word、表格、扫描件](https://study.ainiya.de/agent/doc-parsing.html) | [`agent/doc-parsing`](agent/doc-parsing/) | `main.py` 五组实测：三种取法逐页对原文、表格两种取字、扫描分辨率和倾斜对 OCR 的影响、Word 编号、PDF 内容流；解析代码在 `pano-06-runbook-to-report/kb.py` |
 | [清洗、切块策略和元数据](https://study.ainiya.de/agent/chunking-metadata.html) | [`agent/chunking-metadata`](agent/chunking-metadata/) | `main.py` 7 种清洗 / 切块 / 元数据做法 × 30 题的命中率对比（按证据原文判定），清洗前后页眉、目录、连字计数；评测集加了 `EVIDENCE` |
 | [向量检索和 HNSW 索引](https://study.ainiya.de/agent/vector-hnsw.html) | [`agent/vector-hnsw`](agent/vector-hnsw/) | `main.py` pgvector 5 万条 × 1024 维：暴力、HNSW（m、ef_search）、IVFFlat、三种选择率的过滤和 iterative_scan；`toy_hnsw.py` 18 个点 3 层的手推 |
+| [混合检索：关键词 BM25 加向量，再重排](https://study.ainiya.de/agent/hybrid-search.html) | [`agent/hybrid-search`](agent/hybrid-search/) | `main.py` 31 片 × 30 题，BM25 / 向量 / RRF / 分数加权 / 重排 6 种办法的名次和命中率，BM25 逐词拆解，jieba 对标识符的切法 |
 
 ## Java 后端架构
 
