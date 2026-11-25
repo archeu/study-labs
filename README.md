@@ -63,6 +63,7 @@
 | [记忆怎么忘：衰减、过期，按用户隔离和隐私](https://study.ainiya.de/agent/memory-forget.html) | [`agent/memory-forget`](agent/memory-forget/) | forget.py 90 天模拟和每晚的遗忘任务；main.py 四套策略和隔离对比，输出 grid.json |
 | [记忆好不好：该记的记住了吗，对任务有帮助吗](https://study.ainiya.de/agent/memory-eval.html) | [`agent/memory-eval`](agent/memory-eval/) | cases.py 21 个用例；system.py 8 个开关的记忆系统和判定；main.py v1 / v2 / 回归对比，输出 grid.json |
 | [全景：一份运维手册从上传到被引用](https://study.ainiya.de/agent/pano-06-runbook-to-report.html) | [`agent/pano-06-runbook-to-report`](agent/pano-06-runbook-to-report/) | 值班助手 v3 知识库：`corpus.py` 生成带扫描页的假手册和故障单，`kb.py` 每个函数对应一站（解析、OCR、切块、pgvector、BM25 + 向量 + RRF、重排、带引用生成、引用回查），`main.py` 三种检索计划对比 |
+| [RAG 流水线：切块、向量化、检索、重排、生成](https://study.ainiya.de/agent/rag-pipeline.html) | [`agent/rag-pipeline`](agent/rag-pipeline/) | `rag_min.py` 一百行的最小 RAG（内存向量、可选重排、闭卷对照）；`main.py` 闭卷 / RAG / 重排对照和 30 题向量检索命中率；评测集 `pano-06-runbook-to-report/questions.py` |
 
 ## Java 后端架构
 
