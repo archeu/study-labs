@@ -80,6 +80,7 @@
 | [写 MCP 服务端：Python 和 Java 各一个](https://study.ainiya.de/agent/mcp-server-build.html) | [`agent/mcp-server-build`](agent/mcp-server-build/) | `oncall_server.py`：Python 正式版服务端（lifespan、Context、ToolError）；`test_oncall_server.py`：内存测试；`call_both.py`：一个客户端连 Python + Java 两个服务端 |
 | [远程 MCP 的鉴权（OAuth）](https://study.ainiya.de/agent/mcp-oauth.html) | [`agent/mcp-oauth`](agent/mcp-oauth/) | `auth_server.py`：演示用最小授权服务器；`tickets_rs.py`：带鉴权和按工具 scope 的资源服务器；`client_flow.py`：打印每个 HTTP 来回的 OAuth 客户端 |
 | [MCP 的安全：不可信服务端、工具描述投毒、最小权限](https://study.ainiya.de/agent/mcp-security.html) | [`agent/mcp-security`](agent/mcp-security/) | `evil_server.py`：演示用坏服务端（升级后说明投毒）；`mcp_audit.py`：指纹比对 + 规则扫描的体检脚本 |
+| [Agent Skills：按需加载的说明书](https://study.ainiya.de/agent/agent-skills.html) | [`agent/agent-skills`](agent/agent-skills/) | `skills/oncall-triage/`：值班排障 Skill（SKILL.md + 脚本 + 参考文件）；`skill_host.py`：迷你 Skill 主机，演示三层按需加载 |
 
 ## Java 后端架构
 
