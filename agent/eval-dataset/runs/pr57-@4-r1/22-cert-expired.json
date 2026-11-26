@@ -1,0 +1,260 @@
+{
+ "case": "22-cert-expired",
+ "prompt": "@4",
+ "prompt_sha": "951128fb",
+ "model": "qwen3-1.7b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-svc 接口错误率 18%（阈值 1%）。出什么事了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "bstbROQ4qRxBPzdfTKu4U781V8yi3aO5",
+     "input": {
+      "query": "接口错误率 18%"
+     },
+     "name": "search_notes",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "bstbROQ4qRxBPzdfTKu4U781V8yi3aO5",
+     "content": "《G1 和 ZGC 怎么回收》（g1-zgc）：Full GC 后老年代仍 70% 以上，说明有对象一直被引用（缓存、大列表），先 jmap -histo 看谁最多；Humongous Allocation 说明有超过半个 region 的大对象。\n《JVM 内存结构》（jvm-memory-structure）：堆分新生代和老年代，大对象可能直接进老年代；导出类接口一次把几十万行读进 List 是常见的老年代杀手。"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "ofH97CUrStGIYG7cII8rU83nWBPkj1a1",
+     "input": {
+      "keyword": "接口错误率 18%",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "ofH97CUrStGIYG7cII8rU83nWBPkj1a1",
+     "content": "没有匹配的日志（查的是 20:00 以后、关键字 接口错误率 18%。可以把 since 往前放，或用 WARN|ERROR|耗时|超时）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "Rh6hlFXjLcZgRj8dvkBSkCyqVLPpKjL1",
+     "input": {
+      "since": "20:00"
+     },
+     "name": "parse_gc_log",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "Rh6hlFXjLcZgRj8dvkBSkCyqVLPpKjL1",
+     "content": "3 次停顿，最长 19ms；Full GC 0 次"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "KLcsl1BQ7mU4ZG6L5Fxb7eFz2k4MJVQx",
+     "input": {
+      "query": "接口错误率 18% 无日志记录"
+     },
+     "name": "search_notes",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "KLcsl1BQ7mU4ZG6L5Fxb7eFz2k4MJVQx",
+     "content": "《G1 和 ZGC 怎么回收》（g1-zgc）：Full GC 后老年代仍 70% 以上，说明有对象一直被引用（缓存、大列表），先 jmap -histo 看谁最多；Humongous Allocation 说明有超过半个 region 的大对象。\n《JVM 内存结构》（jvm-memory-structure）：堆分新生代和老年代，大对象可能直接进老年代；导出类接口一次把几十万行读进 List 是常见的老年代杀手。"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "根据 GC 日志，没有 Full GC 次数，说明没有触发 Full GC。但有 3 次停顿，最长 19ms，可能与线程阻塞有关。\n\n建议下一步操作：\n1. 使用 `jmap -histo` 查看堆内存分布，确认是否有大对象（Humongous Allocation）。\n2. 检查是否有长时间线程阻塞，使用 `thread_dump` 查看线程栈。\n\n结论：可能是由于大对象（如缓存、大列表）导致老年代内存不足，或线程阻塞引起性能问题。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 5092,
+   "input_tokens": 23,
+   "output_tokens": 26,
+   "cache_read_tokens": 912,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_notes"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_notes",
+   "args": {
+    "query": "接口错误率 18%"
+   },
+   "start_ms": 5092,
+   "ms": 0.04,
+   "error": false,
+   "empty": false,
+   "result_chars": 210
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 5092,
+   "ms": 9964,
+   "input_tokens": 163,
+   "output_tokens": 35,
+   "cache_read_tokens": 931,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "search_logs",
+   "args": {
+    "keyword": "接口错误率 18%",
+    "since": "20:00"
+   },
+   "start_ms": 15056,
+   "ms": 0.1,
+   "error": false,
+   "empty": true,
+   "result_chars": 69
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 15056,
+   "ms": 6717,
+   "input_tokens": 97,
+   "output_tokens": 25,
+   "cache_read_tokens": 1090,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "parse_gc_log"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 3,
+   "name": "parse_gc_log",
+   "args": {
+    "since": "20:00"
+   },
+   "start_ms": 21773,
+   "ms": 0.07,
+   "error": false,
+   "empty": false,
+   "result_chars": 25
+  },
+  {
+   "kind": "chat",
+   "step": 4,
+   "start_ms": 21773,
+   "ms": 8688,
+   "input_tokens": 62,
+   "output_tokens": 31,
+   "cache_read_tokens": 1183,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_notes"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 4,
+   "name": "search_notes",
+   "args": {
+    "query": "接口错误率 18% 无日志记录"
+   },
+   "start_ms": 30461,
+   "ms": 0.04,
+   "error": false,
+   "empty": false,
+   "result_chars": 210
+  },
+  {
+   "kind": "chat",
+   "step": 5,
+   "start_ms": 30461,
+   "ms": 26596,
+   "input_tokens": 168,
+   "output_tokens": 128,
+   "cache_read_tokens": 1241,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": false,
+  "怪错": [
+   "GC",
+   "Full GC"
+  ],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 5,
+  "工具调用": 4,
+  "到上限": false,
+  "通过": false,
+  "id": "22-cert-expired",
+  "cat": "下游依赖",
+  "src": "值班记录",
+  "秒": 57.1,
+  "输入token": 513,
+  "输出token": 245,
+  "工具序列": [
+   "search_notes",
+   "search_logs",
+   "parse_gc_log",
+   "search_notes"
+  ]
+ }
+}

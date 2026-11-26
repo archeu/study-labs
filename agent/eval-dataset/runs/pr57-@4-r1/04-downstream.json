@@ -1,0 +1,253 @@
+{
+ "case": "04-downstream",
+ "prompt": "@4",
+ "prompt_sha": "951128fb",
+ "model": "qwen3-1.7b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-04 接口 P99 3.1 秒（阈值 800ms）。order-svc 为什么变慢了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "gzhffZAtN8aPWDXkqxejiKDxGl6QPCs8",
+     "input": {
+      "query": "P99 3.1 秒"
+     },
+     "name": "search_notes",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "gzhffZAtN8aPWDXkqxejiKDxGl6QPCs8",
+     "content": "《G1 和 ZGC 怎么回收》（g1-zgc）：Full GC 后老年代仍 70% 以上，说明有对象一直被引用（缓存、大列表），先 jmap -histo 看谁最多；Humongous Allocation 说明有超过半个 region 的大对象。\n《JVM 内存结构》（jvm-memory-structure）：堆分新生代和老年代，大对象可能直接进老年代；导出类接口一次把几十万行读进 List 是常见的老年代杀手。"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "7ZMWprxEZJbYN8euZAU9g3G6CxVp0QnP",
+     "input": {
+      "since": "20:00"
+     },
+     "name": "parse_gc_log",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "7ZMWprxEZJbYN8euZAU9g3G6CxVp0QnP",
+     "content": "3 次停顿，最长 19ms；Full GC 0 次"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "pHAUtL1hzpQa1rbvEcNl11bNpLsYhzP1",
+     "input": {},
+     "name": "thread_dump",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "pHAUtL1hzpQa1rbvEcNl11bNpLsYhzP1",
+     "content": "57 个 \"http-nio-8080-exec-*\" RUNNABLE at sun.nio.ch.SocketDispatcher.read（InventoryClient.getStock）\n其余 196 个 http-nio 线程 WAITING（空闲）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "G0lYy34p5wKhvS4cRzmfZSdqRt9Tyi49",
+     "input": {
+      "keyword": "耗时",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "G0lYy34p5wKhvS4cRzmfZSdqRt9Tyi49",
+     "content": "2026-11-08 20:10:02.775 ERROR order-svc  [http-nio-8080-exec-61] OrderController /orders/{id} 耗时 3120ms：inventory-svc 不可用"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "根据排查顺序，以下为结论：\n\n**原因：**  \n应用日志显示在 20:10 有报错：“耗时 3120ms”，表明接口响应时间过长，可能是由于接口调用的服务（inventory-svc）不可用。\n\n**证据：**  \n- 应用日志中显示：`2026-11-08 20:10:02.775 ERROR order-svc [http-nio-8080-exec-61] OrderController /orders/{id} 耗时 3120ms：inventory-svc 不可用`  \n- GC 日志显示：`3 次停顿，最长 19ms；Full GC 0 次`，说明没有发生 Full GC，但仍有停顿。\n\n**建议的下一步：**  \n1. 检查 inventory-svc 是否可用，确认是否为服务故障。  \n2. 如果 inventory-svc 服务正常，检查接口调用的线程是否阻塞。  \n3. 如果线程阻塞，可以尝试分析线程栈，确认是否有阻塞操作（如数据库查询、网络调用等）。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 5511,
+   "input_tokens": 32,
+   "output_tokens": 28,
+   "cache_read_tokens": 914,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_notes"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_notes",
+   "args": {
+    "query": "P99 3.1 秒"
+   },
+   "start_ms": 5512,
+   "ms": 0.05,
+   "error": false,
+   "empty": false,
+   "result_chars": 210
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 5512,
+   "ms": 8534,
+   "input_tokens": 165,
+   "output_tokens": 25,
+   "cache_read_tokens": 942,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "parse_gc_log"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "parse_gc_log",
+   "args": {
+    "since": "20:00"
+   },
+   "start_ms": 14046,
+   "ms": 0.07,
+   "error": false,
+   "empty": false,
+   "result_chars": 25
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 14046,
+   "ms": 6307,
+   "input_tokens": 62,
+   "output_tokens": 16,
+   "cache_read_tokens": 1103,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "thread_dump"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 3,
+   "name": "thread_dump",
+   "args": {},
+   "start_ms": 20352,
+   "ms": 0.01,
+   "error": false,
+   "empty": false,
+   "result_chars": 131
+  },
+  {
+   "kind": "chat",
+   "step": 4,
+   "start_ms": 20352,
+   "ms": 7878,
+   "input_tokens": 84,
+   "output_tokens": 31,
+   "cache_read_tokens": 1161,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 4,
+   "name": "search_logs",
+   "args": {
+    "keyword": "耗时",
+    "since": "20:00"
+   },
+   "start_ms": 28231,
+   "ms": 0.04,
+   "error": false,
+   "empty": false,
+   "result_chars": 121
+  },
+  {
+   "kind": "chat",
+   "step": 5,
+   "start_ms": 28231,
+   "ms": 45421,
+   "input_tokens": 113,
+   "output_tokens": 260,
+   "cache_read_tokens": 1241,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": true,
+  "怪错": [],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 5,
+  "工具调用": 4,
+  "到上限": false,
+  "通过": true,
+  "id": "04-downstream",
+  "cat": "下游依赖",
+  "src": "值班记录",
+  "秒": 73.7,
+  "输入token": 456,
+  "输出token": 360,
+  "工具序列": [
+   "search_notes",
+   "parse_gc_log",
+   "thread_dump",
+   "search_logs"
+  ]
+ }
+}
