@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.archeu.labs</groupId>
+    <artifactId>java-labs</artifactId>
+    <version>1.0</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <artifactId>agent-java-agent-frameworks</artifactId>
+  <name>Java 框架：Spring AI、Spring AI Alibaba、LangChain4j</name>
+  <!-- 同一个排障 agent 写两遍：Spring Boot 4.2.0 + Spring AI 2.1.0（ChatClient + ToolCallingAdvisor），LangChain4j 1.24.0（AiServices）。
+       工具类 OncallTools 同时带两家的 @Tool 注解。Spring AI Alibaba Graph 依赖 Spring AI 1.1.x，放在隔壁模块 java-agent-graph。JDK 17。 -->
+  <properties>
+    <maven.compiler.release>17</maven.compiler.release>
+    <!-- 必须：Spring AI 靠反射读参数名生成工具说明书，不带 -parameters 就成了 arg0、arg1（页面 ⑥ 坑 1）。
+         继承 spring-boot-starter-parent 的项目默认带了；这里的父 pom 是 java-labs，要自己开。 -->
+    <maven.compiler.parameters>true</maven.compiler.parameters>
+    <spring-boot.version>4.2.0</spring-boot.version>
+    <spring-ai.version>2.1.0</spring-ai.version>
+    <langchain4j.version>1.24.0</langchain4j.version>
+  </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.ai</groupId>
+        <artifactId>spring-ai-bom</artifactId>
+        <version>${spring-ai.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>dev.langchain4j</groupId>
+        <artifactId>langchain4j-bom</artifactId>
+        <version>${langchain4j.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <dependencies>
+    <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter</artifactId></dependency>
+    <dependency><groupId>org.springframework.ai</groupId><artifactId>spring-ai-starter-model-anthropic</artifactId></dependency>
+    <dependency><groupId>dev.langchain4j</groupId><artifactId>langchain4j</artifactId></dependency>
+    <dependency><groupId>dev.langchain4j</groupId><artifactId>langchain4j-anthropic</artifactId></dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>

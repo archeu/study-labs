@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.archeu.labs</groupId>
+    <artifactId>java-labs</artifactId>
+    <version>1.0</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <artifactId>agent-java-agent-graph</artifactId>
+  <name>Java 框架：Spring AI Alibaba Graph（全景那张图的 Java 版）</name>
+  <!-- 页面 java-agent-frameworks 的第二个模块。spring-ai-alibaba-graph-core 1.1.2.3 依赖 Spring AI 1.1.2，
+       和隔壁模块的 Spring AI 2.1 放不到一起，所以单独一个模块；不用 Spring Boot，节点里不调模型。JDK 17。 -->
+  <properties>
+    <maven.compiler.release>17</maven.compiler.release>
+    <maven.compiler.parameters>true</maven.compiler.parameters>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>com.alibaba.cloud.ai</groupId>
+      <artifactId>spring-ai-alibaba-graph-core</artifactId>
+      <version>1.1.2.3</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration><mainClass>labs.agent.java_agent_graph.GraphTriage</mainClass></configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
