@@ -76,6 +76,7 @@
 | [全景：Claude Code 调用你的 MCP 工具](https://study.ainiya.de/agent/pano-07-mcp-call.html) | [`agent/pano-07-mcp-call`](agent/pano-07-mcp-call/) | `oncall_server.py`：Python MCP 服务端（4 工具 + 1 资源 + 1 模板）；`wiretap.py`：stdio 窃听器，抓客户端和服务端之间的每一行；`main.py`：SDK 客户端走一遍 discover → list → call 并计时，`--legacy` 走老握手 |
 | [MCP 的三方：主机、客户端、服务端](https://study.ainiya.de/agent/mcp-architecture.html) | [`agent/mcp-architecture`](agent/mcp-architecture/) | `mini_host.py`：标准库迷你主机，两个客户端各自协商新老协议、工具加前缀合并；`gateway_server.py`：40 行老协议服务端 |
 | [三种能力：工具、资源、提示词模板](https://study.ainiya.de/agent/mcp-primitives.html) | [`agent/mcp-primitives`](agent/mcp-primitives/) | `oncall_v2.py`：三种能力齐全的服务端（结构化输出、annotations、资源模板、带参数的模板）；`tour.py`：挨个列、调、故意出错 |
+| [两种传输：stdio 和 Streamable HTTP](https://study.ainiya.de/agent/mcp-transports.html) | [`agent/mcp-transports`](agent/mcp-transports/) | `oncall_http.py`：同一个服务端换成 HTTP；`raw_http.sh`：curl 敲每一道关；`compare.py`：stdio 和 HTTP 计时对比 |
 
 ## Java 后端架构
 
