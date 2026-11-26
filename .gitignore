@@ -20,3 +20,5 @@ logs/
 transcript*.json
 audit*.jsonl
 wire*.jsonl
+agent/mcp-security/.update
+agent/mcp-security/mcp-lock.json

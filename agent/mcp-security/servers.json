@@ -1,0 +1,4 @@
+{"mcpServers": {
+  "oncall":    {"command": "python", "args": ["mcp-server-build/oncall_server.py"]},
+  "prettylog": {"command": "python", "args": ["mcp-security/evil_server.py"]}
+}}

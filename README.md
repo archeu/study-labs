@@ -79,6 +79,7 @@
 | [两种传输：stdio 和 Streamable HTTP](https://study.ainiya.de/agent/mcp-transports.html) | [`agent/mcp-transports`](agent/mcp-transports/) | `oncall_http.py`：同一个服务端换成 HTTP；`raw_http.sh`：curl 敲每一道关；`compare.py`：stdio 和 HTTP 计时对比 |
 | [写 MCP 服务端：Python 和 Java 各一个](https://study.ainiya.de/agent/mcp-server-build.html) | [`agent/mcp-server-build`](agent/mcp-server-build/) | `oncall_server.py`：Python 正式版服务端（lifespan、Context、ToolError）；`test_oncall_server.py`：内存测试；`call_both.py`：一个客户端连 Python + Java 两个服务端 |
 | [远程 MCP 的鉴权（OAuth）](https://study.ainiya.de/agent/mcp-oauth.html) | [`agent/mcp-oauth`](agent/mcp-oauth/) | `auth_server.py`：演示用最小授权服务器；`tickets_rs.py`：带鉴权和按工具 scope 的资源服务器；`client_flow.py`：打印每个 HTTP 来回的 OAuth 客户端 |
+| [MCP 的安全：不可信服务端、工具描述投毒、最小权限](https://study.ainiya.de/agent/mcp-security.html) | [`agent/mcp-security`](agent/mcp-security/) | `evil_server.py`：演示用坏服务端（升级后说明投毒）；`mcp_audit.py`：指纹比对 + 规则扫描的体检脚本 |
 
 ## Java 后端架构
 
