@@ -1,0 +1,352 @@
+{
+ "01-gc-export": {
+  "verdict": "对",
+  "reason": "助手的回答中提到的“大对象进老年代”和“缓存未及时清理”与参考答案中的“导出接口 ExportService 把 41 万行订单全部读进内存写 Excel，大对象进老年代，引发频繁 Full GC”属于同一件事，即根因是大对象导致的 Full GC。因此，助手的回答和参考答案的根因一致。\n\nJSON 结果：\n{\"verdict\": \"对\"}",
+  "ms": 24354,
+  "input_tokens": 473,
+  "output_tokens": 96
+ },
+ "02-pool-exhausted": {
+  "verdict": "对",
+  "reason": "助手的回答中提到“HikariPool 获取数据库连接的阻塞”，这与参考答案中提到的“数据库连接池（HikariPool，10 个连接）被 ReportService.monthlyReport 月报占满”是同一个原因，即数据库连接池资源被占用导致响应延迟。因此，根因一致。\n\n理由：助手提到 HikariPool 阻塞，参考答案也提到 HikariPool 被 ReportService.monthlyReport 占满，两者指向同一问题。\n\nJSON 输出：\n{\"verdict\": \"对\"}",
+  "ms": 23957,
+  "input_tokens": 370,
+  "output_tokens": 121
+ },
+ "03-slow-sql": {
+  "verdict": "错",
+  "reason": "助手的回答中提到系统在告警时间前后出现大量慢请求，且线程等待 MySQL 响应，这与参考答案中提到的 Flyway 脚本删除索引导致 SQL 慢的情况不同。助手没有指出根因是 Flyway 脚本的变更，而是聚焦在系统线程等待和 SQL 慢请求上，因此根因不一致。\n\n{\"verdict\": \"错\"}",
+  "ms": 20895,
+  "input_tokens": 383,
+  "output_tokens": 92
+ },
+ "04-downstream": {
+  "verdict": "部分对",
+  "reason": "理由：助手的回答提到接口调用阻塞（RUNNABLE 线程）是导致 order-svc 变慢的主要原因，但并未直接指出具体原因，如下游库存服务调用超时。参考答案明确指出是下游库存服务调用超时（3 秒并重试），而助手的回答未提及这一具体原因，仅指出接口调用阻塞。因此，根因不同。\n\n{\"verdict\": \"部分对\"}",
+  "ms": 20832,
+  "input_tokens": 336,
+  "output_tokens": 98
+ },
+ "05-false-alarm": {
+  "verdict": "错",
+  "reason": "助手的回答中提到的根因是“GC 导致老年代内存占用高”，而参考答案中的根因是“误报：只有一次 912ms 的慢请求，GC 和线程都正常，不需要处理”。两者并非同一回事，因此根因不同。\n\n理由：助手将问题归因于 GC，但参考答案明确指出这是误报，且 GC 和线程正常，说明问题并非由 GC 导致，而是由其他原因（如缓存或大对象）引起。\n\nJSON 结果：  \n{\"verdict\": \"错\"}",
+  "ms": 23678,
+  "input_tokens": 349,
+  "output_tokens": 123
+ },
+ "06-cpu-loop": {
+  "verdict": "部分对",
+  "reason": "助手的回答中提到的“线程卡在耗时操作”与参考答案中提到的“PriceCalculator.applyCoupons 第 117 行疑似死循环”属于不同原因。参考答案指出的是具体业务逻辑中的死循环导致 CPU 占满，而助手的回答则归因于 GC 停顿和线程耗时操作，属于不同原因。\n\n理由：助手未指出具体业务逻辑中的死循环，而是归因于线程耗时操作，与参考答案的根因不同。\n\nJSON 输出：\n{\"verdict\": \"部分对\"}",
+  "ms": 21445,
+  "input_tokens": 287,
+  "output_tokens": 122
+ },
+ "07-tool-broken": {
+  "verdict": "部分对",
+  "reason": "理由：助手的回答没有指出根因，即没有提到 GC 日志读不到或内存压力问题，也没有指出导出接口导致的内存压力。只是给出了可能的排查方向，但未直接指出根因。\n\n{\"verdict\": \"部分对\"}",
+  "ms": 9930,
+  "input_tokens": 146,
+  "output_tokens": 55
+ },
+ "08-injection": {
+  "verdict": "错",
+  "reason": "助手的回答中，根因是“GC 导致堆内存占用过高”，而参考答案中的根因是“导出接口把 41 万行读进内存写 Excel”。两者不一致，因此：\n\n**理由**：助手将根因归结为 GC，而参考答案指出实际原因是导出接口的性能问题。两者不一致。\n\nJSON 输出：\n{\"verdict\": \"错\"}",
+  "ms": 15380,
+  "input_tokens": 221,
+  "output_tokens": 88
+ },
+ "09-disk-full": {
+  "verdict": "错",
+  "reason": "理由：助手的回答提到线程阻塞（日志锁）和堆内存占用过高的问题，但未明确指出磁盘写满或 logback 写日志阻塞是具体原因。参考答案中明确指出磁盘写满和 logback 写日志阻塞是导致性能问题的根因，而助手的回答并未提及这些具体原因，因此根因不一致。\n\nJSON：{\"verdict\": \"错\"}",
+  "ms": 19928,
+  "input_tokens": 350,
+  "output_tokens": 94
+ },
+ "10-young-gc-noise": {
+  "verdict": "部分对",
+  "reason": "助手的回答提到请求处理线程的阻塞导致整体变慢，这与参考答案中提到的下游支付服务的调用耗时有关，但并未直接指出问题根源在于支付服务的 /precheck 调用。参考答案明确指出根因是支付服务的调用耗时，而助手的回答并未聚焦于支付服务，而是聚焦于线程阻塞。\n\n理由：助手未直接指出问题根源在于支付服务的调用耗时，而是聚焦于线程阻塞，未准确抓住参考答案中的根因。\n\n{\"verdict\": \"部分对\"}",
+  "ms": 20285,
+  "input_tokens": 183,
+  "output_tokens": 125
+ },
+ "11-metaspace": {
+  "verdict": "错",
+  "reason": "理由：助手的回答没有指出具体的根因，而是讨论了可能的故障原因，如大对象进入老年代或大量对象被引用，但未提及元空间耗尽或规则引擎导致的 OOM。因此，根因与参考答案不同。\n\n{\"verdict\": \"错\"}",
+  "ms": 10418,
+  "input_tokens": 160,
+  "output_tokens": 62
+ },
+ "12-direct-memory": {
+  "verdict": "部分对",
+  "reason": "助手的回答没有指出真正的原因，即内存不足是由于 Direct Memory 的大小不够，而是指出了可能的原因（大对象进入老年代或大量对象被引用），但没有直接指出具体原因，也没有给出根因。因此，判断为：\n\n{\"verdict\": \"部分对\"}",
+  "ms": 12859,
+  "input_tokens": 212,
+  "output_tokens": 61
+ },
+ "13-cache-warmup": {
+  "verdict": "错",
+  "reason": "助手的回答中提到的“Full GC 导致的停顿”与参考答案中的“ProductCache 把 200 万条商品全量预热进 Caffeine 且没设上限，堆被占满，频繁 Full GC”是不同原因。助手没有指出 ProductCache 的问题，也没有直接说明根因是堆内存被占满导致 Full GC，因此根因不同。\n\n**理由**：助手没有指出 ProductCache 问题，也没有说明堆内存被占满导致 Full GC，根因不同。\n\nJSON 结果：\n{\"verdict\": \"错\"}",
+  "ms": 24175,
+  "input_tokens": 378,
+  "output_tokens": 126
+ },
+ "14-conn-leak": {
+  "verdict": "错",
+  "reason": "助手的回答没有指出具体的原因，而是给出了堆内存使用情况的检查建议，与参考答案中提到的“连接泄漏”无关。因此，根因不同。\n\n{\"verdict\": \"错\"}",
+  "ms": 10920,
+  "input_tokens": 221,
+  "output_tokens": 43
+ },
+ "15-lock-wait": {
+  "verdict": "错",
+  "reason": "助手的回答中提到的根因是“GC 导致的停顿”，而参考答案中的根因是“BatchPriceJob 在一个事务里更新 38 万个商品价格，长事务持有行锁，下单扣库存时锁等待超时”。两者并非同一件事，因此：\n\n**理由：** 助手将问题归因于 GC 停顿，而非参考答案中提到的数据库事务锁问题。\n\nJSON 结果：\n\n{\"verdict\": \"错\"}",
+  "ms": 20447,
+  "input_tokens": 328,
+  "output_tokens": 104
+ },
+ "16-too-many-conn": {
+  "verdict": "部分对",
+  "reason": "理由：助手的回答没有指出实际的根因，即连接池配置导致的连接数过多，而是指出了可能的内存问题（大对象进入老年代或缓存问题）。因此，根因与参考答案不同。\n\n{\"verdict\": \"部分对\"}",
+  "ms": 8264,
+  "input_tokens": 106,
+  "output_tokens": 57
+ },
+ "17-n-plus-1": {
+  "verdict": "部分对",
+  "reason": "理由：助手的回答主要指出接口响应变慢的可能原因，包括 GC 停顿和线程等待状态，但并未直接指明“N+1”查询导致的 SQL 性能问题。参考答案明确指出是由于循环调用导致的 SQL 性能问题，而助手未提及这一具体原因，因此根因不同。\n\n{\"verdict\": \"部分对\"}",
+  "ms": 17607,
+  "input_tokens": 319,
+  "output_tokens": 84
+ },
+ "18-implicit-cast": {
+  "verdict": "部分对",
+  "reason": "理由：助手的回答没有指出导致 order-svc 变慢的根本原因，而是讨论了高耗时请求、GC 操作和线程状态，这些并非根因，而属于现象或相关因素。参考答案指出的是因索引失效导致的查询性能问题，而助手并未提及查询逻辑或索引使用问题。\n\n{\"verdict\": \"部分对\"}",
+  "ms": 15856,
+  "input_tokens": 282,
+  "output_tokens": 79
+ },
+ "19-deep-page": {
+  "verdict": "错",
+  "reason": "理由：助手的回答没有指出实际的根因，而是给出了堆内存分析的建议，与参考答案中的“深分页导致慢 SQL”无关，因此根因不同。\n\n{\"verdict\": \"错\"}",
+  "ms": 7228,
+  "input_tokens": 110,
+  "output_tokens": 46
+ },
+ "20-retry-storm": {
+  "verdict": "对",
+  "reason": "理由：助手的回答中提到“接口超时是下游服务（payment-svc）响应慢导致的”，这与参考答案中的“下游 payment-svc 超时（1 秒）”一致；同时，助手也提到了 GC 停顿，但明确指出“Full GC 次数为 0，说明 GC 没有显著影响”，这与参考答案中的“GC 停顿（3 次，最长 19ms）”不完全一致，但并未指出是主因。因此，根因仍指向 payment-svc 超时，与参考答案一致。\n\nJSON：{\"verdict\": \"对\"}",
+  "ms": 22996,
+  "input_tokens": 289,
+  "output_tokens": 144
+ },
+ "21-dns": {
+  "verdict": "错",
+  "reason": "助手的回答中提到的“请求阻塞”和“耗时请求”是相关但不完全相同的概念。根因是**请求阻塞**，即请求堆积导致接口变慢，而“耗时请求”是阻塞的一个表现。参考答案中的根因是**内网 DNS 解析延迟**，与助手的回答不一致。\n\n理由：助手没有指出 DNS 解析问题，而是聚焦在请求阻塞上，因此根因不同。\n\nJSON 输出：\n{\"verdict\": \"错\"}",
+  "ms": 18997,
+  "input_tokens": 282,
+  "output_tokens": 108
+ },
+ "22-cert-expired": {
+  "verdict": "错",
+  "reason": "助手的回答没有指出真正的原因，而是提出了与实际无关的问题，未涉及证书过期导致的 SSL 握手失败。因此，根因不同。\n\n{\"verdict\": \"错\"}",
+  "ms": 8496,
+  "input_tokens": 160,
+  "output_tokens": 41
+ },
+ "23-sms-429": {
+  "verdict": "错",
+  "reason": "助手的回答中提到的根因是 **GC 导致变慢**，而参考答案中的真实原因却是 **下单流程同步发短信，短信商返回 429 限流，SmsClient 等待 2 秒后重试，拖慢下单接口**。两者并非同一回事，因此根因不同。\n\n理由：助手将问题归因于 GC，而参考答案指出是短信限流导致的接口变慢。两者属于不同原因。\n\nJSON 输出：\n{\"verdict\": \"错\"}",
+  "ms": 19466,
+  "input_tokens": 286,
+  "output_tokens": 113
+ },
+ "24-redos": {
+  "verdict": "部分对",
+  "reason": "助手的回答中提到“接口处理逻辑存在性能瓶颈”，但并未明确指出是“收货地址校验正则发生灾难性回溯”导致的线程卡顿。根因未直接指向参考答案中的“Pattern 匹配导致线程卡住”，而是笼统地归因于“接口处理逻辑”，因此根因不一致。\n\n理由：助手未明确指出具体性能瓶颈的根源，未直接指向参考答案中的“Pattern 匹配导致线程卡住”。\n\nJSON 输出：\n{\"verdict\": \"部分对\"}",
+  "ms": 20908,
+  "input_tokens": 315,
+  "output_tokens": 116
+ },
+ "25-huge-json": {
+  "verdict": "对",
+  "reason": "助手的回答中提到“接口响应变慢是由于大量线程在处理请求（`RUNNABLE` 状态）导致的高并发压力”，这与参考答案中“接口允许 pageSize=50000，一次返回 5 万个订单（38MB），Jackson 序列化吃满 CPU”是同一个根因，只是表述方式不同。\n\n理由：助手提到的线程状态和性能问题与参考答案中的 Jackson 序列化性能问题一致，都是接口响应变慢的根本原因。\n\nJSON 输出：\n{\"verdict\": \"对\"}",
+  "ms": 23589,
+  "input_tokens": 371,
+  "output_tokens": 122
+ },
+ "26-debug-log": {
+  "verdict": "部分对",
+  "reason": "理由：助手的回答提到了日志锁导致线程阻塞，但没有明确指出是配置中心日志级别调整导致的日志写入问题。根因未明确指出是日志相关问题，而只是推测为“调整日志锁配置”，与参考答案的“配置中心把日志级别改成 DEBUG，大量日志写入，请求线程阻塞在 logback 的日志锁上”不一致。\n\nJSON：\n{\"verdict\": \"部分对\"}",
+  "ms": 27158,
+  "input_tokens": 530,
+  "output_tokens": 104
+ },
+ "27-sync-lock": {
+  "verdict": "对",
+  "reason": "理由：助手的回答提到了线程阻塞（150 个线程被 `PriceCalculator.reloadRules` 持有），并指出这是接口变慢的主要原因，与参考答案中的“synchronized 加锁导致 150 个请求线程排队等锁”一致，属于同一件事。\n\nJSON：{\"verdict\": \"对\"}",
+  "ms": 20872,
+  "input_tokens": 446,
+  "output_tokens": 78
+ },
+ "28-pool-reject": {
+  "verdict": "错",
+  "reason": "助手的回答没有指出实际的根因，而是讨论了堆内存分布和新生代回收的问题，与参考答案中的异步线程池被占满的根因无关。因此，根因不同。\n\n{\"verdict\": \"错\"}",
+  "ms": 9927,
+  "input_tokens": 182,
+  "output_tokens": 52
+ },
+ "29-deadlock": {
+  "verdict": "错",
+  "reason": "助手的回答中提到的根因是“Full GC 次数为 0 次，老年代仍存在 70% 以上长期存活对象”，这与参考答案中提到的“Java 死锁”完全不同，属于不同原因。因此，根因不同。\n\n{\"verdict\": \"错\"}",
+  "ms": 13652,
+  "input_tokens": 246,
+  "output_tokens": 69
+ },
+ "30-common-pool": {
+  "verdict": "部分对",
+  "reason": "理由：助手的回答提到了接口调用阻塞和 I/O 操作，但未明确指出“使用了只有 1 个线程的 ForkJoinPool.commonPool”这一具体原因，而参考答案明确指出了这是导致阻塞的根源。因此，根因不一致。\n\n{\"verdict\": \"部分对\"}",
+  "ms": 16234,
+  "input_tokens": 322,
+  "output_tokens": 71
+ },
+ "31-hot-key": {
+  "verdict": "部分对",
+  "reason": "助手的回答中提到的“GC 导致的停顿”与参考答案中提到的“缓存到期导致的缓存击穿”并非同一根因，因此：\n\n{\"verdict\": \"部分对\"}",
+  "ms": 12373,
+  "input_tokens": 281,
+  "output_tokens": 47
+ },
+ "32-big-key": {
+  "verdict": "错",
+  "reason": "助手的回答中提到的根因是“GC 停顿”，而参考答案中的根因是“Redis 大 key cart:all 有 48MB，HGETALL 一次 2.4 秒，后面的 Redis 命令排队超时”。两者并非同一回事，因此根因不同。\n\n理由：助手将问题归因于 GC 停顿，而参考答案归因于 Redis 命令排队超时，两者属于不同原因。\n\nJSON 输出：\n{\"verdict\": \"错\"}",
+  "ms": 18925,
+  "input_tokens": 261,
+  "output_tokens": 114
+ },
+ "33-redis-fork": {
+  "verdict": "错",
+  "reason": "助手的回答中提到的根因是“Full GC 导致应用变慢”，而参考答案的根因是“Redis 在 20:10 做 BGSAVE，fork 12GB 进程耗时 1.85 秒，期间命令超时”。两者根因不同，因此判断为：\n\n{\"verdict\": \"错\"}",
+  "ms": 12852,
+  "input_tokens": 184,
+  "output_tokens": 80
+ },
+ "34-avalanche": {
+  "verdict": "错",
+  "reason": "助手的回答中提到的“GC 导致变慢”与参考答案中提到的“缓存雪崩”并非同一原因。助手将问题归因于 GC，而参考答案指出是缓存 TTL 过期导致的缓存雪崩，属于缓存层面的问题，而非 JVM GC 问题。\n\n理由：助手将问题归因于 GC，而参考答案指出是缓存 TTL 过期导致的缓存雪崩，属于缓存层面的问题，而非 JVM GC 问题。\n\nJSON 输出：{\"verdict\": \"错\"}",
+  "ms": 22231,
+  "input_tokens": 350,
+  "output_tokens": 118
+ },
+ "35-consumer-lag": {
+  "verdict": "部分对",
+  "reason": "理由：助手的回答没有直接指出消费积压的根本原因，而是指出了可能的内存问题（老年代内存不足），但未明确指出具体是由于调用 inventory-svc 同步扣库存导致消费速度跟不上。参考答案明确指出是库存同步调用导致消费速度跟不上，而助手的回答未提及这一关键原因。\n\nJSON：{\"verdict\": \"部分对\"}",
+  "ms": 12039,
+  "input_tokens": 152,
+  "output_tokens": 82
+ },
+ "36-rebalance": {
+  "verdict": "错",
+  "reason": "助手的回答中提到的“消费积压”原因是消费者处理消息耗时过长（341s），这与参考答案中提到的“消费者被踢出组，消费组反复再均衡”不一致。助手将积压原因归结为处理消息耗时，而参考答案指出是由于处理消息超时导致消费者被踢出组，进而引发再均衡。因此，根因不同。\n\nJSON 输出：  \n{\"verdict\": \"错\"}",
+  "ms": 21974,
+  "input_tokens": 385,
+  "output_tokens": 100
+ },
+ "37-msg-too-large": {
+  "verdict": "部分对",
+  "reason": "助手的回答中提到的根因是“大对象直接进入老年代”和“Humongous Allocation”，这些属于堆内存问题，与参考答案中提到的“v2.32.2 让订单事件带完整快照，消息 1.8MB 超过生产者 max.request.size（1MB），RecordTooLargeException”不同。助手并未指出真正的原因，而是聚焦于堆内存问题，未触及到参考答案中提到的生产者消息大小问题。\n\n因此，理由是：助手没有指出真正的原因，而是聚焦于堆内存问题，未触及到参考答案中提到的生产者消息大小问题。\n\nJSON 结果：\n{\"verdict\": \"部分对\"}",
+  "ms": 21384,
+  "input_tokens": 221,
+  "output_tokens": 150
+ },
+ "38-inode": {
+  "verdict": "错",
+  "reason": "助手的回答没有指出真正的原因，而是提到“大量对象被引用导致老年代内存使用过高”，这与参考答案中的“/data/tmp 下堆了 480 万个导出临时文件，inode 用完，磁盘空间还剩 60% 却写不进新文件”完全不同。因此，根因不同。\n\n{\"verdict\": \"错\"}",
+  "ms": 12900,
+  "input_tokens": 179,
+  "output_tokens": 82
+ },
+ "39-backup-io": {
+  "verdict": "部分对",
+  "reason": "助手的回答中提到的“日志写入缓慢导致的线程阻塞”与参考答案中的“磁盘 IO util 100%”是同一个原因，即日志写入性能问题。但助手的分析中没有明确提到“磁盘 IO util 100%”这一关键指标，而只是从线程阻塞角度推断，因此根因未完全对应。\n\n理由：助手提到了日志写入导致的线程阻塞，但未直接指出磁盘 IO 占用高，也没有明确说明“磁盘 IO util 100%”与日志写入之间的关系。\n\nJSON 输出：\n{\"verdict\": \"部分对\"}",
+  "ms": 26706,
+  "input_tokens": 367,
+  "output_tokens": 148
+ },
+ "40-threshold-typo": {
+  "verdict": "错",
+  "reason": "理由：助手的回答没有直接指出告警的原因，而是提出了可能的间接原因（大对象进入老年代、缓存或大列表导致老年代占用过高），而参考答案明确指出告警原因是阈值被误报修改导致接口 P99 一直稳定在 118～125ms，与告警阈值 80ms 的冲突。因此，根因不同。\n\n{\"verdict\": \"错\"}",
+  "ms": 12913,
+  "input_tokens": 138,
+  "output_tokens": 94
+ },
+ "41-load-test": {
+  "verdict": "错",
+  "reason": "助手的回答未提及根因，也未指出问题的真正原因，而是给出了与问题无关的 GC 停顿信息，与参考答案的根因（误报压测流量进入生产）不同。因此：\n\n{\"verdict\": \"错\"}",
+  "ms": 11451,
+  "input_tokens": 221,
+  "output_tokens": 55
+ },
+ "42-client-network": {
+  "verdict": "错",
+  "reason": "助手的回答中提到服务端处理未因 GC 导致变慢，但未直接说明变慢的真正原因，而是将变慢归因于客户端网络延迟。参考答案指出变慢是由于客户端网络导致，而非服务端问题。因此，根因不同。\n\n{\"verdict\": \"错\"}",
+  "ms": 12354,
+  "input_tokens": 209,
+  "output_tokens": 67
+ },
+ "43-dump-timeout": {
+  "verdict": "部分对",
+  "reason": "助手的回答提到了请求超时导致变慢的可能性，但未明确指出根因是连接池耗尽，而是推测为请求被超时中断。因此，根因与参考答案不一致。\n\n{\"verdict\": \"部分对\"}",
+  "ms": 10259,
+  "input_tokens": 191,
+  "output_tokens": 52
+ },
+ "44-log-rotated": {
+  "verdict": "部分对",
+  "reason": "助手的回答提到“大对象直接进入老年代，导致老年代频繁回收”，这与参考答案中提到的“内存压力导致变慢”一致，但具体原因的表述略有不同。参考答案强调的是“应用日志读不到”和“GC 日志显示 Humongous 大对象分配”，而助手的回答聚焦于“大对象导致老年代变慢”，未直接提及“应用日志读不到”或“GC 日志显示 Humongous 大对象分配”等具体信息。\n\n理由：助手提到大对象导致老年代变慢，与参考答案中“内存压力导致变慢”一致，但未直接说明是由于大对象导致的，未提及具体日志信息。\n\nJSON 结果：\n{\"verdict\": \"部分对\"}",
+  "ms": 22838,
+  "input_tokens": 215,
+  "output_tokens": 164
+ },
+ "45-inject-dump": {
+  "verdict": "错",
+  "reason": "助手的回答中提到的根因是“Full GC 导致的停顿”，但参考答案指出的根因是“Flyway 脚本 V43 删掉了 user_id 索引导致慢 SQL”。两者不一致，因此：\n\n**理由**：助手的回答根因与参考答案不同，未提及与索引删除相关的慢 SQL 原因。\n\nJSON 结果：\n{\"verdict\": \"错\"}",
+  "ms": 18654,
+  "input_tokens": 317,
+  "output_tokens": 94
+ },
+ "46-inject-question": {
+  "verdict": "错",
+  "reason": "理由：助手的回答没有指出实际的根因，而是讨论了堆内存分布问题，与参考答案中的数据库连接池问题无关。根因不同，因此判断为“错”。\n\n{\"verdict\": \"错\"}",
+  "ms": 7852,
+  "input_tokens": 126,
+  "output_tokens": 47
+ },
+ "47-timeout-config": {
+  "verdict": "错",
+  "reason": "助手的回答中提到接口响应慢可能是由于接口处理逻辑或下游服务导致，但并未明确指出具体是下游服务（如 RiskClient）的问题，而参考答案明确指出是 v2.32.3 版本导致 Feign 的 readTimeout 改为 30 秒，导致下游服务慢。因此，根因不同。\n\n{\"verdict\": \"错\"}",
+  "ms": 16829,
+  "input_tokens": 300,
+  "output_tokens": 82
+ },
+ "48-canary-xmx": {
+  "verdict": "对",
+  "reason": "助手的回答中提到的“堆太小，频繁 Full GC”与参考答案中的“灰度实例 order-svc-7 启动参数 -Xmx512m（其他实例 4g），堆太小，频繁 Full GC”是同一回事，只是表达方式不同。因此，根因一致。\n\n理由：助手提到了 Full GC 和堆内存占用的问题，指出了堆大小过小导致频繁 Full GC，这与参考答案中的原因一致。\n\nJSON 输出：\n{\"verdict\": \"对\"}",
+  "ms": 20566,
+  "input_tokens": 311,
+  "output_tokens": 111
+ },
+ "49-feature-flag": {
+  "verdict": "错",
+  "reason": "理由：助手的回答没有指出导致 order-svc 变慢的真正原因，而是聚焦于 GC 停顿和线程卡顿，未提及参考答案中提到的功能开关变化和风险服务调用。因此，根因不同。\n\n{\"verdict\": \"错\"}",
+  "ms": 11829,
+  "input_tokens": 208,
+  "output_tokens": 60
+ },
+ "50-cron-timezone": {
+  "verdict": "错",
+  "reason": "助手的回答中提到的“GC 导致的停顿”与参考答案中的“新镜像时区导致对账任务提前运行，全表扫描拖慢数据库”并非同一原因。助手将问题归因于 GC 停顿，而参考答案指出的是一个系统调度和数据库性能问题。因此，根因不同。\n\n{\"verdict\": \"错\"}",
+  "ms": 16314,
+  "input_tokens": 287,
+  "output_tokens": 81
+ }
+}

@@ -91,7 +91,7 @@
 | [低代码平台：Dify、Coze、n8n](https://study.ainiya.de/agent/lowcode-platforms.html) | [`agent/lowcode-platforms`](agent/lowcode-platforms/) | n8n 2.49.7 工作流 `alert-to-oncall.json`（按指纹去重）和修正版 `-v2`（按指纹 + 触发时间）、值班助手桩 `oncall_stub.py`、模拟 Alertmanager 的 `send_alerts.py` |
 | [为什么必须评测：输出不确定，改一处坏一片](https://study.ainiya.de/agent/eval-why.html) | [`agent/eval-why`](agent/eval-why/) | `main.py`：`same` 同一条跑 N 遍、`repeat` 整套原样重跑、`diff` 两份结果逐条配对；附 2026-11-26 的两组运行 |
 | [评测集：从真实问题里收，扩到 50 条](https://study.ainiya.de/agent/eval-dataset.html) | [`agent/eval-dataset`](agent/eval-dataset/) | 站 09 的评测底座：`cases50.py` 50 条用例、`harness.py` 运行器（存对话、spans、判分）、`run.py` stats/run/report/regrade、`prompts/` 三版提示词；附基线 @3 的一次运行 |
-| [怎么打分：规则断言、参考答案、LLM 当评委](https://study.ainiya.de/agent/eval-scoring.html) | [`agent/eval-scoring`](agent/eval-scoring/) | |
+| [怎么打分：规则断言、参考答案、LLM 当评委](https://study.ainiya.de/agent/eval-scoring.html) | [`agent/eval-scoring`](agent/eval-scoring/) | `refs.py` 50 条参考答案、`labels.py` 人工标注、`main.py` judge/agree/dump；附评委三次的结果 |
 | [Tracing：每次模型和工具调用的耗时、token](https://study.ainiya.de/agent/agent-tracing.html) | [`agent/agent-tracing`](agent/agent-tracing/) | |
 | [不只看结果，也看过程（轨迹评测）](https://study.ainiya.de/agent/eval-trajectory.html) | [`agent/eval-trajectory`](agent/eval-trajectory/) | |
 | [提示词和 Skill 的版本管理](https://study.ainiya.de/agent/prompt-versioning.html) | [`agent/prompt-versioning`](agent/prompt-versioning/) | |
