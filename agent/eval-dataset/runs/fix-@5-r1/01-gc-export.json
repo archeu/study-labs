@@ -1,0 +1,207 @@
+{
+ "case": "01-gc-export",
+ "prompt": "@5",
+ "prompt_sha": "eacc72ed",
+ "model": "qwen3-1.7b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-04 接口 P99 2.1 秒（阈值 800ms）。order-svc 为什么变慢了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "OqPCLGeZ6zONvjMBbhxgAcoLYd8O09SI",
+     "input": {
+      "keyword": "耗时",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "OqPCLGeZ6zONvjMBbhxgAcoLYd8O09SI",
+     "content": "2026-11-08 20:12:45.090 WARN  order-svc  [http-nio-8080-exec-88] OrderController /orders/{id} 耗时 2104ms\n2026-11-08 20:13:10.511 ERROR order-svc  [http-nio-8080-exec-91] OrderController /orders/{id} 耗时 2387ms，客户端已断开\n2026-11-08 20:15:30.020 WARN  order-svc  [http-nio-8080-exec-07] OrderController /orders/{id} 耗时 1951ms"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "GjN19ApWwk6Y6dS7xOD3kCFozNehzThY",
+     "input": {
+      "since": "20:00"
+     },
+     "name": "parse_gc_log",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "GjN19ApWwk6Y6dS7xOD3kCFozNehzThY",
+     "content": "7 次停顿，最长 1966ms；Full GC 3 次（每次约 1.9s），Full GC 后堆仍占 68%, 71%, 72%；有 Humongous Allocation（大对象）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "6OTJcZNPjndurtLkNsojKEq5UyFNDZse",
+     "input": {
+      "query": "Full GC 老年代"
+     },
+     "name": "search_notes",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "6OTJcZNPjndurtLkNsojKEq5UyFNDZse",
+     "content": "《G1 和 ZGC 怎么回收》（g1-zgc）：Full GC 后老年代仍 70% 以上，说明有对象一直被引用（缓存、大列表），先 jmap -histo 看谁最多；Humongous Allocation 说明有超过半个 region 的大对象。\n《JVM 内存结构》（jvm-memory-structure）：堆分新生代和老年代，大对象可能直接进老年代；导出类接口一次把几十万行读进 List 是常见的老年代杀手。"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "结论：  \n**原因**：Full GC 后老年代仍占 70% 以上，且存在 Humongous Allocation，表明有大量大对象未被回收，导致 GC 无法及时释放内存，进而造成接口响应变慢。  \n\n**证据**：  \n- GC 日志显示 Full GC 3 次，每次停顿约 1.9s，总停顿时间较长。  \n- Full GC 后老年代仍占 71%～72%。  \n- 存在 Humongous Allocation，说明大对象未被回收。  \n\n**下一步建议**：  \n1. 使用 `jmap -histo:live` 查看堆内存分布，确认大对象的来源。  \n2. 若为缓存或大列表，需优化其生命周期或使用更高效的缓存机制。  \n3. 若为大对象直接进入老年代，需调整 JVM 堆大小或使用 ZGC 以减少 Full GC 的频率。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 30247,
+   "input_tokens": 850,
+   "output_tokens": 31,
+   "cache_read_tokens": 108,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_logs",
+   "args": {
+    "keyword": "耗时",
+    "since": "20:00"
+   },
+   "start_ms": 30248,
+   "ms": 0.26,
+   "error": false,
+   "empty": false,
+   "result_chars": 318
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 30248,
+   "ms": 10810,
+   "input_tokens": 234,
+   "output_tokens": 25,
+   "cache_read_tokens": 954,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "parse_gc_log"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "parse_gc_log",
+   "args": {
+    "since": "20:00"
+   },
+   "start_ms": 41058,
+   "ms": 0.29,
+   "error": false,
+   "empty": false,
+   "result_chars": 92
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 41058,
+   "ms": 7036,
+   "input_tokens": 101,
+   "output_tokens": 25,
+   "cache_read_tokens": 1184,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_notes"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 3,
+   "name": "search_notes",
+   "args": {
+    "query": "Full GC 老年代"
+   },
+   "start_ms": 48095,
+   "ms": 0.14,
+   "error": false,
+   "empty": false,
+   "result_chars": 210
+  },
+  {
+   "kind": "chat",
+   "step": 4,
+   "start_ms": 48095,
+   "ms": 40126,
+   "input_tokens": 162,
+   "output_tokens": 210,
+   "cache_read_tokens": 1281,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": false,
+  "怪错": [],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 4,
+  "工具调用": 3,
+  "到上限": false,
+  "通过": false,
+  "id": "01-gc-export",
+  "cat": "GC 与内存",
+  "src": "值班记录",
+  "秒": 88.2,
+  "输入token": 1347,
+  "输出token": 291,
+  "工具序列": [
+   "search_logs",
+   "parse_gc_log",
+   "search_notes"
+  ]
+ }
+}

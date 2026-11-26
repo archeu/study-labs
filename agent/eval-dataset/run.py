@@ -4,6 +4,7 @@
     uv run python eval-dataset/run.py run --prompt @3             # 50 条全跑（本机 Qwen3-1.7B 约一小时）
     uv run python eval-dataset/run.py run --prompt @3 --only 02 11 --name try
     uv run python eval-dataset/run.py report <run 名>             # 按类型、来源看通过率、失败原因
+    uv run python eval-dataset/run.py run --prompt @3 --name base-@3-r2 --resume   # 断点续跑：跳过已存档的用例
     uv run python eval-dataset/run.py regrade <run 名>            # 判据改了：按存下的对话重判，不重跑模型
     ANTHROPIC_BASE_URL= ANTHROPIC_API_KEY=sk-ant-... MODEL=claude-sonnet-5-5 uv run python eval-dataset/run.py run --prompt @3
 
@@ -67,7 +68,7 @@ if __name__ == "__main__":
         version = arg("--prompt", "@3")
         name = arg("--name", f"{time.strftime('%Y-%m-%d')}-{version}-{harness.MODEL}")
         only = sys.argv[sys.argv.index("--only") + 1:] if "--only" in sys.argv else None
-        summary = harness.run_suite(version, name, only, thinking="--thinking" in sys.argv)
+        summary = harness.run_suite(version, name, only, thinking="--thinking" in sys.argv, resume="--resume" in sys.argv)
         print("\n" + json.dumps(summary, ensure_ascii=False))
     elif cmd == "report":
         report(sys.argv[2])

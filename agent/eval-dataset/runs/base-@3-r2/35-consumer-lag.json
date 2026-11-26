@@ -1,0 +1,307 @@
+{
+ "case": "35-consumer-lag",
+ "prompt": "@3",
+ "prompt_sha": "a14cfb8a",
+ "model": "qwen3-1.7b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-events 消费积压 lag 1,200,000。order-svc 的消费者怎么了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "ZUW4gtPTkoJr2VgnwO0UCDzbHhQH1vgn",
+     "input": {
+      "keyword": "耗时",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "ZUW4gtPTkoJr2VgnwO0UCDzbHhQH1vgn",
+     "content": "2026-11-08 20:05:22.400 WARN  order-svc  [order-events-consumer-0] 处理一条消息耗时 812ms（InventoryClient.deduct 800ms），max.poll.records=500"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "EQqSNjc7uAWTIodfnDBQAKRmkVm5btQZ",
+     "input": {
+      "since": "20:00"
+     },
+     "name": "parse_gc_log",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "EQqSNjc7uAWTIodfnDBQAKRmkVm5btQZ",
+     "content": "3 次停顿，最长 19ms；Full GC 0 次"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "xLPAn6pkPs3Ng6jl14I1ss9jLrLl6oxl",
+     "input": {
+      "query": "消费积压 lag"
+     },
+     "name": "search_notes",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "xLPAn6pkPs3Ng6jl14I1ss9jLrLl6oxl",
+     "content": "《G1 和 ZGC 怎么回收》（g1-zgc）：Full GC 后老年代仍 70% 以上，说明有对象一直被引用（缓存、大列表），先 jmap -histo 看谁最多；Humongous Allocation 说明有超过半个 region 的大对象。\n《JVM 内存结构》（jvm-memory-structure）：堆分新生代和老年代，大对象可能直接进老年代；导出类接口一次把几十万行读进 List 是常见的老年代杀手。"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "TlSHtIuYHT2X4BZZLVUy1rJVraiG5heH",
+     "input": {},
+     "name": "thread_dump",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "TlSHtIuYHT2X4BZZLVUy1rJVraiG5heH",
+     "content": "全部 200 个 http-nio 线程 WAITING（空闲）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "TGk0slRAvm89CBBqWhWp764GDaYc00ud",
+     "input": {
+      "reason": "为了进一步分析堆内存使用情况，进行堆转储"
+     },
+     "name": "heap_dump",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "TGk0slRAvm89CBBqWhWp764GDaYc00ud",
+     "is_error": true,
+     "content": "没有值班人员确认（超时），按拒绝处理。请用已有证据给结论。"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "根据已有证据，订单服务消费者积压的原因可能是由于消费端处理消息耗时较长，导致消息积压。具体原因如下：\n\n1. **耗时问题**：在 20:05 有消息处理耗时 812ms，说明消息处理过程中存在性能瓶颈，导致消费积压。\n2. **GC 情况**：GC 日志显示没有 Full GC，且停顿次数为 3 次，最长停顿为 19ms，说明 GC 操作对性能影响较小，未导致显著性能下降。\n3. **线程状态**：所有 http-nio 线程处于 WAITING 状态，表明消费端线程未被有效调度，导致消息积压。\n4. **堆内存使用**：堆内存使用情况未提供详细信息，但根据经验判断，可能由于大对象直接进入老年代，或缓存、大列表占用较多内存，导致消费端处理能力受限。\n\n**结论**：订单服务消费者积压主要由于消息处理耗时较长，导致消费线程未被有效调度，造成消息积压。建议优化消息处理逻辑，减少耗时，提升消费端处理能力。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 6072,
+   "input_tokens": 35,
+   "output_tokens": 31,
+   "cache_read_tokens": 904,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_logs",
+   "args": {
+    "keyword": "耗时",
+    "since": "20:00"
+   },
+   "start_ms": 6072,
+   "ms": 0.04,
+   "error": false,
+   "empty": false,
+   "result_chars": 132
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 6072,
+   "ms": 6932,
+   "input_tokens": 115,
+   "output_tokens": 25,
+   "cache_read_tokens": 935,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "parse_gc_log"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "parse_gc_log",
+   "args": {
+    "since": "20:00"
+   },
+   "start_ms": 13004,
+   "ms": 0.07,
+   "error": false,
+   "empty": false,
+   "result_chars": 25
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 13004,
+   "ms": 7049,
+   "input_tokens": 62,
+   "output_tokens": 23,
+   "cache_read_tokens": 1046,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_notes"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 3,
+   "name": "search_notes",
+   "args": {
+    "query": "消费积压 lag"
+   },
+   "start_ms": 20054,
+   "ms": 0.04,
+   "error": false,
+   "empty": false,
+   "result_chars": 210
+  },
+  {
+   "kind": "chat",
+   "step": 4,
+   "start_ms": 20054,
+   "ms": 7514,
+   "input_tokens": 160,
+   "output_tokens": 16,
+   "cache_read_tokens": 1104,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "thread_dump"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 4,
+   "name": "thread_dump",
+   "args": {},
+   "start_ms": 27567,
+   "ms": 0.01,
+   "error": false,
+   "empty": false,
+   "result_chars": 32
+  },
+  {
+   "kind": "chat",
+   "step": 5,
+   "start_ms": 27567,
+   "ms": 8103,
+   "input_tokens": 52,
+   "output_tokens": 31,
+   "cache_read_tokens": 1260,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "heap_dump"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 5,
+   "name": "heap_dump",
+   "args": {
+    "reason": "为了进一步分析堆内存使用情况，进行堆转储"
+   },
+   "start_ms": 35670,
+   "ms": 0.0,
+   "error": true,
+   "empty": false,
+   "result_chars": 29
+  },
+  {
+   "kind": "chat",
+   "step": 6,
+   "start_ms": 35670,
+   "ms": 43652,
+   "input_tokens": 66,
+   "output_tokens": 255,
+   "cache_read_tokens": 1308,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": false,
+  "怪错": [
+   "GC",
+   "Full GC"
+  ],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 6,
+  "工具调用": 5,
+  "到上限": false,
+  "通过": false,
+  "id": "35-consumer-lag",
+  "cat": "消息",
+  "src": "值班记录",
+  "秒": 79.3,
+  "输入token": 490,
+  "输出token": 381,
+  "工具序列": [
+   "search_logs",
+   "parse_gc_log",
+   "search_notes",
+   "thread_dump",
+   "heap_dump"
+  ]
+ }
+}

@@ -1,0 +1,211 @@
+{
+ "case": "14-conn-leak",
+ "prompt": "@5",
+ "prompt_sha": "eacc72ed",
+ "model": "qwen3-1.7b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-04 接口 P99 3.0 秒（阈值 800ms）。order-svc 为什么变慢了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "tWYO2skpAjrzWm7ZDA9lqibsz7PF9Ktf",
+     "input": {
+      "keyword": "耗时",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "tWYO2skpAjrzWm7ZDA9lqibsz7PF9Ktf",
+     "content": "没有匹配的日志（查的是 20:00 以后、关键字 耗时。可以把 since 往前放，或用 WARN|ERROR|耗时|超时）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "R6XOoBQGRy50qrOm7gRBOpVFAxcBgEvM",
+     "input": {
+      "keyword": "超时",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "R6XOoBQGRy50qrOm7gRBOpVFAxcBgEvM",
+     "content": "没有匹配的日志（查的是 20:00 以后、关键字 超时。可以把 since 往前放，或用 WARN|ERROR|耗时|超时）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "dnkpoJyrAGD1uggpEoYNCte0cYvohvjN",
+     "input": {
+      "keyword": "WARN",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "dnkpoJyrAGD1uggpEoYNCte0cYvohvjN",
+     "content": "2026-11-08 20:07:41.230 WARN  order-svc  [HikariPool-1 housekeeper] Connection leak detection triggered for com.mysql.cj.jdbc.ConnectionImpl, stack trace follows: at com.demo.order.RefundService.listRefunds(RefundService.java:42)\n2026-11-08 20:12:10.551 WARN  order-svc  [http-nio-8080-exec-44] HikariPool-1 - Pool stats (total=10, active=10, idle=0, waiting=96)"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "从日志中可以看出，`WARN` 日志显示有连接泄漏检测触发，具体是在 `RefundService.listRefunds` 方法中，可能由于某些原因导致连接泄漏。这可能是导致 order-svc 变慢的原因之一。\n\n建议下一步操作：\n1. 检查 `RefundService.listRefunds` 方法的实现，确认是否有连接泄漏或资源未正确释放。\n2. 如果确认存在连接泄漏，建议进行连接池的调优或增加连接池容量。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 5931,
+   "input_tokens": 32,
+   "output_tokens": 31,
+   "cache_read_tokens": 926,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_logs",
+   "args": {
+    "keyword": "耗时",
+    "since": "20:00"
+   },
+   "start_ms": 5931,
+   "ms": 0.03,
+   "error": false,
+   "empty": true,
+   "result_chars": 62
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 5931,
+   "ms": 7008,
+   "input_tokens": 88,
+   "output_tokens": 31,
+   "cache_read_tokens": 954,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "search_logs",
+   "args": {
+    "keyword": "超时",
+    "since": "20:00"
+   },
+   "start_ms": 12938,
+   "ms": 0.09,
+   "error": false,
+   "empty": true,
+   "result_chars": 62
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 12938,
+   "ms": 7009,
+   "input_tokens": 88,
+   "output_tokens": 30,
+   "cache_read_tokens": 1038,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 3,
+   "name": "search_logs",
+   "args": {
+    "keyword": "WARN",
+    "since": "20:00"
+   },
+   "start_ms": 19948,
+   "ms": 0.1,
+   "error": false,
+   "empty": false,
+   "result_chars": 362
+  },
+  {
+   "kind": "chat",
+   "step": 4,
+   "start_ms": 19948,
+   "ms": 22616,
+   "input_tokens": 193,
+   "output_tokens": 105,
+   "cache_read_tokens": 1122,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": true,
+  "怪错": [],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 4,
+  "工具调用": 3,
+  "到上限": false,
+  "通过": true,
+  "id": "14-conn-leak",
+  "cat": "连接池与数据库",
+  "src": "值班记录",
+  "秒": 42.6,
+  "输入token": 401,
+  "输出token": 197,
+  "工具序列": [
+   "search_logs",
+   "search_logs",
+   "search_logs"
+  ]
+ }
+}

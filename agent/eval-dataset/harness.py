@@ -186,13 +186,17 @@ def summarize(rows: list, meta: dict) -> dict:
     return s
 
 
-def run_suite(version: str, name: str, only=None, thinking=False):
+def run_suite(version: str, name: str, only=None, thinking=False, resume=False):
     system, sha = load_prompt(version)
     out = RUNS / name
     out.mkdir(parents=True, exist_ok=True)
     rows = []
     for case in CASES:
         if only and not any(case["id"].startswith(o) for o in only):
+            continue
+        done = out / f"{case['id']}.json"
+        if resume and done.exists():                 # 断点续跑：已经跑完的用例直接用存档
+            rows.append(json.loads(done.read_text())["grade"])
             continue
         setup(case)
         t0 = time.perf_counter()

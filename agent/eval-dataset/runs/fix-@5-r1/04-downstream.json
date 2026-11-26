@@ -1,0 +1,253 @@
+{
+ "case": "04-downstream",
+ "prompt": "@5",
+ "prompt_sha": "eacc72ed",
+ "model": "qwen3-1.7b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-04 接口 P99 3.1 秒（阈值 800ms）。order-svc 为什么变慢了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "3iupcH9tiGgkZ8siC4mYJZ3nlrAyLvsM",
+     "input": {
+      "keyword": "耗时",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "3iupcH9tiGgkZ8siC4mYJZ3nlrAyLvsM",
+     "content": "2026-11-08 20:10:02.775 ERROR order-svc  [http-nio-8080-exec-61] OrderController /orders/{id} 耗时 3120ms：inventory-svc 不可用"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "9ovYx9Pa9a6QHFgufOe1FzaEhGowmnI2",
+     "input": {
+      "since": "20:00"
+     },
+     "name": "parse_gc_log",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "9ovYx9Pa9a6QHFgufOe1FzaEhGowmnI2",
+     "content": "3 次停顿，最长 19ms；Full GC 0 次"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "LU30zv6Y1iembFvi9hNlnijz7i3NxOBH",
+     "input": {
+      "query": "Full GC"
+     },
+     "name": "search_notes",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "LU30zv6Y1iembFvi9hNlnijz7i3NxOBH",
+     "content": "《G1 和 ZGC 怎么回收》（g1-zgc）：Full GC 后老年代仍 70% 以上，说明有对象一直被引用（缓存、大列表），先 jmap -histo 看谁最多；Humongous Allocation 说明有超过半个 region 的大对象。\n《三高知识地图》（three-highs-map）：接口超时先分清是自己慢还是下游慢：看线程栈停在哪、GC 停顿有多长。"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "OVbQSW9jgvgICV22K0TW4LNZrJERxvhl",
+     "input": {},
+     "name": "thread_dump",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "OVbQSW9jgvgICV22K0TW4LNZrJERxvhl",
+     "content": "57 个 \"http-nio-8080-exec-*\" RUNNABLE at sun.nio.ch.SocketDispatcher.read（InventoryClient.getStock）\n其余 196 个 http-nio 线程 WAITING（空闲）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "根据线程栈信息，57 个 \"http-nio-8080-exec-*\" 线程处于 RUNNABLE 状态，表明它们正在处理请求。这说明接口调用存在阻塞，可能是由于下游服务（inventory-svc）响应缓慢或连接超时导致。结合告警信息中提到的 P99 3.1 秒耗时，说明接口调用存在显著延迟，可能是由于下游服务响应慢或网络问题导致。\n\n建议下一步：\n1. 检查 inventory-svc 的接口响应时间，确认是否由于下游服务慢或网络延迟导致。\n2. 通过 jmap -histo 分析堆内存情况，确认是否有大对象未回收。\n3. 调整接口的超时配置，以应对下游服务的响应延迟。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 5893,
+   "input_tokens": 32,
+   "output_tokens": 31,
+   "cache_read_tokens": 926,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_logs",
+   "args": {
+    "keyword": "耗时",
+    "since": "20:00"
+   },
+   "start_ms": 5893,
+   "ms": 0.05,
+   "error": false,
+   "empty": false,
+   "result_chars": 121
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 5894,
+   "ms": 6877,
+   "input_tokens": 113,
+   "output_tokens": 25,
+   "cache_read_tokens": 954,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "parse_gc_log"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "parse_gc_log",
+   "args": {
+    "since": "20:00"
+   },
+   "start_ms": 12770,
+   "ms": 0.07,
+   "error": false,
+   "empty": false,
+   "result_chars": 25
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 12771,
+   "ms": 6778,
+   "input_tokens": 62,
+   "output_tokens": 21,
+   "cache_read_tokens": 1063,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_notes"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 3,
+   "name": "search_notes",
+   "args": {
+    "query": "Full GC"
+   },
+   "start_ms": 19548,
+   "ms": 0.04,
+   "error": false,
+   "empty": false,
+   "result_chars": 185
+  },
+  {
+   "kind": "chat",
+   "step": 4,
+   "start_ms": 19548,
+   "ms": 7558,
+   "input_tokens": 149,
+   "output_tokens": 16,
+   "cache_read_tokens": 1121,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "thread_dump"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 4,
+   "name": "thread_dump",
+   "args": {},
+   "start_ms": 27106,
+   "ms": 0.01,
+   "error": false,
+   "empty": false,
+   "result_chars": 131
+  },
+  {
+   "kind": "chat",
+   "step": 5,
+   "start_ms": 27106,
+   "ms": 30469,
+   "input_tokens": 84,
+   "output_tokens": 174,
+   "cache_read_tokens": 1266,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": true,
+  "怪错": [],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 5,
+  "工具调用": 4,
+  "到上限": false,
+  "通过": true,
+  "id": "04-downstream",
+  "cat": "下游依赖",
+  "src": "值班记录",
+  "秒": 57.6,
+  "输入token": 440,
+  "输出token": 267,
+  "工具序列": [
+   "search_logs",
+   "parse_gc_log",
+   "search_notes",
+   "thread_dump"
+  ]
+ }
+}

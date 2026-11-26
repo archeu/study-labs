@@ -1,0 +1,63 @@
+# 评测门禁的 GitHub Actions 示例（没有放进 .github/workflows，不会自动运行）。
+# 真要启用：复制到仓库根的 .github/workflows/eval-ci.yml，配好 ANTHROPIC_API_KEY，
+# 或者用一台装了 llama-server 的自托管 runner（runs-on: [self-hosted, llm]）。
+name: eval-gate
+
+on:
+  pull_request:
+    paths:                                   # 只有动了这些，才值得花钱跑评测
+      - "agent/eval-dataset/prompts/**"
+      - "agent/eval-dataset/cases50.py"
+      - "agent/eval-dataset/harness.py"
+      - "agent/pano-04-triage-agent/oncall.py"
+  schedule:
+    - cron: "0 18 * * *"                     # 每天跑一次基线，量噪声、发现模型那边的漂移
+
+permissions:
+  contents: read
+  pull-requests: write                       # 往 PR 里贴评测报告
+
+concurrency:                                 # 同一个 PR 推了新提交，取消还在跑的旧评测
+  group: eval-${{ github.event.pull_request.number || 'nightly' }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      ANTHROPIC_BASE_URL: ""                 # 空 = 连 Claude；自托管 runner 上改成 http://127.0.0.1:8090
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      MODEL: claude-sonnet-5-5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: 版本核对（已发布的提示词不许原地改）
+        working-directory: agent
+        run: uv run python prompt-versioning/main.py check
+      - name: 取基线分数（按发布包指纹缓存，基线没变就不重跑）
+        uses: actions/cache@v4
+        with:
+          path: agent/eval-dataset/runs/baseline
+          key: baseline-${{ hashFiles('agent/eval-dataset/prompts/oncall-system@3.md', 'agent/eval-dataset/cases50.py', 'agent/eval-dataset/harness.py') }}
+      - name: 基线（缓存没命中时才跑）
+        working-directory: agent
+        run: |
+          [ -f eval-dataset/runs/baseline/scores.json ] || \
+            uv run python eval-dataset/run.py run --prompt @3 --name baseline
+      - name: 候选版本
+        working-directory: agent
+        run: uv run python eval-dataset/run.py run --prompt "$(cat eval-dataset/prompts/CANDIDATE)" --name candidate
+      - name: 门禁
+        id: gate
+        working-directory: agent
+        run: uv run python eval-ci-gate/gate.py baseline candidate > gate.md
+        continue-on-error: true
+      - name: 把报告贴到 PR
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr comment ${{ github.event.pull_request.number }} --body-file agent/gate.md --edit-last || gh pr comment ${{ github.event.pull_request.number }} --body-file agent/gate.md
+      - name: 门禁结果决定红绿
+        if: steps.gate.outcome == 'failure'
+        run: exit 1
