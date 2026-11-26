@@ -75,6 +75,7 @@
 | [内容生成：带引用的长文报告](https://study.ainiya.de/agent/report-generation.html) | [`agent/report-generation`](agent/report-generation/) | `main.py` 代码定提纲、分节检索重排、全局编号、代码算事实和规则、逐句回查；第一版 / 第二版 / 一次写完三份报告在 `report.json`，逐句人工核对在 `labels.json` |
 | [全景：Claude Code 调用你的 MCP 工具](https://study.ainiya.de/agent/pano-07-mcp-call.html) | [`agent/pano-07-mcp-call`](agent/pano-07-mcp-call/) | `oncall_server.py`：Python MCP 服务端（4 工具 + 1 资源 + 1 模板）；`wiretap.py`：stdio 窃听器，抓客户端和服务端之间的每一行；`main.py`：SDK 客户端走一遍 discover → list → call 并计时，`--legacy` 走老握手 |
 | [MCP 的三方：主机、客户端、服务端](https://study.ainiya.de/agent/mcp-architecture.html) | [`agent/mcp-architecture`](agent/mcp-architecture/) | `mini_host.py`：标准库迷你主机，两个客户端各自协商新老协议、工具加前缀合并；`gateway_server.py`：40 行老协议服务端 |
+| [三种能力：工具、资源、提示词模板](https://study.ainiya.de/agent/mcp-primitives.html) | [`agent/mcp-primitives`](agent/mcp-primitives/) | `oncall_v2.py`：三种能力齐全的服务端（结构化输出、annotations、资源模板、带参数的模板）；`tour.py`：挨个列、调、故意出错 |
 
 ## Java 后端架构
 
