@@ -14,6 +14,7 @@ dependencies = [
     "mcp>=2.3.0",
     "numpy>=2.5.5",
     "onnxruntime>=1.32.0",
+    "opentelemetry-sdk>=1.45.2",
     "psycopg[binary]>=3.3.9",
     "pydantic>=2.14.4",
     "pymupdf>=2.1",
