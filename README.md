@@ -74,6 +74,7 @@
 | [让 agent 自己决定查什么（Agentic RAG）](https://study.ainiya.de/agent/agentic-rag.html) | [`agent/agentic-rag`](agent/agentic-rag/) | `main.py` 4 道多跳 / 单跳题 × 6 种做法（原话查一次、先列计划、agent 循环、逼它先查、加思考、人写检索计划），Anthropic SDK 调本机 /v1/messages；`runs.json` |
 | [内容生成：带引用的长文报告](https://study.ainiya.de/agent/report-generation.html) | [`agent/report-generation`](agent/report-generation/) | `main.py` 代码定提纲、分节检索重排、全局编号、代码算事实和规则、逐句回查；第一版 / 第二版 / 一次写完三份报告在 `report.json`，逐句人工核对在 `labels.json` |
 | [全景：Claude Code 调用你的 MCP 工具](https://study.ainiya.de/agent/pano-07-mcp-call.html) | [`agent/pano-07-mcp-call`](agent/pano-07-mcp-call/) | `oncall_server.py`：Python MCP 服务端（4 工具 + 1 资源 + 1 模板）；`wiretap.py`：stdio 窃听器，抓客户端和服务端之间的每一行；`main.py`：SDK 客户端走一遍 discover → list → call 并计时，`--legacy` 走老握手 |
+| [MCP 的三方：主机、客户端、服务端](https://study.ainiya.de/agent/mcp-architecture.html) | [`agent/mcp-architecture`](agent/mcp-architecture/) | `mini_host.py`：标准库迷你主机，两个客户端各自协商新老协议、工具加前缀合并；`gateway_server.py`：40 行老协议服务端 |
 
 ## Java 后端架构
 
