@@ -1,0 +1,159 @@
+{
+ "case": "47-timeout-config",
+ "prompt": "@6",
+ "prompt_sha": "d6c6ae60",
+ "model": "qwen3-0.6b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-04 接口 P99 6.5 秒（阈值 800ms）。order-svc 为什么变慢了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "bxgfyjUWW2NmWRj4wV5Hwz41CQbdP4Ca",
+     "input": {
+      "keyword": "耗时",
+      "since": "20:16"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "bxgfyjUWW2NmWRj4wV5Hwz41CQbdP4Ca",
+     "content": "没有匹配的日志（查的是 20:16 以后、关键字 耗时。可以把 since 往前放，或用 WARN|ERROR|耗时|超时）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "XpefUyIbsgP7l6fEjl66UggVJqTSXxrl",
+     "input": {
+      "keyword": "耗时",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "XpefUyIbsgP7l6fEjl66UggVJqTSXxrl",
+     "content": "2026-11-08 20:07:20.110 WARN  order-svc  [http-nio-8080-exec-77] OrderController /orders 耗时 6480ms（RiskClient 等了 6400ms）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "根据搜索到的信息，order-svc 变慢的原因是耗时 6480ms。这是在 20:07:20 时发生的，使用了 keyword \"耗时\"。这表明应用在某些请求中进行了较长时间的处理。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 3903,
+   "input_tokens": 32,
+   "output_tokens": 31,
+   "cache_read_tokens": 944,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_logs",
+   "args": {
+    "keyword": "耗时",
+    "since": "20:16"
+   },
+   "start_ms": 3903,
+   "ms": 0.05,
+   "error": false,
+   "empty": true,
+   "result_chars": 62
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 3903,
+   "ms": 3956,
+   "input_tokens": 88,
+   "output_tokens": 31,
+   "cache_read_tokens": 972,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "search_logs",
+   "args": {
+    "keyword": "耗时",
+    "since": "20:00"
+   },
+   "start_ms": 7859,
+   "ms": 0.04,
+   "error": false,
+   "empty": false,
+   "result_chars": 120
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 7859,
+   "ms": 6971,
+   "input_tokens": 118,
+   "output_tokens": 59,
+   "cache_read_tokens": 1056,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": false,
+  "怪错": [],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 3,
+  "工具调用": 2,
+  "到上限": false,
+  "通过": false,
+  "id": "47-timeout-config",
+  "cat": "配置与发布",
+  "src": "值班记录",
+  "秒": 14.8,
+  "输入token": 238,
+  "输出token": 121,
+  "工具序列": [
+   "search_logs",
+   "search_logs"
+  ]
+ }
+}

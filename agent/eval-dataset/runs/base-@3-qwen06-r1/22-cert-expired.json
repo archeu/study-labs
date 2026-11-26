@@ -1,0 +1,54 @@
+{
+ "case": "22-cert-expired",
+ "prompt": "@3",
+ "prompt_sha": "a14cfb8a",
+ "model": "qwen3-0.6b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-svc 接口错误率 18%（阈值 1%）。出什么事了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "请提供更多关于该告警的上下文，例如错误类型、具体细节或相关日志信息，以便更好地排查问题。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 3461,
+   "input_tokens": 31,
+   "output_tokens": 28,
+   "cache_read_tokens": 904,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": false,
+  "说中": false,
+  "怪错": [],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 1,
+  "工具调用": 0,
+  "到上限": false,
+  "通过": false,
+  "id": "22-cert-expired",
+  "cat": "下游依赖",
+  "src": "值班记录",
+  "秒": 3.5,
+  "输入token": 31,
+  "输出token": 28,
+  "工具序列": []
+ }
+}

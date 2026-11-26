@@ -1,0 +1,253 @@
+{
+ "case": "29-deadlock",
+ "prompt": "@3",
+ "prompt_sha": "a14cfb8a",
+ "model": "qwen3-0.6b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-04 接口 P99 30 秒（阈值 800ms），部分请求一直不返回。order-svc 为什么变慢了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "2RjVvoggfPXnqiwiQHokdexp6tb8wz72",
+     "input": {
+      "keyword": "P99",
+      "since": "20:16"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "2RjVvoggfPXnqiwiQHokdexp6tb8wz72",
+     "content": "没有匹配的日志（查的是 20:16 以后、关键字 P99。可以把 since 往前放，或用 WARN|ERROR|耗时|超时）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "Vje7uegGNGgnsdUsOsLsSZaAjsj8y1pK",
+     "input": {
+      "query": "Full GC"
+     },
+     "name": "search_notes",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "Vje7uegGNGgnsdUsOsLsSZaAjsj8y1pK",
+     "content": "《G1 和 ZGC 怎么回收》（g1-zgc）：Full GC 后老年代仍 70% 以上，说明有对象一直被引用（缓存、大列表），先 jmap -histo 看谁最多；Humongous Allocation 说明有超过半个 region 的大对象。\n《三高知识地图》（three-highs-map）：接口超时先分清是自己慢还是下游慢：看线程栈停在哪、GC 停顿有多长。"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "umrS29ZHDu0SjL8gXlGadgsosvaAurAw",
+     "input": {
+      "since": "20:16"
+     },
+     "name": "parse_gc_log",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "umrS29ZHDu0SjL8gXlGadgsosvaAurAw",
+     "content": "这段时间没有 GC 记录（查的是 20:16 以后、关键字 -。可以把 since 往前放，或用 WARN|ERROR|耗时|超时）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "WbHTHsp9KIm5r4r8HAZjkz0SW7pa3vsj",
+     "input": {},
+     "name": "thread_dump",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "WbHTHsp9KIm5r4r8HAZjkz0SW7pa3vsj",
+     "content": "Found one Java-level deadlock: \"http-nio-8080-exec-12\" waiting to lock Account@0x7c1 held by \"http-nio-8080-exec-31\"; \"http-nio-8080-exec-31\" waiting to lock Account@0x7a9 held by \"http-nio-8080-exec-12\"（RefundService.transfer）\n其余 196 个 http-nio 线程 WAITING（空闲）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "原因：线程栈中发现了一个 Java 级的锁等待，导致接口变慢。具体表现为：`http-nio-8080-exec-12` 和 `http-nio-8080-exec-31` 两个线程都在等待对方的锁，这可能是由于缓存或大对象的引用导致的线程阻塞。\n\n建议：请值班人员立即联系运维团队，确认是否需要进行堆转储（`heap_dump`）以进一步分析内存泄漏并排查问题。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 4417,
+   "input_tokens": 47,
+   "output_tokens": 32,
+   "cache_read_tokens": 904,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_logs",
+   "args": {
+    "keyword": "P99",
+    "since": "20:16"
+   },
+   "start_ms": 4417,
+   "ms": 0.04,
+   "error": false,
+   "empty": true,
+   "result_chars": 63
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 4417,
+   "ms": 3024,
+   "input_tokens": 88,
+   "output_tokens": 21,
+   "cache_read_tokens": 947,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_notes"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "search_notes",
+   "args": {
+    "query": "Full GC"
+   },
+   "start_ms": 7441,
+   "ms": 0.04,
+   "error": false,
+   "empty": false,
+   "result_chars": 185
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 7441,
+   "ms": 4439,
+   "input_tokens": 149,
+   "output_tokens": 25,
+   "cache_read_tokens": 1031,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "parse_gc_log"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 3,
+   "name": "parse_gc_log",
+   "args": {
+    "since": "20:16"
+   },
+   "start_ms": 11879,
+   "ms": 0.04,
+   "error": false,
+   "empty": true,
+   "result_chars": 66
+  },
+  {
+   "kind": "chat",
+   "step": 4,
+   "start_ms": 11879,
+   "ms": 2798,
+   "input_tokens": 81,
+   "output_tokens": 16,
+   "cache_read_tokens": 1176,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "thread_dump"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 4,
+   "name": "thread_dump",
+   "args": {},
+   "start_ms": 14678,
+   "ms": 0.01,
+   "error": false,
+   "empty": false,
+   "result_chars": 260
+  },
+  {
+   "kind": "chat",
+   "step": 5,
+   "start_ms": 14678,
+   "ms": 14458,
+   "input_tokens": 144,
+   "output_tokens": 112,
+   "cache_read_tokens": 1253,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": false,
+  "怪错": [],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 5,
+  "工具调用": 4,
+  "到上限": false,
+  "通过": false,
+  "id": "29-deadlock",
+  "cat": "线程与锁",
+  "src": "差评回答",
+  "秒": 29.1,
+  "输入token": 509,
+  "输出token": 206,
+  "工具序列": [
+   "search_logs",
+   "search_notes",
+   "parse_gc_log",
+   "thread_dump"
+  ]
+ }
+}

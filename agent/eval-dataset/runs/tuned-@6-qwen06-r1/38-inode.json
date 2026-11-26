@@ -1,0 +1,54 @@
+{
+ "case": "38-inode",
+ "prompt": "@6",
+ "prompt_sha": "d6c6ae60",
+ "model": "qwen3-0.6b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-svc 接口错误率 5%（阈值 1%）。出什么事了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "1. 第一步必须调用 search_logs 看这段时间的日志（keyword 填 WARN|ERROR|耗时|超时|上线），查空了换关键字再查一次，拿到日志之前不要下结论；  \n2. 看线程栈，确认线程卡在哪；  \n3. 到知识库里找相似经验；  \n4. 给结论：原因、证据（引用工具返回的原文数字）、建议的下一步。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 9556,
+   "input_tokens": 28,
+   "output_tokens": 99,
+   "cache_read_tokens": 936,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": false,
+  "说中": false,
+  "怪错": [],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 1,
+  "工具调用": 0,
+  "到上限": false,
+  "通过": false,
+  "id": "38-inode",
+  "cat": "磁盘",
+  "src": "值班记录",
+  "秒": 9.6,
+  "输入token": 28,
+  "输出token": 99,
+  "工具序列": []
+ }
+}

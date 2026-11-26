@@ -1,0 +1,161 @@
+{
+ "case": "36-rebalance",
+ "prompt": "@6",
+ "prompt_sha": "d6c6ae60",
+ "model": "qwen3-0.6b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-events 消费积压持续上涨。order-svc 的消费者怎么了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "MM4kZxQuxHi3HqfvSlI1gnrbFzviGiU5",
+     "input": {
+      "keyword": "耗时",
+      "since": "20:16"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "MM4kZxQuxHi3HqfvSlI1gnrbFzviGiU5",
+     "content": "没有匹配的日志（查的是 20:16 以后、关键字 耗时。可以把 since 往前放，或用 WARN|ERROR|耗时|超时）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "GLzXrKqMal22fhDWbNQx3PaM86pyT0gN",
+     "input": {
+      "keyword": "WARN",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "GLzXrKqMal22fhDWbNQx3PaM86pyT0gN",
+     "content": "2026-11-08 20:04:10.020 WARN  order-svc  [order-events-consumer-1] consumer poll timeout has expired: max.poll.interval.ms=300000 exceeded, leaving group\n2026-11-08 20:09:30.000 WARN  order-svc  [order-events-consumer-0] 一批 500 条消息处理耗时 341s"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "原因：消费者出现消息处理耗时超过预期时间，导致积压。证据：调用 search_logs 获取到 WARN 日志，表明消息处理耗时超过341秒。\n\n建议：监控消费者处理时间，优化消息处理逻辑以降低积压。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 3399,
+   "input_tokens": 20,
+   "output_tokens": 31,
+   "cache_read_tokens": 940,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_logs",
+   "args": {
+    "keyword": "耗时",
+    "since": "20:16"
+   },
+   "start_ms": 3400,
+   "ms": 0.04,
+   "error": false,
+   "empty": true,
+   "result_chars": 62
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 3400,
+   "ms": 3766,
+   "input_tokens": 88,
+   "output_tokens": 30,
+   "cache_read_tokens": 956,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "search_logs",
+   "args": {
+    "keyword": "WARN",
+    "since": "20:00"
+   },
+   "start_ms": 7166,
+   "ms": 0.04,
+   "error": false,
+   "empty": false,
+   "result_chars": 240
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 7166,
+   "ms": 7517,
+   "input_tokens": 160,
+   "output_tokens": 56,
+   "cache_read_tokens": 1040,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": false,
+  "怪错": [],
+  "编造数字": [
+   "341秒"
+  ],
+  "违规调用": [],
+  "轮数": 3,
+  "工具调用": 2,
+  "到上限": false,
+  "通过": false,
+  "id": "36-rebalance",
+  "cat": "消息",
+  "src": "值班记录",
+  "秒": 14.7,
+  "输入token": 268,
+  "输出token": 117,
+  "工具序列": [
+   "search_logs",
+   "search_logs"
+  ]
+ }
+}

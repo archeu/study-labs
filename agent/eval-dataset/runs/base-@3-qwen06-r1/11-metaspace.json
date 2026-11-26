@@ -1,0 +1,56 @@
+{
+ "case": "11-metaspace",
+ "prompt": "@3",
+ "prompt_sha": "a14cfb8a",
+ "model": "qwen3-0.6b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:31 告警：order-svc 接口错误率 12%（阈值 1%）。出什么事了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "1. 查看最近的错误日志以确定问题的原因。  \n2. 如果怀疑 GC 导致变慢，可以调用 `parse_gc_log` 工具来解析 GC 日志，获取停顿次数、最长停顿和老年代剩余量。  \n3. 通过 `thread_dump` 工具查看线程栈以确定是否存在线程卡。  \n4. 如果有相关的经验或笔记可以帮助定位问题，可以调用 `search_notes` 工具。  \n5. 综合以上信息，给出最终结论和建议。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 12655,
+   "input_tokens": 39,
+   "output_tokens": 120,
+   "cache_read_tokens": 896,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": false,
+  "说中": false,
+  "怪错": [
+   "老年代"
+  ],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 1,
+  "工具调用": 0,
+  "到上限": false,
+  "通过": false,
+  "id": "11-metaspace",
+  "cat": "GC 与内存",
+  "src": "值班记录",
+  "秒": 12.7,
+  "输入token": 39,
+  "输出token": 120,
+  "工具序列": []
+ }
+}

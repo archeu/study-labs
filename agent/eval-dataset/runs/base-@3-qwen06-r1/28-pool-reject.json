@@ -1,0 +1,54 @@
+{
+ "case": "28-pool-reject",
+ "prompt": "@3",
+ "prompt_sha": "a14cfb8a",
+ "model": "qwen3-0.6b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-svc 接口错误率 6%（阈值 1%）。出什么事了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "1. 先看这段时间的报错和慢请求日志，以及有没有上线；\n2. 检查 GC 时解析 GC 日志：Full GC 次数、停顿多长、回收后老年代剩多少；\n3. 需要时看线程栈，确认线程卡在哪；\n4. 到知识库里找相似经验；\n5. 给结论：原因、证据（引用工具返回的原文数字）、建议的下一步。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 9663,
+   "input_tokens": 30,
+   "output_tokens": 102,
+   "cache_read_tokens": 904,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": false,
+  "说中": false,
+  "怪错": [],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 1,
+  "工具调用": 0,
+  "到上限": false,
+  "通过": false,
+  "id": "28-pool-reject",
+  "cat": "线程与锁",
+  "src": "值班记录",
+  "秒": 9.7,
+  "输入token": 30,
+  "输出token": 102,
+  "工具序列": []
+ }
+}

@@ -1,0 +1,107 @@
+{
+ "case": "11-metaspace",
+ "prompt": "@6",
+ "prompt_sha": "d6c6ae60",
+ "model": "qwen3-0.6b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:31 告警：order-svc 接口错误率 12%（阈值 1%）。出什么事了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "5X0TWgkPnr2EZJG7UjYQMVPYxfUbTnaq",
+     "input": {
+      "query": "order-svc 接口错误率 12%"
+     },
+     "name": "search_notes",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "5X0TWgkPnr2EZJG7UjYQMVPYxfUbTnaq",
+     "content": "《G1 和 ZGC 怎么回收》（g1-zgc）：Full GC 后老年代仍 70% 以上，说明有对象一直被引用（缓存、大列表），先 jmap -histo 看谁最多；Humongous Allocation 说明有超过半个 region 的大对象。\n《JVM 内存结构》（jvm-memory-structure）：堆分新生代和老年代，大对象可能直接进老年代；导出类接口一次把几十万行读进 List 是常见的老年代杀手。"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "根据告警信息，order-svc 接口错误率升高，这可能与以下原因有关：\n\n1. **Full GC 后老年代仍 70% 以上**：说明仍有大量对象被引用（缓存或大列表），需要进一步排查内存泄漏问题。建议使用 `jmap -histo` 查看堆内存结构，确认是否有大对象直接进入老年代。\n\n2. **Humongous Allocation**：提示有超过半个 region 的大对象，可能影响性能。可以进一步检查内存泄漏或大对象的引用问题。\n\n建议下一步进行以下操作：\n- 调用 `heap_dump` 查看堆内存结构，确认对象是否进入老年代。\n- 分析 `JVM 内存结构`，确认大对象是否直接进入老年代。\n\n如果需要进一步的信息，请提供更多上下文。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 4026,
+   "input_tokens": 39,
+   "output_tokens": 31,
+   "cache_read_tokens": 926,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_notes"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_notes",
+   "args": {
+    "query": "order-svc 接口错误率 12%"
+   },
+   "start_ms": 4026,
+   "ms": 0.05,
+   "error": false,
+   "empty": false,
+   "result_chars": 210
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 4026,
+   "ms": 19344,
+   "input_tokens": 168,
+   "output_tokens": 177,
+   "cache_read_tokens": 961,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": false,
+  "说中": false,
+  "怪错": [
+   "老年代"
+  ],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 2,
+  "工具调用": 1,
+  "到上限": false,
+  "通过": false,
+  "id": "11-metaspace",
+  "cat": "GC 与内存",
+  "src": "值班记录",
+  "秒": 23.4,
+  "输入token": 207,
+  "输出token": 208,
+  "工具序列": [
+   "search_notes"
+  ]
+ }
+}

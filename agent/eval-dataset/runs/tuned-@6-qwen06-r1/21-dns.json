@@ -1,0 +1,159 @@
+{
+ "case": "21-dns",
+ "prompt": "@6",
+ "prompt_sha": "d6c6ae60",
+ "model": "qwen3-0.6b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-04 接口 P99 5.2 秒（阈值 800ms）。order-svc 为什么变慢了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "Yh8KzaO4rggwQRrcYN8qvhk5w1rblP1s",
+     "input": {
+      "keyword": "耗时",
+      "since": "20:16"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "Yh8KzaO4rggwQRrcYN8qvhk5w1rblP1s",
+     "content": "没有匹配的日志（查的是 20:16 以后、关键字 耗时。可以把 since 往前放，或用 WARN|ERROR|耗时|超时）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "nwO0HIq1rbxSoBBnf2qAl8YyxNGqEWjE",
+     "input": {
+      "keyword": "WARN",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "nwO0HIq1rbxSoBBnf2qAl8YyxNGqEWjE",
+     "content": "2026-11-08 20:03:00.400 WARN  order-svc  [http-nio-8080-exec-10] InventoryClient 解析 inventory-svc.internal 耗时 5004ms\n2026-11-08 20:10:40.551 WARN  order-svc  [http-nio-8080-exec-90] OrderController /orders/{id} 耗时 5180ms"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "原因：20:03:00 时，order-svc 访问 inventory-svc 的耗时增加至 5004ms，这是由于线程卡在解析库存接口。建议排查线程栈或检查是否有并发问题。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 3870,
+   "input_tokens": 32,
+   "output_tokens": 31,
+   "cache_read_tokens": 944,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_logs",
+   "args": {
+    "keyword": "耗时",
+    "since": "20:16"
+   },
+   "start_ms": 3870,
+   "ms": 0.04,
+   "error": false,
+   "empty": true,
+   "result_chars": 62
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 3870,
+   "ms": 3944,
+   "input_tokens": 88,
+   "output_tokens": 30,
+   "cache_read_tokens": 972,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "search_logs",
+   "args": {
+    "keyword": "WARN",
+    "since": "20:00"
+   },
+   "start_ms": 7814,
+   "ms": 0.04,
+   "error": false,
+   "empty": false,
+   "result_chars": 220
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 7814,
+   "ms": 7677,
+   "input_tokens": 169,
+   "output_tokens": 56,
+   "cache_read_tokens": 1056,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": true,
+  "怪错": [],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 3,
+  "工具调用": 2,
+  "到上限": false,
+  "通过": true,
+  "id": "21-dns",
+  "cat": "下游依赖",
+  "src": "值班记录",
+  "秒": 15.5,
+  "输入token": 289,
+  "输出token": 117,
+  "工具序列": [
+   "search_logs",
+   "search_logs"
+  ]
+ }
+}

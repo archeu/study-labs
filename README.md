@@ -97,6 +97,7 @@
 | [提示词和 Skill 的版本管理](https://study.ainiya.de/agent/prompt-versioning.html) | [`agent/prompt-versioning`](agent/prompt-versioning/) | `main.py` list/lock/check/diff/label/rollback/bundle/demo/traces：版本指纹、标签指针、发布包、版本戳统计；`skills/oncall-triage` 示例 Skill |
 | [评测进 CI：改提示词要过门禁](https://study.ainiya.de/agent/eval-ci-gate.html) | [`agent/eval-ci-gate`](agent/eval-ci-gate/) | `gate.py` 门禁（配对、噪声线、硬规则、成本门槛、PR 报告）、`eval-ci.yml` GitHub Actions 示例（未启用）；附三次判决报告 |
 | [线上指标：成功率、成本、P95 延迟、转人工率](https://study.ainiya.de/agent/online-metrics.html) | [`agent/online-metrics`](agent/online-metrics/) | `main.py` replay/buckets：用真实运行结果回放灰度流量，OpenTelemetry 指标 SDK 按 GenAI 约定记录，直方图分位数对真实分位数 |
+| [换模型、升级模型怎么回归](https://study.ainiya.de/agent/model-regression.html) | [`agent/model-regression`](agent/model-regression/) | `main.py` table/pair：模型 × 提示词 2×2 总表和逐条配对（运行用 eval-dataset，换 MODEL 即可）；附 0.6B 两组、1.7B+@6 一组的 50 条运行 |
 
 ## Java 后端架构
 

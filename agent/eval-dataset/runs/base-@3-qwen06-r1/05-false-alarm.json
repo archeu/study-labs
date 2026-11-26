@@ -1,0 +1,54 @@
+{
+ "case": "05-false-alarm",
+ "prompt": "@3",
+ "prompt_sha": "a14cfb8a",
+ "model": "qwen3-0.6b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-04 接口 P99 0.9 秒（阈值 800ms），只持续了 1 分钟。order-svc 有问题吗？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "根据告警信息，order-04 接口的 P99 值为 0.9 秒，低于阈值 800ms，因此当前问题未被触发。建议检查线程栈以确认是否有线程卡。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 6199,
+   "input_tokens": 38,
+   "output_tokens": 56,
+   "cache_read_tokens": 914,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": false,
+  "说中": false,
+  "怪错": [],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 1,
+  "工具调用": 0,
+  "到上限": false,
+  "通过": false,
+  "id": "05-false-alarm",
+  "cat": "误报",
+  "src": "边角",
+  "秒": 6.2,
+  "输入token": 38,
+  "输出token": 56,
+  "工具序列": []
+ }
+}

@@ -1,0 +1,255 @@
+{
+ "case": "12-direct-memory",
+ "prompt": "@6",
+ "prompt_sha": "d6c6ae60",
+ "model": "qwen3-1.7b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-svc 接口错误率 7.5%（阈值 1%）。出什么事了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "HLCqNpEpWPSC1DMm830ygIzC5f0ta1KO",
+     "input": {
+      "keyword": "ERROR",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "HLCqNpEpWPSC1DMm830ygIzC5f0ta1KO",
+     "content": "2026-11-08 20:09:44.871 ERROR order-svc  [reactor-http-epoll-2] InvoiceUploader 上传失败：java.lang.OutOfMemoryError: Direct buffer memory\n2026-11-08 20:13:02.310 ERROR order-svc  [reactor-http-epoll-1] InvoiceUploader 上传失败：java.lang.OutOfMemoryError: Direct buffer memory（-XX:MaxDirectMemorySize=64m）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "Ao9Q6lUKyryJQ5KmUEilt7Vb6vn2lLuf",
+     "input": {
+      "since": "20:00"
+     },
+     "name": "parse_gc_log",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "Ao9Q6lUKyryJQ5KmUEilt7Vb6vn2lLuf",
+     "content": "3 次停顿，最长 19ms；Full GC 0 次"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "cFdzt4QL8jdlBwyRdxVg7LWqBJgQ92AZ",
+     "input": {
+      "query": "OutOfMemoryError Direct buffer memory"
+     },
+     "name": "search_notes",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "cFdzt4QL8jdlBwyRdxVg7LWqBJgQ92AZ",
+     "content": "《G1 和 ZGC 怎么回收》（g1-zgc）：Full GC 后老年代仍 70% 以上，说明有对象一直被引用（缓存、大列表），先 jmap -histo 看谁最多；Humongous Allocation 说明有超过半个 region 的大对象。\n《JVM 内存结构》（jvm-memory-structure）：堆分新生代和老年代，大对象可能直接进老年代；导出类接口一次把几十万行读进 List 是常见的老年代杀手。"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "eNeV791mWy1yJlcmFHPVYtEETe8Z92jC",
+     "input": {},
+     "name": "thread_dump",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "eNeV791mWy1yJlcmFHPVYtEETe8Z92jC",
+     "content": "全部 200 个 http-nio 线程 WAITING（空闲）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "总结：\n\n**原因**：  \n接口错误率升高可能是由于内存不足导致的 `OutOfMemoryError`，结合日志显示 `Direct buffer memory` 错误，说明应用在处理上传任务时发生了内存泄漏。GC 日志显示无 Full GC 次数，说明内存泄漏可能持续存在，未被 GC 回收。线程栈显示所有 HTTP 线程均处于等待状态，表明请求处理线程未被调度，可能由于内存不足或资源不足导致请求无法正常处理。\n\n**证据**：  \n- 日志中显示 `java.lang.OutOfMemoryError: Direct buffer memory` 错误，表明内存不足。  \n- GC 日志显示无 Full GC 次数，说明内存未被回收。  \n- 线程栈显示所有 HTTP 线程均处于 `WAITING` 状态，表明请求处理线程未被调度。\n\n**建议的下一步**：  \n1. 检查应用的内存使用情况，确认是否存在内存泄漏。  \n2. 增加应用的内存配置（如 `-XX:MaxDirectMemorySize`）。  \n3. 优化上传任务的处理方式，减少内存占用。  \n4. 如果内存问题无法解决，考虑增加服务器资源或优化应用性能。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 6506,
+   "input_tokens": 40,
+   "output_tokens": 30,
+   "cache_read_tokens": 926,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_logs",
+   "args": {
+    "keyword": "ERROR",
+    "since": "20:00"
+   },
+   "start_ms": 6506,
+   "ms": 0.04,
+   "error": false,
+   "empty": false,
+   "result_chars": 296
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 6506,
+   "ms": 8628,
+   "input_tokens": 168,
+   "output_tokens": 25,
+   "cache_read_tokens": 962,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "parse_gc_log"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "parse_gc_log",
+   "args": {
+    "since": "20:00"
+   },
+   "start_ms": 15134,
+   "ms": 0.07,
+   "error": false,
+   "empty": false,
+   "result_chars": 25
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 15134,
+   "ms": 7593,
+   "input_tokens": 62,
+   "output_tokens": 25,
+   "cache_read_tokens": 1126,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_notes"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 3,
+   "name": "search_notes",
+   "args": {
+    "query": "OutOfMemoryError Direct buffer memory"
+   },
+   "start_ms": 22728,
+   "ms": 0.05,
+   "error": false,
+   "empty": false,
+   "result_chars": 210
+  },
+  {
+   "kind": "chat",
+   "step": 4,
+   "start_ms": 22728,
+   "ms": 7620,
+   "input_tokens": 162,
+   "output_tokens": 16,
+   "cache_read_tokens": 1184,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "thread_dump"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 4,
+   "name": "thread_dump",
+   "args": {},
+   "start_ms": 30348,
+   "ms": 0.01,
+   "error": false,
+   "empty": false,
+   "result_chars": 32
+  },
+  {
+   "kind": "chat",
+   "step": 5,
+   "start_ms": 30348,
+   "ms": 47804,
+   "input_tokens": 52,
+   "output_tokens": 272,
+   "cache_read_tokens": 1342,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": true,
+  "怪错": [
+   "Full GC"
+  ],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 5,
+  "工具调用": 4,
+  "到上限": false,
+  "通过": false,
+  "id": "12-direct-memory",
+  "cat": "GC 与内存",
+  "src": "值班记录",
+  "秒": 78.2,
+  "输入token": 484,
+  "输出token": 368,
+  "工具序列": [
+   "search_logs",
+   "parse_gc_log",
+   "search_notes",
+   "thread_dump"
+  ]
+ }
+}

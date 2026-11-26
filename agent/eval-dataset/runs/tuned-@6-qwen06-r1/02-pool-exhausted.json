@@ -1,0 +1,159 @@
+{
+ "case": "02-pool-exhausted",
+ "prompt": "@6",
+ "prompt_sha": "d6c6ae60",
+ "model": "qwen3-0.6b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-04 接口 P99 3.4 秒（阈值 800ms）。order-svc 为什么变慢了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "hSg4f8i13jygMYzJm4xOIwWDC4Vymn0Q",
+     "input": {
+      "keyword": "耗时",
+      "since": "20:16"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "hSg4f8i13jygMYzJm4xOIwWDC4Vymn0Q",
+     "content": "没有匹配的日志（查的是 20:16 以后、关键字 耗时。可以把 since 往前放，或用 WARN|ERROR|耗时|超时）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "1IidpDPsNGjazfimWdehCwCjZ5H6khCx",
+     "input": {
+      "keyword": "耗时",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "1IidpDPsNGjazfimWdehCwCjZ5H6khCx",
+     "content": "2026-11-08 20:09:40.551 ERROR order-svc  [http-nio-8080-exec-77] OrderController /orders/{id} 耗时 3412ms：获取数据库连接超时"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "20:09:40.551 ERROR order-svc  [http-nio-8080-exec-77] OrderController /orders/{id} 耗时 3412ms：获取数据库连接超时。这表明 application 变慢的原因可能是数据库连接超时。建议检查数据库连接配置和超时设置。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 3959,
+   "input_tokens": 32,
+   "output_tokens": 31,
+   "cache_read_tokens": 944,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_logs",
+   "args": {
+    "keyword": "耗时",
+    "since": "20:16"
+   },
+   "start_ms": 3959,
+   "ms": 0.05,
+   "error": false,
+   "empty": true,
+   "result_chars": 62
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 3959,
+   "ms": 3852,
+   "input_tokens": 88,
+   "output_tokens": 31,
+   "cache_read_tokens": 972,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "search_logs",
+   "args": {
+    "keyword": "耗时",
+    "since": "20:00"
+   },
+   "start_ms": 7810,
+   "ms": 0.03,
+   "error": false,
+   "empty": false,
+   "result_chars": 113
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 7810,
+   "ms": 9005,
+   "input_tokens": 113,
+   "output_tokens": 79,
+   "cache_read_tokens": 1056,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": true,
+  "怪错": [],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 3,
+  "工具调用": 2,
+  "到上限": false,
+  "通过": true,
+  "id": "02-pool-exhausted",
+  "cat": "连接池与数据库",
+  "src": "值班记录",
+  "秒": 16.8,
+  "输入token": 233,
+  "输出token": 141,
+  "工具序列": [
+   "search_logs",
+   "search_logs"
+  ]
+ }
+}

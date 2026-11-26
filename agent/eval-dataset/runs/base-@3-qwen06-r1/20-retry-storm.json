@@ -1,0 +1,203 @@
+{
+ "case": "20-retry-storm",
+ "prompt": "@3",
+ "prompt_sha": "a14cfb8a",
+ "model": "qwen3-0.6b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-04 接口 P99 4.0 秒（阈值 800ms）。order-svc 为什么变慢了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "u6GiFDIplpg7KxGJyjZ4edmtNNcvlQ9g",
+     "input": {
+      "keyword": "P99",
+      "since": "20:16"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "u6GiFDIplpg7KxGJyjZ4edmtNNcvlQ9g",
+     "content": "没有匹配的日志（查的是 20:16 以后、关键字 P99。可以把 since 往前放，或用 WARN|ERROR|耗时|超时）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "LQYn7jSbnjWp4oDMubqxCFbRKXHyz78h",
+     "input": {
+      "since": "20:16"
+     },
+     "name": "parse_gc_log",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "LQYn7jSbnjWp4oDMubqxCFbRKXHyz78h",
+     "content": "这段时间没有 GC 记录（查的是 20:16 以后、关键字 -。可以把 since 往前放，或用 WARN|ERROR|耗时|超时）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "oCJGR4z919DFrKENmsZOYbqNXzHbWtLm",
+     "input": {},
+     "name": "thread_dump",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "oCJGR4z919DFrKENmsZOYbqNXzHbWtLm",
+     "content": "181 个 \"http-nio-8080-exec-*\" RUNNABLE at sun.nio.ch.SocketDispatcher.read（PaymentClient.pay）\n其余 196 个 http-nio 线程 WAITING（空闲）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "原因：线程卡在支付客户端的 HTTP 接收线程中。证据：线程栈显示有 181 个线程处于运行状态，其余处于等待状态。建议：需要检查线程栈以确认具体卡在哪里，并尝试优化相关线程的性能。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 3811,
+   "input_tokens": 30,
+   "output_tokens": 32,
+   "cache_read_tokens": 916,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_logs",
+   "args": {
+    "keyword": "P99",
+    "since": "20:16"
+   },
+   "start_ms": 3811,
+   "ms": 0.04,
+   "error": false,
+   "empty": true,
+   "result_chars": 63
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 3811,
+   "ms": 3372,
+   "input_tokens": 88,
+   "output_tokens": 25,
+   "cache_read_tokens": 942,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "parse_gc_log"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "parse_gc_log",
+   "args": {
+    "since": "20:16"
+   },
+   "start_ms": 7184,
+   "ms": 0.04,
+   "error": false,
+   "empty": true,
+   "result_chars": 66
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 7184,
+   "ms": 2609,
+   "input_tokens": 81,
+   "output_tokens": 16,
+   "cache_read_tokens": 1026,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "thread_dump"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 3,
+   "name": "thread_dump",
+   "args": {},
+   "start_ms": 9793,
+   "ms": 0.01,
+   "error": false,
+   "empty": false,
+   "result_chars": 125
+  },
+  {
+   "kind": "chat",
+   "step": 4,
+   "start_ms": 9793,
+   "ms": 7479,
+   "input_tokens": 84,
+   "output_tokens": 63,
+   "cache_read_tokens": 1103,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": false,
+  "怪错": [],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 4,
+  "工具调用": 3,
+  "到上限": false,
+  "通过": false,
+  "id": "20-retry-storm",
+  "cat": "下游依赖",
+  "src": "值班记录",
+  "秒": 17.3,
+  "输入token": 283,
+  "输出token": 136,
+  "工具序列": [
+   "search_logs",
+   "parse_gc_log",
+   "thread_dump"
+  ]
+ }
+}
