@@ -88,6 +88,7 @@
 | [多 agent：主从编排、并行子 agent、交接](https://study.ainiya.de/agent/multi-agent-orchestration.html) | [`agent/multi-agent-orchestration`](agent/multi-agent-orchestration/) | `compare.py`：单 agent、主从（模型写任务书）、主从（人写任务书）三种跑法，按 agent 记调用次数和 token；`handoff.py`：Command(goto) 交接 |
 | [什么时候不该拆多 agent](https://study.ainiya.de/agent/multi-agent-when-not.html) | [`agent/multi-agent-when-not`](agent/multi-agent-when-not/) | `cost_model.py`：拆不拆的估算模型（裁短、缓存、依赖、串行）；`jstack_tokens.py`：数真实规模线程栈和日志的 token |
 | [业务流程自动化：写操作、审批、幂等、审计](https://study.ainiya.de/agent/business-write-ops.html) | [`agent/business-write-ops`](agent/business-write-ops/) | `write_ops.py`：interrupt + response_schema 审批、幂等键、只追加审计表；replay / twice / badapprove 三个剧本，先查后写和唯一约束两种工单库对照 |
+| [低代码平台：Dify、Coze、n8n](https://study.ainiya.de/agent/lowcode-platforms.html) | [`agent/lowcode-platforms`](agent/lowcode-platforms/) | n8n 2.49.7 工作流 `alert-to-oncall.json`（按指纹去重）和修正版 `-v2`（按指纹 + 触发时间）、值班助手桩 `oncall_stub.py`、模拟 Alertmanager 的 `send_alerts.py` |
 
 ## Java 后端架构
 

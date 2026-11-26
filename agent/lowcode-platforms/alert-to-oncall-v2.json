@@ -1,0 +1,110 @@
+{
+  "id": "alertToOncall0002",
+  "name": "告警 → 按“指纹 + 触发时间”去重 → 值班助手（修正版）",
+  "nodes": [
+    {
+      "id": "6f1c2a1e-0002-4000-8000-000000000001",
+      "name": "Alertmanager Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "6f1c2a1e-0001-4000-8000-0000000000bb",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "alertmanager-v2",
+        "responseMode": "onReceived",
+        "options": {}
+      }
+    },
+    {
+      "id": "6f1c2a1e-0002-4000-8000-000000000002",
+      "name": "每条告警一项",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        240,
+        0
+      ],
+      "parameters": {
+        "fieldToSplitOut": "body.alerts",
+        "options": {}
+      }
+    },
+    {
+      "id": "6f1c2a1e-0002-4000-8000-000000000003",
+      "name": "按指纹去重",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ],
+      "parameters": {
+        "operation": "removeItemsSeenInPreviousExecutions",
+        "logic": "removeItemsWithAlreadySeenKeyValues",
+        "dedupeValue": "={{ $json.fingerprint + '@' + $json.startsAt }}",
+        "options": {}
+      }
+    },
+    {
+      "id": "6f1c2a1e-0002-4000-8000-000000000004",
+      "name": "POST 给值班助手",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8099/incidents",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ thread_id: 'alert-' + $json.fingerprint + '-' + $json.startsAt.slice(0, 16).replace(/[-:T]/g, ''), alertname: $json.labels.alertname, service: $json.labels.service, startsAt: $json.startsAt }) }}",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Alertmanager Webhook": {
+      "main": [
+        [
+          {
+            "node": "每条告警一项",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "每条告警一项": {
+      "main": [
+        [
+          {
+            "node": "按指纹去重",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "按指纹去重": {
+      "main": [
+        [
+          {
+            "node": "POST 给值班助手",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false
+}
