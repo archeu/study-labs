@@ -86,6 +86,7 @@
 | [LangGraph 上手：把站 04 的循环画成一张图](https://study.ainiya.de/agent/langgraph-basics.html) | [`agent/langgraph-basics`](agent/langgraph-basics/) | `graph_agent.py`：StateGraph + ToolNode + tools_condition 重写站 04 的排障 agent；`prebuilt_agent.py`：create_agent 一行版；`tools.py`：@tool 包装和本机 / Claude 模型切换 |
 | [状态图和检查点：长任务断点续跑](https://study.ainiya.de/agent/langgraph-checkpoint.html) | [`agent/langgraph-checkpoint`](agent/langgraph-checkpoint/) | `inspect_db.py`：打开全景的 SQLite 检查点库看两张表；`fork.py`：update_state 时间旅行分叉；`growth.py`：默认 reducer 和 DeltaChannel 的存储增长对比 |
 | [多 agent：主从编排、并行子 agent、交接](https://study.ainiya.de/agent/multi-agent-orchestration.html) | [`agent/multi-agent-orchestration`](agent/multi-agent-orchestration/) | `compare.py`：单 agent、主从（模型写任务书）、主从（人写任务书）三种跑法，按 agent 记调用次数和 token；`handoff.py`：Command(goto) 交接 |
+| [什么时候不该拆多 agent](https://study.ainiya.de/agent/multi-agent-when-not.html) | [`agent/multi-agent-when-not`](agent/multi-agent-when-not/) | `cost_model.py`：拆不拆的估算模型（裁短、缓存、依赖、串行）；`jstack_tokens.py`：数真实规模线程栈和日志的 token |
 
 ## Java 后端架构
 
