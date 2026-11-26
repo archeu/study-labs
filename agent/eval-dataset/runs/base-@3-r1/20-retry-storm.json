@@ -1,0 +1,262 @@
+{
+ "case": "20-retry-storm",
+ "prompt": "@3",
+ "prompt_sha": "a14cfb8a",
+ "model": "qwen3-1.7b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-04 接口 P99 4.0 秒（阈值 800ms）。order-svc 为什么变慢了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "pCyijTnaaxFU1BI6klIbgRO327Du8O7c",
+     "input": {
+      "keyword": "耗时",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "pCyijTnaaxFU1BI6klIbgRO327Du8O7c",
+     "content": "没有匹配的日志（查的是 20:00 以后、关键字 耗时。可以把 since 往前放，或用 WARN|ERROR|耗时|超时）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "pE7SVQPTsgtI4mOVTM0WJl8J9TT2L6I8",
+     "input": {
+      "keyword": "超时",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "pE7SVQPTsgtI4mOVTM0WJl8J9TT2L6I8",
+     "content": "2026-11-08 20:05:40.002 WARN  order-svc  [http-nio-8080-exec-45] PaymentClient 调用 payment-svc /pay 超时 1000ms，第 1 次重试\n2026-11-08 20:05:41.010 WARN  order-svc  [http-nio-8080-exec-45] PaymentClient 调用 payment-svc /pay 超时 1000ms，第 2 次重试\n2026-11-08 20:05:42.019 WARN  order-svc  [http-nio-8080-exec-45] PaymentClient 调用 payment-svc /pay 超时 1000ms，第 3 次重试，放弃"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "ZnSGjZ8oXyOYhU60TcH2i8N4u81W6ayI",
+     "input": {
+      "since": "20:00"
+     },
+     "name": "parse_gc_log",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "ZnSGjZ8oXyOYhU60TcH2i8N4u81W6ayI",
+     "content": "3 次停顿，最长 19ms；Full GC 0 次"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "aIDEtWiqkhUj6tQXKtsj5qy5pq2U4bsK",
+     "input": {
+      "query": "超时"
+     },
+     "name": "search_notes",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "aIDEtWiqkhUj6tQXKtsj5qy5pq2U4bsK",
+     "content": "《三高知识地图》（three-highs-map）：接口超时先分清是自己慢还是下游慢：看线程栈停在哪、GC 停顿有多长。\n《G1 和 ZGC 怎么回收》（g1-zgc）：Full GC 后老年代仍 70% 以上，说明有对象一直被引用（缓存、大列表），先 jmap -histo 看谁最多；Humongous Allocation 说明有超过半个 region 的大对象。"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "结论：  \n**原因**：接口超时是下游服务（payment-svc）响应慢导致的，同时存在 GC 停顿（3 次，最长 19ms），但 Full GC 次数为 0，说明 GC 没有显著影响。  \n\n**证据**：  \n- 超时日志显示 20:05:40 开始第 1 次重试，持续 1000ms，第 3 次重试后放弃。  \n- GC 日志显示 3 次停顿，最长 19ms，Full GC 次数为 0。  \n\n**建议下一步**：  \n1. 检查 payment-svc 的接口性能，确认是否为下游服务响应慢。  \n2. 如果下游服务确实响应慢，考虑优化或扩容。  \n3. 若 GC 停顿影响较小，可继续监控系统性能。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 5765,
+   "input_tokens": 30,
+   "output_tokens": 31,
+   "cache_read_tokens": 916,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_logs",
+   "args": {
+    "keyword": "耗时",
+    "since": "20:00"
+   },
+   "start_ms": 5765,
+   "ms": 0.04,
+   "error": false,
+   "empty": true,
+   "result_chars": 62
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 5765,
+   "ms": 7140,
+   "input_tokens": 88,
+   "output_tokens": 31,
+   "cache_read_tokens": 942,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "search_logs",
+   "args": {
+    "keyword": "超时",
+    "since": "20:00"
+   },
+   "start_ms": 12905,
+   "ms": 0.04,
+   "error": false,
+   "empty": false,
+   "result_chars": 353
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 12905,
+   "ms": 12420,
+   "input_tokens": 271,
+   "output_tokens": 25,
+   "cache_read_tokens": 1026,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "parse_gc_log"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 3,
+   "name": "parse_gc_log",
+   "args": {
+    "since": "20:00"
+   },
+   "start_ms": 25326,
+   "ms": 0.07,
+   "error": false,
+   "empty": false,
+   "result_chars": 25
+  },
+  {
+   "kind": "chat",
+   "step": 4,
+   "start_ms": 25326,
+   "ms": 7683,
+   "input_tokens": 62,
+   "output_tokens": 21,
+   "cache_read_tokens": 1293,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_notes"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 4,
+   "name": "search_notes",
+   "args": {
+    "query": "超时"
+   },
+   "start_ms": 33009,
+   "ms": 0.04,
+   "error": false,
+   "empty": false,
+   "result_chars": 185
+  },
+  {
+   "kind": "chat",
+   "step": 5,
+   "start_ms": 33009,
+   "ms": 39537,
+   "input_tokens": 149,
+   "output_tokens": 207,
+   "cache_read_tokens": 1351,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": true,
+  "怪错": [
+   "GC",
+   "Full GC"
+  ],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 5,
+  "工具调用": 4,
+  "到上限": false,
+  "通过": false,
+  "id": "20-retry-storm",
+  "cat": "下游依赖",
+  "src": "值班记录",
+  "秒": 72.5,
+  "输入token": 600,
+  "输出token": 315,
+  "工具序列": [
+   "search_logs",
+   "search_logs",
+   "parse_gc_log",
+   "search_notes"
+  ]
+ }
+}

@@ -1,0 +1,307 @@
+{
+ "case": "47-timeout-config",
+ "prompt": "@3",
+ "prompt_sha": "a14cfb8a",
+ "model": "qwen3-1.7b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-04 接口 P99 6.5 秒（阈值 800ms）。order-svc 为什么变慢了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "DcksxEyvDTVPhxUtgCLF4CYLuoH1v9Rr",
+     "input": {
+      "keyword": "耗时",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "DcksxEyvDTVPhxUtgCLF4CYLuoH1v9Rr",
+     "content": "2026-11-08 20:07:20.110 WARN  order-svc  [http-nio-8080-exec-77] OrderController /orders 耗时 6480ms（RiskClient 等了 6400ms）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "6vniHRNqh7E80m9zAZpZPYr85sD4r3wL",
+     "input": {
+      "since": "20:00"
+     },
+     "name": "parse_gc_log",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "6vniHRNqh7E80m9zAZpZPYr85sD4r3wL",
+     "content": "3 次停顿，最长 19ms；Full GC 0 次"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "E7x4ZpmLLOcncT9WevmBEOGoWzM0owyC",
+     "input": {
+      "query": "Full GC"
+     },
+     "name": "search_notes",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "E7x4ZpmLLOcncT9WevmBEOGoWzM0owyC",
+     "content": "《G1 和 ZGC 怎么回收》（g1-zgc）：Full GC 后老年代仍 70% 以上，说明有对象一直被引用（缓存、大列表），先 jmap -histo 看谁最多；Humongous Allocation 说明有超过半个 region 的大对象。\n《三高知识地图》（three-highs-map）：接口超时先分清是自己慢还是下游慢：看线程栈停在哪、GC 停顿有多长。"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "2X7wPINUpAbZ8HPXZk3t6nYNqE5HQm2E",
+     "input": {},
+     "name": "thread_dump",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "2X7wPINUpAbZ8HPXZk3t6nYNqE5HQm2E",
+     "content": "120 个 \"http-nio-8080-exec-*\" RUNNABLE at sun.nio.ch.SocketDispatcher.read（RiskClient.check）\n其余 196 个 http-nio 线程 WAITING（空闲）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "GzAMujtymp1crMnfRv2CTcOQYiTyp7Jg",
+     "input": {
+      "reason": "分析接口耗时和GC日志，需堆转储"
+     },
+     "name": "heap_dump",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "GzAMujtymp1crMnfRv2CTcOQYiTyp7Jg",
+     "is_error": true,
+     "content": "没有值班人员确认（超时），按拒绝处理。请用已有证据给结论。"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "根据现有证据，order-svc 变慢的原因如下：\n\n1. **日志分析**：在 20:07 有耗时 6480ms 的日志，表明接口响应较慢，可能与接口处理逻辑或下游服务有关。\n2. **GC 日志分析**：GC 日志显示 3 次停顿，最长停顿 19ms，Full GC 0 次，表明 GC 活动较少，未造成显著停顿。\n3. **线程分析**：120 个 \"http-nio-8080-exec-*\" 线程处于 RUNNABLE 状态，表明有大量请求在处理，可能与接口处理逻辑或下游服务有关。\n4. **堆转储未执行**：由于未获得值班人员确认，无法进行堆转储分析。\n\n**结论**：接口响应慢可能是由于接口处理逻辑或下游服务导致。建议进一步排查接口处理逻辑或下游服务状态。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 5835,
+   "input_tokens": 32,
+   "output_tokens": 31,
+   "cache_read_tokens": 914,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_logs",
+   "args": {
+    "keyword": "耗时",
+    "since": "20:00"
+   },
+   "start_ms": 5835,
+   "ms": 0.04,
+   "error": false,
+   "empty": false,
+   "result_chars": 120
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 5835,
+   "ms": 7064,
+   "input_tokens": 118,
+   "output_tokens": 25,
+   "cache_read_tokens": 942,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "parse_gc_log"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "parse_gc_log",
+   "args": {
+    "since": "20:00"
+   },
+   "start_ms": 12899,
+   "ms": 0.06,
+   "error": false,
+   "empty": false,
+   "result_chars": 25
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 12899,
+   "ms": 6779,
+   "input_tokens": 62,
+   "output_tokens": 21,
+   "cache_read_tokens": 1056,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_notes"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 3,
+   "name": "search_notes",
+   "args": {
+    "query": "Full GC"
+   },
+   "start_ms": 19678,
+   "ms": 0.07,
+   "error": false,
+   "empty": false,
+   "result_chars": 185
+  },
+  {
+   "kind": "chat",
+   "step": 4,
+   "start_ms": 19678,
+   "ms": 7150,
+   "input_tokens": 149,
+   "output_tokens": 16,
+   "cache_read_tokens": 1114,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "thread_dump"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 4,
+   "name": "thread_dump",
+   "args": {},
+   "start_ms": 26828,
+   "ms": 0.01,
+   "error": false,
+   "empty": false,
+   "result_chars": 124
+  },
+  {
+   "kind": "chat",
+   "step": 5,
+   "start_ms": 26828,
+   "ms": 7796,
+   "input_tokens": 84,
+   "output_tokens": 32,
+   "cache_read_tokens": 1259,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "heap_dump"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 5,
+   "name": "heap_dump",
+   "args": {
+    "reason": "分析接口耗时和GC日志，需堆转储"
+   },
+   "start_ms": 34624,
+   "ms": 0.0,
+   "error": true,
+   "empty": false,
+   "result_chars": 29
+  },
+  {
+   "kind": "chat",
+   "step": 6,
+   "start_ms": 34624,
+   "ms": 37645,
+   "input_tokens": 67,
+   "output_tokens": 215,
+   "cache_read_tokens": 1339,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": false,
+  "怪错": [
+   "GC",
+   "Full GC"
+  ],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 6,
+  "工具调用": 5,
+  "到上限": false,
+  "通过": false,
+  "id": "47-timeout-config",
+  "cat": "配置与发布",
+  "src": "值班记录",
+  "秒": 72.3,
+  "输入token": 512,
+  "输出token": 340,
+  "工具序列": [
+   "search_logs",
+   "parse_gc_log",
+   "search_notes",
+   "thread_dump",
+   "heap_dump"
+  ]
+ }
+}

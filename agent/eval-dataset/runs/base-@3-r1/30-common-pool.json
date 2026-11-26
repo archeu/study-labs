@@ -1,0 +1,255 @@
+{
+ "case": "30-common-pool",
+ "prompt": "@3",
+ "prompt_sha": "a14cfb8a",
+ "model": "qwen3-1.7b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-04 接口 P99 2.5 秒（阈值 800ms）。order-svc 为什么变慢了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "lQc9TqgJoJPBeHr1JkHjKA1SRCJR7kAR",
+     "input": {
+      "keyword": "耗时",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "lQc9TqgJoJPBeHr1JkHjKA1SRCJR7kAR",
+     "content": "2026-11-08 20:10:05.660 WARN  order-svc  [http-nio-8080-exec-40] OrderController /orders/{id} 耗时 2511ms（等物流 2440ms）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "TRjSWfhvKFGpNdfTJySCjwx0aAS1ivUW",
+     "input": {
+      "since": "20:00"
+     },
+     "name": "parse_gc_log",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "TRjSWfhvKFGpNdfTJySCjwx0aAS1ivUW",
+     "content": "3 次停顿，最长 19ms；Full GC 0 次"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "azWQcy6b82FXp3RcbzOGeL0hRjmYfyQp",
+     "input": {
+      "query": "Full GC 老年代"
+     },
+     "name": "search_notes",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "azWQcy6b82FXp3RcbzOGeL0hRjmYfyQp",
+     "content": "《G1 和 ZGC 怎么回收》（g1-zgc）：Full GC 后老年代仍 70% 以上，说明有对象一直被引用（缓存、大列表），先 jmap -histo 看谁最多；Humongous Allocation 说明有超过半个 region 的大对象。\n《JVM 内存结构》（jvm-memory-structure）：堆分新生代和老年代，大对象可能直接进老年代；导出类接口一次把几十万行读进 List 是常见的老年代杀手。"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "AGKcOQc1KFc2uJnURA6RtDdRINfl6Klx",
+     "input": {},
+     "name": "thread_dump",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "AGKcOQc1KFc2uJnURA6RtDdRINfl6Klx",
+     "content": "\"ForkJoinPool.commonPool-worker-1\" RUNNABLE at sun.nio.ch.SocketDispatcher.read（LogisticsClient.track）——commonPool 只有 1 个线程（2 核机器）\n37 个 \"http-nio-8080-exec-*\" WAITING at CompletableFuture.get\n其余 196 个 http-nio 线程 WAITING（空闲）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "根据线程栈信息，可以推测接口调用存在阻塞现象。`http-nio-8080-exec-*` 线程大部分处于 `WAITING` 状态，表明它们在等待 I/O 操作完成。`ForkJoinPool.commonPool-worker-1` 线程处于 `RUNNABLE` 状态，可能在处理后台任务。\n\n**结论：**\n- **原因**：接口调用阻塞，主要由 I/O 操作导致，同时可能由于 GC 导致老年代内存占用较高，影响了应用性能。\n- **证据**：线程栈显示 `http-nio-8080-exec-*` 线程处于等待状态，`ForkJoinPool.commonPool-worker-1` 线程处于运行状态。\n- **建议下一步**：1. 检查接口调用的 I/O 操作是否正常。2. 优化 GC 策略，减少老年代内存占用。3. 通过 `jmap -histo` 分析堆内存使用情况，确认是否有大对象占用内存。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 5970,
+   "input_tokens": 32,
+   "output_tokens": 31,
+   "cache_read_tokens": 914,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_logs",
+   "args": {
+    "keyword": "耗时",
+    "since": "20:00"
+   },
+   "start_ms": 5970,
+   "ms": 0.04,
+   "error": false,
+   "empty": false,
+   "result_chars": 115
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 5970,
+   "ms": 6916,
+   "input_tokens": 117,
+   "output_tokens": 25,
+   "cache_read_tokens": 942,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "parse_gc_log"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "parse_gc_log",
+   "args": {
+    "since": "20:00"
+   },
+   "start_ms": 12886,
+   "ms": 0.07,
+   "error": false,
+   "empty": false,
+   "result_chars": 25
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 12886,
+   "ms": 7281,
+   "input_tokens": 62,
+   "output_tokens": 25,
+   "cache_read_tokens": 1055,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_notes"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 3,
+   "name": "search_notes",
+   "args": {
+    "query": "Full GC 老年代"
+   },
+   "start_ms": 20166,
+   "ms": 0.05,
+   "error": false,
+   "empty": false,
+   "result_chars": 210
+  },
+  {
+   "kind": "chat",
+   "step": 4,
+   "start_ms": 20166,
+   "ms": 7639,
+   "input_tokens": 162,
+   "output_tokens": 16,
+   "cache_read_tokens": 1113,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "thread_dump"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 4,
+   "name": "thread_dump",
+   "args": {},
+   "start_ms": 27805,
+   "ms": 0.01,
+   "error": false,
+   "empty": false,
+   "result_chars": 224
+  },
+  {
+   "kind": "chat",
+   "step": 5,
+   "start_ms": 27805,
+   "ms": 41899,
+   "input_tokens": 118,
+   "output_tokens": 235,
+   "cache_read_tokens": 1271,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": true,
+  "怪错": [
+   "GC"
+  ],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 5,
+  "工具调用": 4,
+  "到上限": false,
+  "通过": false,
+  "id": "30-common-pool",
+  "cat": "线程与锁",
+  "src": "差评回答",
+  "秒": 69.7,
+  "输入token": 491,
+  "输出token": 332,
+  "工具序列": [
+   "search_logs",
+   "parse_gc_log",
+   "search_notes",
+   "thread_dump"
+  ]
+ }
+}

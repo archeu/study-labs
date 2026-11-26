@@ -1,0 +1,311 @@
+{
+ "case": "41-load-test",
+ "prompt": "@3",
+ "prompt_sha": "a14cfb8a",
+ "model": "qwen3-1.7b",
+ "thinking": false,
+ "messages": [
+  {
+   "role": "user",
+   "content": "20:16 告警：order-04 接口 P99 1.2 秒（阈值 800ms），QPS 翻了 6 倍。order-svc 为什么变慢了？"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "GpiMcKNWMwJzqTrpY0FJLGLVKlrpCJWN",
+     "input": {
+      "keyword": "耗时",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "GpiMcKNWMwJzqTrpY0FJLGLVKlrpCJWN",
+     "content": "没有匹配的日志（查的是 20:00 以后、关键字 耗时。可以把 since 往前放，或用 WARN|ERROR|耗时|超时）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "hWKnvbLNzyJ7jv1k0nZXG5Oyil4h6GR3",
+     "input": {
+      "keyword": "超时",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "hWKnvbLNzyJ7jv1k0nZXG5Oyil4h6GR3",
+     "content": "没有匹配的日志（查的是 20:00 以后、关键字 超时。可以把 since 往前放，或用 WARN|ERROR|耗时|超时）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "f5o8uRX6w0tG9uOYLfGrTiunSqXSV3sQ",
+     "input": {
+      "keyword": "WARN",
+      "since": "20:00"
+     },
+     "name": "search_logs",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "f5o8uRX6w0tG9uOYLfGrTiunSqXSV3sQ",
+     "content": "没有匹配的日志（查的是 20:00 以后、关键字 WARN。可以把 since 往前放，或用 WARN|ERROR|耗时|超时）"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "gSgSpAkLR5Mnmk88vKQhv1ObExCqKSom",
+     "input": {
+      "query": "Full GC"
+     },
+     "name": "search_notes",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "gSgSpAkLR5Mnmk88vKQhv1ObExCqKSom",
+     "content": "《G1 和 ZGC 怎么回收》（g1-zgc）：Full GC 后老年代仍 70% 以上，说明有对象一直被引用（缓存、大列表），先 jmap -histo 看谁最多；Humongous Allocation 说明有超过半个 region 的大对象。\n《三高知识地图》（three-highs-map）：接口超时先分清是自己慢还是下游慢：看线程栈停在哪、GC 停顿有多长。"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "id": "qlgSekmWmXUY9fc2p15hi298gERSVJLD",
+     "input": {
+      "since": "20:00"
+     },
+     "name": "parse_gc_log",
+     "type": "tool_use"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "tool_result",
+     "tool_use_id": "qlgSekmWmXUY9fc2p15hi298gERSVJLD",
+     "content": "3 次停顿，最长 19ms；Full GC 0 次"
+    }
+   ]
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "根据 GC 日志分析，order-svc 在 20:00 期间没有发生 Full GC，且 GC 停顿次数为 3 次，最长停顿为 19ms。这表明在该时间段内没有发生严重的 GC 停顿，因此无法直接得出变慢的原因。\n\n下一步建议：\n1. 检查线程栈，确认是否存在线程卡在某个地方。\n2. 使用 heap dump 进行堆转储，分析对象分布情况。\n3. 根据知识库中的经验，进一步排查可能的问题点。",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "kind": "chat",
+   "step": 1,
+   "start_ms": 0,
+   "ms": 6560,
+   "input_tokens": 44,
+   "output_tokens": 31,
+   "cache_read_tokens": 914,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 1,
+   "name": "search_logs",
+   "args": {
+    "keyword": "耗时",
+    "since": "20:00"
+   },
+   "start_ms": 6560,
+   "ms": 0.04,
+   "error": false,
+   "empty": true,
+   "result_chars": 62
+  },
+  {
+   "kind": "chat",
+   "step": 2,
+   "start_ms": 6560,
+   "ms": 6992,
+   "input_tokens": 88,
+   "output_tokens": 31,
+   "cache_read_tokens": 954,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 2,
+   "name": "search_logs",
+   "args": {
+    "keyword": "超时",
+    "since": "20:00"
+   },
+   "start_ms": 13552,
+   "ms": 0.03,
+   "error": false,
+   "empty": true,
+   "result_chars": 62
+  },
+  {
+   "kind": "chat",
+   "step": 3,
+   "start_ms": 13552,
+   "ms": 7186,
+   "input_tokens": 88,
+   "output_tokens": 30,
+   "cache_read_tokens": 1038,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_logs"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 3,
+   "name": "search_logs",
+   "args": {
+    "keyword": "WARN",
+    "since": "20:00"
+   },
+   "start_ms": 20739,
+   "ms": 0.03,
+   "error": false,
+   "empty": true,
+   "result_chars": 64
+  },
+  {
+   "kind": "chat",
+   "step": 4,
+   "start_ms": 20739,
+   "ms": 5916,
+   "input_tokens": 84,
+   "output_tokens": 21,
+   "cache_read_tokens": 1122,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "search_notes"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 4,
+   "name": "search_notes",
+   "args": {
+    "query": "Full GC"
+   },
+   "start_ms": 26655,
+   "ms": 0.07,
+   "error": false,
+   "empty": false,
+   "result_chars": 185
+  },
+  {
+   "kind": "chat",
+   "step": 5,
+   "start_ms": 26655,
+   "ms": 8784,
+   "input_tokens": 149,
+   "output_tokens": 25,
+   "cache_read_tokens": 1202,
+   "stop_reason": "tool_use",
+   "tool_calls": [
+    "parse_gc_log"
+   ]
+  },
+  {
+   "kind": "tool",
+   "step": 5,
+   "name": "parse_gc_log",
+   "args": {
+    "since": "20:00"
+   },
+   "start_ms": 35439,
+   "ms": 0.07,
+   "error": false,
+   "empty": false,
+   "result_chars": 25
+  },
+  {
+   "kind": "chat",
+   "step": 6,
+   "start_ms": 35439,
+   "ms": 24365,
+   "input_tokens": 62,
+   "output_tokens": 125,
+   "cache_read_tokens": 1347,
+   "stop_reason": "end_turn",
+   "tool_calls": []
+  }
+ ],
+ "grade": {
+  "空回答": false,
+  "看过现场": true,
+  "说中": false,
+  "怪错": [],
+  "编造数字": [],
+  "违规调用": [],
+  "轮数": 6,
+  "工具调用": 5,
+  "到上限": false,
+  "通过": false,
+  "id": "41-load-test",
+  "cat": "误报",
+  "src": "边角",
+  "秒": 59.8,
+  "输入token": 515,
+  "输出token": 263,
+  "工具序列": [
+   "search_logs",
+   "search_logs",
+   "search_logs",
+   "search_notes",
+   "parse_gc_log"
+  ]
+ }
+}
