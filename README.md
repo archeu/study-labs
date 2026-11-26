@@ -78,6 +78,7 @@
 | [三种能力：工具、资源、提示词模板](https://study.ainiya.de/agent/mcp-primitives.html) | [`agent/mcp-primitives`](agent/mcp-primitives/) | `oncall_v2.py`：三种能力齐全的服务端（结构化输出、annotations、资源模板、带参数的模板）；`tour.py`：挨个列、调、故意出错 |
 | [两种传输：stdio 和 Streamable HTTP](https://study.ainiya.de/agent/mcp-transports.html) | [`agent/mcp-transports`](agent/mcp-transports/) | `oncall_http.py`：同一个服务端换成 HTTP；`raw_http.sh`：curl 敲每一道关；`compare.py`：stdio 和 HTTP 计时对比 |
 | [写 MCP 服务端：Python 和 Java 各一个](https://study.ainiya.de/agent/mcp-server-build.html) | [`agent/mcp-server-build`](agent/mcp-server-build/) | `oncall_server.py`：Python 正式版服务端（lifespan、Context、ToolError）；`test_oncall_server.py`：内存测试；`call_both.py`：一个客户端连 Python + Java 两个服务端 |
+| [远程 MCP 的鉴权（OAuth）](https://study.ainiya.de/agent/mcp-oauth.html) | [`agent/mcp-oauth`](agent/mcp-oauth/) | `auth_server.py`：演示用最小授权服务器；`tickets_rs.py`：带鉴权和按工具 scope 的资源服务器；`client_flow.py`：打印每个 HTTP 来回的 OAuth 客户端 |
 
 ## Java 后端架构
 
