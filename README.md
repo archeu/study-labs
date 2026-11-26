@@ -83,6 +83,8 @@
 | [Agent Skills：按需加载的说明书](https://study.ainiya.de/agent/agent-skills.html) | [`agent/agent-skills`](agent/agent-skills/) | `skills/oncall-triage/`：值班排障 Skill（SKILL.md + 脚本 + 参考文件）；`skill_host.py`：迷你 Skill 主机，演示三层按需加载 |
 | [全景：一个告警进来以后](https://study.ainiya.de/agent/pano-08-alert-to-ticket.html) | [`agent/pano-08-alert-to-ticket`](agent/pano-08-alert-to-ticket/) | `main.py`：LangGraph 状态图（分诊 → Send 并行 3 个子 agent → 汇总 → interrupt 等批准 → 幂等写 → 审计），SQLite 检查点，run / resume / history 三个命令 |
 | [框架替你做了什么、藏了什么](https://study.ainiya.de/agent/framework-what-it-hides.html) | [`agent/framework-what-it-hides`](agent/framework-what-it-hides/) | `peek.py`：五段不调模型的小图，打印线程池并发、三种 durability 存盘次数和 kill -9 后的检查点、恢复时节点重跑、默认步数上限、框架替你存盘的次数 |
+| [LangGraph 上手：把站 04 的循环画成一张图](https://study.ainiya.de/agent/langgraph-basics.html) | [`agent/langgraph-basics`](agent/langgraph-basics/) | `graph_agent.py`：StateGraph + ToolNode + tools_condition 重写站 04 的排障 agent；`prebuilt_agent.py`：create_agent 一行版；`tools.py`：@tool 包装和本机 / Claude 模型切换 |
+| [状态图和检查点：长任务断点续跑](https://study.ainiya.de/agent/langgraph-checkpoint.html) | [`agent/langgraph-checkpoint`](agent/langgraph-checkpoint/) | |
 
 ## Java 后端架构
 
