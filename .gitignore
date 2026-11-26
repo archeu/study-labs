@@ -19,3 +19,4 @@ data/
 logs/
 transcript*.json
 audit*.jsonl
+wire*.jsonl
