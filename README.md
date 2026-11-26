@@ -82,6 +82,7 @@
 | [MCP 的安全：不可信服务端、工具描述投毒、最小权限](https://study.ainiya.de/agent/mcp-security.html) | [`agent/mcp-security`](agent/mcp-security/) | `evil_server.py`：演示用坏服务端（升级后说明投毒）；`mcp_audit.py`：指纹比对 + 规则扫描的体检脚本 |
 | [Agent Skills：按需加载的说明书](https://study.ainiya.de/agent/agent-skills.html) | [`agent/agent-skills`](agent/agent-skills/) | `skills/oncall-triage/`：值班排障 Skill（SKILL.md + 脚本 + 参考文件）；`skill_host.py`：迷你 Skill 主机，演示三层按需加载 |
 | [全景：一个告警进来以后](https://study.ainiya.de/agent/pano-08-alert-to-ticket.html) | [`agent/pano-08-alert-to-ticket`](agent/pano-08-alert-to-ticket/) | `main.py`：LangGraph 状态图（分诊 → Send 并行 3 个子 agent → 汇总 → interrupt 等批准 → 幂等写 → 审计），SQLite 检查点，run / resume / history 三个命令 |
+| [框架替你做了什么、藏了什么](https://study.ainiya.de/agent/framework-what-it-hides.html) | [`agent/framework-what-it-hides`](agent/framework-what-it-hides/) | `peek.py`：五段不调模型的小图，打印线程池并发、三种 durability 存盘次数和 kill -9 后的检查点、恢复时节点重跑、默认步数上限、框架替你存盘的次数 |
 
 ## Java 后端架构
 
