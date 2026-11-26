@@ -94,7 +94,7 @@
 | [怎么打分：规则断言、参考答案、LLM 当评委](https://study.ainiya.de/agent/eval-scoring.html) | [`agent/eval-scoring`](agent/eval-scoring/) | `refs.py` 50 条参考答案、`labels.py` 人工标注、`main.py` judge/agree/dump；附评委三次的结果 |
 | [Tracing：每次模型和工具调用的耗时、token](https://study.ainiya.de/agent/agent-tracing.html) | [`agent/agent-tracing`](agent/agent-tracing/) | `main.py` live/convert/show/where：OpenTelemetry SDK 按 GenAI 约定埋点、存档转 span、终端瀑布图、耗时和 token 汇总 |
 | [不只看结果，也看过程（轨迹评测）](https://study.ainiya.de/agent/eval-trajectory.html) | [`agent/eval-trajectory`](agent/eval-trajectory/) | `main.py` keys/judge/compare/show：关键证据自动定位、轨迹指标、结果×过程四格、两版对比；附 @3、@4 两次的轨迹结果 |
-| [提示词和 Skill 的版本管理](https://study.ainiya.de/agent/prompt-versioning.html) | [`agent/prompt-versioning`](agent/prompt-versioning/) | |
+| [提示词和 Skill 的版本管理](https://study.ainiya.de/agent/prompt-versioning.html) | [`agent/prompt-versioning`](agent/prompt-versioning/) | `main.py` list/lock/check/diff/label/rollback/bundle/demo/traces：版本指纹、标签指针、发布包、版本戳统计；`skills/oncall-triage` 示例 Skill |
 | [评测进 CI：改提示词要过门禁](https://study.ainiya.de/agent/eval-ci-gate.html) | [`agent/eval-ci-gate`](agent/eval-ci-gate/) | |
 | [线上指标：成功率、成本、P95 延迟、转人工率](https://study.ainiya.de/agent/online-metrics.html) | [`agent/online-metrics`](agent/online-metrics/) | |
 

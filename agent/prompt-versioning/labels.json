@@ -1,0 +1,14 @@
+{
+ "oncall-system": {
+  "production": "@3",
+  "history": [
+   {
+    "time": "2026-11-26 22:40",
+    "label": "production",
+    "from": "@3",
+    "to": "@3",
+    "who": "ubuntu"
+   }
+  ]
+ }
+}
