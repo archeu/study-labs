@@ -77,6 +77,7 @@
 | [MCP 的三方：主机、客户端、服务端](https://study.ainiya.de/agent/mcp-architecture.html) | [`agent/mcp-architecture`](agent/mcp-architecture/) | `mini_host.py`：标准库迷你主机，两个客户端各自协商新老协议、工具加前缀合并；`gateway_server.py`：40 行老协议服务端 |
 | [三种能力：工具、资源、提示词模板](https://study.ainiya.de/agent/mcp-primitives.html) | [`agent/mcp-primitives`](agent/mcp-primitives/) | `oncall_v2.py`：三种能力齐全的服务端（结构化输出、annotations、资源模板、带参数的模板）；`tour.py`：挨个列、调、故意出错 |
 | [两种传输：stdio 和 Streamable HTTP](https://study.ainiya.de/agent/mcp-transports.html) | [`agent/mcp-transports`](agent/mcp-transports/) | `oncall_http.py`：同一个服务端换成 HTTP；`raw_http.sh`：curl 敲每一道关；`compare.py`：stdio 和 HTTP 计时对比 |
+| [写 MCP 服务端：Python 和 Java 各一个](https://study.ainiya.de/agent/mcp-server-build.html) | [`agent/mcp-server-build`](agent/mcp-server-build/) | `oncall_server.py`：Python 正式版服务端（lifespan、Context、ToolError）；`test_oncall_server.py`：内存测试；`call_both.py`：一个客户端连 Python + Java 两个服务端 |
 
 ## Java 后端架构
 
@@ -226,3 +227,4 @@
 | [原码、反码、补码：负数在机器里怎么存，减法为什么能变成加法](https://study.ainiya.de/algo/signed-codes.html) | [`java/algo/signed-codes`](java/algo/signed-codes/) | `SignedCodes`：4 位原码 / 反码 / 补码对照和三种约定下的加法，全部 int 验证 `-x == ~x + 1`，最小值、溢出、byte 截断、double 的 ±0.0 |
 | [HTTP 流式与 SSE：一个响应怎么一块一块地推](https://study.ainiya.de/network/http-streaming-sse.html) | [`java/network/http-streaming-sse`](java/network/http-streaming-sse/) | `SseServer` JDK HttpServer 写 SSE（flush / 不 flush），`SseClient` HttpClient 按行读并打印到达时间，也能读本机 llama-server 的 /v1/messages 流 |
 | [Java 版：用 Spring AI ChatClient 写同一个服务](https://study.ainiya.de/agent/spring-ai-chatclient.html) | [`java/agent/spring-ai-chatclient`](java/agent/spring-ai-chatclient/) | `TriageApp` Spring Boot 4.2 + Spring AI 2.1：普通调用、entity() 结构化、Flux 流式；默认 Anthropic 模块连本机 /v1/messages，openai profile 只改配置换家 |
+| [写 MCP 服务端：Python 和 Java 各一个](https://study.ainiya.de/agent/mcp-server-build.html) | [`java/agent/mcp-server-build`](java/agent/mcp-server-build/) | tickets：Spring AI 2.1.0 的 `@McpTool` 服务端（Streamable HTTP，JDK 17），pom 开了 `-parameters` |

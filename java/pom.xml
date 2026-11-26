@@ -161,6 +161,7 @@
     <module>algo/signed-codes</module>
     <module>network/http-streaming-sse</module>
     <module>agent/spring-ai-chatclient</module>
+    <module>agent/mcp-server-build</module>
   </modules>
 
   <build>
