@@ -89,6 +89,8 @@
 | [什么时候不该拆多 agent](https://study.ainiya.de/agent/multi-agent-when-not.html) | [`agent/multi-agent-when-not`](agent/multi-agent-when-not/) | `cost_model.py`：拆不拆的估算模型（裁短、缓存、依赖、串行）；`jstack_tokens.py`：数真实规模线程栈和日志的 token |
 | [业务流程自动化：写操作、审批、幂等、审计](https://study.ainiya.de/agent/business-write-ops.html) | [`agent/business-write-ops`](agent/business-write-ops/) | `write_ops.py`：interrupt + response_schema 审批、幂等键、只追加审计表；replay / twice / badapprove 三个剧本，先查后写和唯一约束两种工单库对照 |
 | [低代码平台：Dify、Coze、n8n](https://study.ainiya.de/agent/lowcode-platforms.html) | [`agent/lowcode-platforms`](agent/lowcode-platforms/) | n8n 2.49.7 工作流 `alert-to-oncall.json`（按指纹去重）和修正版 `-v2`（按指纹 + 触发时间）、值班助手桩 `oncall_stub.py`、模拟 Alertmanager 的 `send_alerts.py` |
+| [为什么必须评测：输出不确定，改一处坏一片](https://study.ainiya.de/agent/eval-why.html) | [`agent/eval-why`](agent/eval-why/) | `main.py`：`same` 同一条跑 N 遍、`repeat` 整套原样重跑、`diff` 两份结果逐条配对；附 2026-11-26 的两组运行 |
+| [评测集：从真实问题里收，扩到 50 条](https://study.ainiya.de/agent/eval-dataset.html) | [`agent/eval-dataset`](agent/eval-dataset/) | |
 
 ## Java 后端架构
 

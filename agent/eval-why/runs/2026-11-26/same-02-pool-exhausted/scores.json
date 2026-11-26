@@ -1,0 +1,136 @@
+{
+ "case": "02-pool-exhausted",
+ "runs": [
+  {
+   "空回答": false,
+   "看过现场": true,
+   "说中": true,
+   "怪错": [],
+   "编造数字": [],
+   "轮数": 6,
+   "工具调用": 5,
+   "落空": 0,
+   "结果数": 5,
+   "提议heap_dump": 0,
+   "到上限": false,
+   "通过": true,
+   "id": "02-pool-exhausted",
+   "秒": 138.5,
+   "token": 2097,
+   "工具": [
+    "search_logs",
+    "parse_gc_log",
+    "search_notes",
+    "thread_dump",
+    "search_notes"
+   ]
+  },
+  {
+   "空回答": false,
+   "看过现场": true,
+   "说中": true,
+   "怪错": [
+    "GC",
+    "Full GC"
+   ],
+   "编造数字": [],
+   "轮数": 6,
+   "工具调用": 5,
+   "落空": 0,
+   "结果数": 4,
+   "提议heap_dump": 1,
+   "到上限": false,
+   "通过": false,
+   "id": "02-pool-exhausted",
+   "秒": 74.6,
+   "token": 866,
+   "工具": [
+    "search_logs",
+    "parse_gc_log",
+    "search_notes",
+    "thread_dump",
+    "heap_dump"
+   ]
+  },
+  {
+   "空回答": false,
+   "看过现场": true,
+   "说中": true,
+   "怪错": [
+    "GC"
+   ],
+   "编造数字": [],
+   "轮数": 6,
+   "工具调用": 5,
+   "落空": 0,
+   "结果数": 4,
+   "提议heap_dump": 1,
+   "到上限": false,
+   "通过": false,
+   "id": "02-pool-exhausted",
+   "秒": 72.3,
+   "token": 850,
+   "工具": [
+    "search_logs",
+    "parse_gc_log",
+    "search_notes",
+    "thread_dump",
+    "heap_dump"
+   ]
+  },
+  {
+   "空回答": false,
+   "看过现场": true,
+   "说中": true,
+   "怪错": [
+    "GC"
+   ],
+   "编造数字": [],
+   "轮数": 6,
+   "工具调用": 5,
+   "落空": 0,
+   "结果数": 4,
+   "提议heap_dump": 1,
+   "到上限": false,
+   "通过": false,
+   "id": "02-pool-exhausted",
+   "秒": 82.4,
+   "token": 895,
+   "工具": [
+    "search_logs",
+    "parse_gc_log",
+    "search_notes",
+    "thread_dump",
+    "heap_dump"
+   ]
+  },
+  {
+   "空回答": false,
+   "看过现场": true,
+   "说中": true,
+   "怪错": [
+    "GC",
+    "Full GC",
+    "老年代"
+   ],
+   "编造数字": [],
+   "轮数": 6,
+   "工具调用": 5,
+   "落空": 0,
+   "结果数": 5,
+   "提议heap_dump": 0,
+   "到上限": false,
+   "通过": false,
+   "id": "02-pool-exhausted",
+   "秒": 79.3,
+   "token": 941,
+   "工具": [
+    "search_logs",
+    "parse_gc_log",
+    "search_notes",
+    "thread_dump",
+    "search_logs"
+   ]
+  }
+ ]
+}
