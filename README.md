@@ -101,6 +101,7 @@
 | [长任务架构：队列、工作者、状态存储、进度推送](https://study.ainiya.de/agent/long-task-queue.html) | [`agent/long-task-queue`](agent/long-task-queue/) | FastAPI 接入服务 + 三条 Redis Stream + worker（XAUTOCLAIM、检查点、幂等工单、心跳）+ SSE 进度；demo.py 跑 5 个实验 |
 | [限流和配额：供应商的速率上限、自己的令牌桶](https://study.ainiya.de/agent/prod-rate-limit.html) | [`agent/prod-rate-limit`](agent/prod-rate-limit/) | 假供应商（RPM/ITPM/OTPM 三桶、前缀缓存、429+retry-after）+ TokenBucket / FairBucket；night.py 用官方 SDK 30 倍速重演五种限流做法 |
 | [可靠性：超时、重试、熔断、降级到备用模型](https://study.ainiya.de/agent/prod-reliability.html) | [`agent/prod-reliability`](agent/prod-reliability/) | 会出故障的假供应商（529 时段、卡住的连接、小额度备用）+ CircuitBreaker；night.py 用官方 SDK 30 倍速重演四种可靠性做法 |
+| [AI 网关：模型管理、token 限流、工具过滤](https://study.ainiya.de/agent/ai-gateway.html) | [`agent/ai-gateway`](agent/ai-gateway/) | 200 行最小 AI 网关（虚拟 key、别名、预算、脱敏、工具两道过滤、529 降级、流式记账、审计）+ 假供应商；demo.py 用官方 SDK 跑 9 个实验 |
 
 ## Java 后端架构
 
