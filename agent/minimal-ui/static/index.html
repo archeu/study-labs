@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>值班助手</title>
+<style>
+  body { font: 15px/1.6 system-ui, sans-serif; max-width: 760px; margin: 24px auto; padding: 0 16px; }
+  .inc { border: 1px solid #ccc; border-radius: 10px; padding: 10px 14px; margin: 8px 0; cursor: pointer; }
+  .bar { height: 6px; background: #eee; border-radius: 3px; } .bar i { display: block; height: 6px; background: #2a7; border-radius: 3px; }
+  #report { white-space: pre-wrap; border-left: 4px solid #2a7; padding: 8px 12px; min-height: 3em; }
+  .tag { font-size: 12px; padding: 0 6px; border-radius: 6px; background: #fde; }
+  button { font: inherit; padding: 4px 12px; margin-right: 6px; }
+</style>
+</head>
+<body>
+<h1>值班助手</h1>
+<div id="list"></div>
+<section id="detail" hidden>
+  <h2 id="title"></h2>
+  <p id="progress">等待开始……</p>
+  <div id="report" aria-live="polite"></div>
+  <p id="actions">
+    <button id="up" disabled>👍 有用</button>
+    <button id="down" disabled>👎 不对</button>
+    <button id="escalate">转人工</button>
+  </p>
+  <p id="msg"></p>
+</section>
+<script>
+const $ = s => document.querySelector(s);
+const USER = "zhang";
+async function api(path, opts = {}) {
+  opts.headers = { "Content-Type": "application/json", "X-User": USER, ...(opts.headers || {}) };
+  return (await fetch(path, opts)).json();
+}
+async function list() {
+  const items = await api("/api/incidents");
+  $("#list").replaceChildren(...items.map(it => {
+    const d = document.createElement("div"); d.className = "inc";
+    const t = document.createElement("div"); t.textContent = `[${it.prio}] ${it.title}（${it.tenant}）`;
+    const b = document.createElement("div"); b.className = "bar"; const i = document.createElement("i");
+    i.style.width = (it.done ? 100 : it.round * 25) + "%"; b.append(i);
+    d.append(t, b); d.onclick = () => open(it); return d;
+  }));
+}
+async function open(it) {
+  $("#detail").hidden = false; $("#title").textContent = it.title; $("#report").textContent = "";
+  // 幂等键存在 sessionStorage：刷新页面、双击都还是同一个键，服务端不会再起一次调查
+  const k = "idem:" + it.id;
+  if (!sessionStorage.getItem(k)) sessionStorage.setItem(k, crypto.randomUUID());
+  await api(`/api/incidents/${it.id}/start`, { method: "POST", headers: { "Idempotency-Key": sessionStorage.getItem(k) } });
+  const es = new EventSource(`/api/incidents/${it.id}/stream`);   // 断线时浏览器自动带 Last-Event-ID 重连
+  es.addEventListener("progress", e => { const p = JSON.parse(e.data); $("#progress").textContent = `第 ${p.round}/${p.of} 轮：${p.tool}`; list(); });
+  es.addEventListener("report", e => { $("#report").textContent += e.data; });   // textContent：模型的输出只当文字，不当 HTML
+  es.addEventListener("done", e => {
+    es.close(); const c = JSON.parse(e.data).confidence;
+    $("#progress").textContent = `报告已出（把握 ${Math.round(c * 100)}%）`;
+    $("#up").disabled = $("#down").disabled = false; list();
+  });
+  $("#up").onclick = () => vote(it, "up", "");
+  $("#down").onclick = () => vote(it, "down", prompt("哪里不对？这句话会进评测集候选") || "");
+  $("#escalate").onclick = async () => { const r = await api(`/api/incidents/${it.id}/escalate`, { method: "POST" }); $("#msg").textContent = `已呼叫 ${r.paged}，附上 ${r.evidence_rounds} 轮证据`; };
+}
+async function vote(it, v, reason) {
+  await api(`/api/incidents/${it.id}/feedback`, { method: "POST", body: JSON.stringify({ vote: v, reason }) });
+  $("#msg").textContent = v === "up" ? "谢谢，记下了。" : "记下了，会进评测集候选。";
+}
+list();
+</script>
+</body>
+</html>
