@@ -107,7 +107,7 @@
 | [多租户、权限、审计、脱敏](https://study.ainiya.de/agent/multi-tenant-audit.html) | [`agent/multi-tenant-audit`](agent/multi-tenant-audit/) | tenancy.py：租户上下文、按租户的数据范围、工具执行器、哈希链审计、Luhn 脱敏；demo.py 跑 6 个实验（不需要模型） |
 | [最小交互界面：流式输出、反馈按钮、转人工](https://study.ainiya.de/agent/minimal-ui.html) | [`agent/minimal-ui`](agent/minimal-ui/) | app.py + static/index.html：事件列表、幂等的开始、SSE 进度和报告（Last-Event-ID）、反馈进评测集候选、转人工；demo.py 用 httpx 走 6 条路径 |
 | [部署：容器、扩容、密钥管理、私有化](https://study.ainiya.de/agent/agent-deploy.html) | [`agent/agent-deploy`](agent/agent-deploy/) | worker + 两个 Dockerfile（多阶段 / 反面教材）+ K8s 清单（Secret、宽限期、KEDA 按 lagCount、NetworkPolicy）；demo.py 比镜像大小、查 docker history、三次 docker stop |
-| [压测和故障演练](https://study.ainiya.de/agent/load-test-drill.html) | [`agent/load-test-drill`](agent/load-test-drill/) | |
+| [压测和故障演练](https://study.ainiya.de/agent/load-test-drill.html) | [`agent/load-test-drill`](agent/load-test-drill/) | harness.py（开环、令牌桶、熔断、截止时间、工具故障）+ 带 /control 的假供应商；run.py 跑 1×/2×/3× 压测和三次故障演练 |
 
 ## Java 后端架构
 
