@@ -103,6 +103,11 @@
 | [可靠性：超时、重试、熔断、降级到备用模型](https://study.ainiya.de/agent/prod-reliability.html) | [`agent/prod-reliability`](agent/prod-reliability/) | 会出故障的假供应商（529 时段、卡住的连接、小额度备用）+ CircuitBreaker；night.py 用官方 SDK 30 倍速重演四种可靠性做法 |
 | [AI 网关：模型管理、token 限流、工具过滤](https://study.ainiya.de/agent/ai-gateway.html) | [`agent/ai-gateway`](agent/ai-gateway/) | 200 行最小 AI 网关（虚拟 key、别名、预算、脱敏、工具两道过滤、529 降级、流式记账、审计）+ 假供应商；demo.py 用官方 SDK 跑 9 个实验 |
 | [成本和延迟：缓存、模型路由、流式、并行](https://study.ainiya.de/agent/prod-cost-latency.html) | [`agent/prod-cost-latency`](agent/prod-cost-latency/) | ledger.py：按缓存计费规则给一次调查记账，叠加历史缓存、工具瘦身、并行、小模型分诊、流式（计算，不是实测） |
+| [提示注入：直接注入和间接注入](https://study.ainiya.de/agent/prompt-injection.html) | [`agent/prompt-injection`](agent/prompt-injection/) | inject.py：一条藏着注入的日志喂给本地 Qwen3-1.7B（llama-server），两类攻击 × 五种防法各跑 N 次，存原始回答 |
+| [多租户、权限、审计、脱敏](https://study.ainiya.de/agent/multi-tenant-audit.html) | [`agent/multi-tenant-audit`](agent/multi-tenant-audit/) | |
+| [最小交互界面：流式输出、反馈按钮、转人工](https://study.ainiya.de/agent/minimal-ui.html) | [`agent/minimal-ui`](agent/minimal-ui/) | |
+| [部署：容器、扩容、密钥管理、私有化](https://study.ainiya.de/agent/agent-deploy.html) | [`agent/agent-deploy`](agent/agent-deploy/) | |
+| [压测和故障演练](https://study.ainiya.de/agent/load-test-drill.html) | [`agent/load-test-drill`](agent/load-test-drill/) | |
 
 ## Java 后端架构
 
