@@ -102,6 +102,7 @@
 | [限流和配额：供应商的速率上限、自己的令牌桶](https://study.ainiya.de/agent/prod-rate-limit.html) | [`agent/prod-rate-limit`](agent/prod-rate-limit/) | 假供应商（RPM/ITPM/OTPM 三桶、前缀缓存、429+retry-after）+ TokenBucket / FairBucket；night.py 用官方 SDK 30 倍速重演五种限流做法 |
 | [可靠性：超时、重试、熔断、降级到备用模型](https://study.ainiya.de/agent/prod-reliability.html) | [`agent/prod-reliability`](agent/prod-reliability/) | 会出故障的假供应商（529 时段、卡住的连接、小额度备用）+ CircuitBreaker；night.py 用官方 SDK 30 倍速重演四种可靠性做法 |
 | [AI 网关：模型管理、token 限流、工具过滤](https://study.ainiya.de/agent/ai-gateway.html) | [`agent/ai-gateway`](agent/ai-gateway/) | 200 行最小 AI 网关（虚拟 key、别名、预算、脱敏、工具两道过滤、529 降级、流式记账、审计）+ 假供应商；demo.py 用官方 SDK 跑 9 个实验 |
+| [成本和延迟：缓存、模型路由、流式、并行](https://study.ainiya.de/agent/prod-cost-latency.html) | [`agent/prod-cost-latency`](agent/prod-cost-latency/) | ledger.py：按缓存计费规则给一次调查记账，叠加历史缓存、工具瘦身、并行、小模型分诊、流式（计算，不是实测） |
 
 ## Java 后端架构
 
