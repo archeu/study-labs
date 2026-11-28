@@ -1,0 +1,75 @@
+# 值班助手 worker：Deployment + 从 Secret 注入虚拟 key + 按 Redis Stream 积压扩缩（KEDA）+ 只许连网关和 Redis
+# 没有在集群上跑过：字段按 Kubernetes 和 KEDA 2.21 的文档写，用之前 kubectl apply --dry-run=server 过一遍
+apiVersion: v1
+kind: Secret
+metadata:
+  name: oncall-worker-keys
+  namespace: oncall
+type: Opaque
+stringData:
+  GATEWAY_KEY: "vk-pay-19c2-REPLACE-ME"   # 只放网关发的虚拟 key；真的供应商 key 只挂进网关的 Pod
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oncall-worker
+  namespace: oncall
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: oncall-worker}
+  template:
+    metadata:
+      labels: {app: oncall-worker}
+    spec:
+      # 一轮最长约 60 秒（模型调用的超时）+ 写检查点；给够时间把手上这一轮做完
+      terminationGracePeriodSeconds: 90
+      securityContext: {runAsNonRoot: true, runAsUser: 10001}
+      containers:
+        - name: worker
+          image: registry.example.com/oncall-worker:1.0.0
+          env:
+            - {name: REDIS_URL, value: "redis://oncall-redis:6379/0"}
+            - name: GATEWAY_KEY
+              valueFrom: {secretKeyRef: {name: oncall-worker-keys, key: GATEWAY_KEY}}
+          resources:
+            requests: {cpu: 100m, memory: 256Mi}   # worker 大部分时间在等模型，CPU 很低
+            limits: {memory: 512Mi}
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false}
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: oncall-worker
+  namespace: oncall
+spec:
+  scaleTargetRef: {name: oncall-worker}
+  minReplicaCount: 1
+  maxReplicaCount: 2          # 上限按额度算：36 万 ITPM 只够 12 个调查同时跑，2 个 Pod × 8 个协程已经够了
+  pollingInterval: 15
+  cooldownPeriod: 300
+  triggers:
+    - type: redis-streams
+      metadata:
+        address: oncall-redis:6379
+        stream: oncall:p1
+        consumerGroup: investigators
+        lagCount: "8"         # 按“还没分出去的”扩；pendingEntriesCount 数的是已经在 worker 手上的
+        activationLagCount: "1"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: oncall-worker-egress
+  namespace: oncall
+spec:
+  podSelector:
+    matchLabels: {app: oncall-worker}
+  policyTypes: [Egress]
+  egress:                      # worker 只许连网关和 Redis（再加 DNS）；连不到公网，供应商的地址只有网关能连
+    - to: [{podSelector: {matchLabels: {app: ai-gateway}}}]
+      ports: [{port: 18740}]
+    - to: [{podSelector: {matchLabels: {app: oncall-redis}}}]
+      ports: [{port: 6379}]
+    - to: [{namespaceSelector: {}, podSelector: {matchLabels: {k8s-app: kube-dns}}}]
+      ports: [{port: 53, protocol: UDP}]

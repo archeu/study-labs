@@ -1,0 +1,7 @@
+# 反面教材：完整版基础镜像、pip 直接装、密钥写进镜像、shell 形式的 CMD、root 用户
+FROM python:3.13
+WORKDIR /app
+COPY app/ /app/
+RUN pip install redis
+ENV GATEWAY_KEY=vk-pay-19c2-demo-not-real
+CMD python worker.py
